@@ -1,0 +1,35 @@
+namespace test_app;
+using Vosk;
+
+public class SpeechRecognizer{
+    private Model model;
+    VoskRecognizer rec;
+
+    public SpeechRecognizer(string path_to_module){
+        Vosk.SetLogLevel(0);
+        model = new Model("C:/Users/User/Desktop/test_app/vosk-model-small-ru-0.22/vosk-model-small-ru-0.22");
+        rec = new VoskRecognizer(model, 16000.0f);
+    }
+
+    public string recognizeSpeechFromWavFile(string path_to_file){
+
+        string result = "";
+        using(Stream source = File.OpenRead(path_to_file)) {
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0) {
+                float[] fbuffer = new float[bytesRead / 2];
+                for (int i = 0, n = 0; i < fbuffer.Length; i++, n+=2) {
+                    fbuffer[i] = BitConverter.ToInt16(buffer, n);
+                }
+                 if (rec.AcceptWaveform(fbuffer, fbuffer.Length)) {
+                     result += rec.Result();
+                     }
+                  else {
+                     Console.WriteLine(rec.PartialResult());
+                 }
+            }
+        }
+        return result + rec.FinalResult();
+    }
+}
