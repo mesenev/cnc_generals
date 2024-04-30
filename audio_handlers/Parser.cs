@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace test_app;
+namespace audio_handlers;
 
 class Parser
 {

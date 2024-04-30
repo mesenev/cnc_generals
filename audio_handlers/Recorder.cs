@@ -1,5 +1,6 @@
-namespace test_app;
+namespace audio_handlers;
 using NAudio.Wave;
+
 public class Recorder
 {
     private WaveInEvent waveIn;
@@ -7,7 +8,7 @@ public class Recorder
     public Recorder()
     {
         waveIn = new WaveInEvent();
-        writer = new WaveFileWriter("C:\\Users\\User\\Desktop\\test_app\\recorded_audio\\recor.wav", waveIn.WaveFormat);
+        writer = new WaveFileWriter("C:\\Users\\User\\Desktop\\test_app\\recorded_audio\\record.wav", waveIn.WaveFormat);
         waveIn.DataAvailable += (s, a) =>
             {
                 writer.Write(a.Buffer, 0, a.BytesRecorded);

@@ -3,7 +3,7 @@ using System.IO;
 using Vosk;
 using NAudio.Wave;
 using System.Threading;
-using test_app;
+using audio_handlers;
 using System.Numerics;
 public class VoskDemo
 {
@@ -98,11 +98,13 @@ public class VoskDemo
     {
         // You can set to -1 to disable logging messages
         //Vosk.Vosk.SetLogLevel(0);
-
         SpeechRecognizer s = new SpeechRecognizer("C:/Users/User/Desktop/test_app/vosk-model-small-ru-0.22/vosk-model-small-ru-0.22");
-        Console.WriteLine("WRAPPER" + s.recognizeSpeechFromWavFile("test.wav"));
-        List<string> known_commands = ["Назад", "Влево", "Вправо", "Вперед"];
-        Parser p = new Parser(known_commands);
-        p.parseStringToCommands("Вверх вниз влево вправо");
+        Streamer streamer = new Streamer(s);
+        streamer.startStreaming();
+        Thread.Sleep(10000);
+        //Console.WriteLine("WRAPPER" + s.recognizeSpeechFromWavFile("test.wav"));
+        //List<string> known_commands = ["Назад", "Влево", "Вправо", "Вперед"];
+        //Parser p = new Parser(known_commands);
+        //p.parseStringToCommands("Вверх вниз влево вправо");
     }
 }
