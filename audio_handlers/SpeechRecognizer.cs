@@ -11,13 +11,12 @@ public class SpeechRecognizer
         Vosk.SetLogLevel(0);
         model = new Model("C:/Users/User/Desktop/test_app/vosk-model-small-ru-0.22/vosk-model-small-ru-0.22");
         rec = new VoskRecognizer(model, 16000.0f);
+        rec.SetMaxAlternatives(0);
+        rec.SetWords(true);
     }
 
     public string recognizeSpeechFromStream(byte[] data, int offset, int count)
     {
-        VoskRecognizer rec = new VoskRecognizer(model, 16000.0f);
-        rec.SetMaxAlternatives(0);
-        rec.SetWords(true);
         if (rec.AcceptWaveform(data, count))
         {
             Console.WriteLine(rec.Result());
