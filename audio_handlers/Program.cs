@@ -98,7 +98,7 @@ public class VoskDemo
     {
         // You can set to -1 to disable logging messages
         //Vosk.Vosk.SetLogLevel(0);
-        SpeechRecognizer s = new SpeechRecognizer("C:/Users/User/Desktop/test_app/vosk-model-small-ru-0.22/vosk-model-small-ru-0.22");
+        SpeechRecognizer s = new SpeechRecognizer("vosk-model-small-ru-0.22");
         Streamer streamer = new Streamer(s);
         streamer.startStreaming();
         Thread.Sleep(10000);

@@ -9,7 +9,7 @@ public class SpeechRecognizer
     public SpeechRecognizer(string path_to_module)
     {
         Vosk.SetLogLevel(0);
-        model = new Model("C:/Users/User/Desktop/test_app/vosk-model-small-ru-0.22/vosk-model-small-ru-0.22");
+        model = new Model(path_to_module);
         rec = new VoskRecognizer(model, 16000.0f);
         rec.SetMaxAlternatives(0);
         rec.SetWords(true);
