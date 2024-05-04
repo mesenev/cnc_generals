@@ -98,13 +98,36 @@ public class VoskDemo
     {
         // You can set to -1 to disable logging messages
         //Vosk.Vosk.SetLogLevel(0);
-        SpeechRecognizer s = new SpeechRecognizer("vosk-model-small-ru-0.22");
-        Streamer streamer = new Streamer(s);
-        streamer.startStreaming();
-        Thread.Sleep(10000);
+        // SpeechRecognizer s = new SpeechRecognizer("vosk-model-small-ru-0.22");
+        // Streamer streamer = new Streamer(s);
+        // streamer.startStreaming();
+        // Thread.Sleep(10000);
+        // streamer.stopStreaming();
         //Console.WriteLine("WRAPPER" + s.recognizeSpeechFromWavFile("test.wav"));
         //List<string> known_commands = ["Назад", "Влево", "Вправо", "Вперед"];
         //Parser p = new Parser(known_commands);
         //p.parseStringToCommands("Вверх вниз влево вправо");
+        
+        WaveInEvent waveIn = new WaveInEvent();
+
+        Model model = new Model("vosk-model-ru-0.42");
+        VoskRecognizer rec = new VoskRecognizer(model, 16000);
+        
+        void WaveInOnDataAvailable(object? sender, WaveInEventArgs e)
+        {
+            if (rec.AcceptWaveform(e.Buffer, e.Buffer.Length))
+            {
+                Console.WriteLine(rec.Result());
+            }
+            else
+            {
+                Console.WriteLine(rec.PartialResult());
+            }
+        }
+        waveIn.DataAvailable += WaveInOnDataAvailable;
+        waveIn.StartRecording();
+        Thread.Sleep(10000);
+        waveIn.StopRecording();
+        Console.WriteLine(rec.FinalResult());
     }
 }

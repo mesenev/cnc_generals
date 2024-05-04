@@ -4,7 +4,7 @@ using Vosk;
 public class SpeechRecognizer
 {
     private Model model;
-    VoskRecognizer rec;
+    private VoskRecognizer rec;
 
     public SpeechRecognizer(string path_to_module)
     {
@@ -25,8 +25,8 @@ public class SpeechRecognizer
         {
             Console.WriteLine(rec.PartialResult());
         }
-        Console.WriteLine(rec.FinalResult());
-        return rec.FinalResult();
+        //Console.WriteLine(rec.FinalResult());
+        return "rec.FinalResult();";
     }
 
     public string recognizeSpeechFromWavFile(string path_to_file)
