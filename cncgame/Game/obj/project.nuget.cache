@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "vhI6e2B9p9JSnlE6GZ/UZKjM2WpITJnAwmduLfC+GzdCA4fpiVVthk+FltFQMpN3Hj/l1o8W1NBBX0PaMWC+kA==",
+  "success": true,
+  "projectFilePath": "D:\\RiderProjects\\cnc_generals\\cncgame\\Game\\Game.Win.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pavli\\.nuget\\packages\\litenetlib\\1.2.0\\litenetlib.1.2.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.componentmodel.composition\\8.0.0\\system.componentmodel.composition.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

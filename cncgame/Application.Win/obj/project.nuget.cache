@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "kZrwbZuk6f6fZ6OVURjqDjshhJkvV9ej4mhiW1LxHFC78VvF5RwK/Dbrkn6xhP7L4TMXiFT8U3RlpxvAxbCh6w==",
+  "success": true,
+  "projectFilePath": "D:\\RiderProjects\\cnc_generals\\cncgame\\Application.Win\\DemoServer.Win.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pavli\\.nuget\\packages\\litenetlib\\1.2.0\\litenetlib.1.2.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\menees.analyzers\\3.0.11\\menees.analyzers.3.0.11.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\microsoft.codeanalysis.common\\4.6.0\\microsoft.codeanalysis.common.4.6.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.6.0\\microsoft.codeanalysis.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\8.0.0\\microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\opentk\\3.3.3\\opentk.3.3.3.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.componentmodel.composition\\8.0.0\\system.componentmodel.composition.8.0.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\pavli\\.nuget\\packages\\system.text.encoding.codepages\\7.0.0\\system.text.encoding.codepages.7.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"OpenTK 3.3.3\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net8.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "OpenTK",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
+}

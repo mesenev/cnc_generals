@@ -1,0 +1,84 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		},
+		{
+			"class":"Lime.PreviewMetadata, Lime",
+			"Preview":[
+				"iVBORw0KGgoAAAANSUhEUgAAAJYAAABxCAYAAAA3QFrYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAA",
+				"A7DAcdvqGQAAAE6SURBVHhe7cgxDQAxAMSw8qdbAl8A2U6/OZKXnNeFH+SEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU",
+				"5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5",
+				"Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y",
+				"5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5YRVTljlhFVOWOWEVU5Y5",
+				"YRVTljlhFVOWOWEVU5Y5YRVThic+wHzjNzlm/uRcAAAAABJRU5ErkJggg=="
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Animations":[
+		{
+			"IsLegacy":true,
+			"Markers":[
+				{
+					"Id":"Show"
+				},
+				{
+					"Action":1,
+					"Frame":6,
+					"Id":"Shown",
+					"JumpTo":""
+				},
+				{
+					"Frame":10,
+					"Id":"Hide"
+				},
+				{
+					"Action":1,
+					"Frame":15,
+					"Id":"",
+					"JumpTo":""
+				}
+			]
+		}
+	],
+	"Color":[4294967295],
+	"Nodes":[
+		{
+			"class":"Lime.Image, Lime",
+			"Anchors":15,
+			"Animators":[
+				{
+					"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.Color4SimpleAnimationCurve, Lime",
+						"Keys":[
+							[0,0,[4073984]],
+							[6,0,[3359517184]],
+							[10,0,[3359517184]],
+							[15,0,[4073984]]
+						]
+					},
+					"TargetProperty":"Color"
+				}
+			],
+			"Color":[4073984],
+			"Id":"Shade",
+			"Pivot":[0.5,0.5],
+			"Position":[512,384],
+			"Shader":3,
+			"Size":[1024,768],
+			"Sprite":{
+				"class":"Lime.SerializableSprite, Lime"
+			}
+		}
+	],
+	"Size":[1024,768]
+}

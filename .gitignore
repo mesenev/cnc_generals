@@ -6,3 +6,12 @@
 audio/ApiClient/bin/
 audio/ApiClient/obj/
 .idea/
+
+# Citrus
+/cncgame/Bundles/
+/cncgame/.citrus/
+/cncgame/Data/.untitled/
+/cncgame/Data/.index
+/cncgame/TangerineLog.txt
+/cncgame/*.userprefs
+/cncgame/Generated/Scenes/Bundles/

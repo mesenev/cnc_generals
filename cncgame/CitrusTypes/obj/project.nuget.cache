@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ix4JbMozOyA6cbe/BGesQ6S7cX1Q+dqk9Hh12NpaxjmdKwTzwDUyRomEaXJV0CveuPga2JvPSet7xaeSqeZDRg==",
+  "success": true,
+  "projectFilePath": "D:\\RiderProjects\\cnc_generals\\cncgame\\CitrusTypes\\CitrusTypes.Win.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pavli\\.nuget\\packages\\system.componentmodel.composition\\8.0.0\\system.componentmodel.composition.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

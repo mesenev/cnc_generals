@@ -1,0 +1,4 @@
+Sprite.AtlasName ${DirectoryName}
+AtlasOptimization DrawCalls
+DDSFormat ARGB8
+PVRFormat PVRTC4

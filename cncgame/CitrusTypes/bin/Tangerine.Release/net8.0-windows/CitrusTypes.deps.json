@@ -1,0 +1,307 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CitrusTypes/1.0.0": {
+        "dependencies": {
+          "System.ComponentModel.Composition": "8.0.0",
+          "DynamicFont": "1.0.0.0",
+          "Kumquat": "1.0.0.0",
+          "Lemon": "1.0.0.0",
+          "Lime": "1.0.0.0",
+          "Lzma": "1.0.0.0",
+          "MFDecoder": "1.0.7824.30232",
+          "Orange": "1.0.0.0",
+          "RemoteScripting": "1.0.0.0",
+          "Tangerine.Common": "1.0.0.0",
+          "Tangerine.Core": "1.0.0.0",
+          "Tangerine.UI.AnimeshEditor": "1.0.0.0",
+          "Tangerine.UI": "1.0.0.0",
+          "Tangerine.UI.Filesystem": "1.0.0.0",
+          "Tangerine.UI.Inspector": "1.0.0.0",
+          "Tangerine.UI.RemoteScripting": "1.0.0.0",
+          "Tangerine.UI.SceneView": "1.0.0.0",
+          "Tangerine.UI.Timeline": "1.0.0.0",
+          "Yuzu": "1.0.0.0",
+          "YuzuGenerator": "1.0.0.0"
+        },
+        "runtime": {
+          "CitrusTypes.dll": {}
+        }
+      },
+      "System.ComponentModel.Composition/8.0.0": {
+        "runtime": {
+          "lib/net8.0/System.ComponentModel.Composition.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "DynamicFont/1.0.0.0": {
+        "runtime": {
+          "DynamicFont.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Kumquat/1.0.0.0": {
+        "runtime": {
+          "Kumquat.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lemon/1.0.0.0": {
+        "runtime": {
+          "Lemon.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lime/1.0.0.0": {
+        "runtime": {
+          "Lime.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Lzma/1.0.0.0": {
+        "runtime": {
+          "Lzma.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MFDecoder/1.0.7824.30232": {
+        "runtime": {
+          "MFDecoder.dll": {
+            "assemblyVersion": "1.0.7824.30232",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Orange/1.0.0.0": {
+        "runtime": {
+          "Orange.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "RemoteScripting/1.0.0.0": {
+        "runtime": {
+          "RemoteScripting.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.Common/1.0.0.0": {
+        "runtime": {
+          "Tangerine.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.Core/1.0.0.0": {
+        "runtime": {
+          "Tangerine.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.AnimeshEditor/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.AnimeshEditor.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.Filesystem/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.Filesystem.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.Inspector/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.Inspector.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.RemoteScripting/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.RemoteScripting.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.SceneView/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.SceneView.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Tangerine.UI.Timeline/1.0.0.0": {
+        "runtime": {
+          "Tangerine.UI.Timeline.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Yuzu/1.0.0.0": {
+        "runtime": {
+          "Yuzu.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "YuzuGenerator/1.0.0.0": {
+        "runtime": {
+          "YuzuGenerator.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CitrusTypes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.ComponentModel.Composition/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bGhUX5BTivJ9Wax0qnJy7uGq7dn/TQkEpJ2Fpu1etg8dbPwyDkUzNPc1d3I2/jUr9y4wDI3a1dkSmi8X21Pzbw==",
+      "path": "system.componentmodel.composition/8.0.0",
+      "hashPath": "system.componentmodel.composition.8.0.0.nupkg.sha512"
+    },
+    "DynamicFont/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Kumquat/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lemon/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lime/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lzma/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MFDecoder/1.0.7824.30232": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orange/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RemoteScripting/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.Common/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.AnimeshEditor/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.Filesystem/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.Inspector/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.RemoteScripting/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.SceneView/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tangerine.UI.Timeline/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Yuzu/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YuzuGenerator/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>CitrusTypes</AssemblyName>
+    <RootNamespace>CitrusTypes</RootNamespace>
+  </PropertyGroup>
+</Project>
