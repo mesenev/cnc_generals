@@ -23,7 +23,7 @@ public class YandexSttClient
         folderId = folder_id;
     }
 
-    protected Metadata makeMetadata()
+    private Metadata makeMetadata()
     {
         Metadata metadata = new Metadata();
         metadata.Add("authorization", $"Bearer {iamToken}");
@@ -31,7 +31,9 @@ public class YandexSttClient
         return metadata;
     }
 
-    protected StreamingRequest makeRequestWithOptions()
+    
+    //DefaultEouClassifier max_pause_between_words_hint_ms
+    private StreamingRequest makeRequestWithOptions()
     {
         RawAudio raw_audio = new RawAudio();
         raw_audio.AudioEncoding = RawAudio.Types.AudioEncoding.Linear16Pcm;
@@ -45,6 +47,7 @@ public class YandexSttClient
         recognition_model.AudioFormat = audio_format_options;
         recognition_model.AudioProcessingType = RecognitionModelOptions.Types.AudioProcessingType.RealTime;
         StreamingOptions streaming_options =new StreamingOptions();
+        
         streaming_options.RecognitionModel = recognition_model;
         
         StreamingRequest streamingRequestWithOptions = new StreamingRequest();
@@ -101,6 +104,22 @@ public class YandexSttClient
         }
 
         return text;
+    }
+
+    async public Task<string> readFirstFinalResponseInStream()
+    {
+        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        {
+            if (response.Final != null)
+            {
+                if (response.Final.Alternatives.Count != 0)
+                {
+                    return response.Final.Alternatives[0].Text;
+                }
+            }
+        }
+
+        throw new Exception("No final recognize result has been return");
     }
     
     async public Task<List<string>> readAllDataFromResponseStream()
