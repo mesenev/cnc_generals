@@ -7,6 +7,7 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using Speechkit.Stt.V3;
 
+
 public class YandexSttClient
 {
     private string iamToken;
@@ -75,22 +76,67 @@ public class YandexSttClient
         call.RequestStream.WriteAsync(rR).Wait();
         Console.WriteLine($"{bytes.Length} байт было отправлено в Yandex Speech Kit Recognition");
     }
-
-    async public void readAllDataFromResponseStream()
+    
+    // ToDo альтернатив может быть больше чем 1, нужно это учесть в этом методе
+    async public Task<string> readOneStreamingResponseFromActiveCall()
     {
-        
-        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        string text = "";
+        if (call.ResponseStream.MoveNext().Result)
         {
-            //Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
-            if (response.Partial != null)
+            if (call.ResponseStream.Current.Partial != null)
             {
-                Console.WriteLine($"RESPONSE PARTIAL : {response.Partial}");
+                if (call.ResponseStream.Current.Partial.Alternatives.Count != 0)
+                {
+                    text = call.ResponseStream.Current.Partial.Alternatives[0].Text;
+                }
             }
-            if (response.Final != null)
+
+            if (call.ResponseStream.Current.Final != null)
             {
-                Console.WriteLine($"RESPONSE FINAL : {response.Final}");
+                if (call.ResponseStream.Current.Final.Alternatives.Count != 0)
+                {
+                    text = call.ResponseStream.Current.Final.Alternatives[0].Text;
+                }
             }
         }
+
+        return text;
+    }
+    
+    async public Task<List<string>> readAllDataFromResponseStream()
+    {
+            List<string> all_data = new List<string>();
+            await foreach (var response in call.ResponseStream.ReadAllAsync())
+            {
+                //Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
+                if (response.Partial != null)
+                {
+                    foreach (var alternative in response.Partial.Alternatives)
+                    {
+                        Console.WriteLine($"RESPONSE PARTIAL : {alternative.Text}");
+                        all_data.Add(alternative.Text);
+                    }
+                }
+
+                if (response.Final != null)
+                {
+                    foreach (var alternative in response.Final.Alternatives)
+                    {
+                        Console.WriteLine($"RESPONSE FINAL : {alternative.Text}");
+                        all_data.Add(alternative.Text);
+                    }
+                }
+
+                if (response.FinalRefinement != null)
+                {
+                    foreach (var alternative in response.FinalRefinement.NormalizedText.Alternatives)
+                    {
+                        Console.WriteLine($"FINAL REFIREMENT : {alternative.Text}");
+                        all_data.Add(alternative.Text);
+                    }
+                }
+            }
+            return all_data;
     }
 
     public void disposeAll()
