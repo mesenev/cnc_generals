@@ -16,17 +16,13 @@ public class GameScreen : Dialog<Scenes.Data.GameScreen>
 	protected override void Shown()
 	{
 		var canvas = Scene.It["Scene1"];
-		game = new Game(canvas, Server, Client);
+		game = new Game(canvas, Client);
 		canvas.Updated += game.Update;
-		canvas.Updated += game.UpdateServer;
 		canvas.Updated += game.UpdatePlayers;
 	}
 
 	protected override void Closing()
 	{
-		if (Server.IsHost()) {
-			Server.Stop();
-		}
 		Client.Disconnect();
 	}
 

@@ -8,7 +8,7 @@ namespace Game
 	{
 		private readonly int size = 16;
 		
-		private readonly Image image;
+		public readonly Image image;
 		public Vector2 Position { get => image.Position; set => image.Position = value; }
 		
 		public PlayerComponent(Widget canvas, Vector2 newPos, int newPID=0, string spritePath="Sprites/Hero")
@@ -24,7 +24,7 @@ namespace Game
 			// var angle = Mathf.RandomFloat(0, Mathf.Pi * 2);
 			// Velocity = 1000 * Vector2.CosSin(angle);
 			
-			canvas.Nodes.Insert(EntityId, image);
+			canvas.Nodes.Add(image);
 		}
 	}
 }

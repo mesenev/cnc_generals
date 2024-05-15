@@ -92,17 +92,8 @@
 					"ContentsPath":"Externals/BtnConnect",
 					"Id":"@BtnConnect",
 					"Pivot":[0.5,0.5],
-					"Position":[531.22064,475.70026],
-					"Size":[157.17467,135.31383]
-				},
-				{
-					"class":"Lime.Button, Lime",
-					"Color":[4294967295],
-					"ContentsPath":"Externals/BtnStartServer",
-					"Id":"@BtnStartServer",
-					"Pivot":[0.5,0.5],
-					"Position":[347.236,475.49713],
-					"Size":[149.93854,134.33904]
+					"Position":[524.868,418.74515],
+					"Size":[161.34665,140.42401]
 				},
 				{
 					"class":"Lime.Button, Lime",

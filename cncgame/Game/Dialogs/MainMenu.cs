@@ -9,21 +9,21 @@ public class MainMenu : Dialog<Scenes.Data.MainMenu>
 	{
 		SoundManager.PlayMusic("Theme");
 		Scene._BtnPlay.It.Clicked = CrossfadeInto<GameScreen>;
-		Scene._BtnStartServer.It.Clicked = HostThenCrossfade;
+		// Scene._BtnStartServer.It.Clicked = HostThenCrossfade;
 		Scene._BtnConnect.It.Clicked = ConnectThenCossfade;
 		Scene._BtnOptions.It.Clicked = Open<Options>;
 	}
 
-	private void HostThenCrossfade()
-	{
-		Server.Start();
-		Client.Connect("Player");
-		CrossfadeInto<GameScreen>();
-	}
+	// private void HostThenCrossfade()
+	// {
+	// 	Server.Start();
+	// 	Client.Connect("Player");
+	// 	CrossfadeInto<GameScreen>();
+	// }
 
 	private void ConnectThenCossfade()
 	{
-		Client.Connect("Player");
+		// Client.Connect("Player");
 		CrossfadeInto<GameScreen>();
 	}
 

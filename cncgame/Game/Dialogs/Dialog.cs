@@ -196,8 +196,7 @@ public class Dialog : IDisposable
 	public bool IsTopDialog => DialogManager.Top == this;
 
 	public virtual void FillDebugMenuItems(DevPanel.Menu menu) { }
-
-	protected Server Server => The.Server;
+	
 	protected Client Client => The.Client;
 	protected Application.Application App => The.App;
 	protected WindowWidget World => The.World;

@@ -6,29 +6,38 @@ using System.Threading;
 
 namespace Game
 {
+	public delegate void UpdateDelegate();
+
 	public class Game
 	{
-		private int entityCounter;
 		public Widget Canvas { get; set; }
 
 		public readonly List<Component> Components = new();
 		public readonly List<IProcessor> Processors = new();
-		
-		private Server server;
-		private Client client;
+
+		private Client _client;
 
 		private PlayerComponent mainPlayer;
 
-		public Game(Widget canvas, Server server, Client client)
+		public Game(Widget canvas, Client client)
 		{
-			this.server = server;
-			this.client = client;
-
-			mainPlayer = new PlayerComponent(canvas, canvas.Size / 2, (int)server.GetNewPID());
-
-			var playerInputProcessor = new PlayerInputProcessor(mainPlayer);
+			_client = client;
+			_client.Connect("Player");
 
 			Canvas = canvas;
+		}
+
+		private void CallIfPlayerConnected(UpdateDelegate func)
+		{
+			if (_client.isPLayerJoined) {
+				func();
+			}
+		}
+
+		public void SetMainPlayer(int pid)
+		{
+			mainPlayer = new PlayerComponent(Canvas, Canvas.Size / 2, pid);
+			var playerInputProcessor = new PlayerInputProcessor(mainPlayer);
 
 			Components.Add(mainPlayer);
 			Processors.Add(playerInputProcessor);
@@ -40,37 +49,34 @@ namespace Game
 				processor.Update(delta, this);
 			}
 
-			client.UpdateClientPlayer(mainPlayer.Position, (uint)mainPlayer.EntityId);
-			client.Update();
-		}
+			_client.Update();
+			if (_client.isPLayerJoined && mainPlayer != null) {
+				_client.UpdateClientPlayer(mainPlayer.Position);
+			}
 
-		public void UpdateServer(float delta)
-		{
-			if (server.IsHost()) {
-				server.Update();
-				Thread.Sleep(15);
+			if (_client.isPLayerJoined && mainPlayer == null) {
+				SetMainPlayer((int)_client.GetClientPlayer().state.pid);
 			}
 		}
 
 		public void UpdatePlayers(float delta)
 		{
-			RemovePlayersFromCanvas();
+			CallIfPlayerConnected(RemovePlayersFromCanvas);
 
-			GetPlayersFromServer();
+			CallIfPlayerConnected(GetPlayersFromServer);
 		}
 
 		private void RemovePlayersFromCanvas()
 		{
-			foreach (var player in Components.FindAll(el => el.EntityId != mainPlayer.EntityId)) {
-				Canvas.Nodes.RemoveAt(player.EntityId);
-			}
+			Canvas.Nodes.RemoveAll(node => node != mainPlayer.image);
 
 			Components.RemoveAll(el => el.EntityId != mainPlayer.EntityId);
 		}
 
 		private void GetPlayersFromServer()
 		{
-			foreach (var remotePlayer in client.GetServerPlayers()) {
+			foreach (var remotePlayer in _client.GetServerPlayers()
+				         .FindAll(el => (int)el.state.pid != mainPlayer.EntityId)) {
 				Components.Add(
 					new PlayerComponent(Canvas, remotePlayer.state.position, spritePath: "Sprites/Unit") {
 						EntityId = (int)remotePlayer.state.pid

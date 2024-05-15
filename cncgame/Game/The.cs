@@ -7,7 +7,7 @@ namespace Game;
 
 public static class The
 {
-	public static Server Server => Server.Instance;
+	// public static Server Server => Server.Instance;
 	public static Client Client => Client.Instance;
 	public static Application.Application App => Application.Application.Instance;
 	public static WindowWidget World => App.World;
