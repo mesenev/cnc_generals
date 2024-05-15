@@ -8,6 +8,8 @@ audio/ApiClient/obj/
 .idea/
 
 # Citrus
+/cncgame/bin
+/cncgame/obj
 /cncgame/Bundles/
 /cncgame/.citrus/
 /cncgame/Data/.untitled/
