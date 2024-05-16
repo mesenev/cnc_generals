@@ -1,0 +1,44 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Color":[4294967295],
+	"Id":"@",
+	"Nodes":[
+		{
+			"class":"Lime.Frame, Lime",
+			"Anchors":15,
+			"Color":[4294967295],
+			"Id":"Hero",
+			"Nodes":[
+				{
+					"class":"Lime.Image, Lime",
+					"Anchors":15,
+					"Color":[4294967295],
+					"Id":"Image",
+					"Pivot":[0.5,0.5],
+					"Position":[4,4],
+					"Size":[8,8],
+					"Sprite":{
+						"class":"Lime.SerializableSprite, Lime",
+						"SerializationPath":"HeroIMG"
+					}
+				}
+			],
+			"Pivot":[0.5,0.5],
+			"Position":[4,4],
+			"Size":[8,8]
+		}
+	],
+	"Size":[8,8]
+}

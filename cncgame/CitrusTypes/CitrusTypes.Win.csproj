@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="CitrusTypes.props" />
+
+  <PropertyGroup>
+    <Configurations>Release;Debug;Tangerine.Release;Tangerine.Debug</Configurations>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Composition" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Yuzu">
+      <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Lemon">
+      <HintPath>..\Citrus\Lime\Lemon.dll</HintPath>
+    </Reference>
+    <Reference Include="Lzma, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\Lzma.dll</HintPath>
+    </Reference>
+    <Reference Include="MFDecoder, Version=1.0.6621.19204, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\MFDecoder.dll</HintPath>
+    </Reference>
+    <Reference Include="YuzuGenerator">
+      <HintPath>..\Citrus\Lime\YuzuGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="Lime">
+      <HintPath>..\Citrus\Lime\Lime.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Kumquat" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Kumquat.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicFont" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Extensions\DynamicFont.dll</HintPath>
+    </Reference>
+    <Reference Include="Orange" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Orange\Orange.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Tangerine.Core" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.Core.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Tangerine.UI" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Tangerine.UI.FilesystemView" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.Filesystem.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Tangerine.UI.Inspector" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.Inspector.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="RemoteScripting" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Extensions\RemoteScripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Tangerine.UI.RemoteScripting" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.RemoteScripting.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Tangerine.Common" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Tangerine.UI.AnimeshEditor" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.AnimeshEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tangerine.UI.SceneView" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.SceneView.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Tangerine.UI.Timeline" Condition="$(Configuration.Contains('Tangerine'))">
+      <HintPath>..\Citrus\Tangerine\Tangerine.UI.Timeline.dll</HintPath>
+    </Reference>
+    
+    
+  </ItemGroup>
+
+</Project>

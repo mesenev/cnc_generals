@@ -1,0 +1,88 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["schema",1]
+			]
+		},
+		{
+			"class":"Lime.Schema.LayerMetadata, Lime",
+			"Layers":[
+				["game",1]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Schema.SchemaStorage, Lime",
+	"TypeDescriptors":[
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.MaterialComponent`1[[CitrusTypes.ColorizeMaterial, CitrusTypes]], Lime",
+			"Kind":"Class",
+			"Members":[],
+			"Name":"CitrusTypes.ColorizeComponent, CitrusTypes"
+		},
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.NodeComponent, Lime",
+			"DefaultValues":{
+				"Comments":"null"
+			},
+			"Kind":"Class",
+			"Members":[
+				{
+					"Attributes":[
+						"{\"class\":\"Yuzu.YuzuMember, Yuzu\",\"Alias\":null}"
+					],
+					"MemberKind":"Property",
+					"Name":"Comments",
+					"TypeName":"System.Collections.Generic.List`1[[System.String]]"
+				}
+			],
+			"Name":"CitrusTypes.CommentComponent, CitrusTypes"
+		},
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.NodeComponent, Lime",
+			"Kind":"Class",
+			"Members":[],
+			"Name":"CitrusTypes.EmptyComponent, CitrusTypes"
+		},
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.NodeBehavior, Lime",
+			"DefaultValues":{
+				"Animation":"null"
+			},
+			"Kind":"Class",
+			"Members":[
+				{
+					"Attributes":[
+						"{\"class\":\"Yuzu.YuzuMember, Yuzu\",\"Alias\":null}"
+					],
+					"MemberKind":"Property",
+					"Name":"Animation",
+					"TypeName":"System.String"
+				}
+			],
+			"Name":"CitrusTypes.RunAnimationBehavior, CitrusTypes"
+		},
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.NodeComponent, Lime",
+			"Kind":"Class",
+			"Members":[],
+			"Name":"CitrusTypes.SplitVectorPropertiesComponent, CitrusTypes"
+		},
+		{
+			"class":"Lime.Schema.CompositeDescriptor, Lime",
+			"BaseTypeName":"Lime.MaterialComponent, Lime",
+			"Kind":"Class",
+			"Members":[],
+			"Name":"Lime.MaterialComponent`1[[CitrusTypes.ColorizeMaterial, CitrusTypes]], Lime"
+		}
+	]
+}

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="Game.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Yuzu">
+      <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
+    </Reference>
+    <Reference Include="Lemon">
+      <HintPath>..\Citrus\Lime\Lemon.dll</HintPath>
+    </Reference>
+    <Reference Include="Lzma, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\Lzma.dll</HintPath>
+    </Reference>
+    <Reference Include="MFDecoder, Version=1.0.6621.19204, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\MFDecoder.dll</HintPath>
+    </Reference>
+    <Reference Include="YuzuGenerator">
+      <HintPath>..\Citrus\Lime\YuzuGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="Lime">
+      <HintPath>..\Citrus\Lime\Lime.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="RemoteScripting">
+      <HintPath>..\Citrus\Extensions\RemoteScripting.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="RemoteScriptingClient">
+      <HintPath>..\Citrus\Extensions\RemoteScriptingClient.dll</HintPath>
+    </Reference>
+    
+    <ProjectReference Include="..\CitrusTypes\CitrusTypes.Win.csproj" />
+    <ProjectReference Include="..\Generated\Scenes\Scenes.Win.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiteNetLib" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>

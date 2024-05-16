@@ -1,0 +1,2 @@
+WrapMode Repeat
+Image.ImportMode Texture
