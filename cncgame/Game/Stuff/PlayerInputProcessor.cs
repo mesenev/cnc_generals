@@ -16,13 +16,16 @@ namespace Game
 
 		public void Update(float delta, Game game)
 		{
-			if (!isKeyPressed && game.Canvas.Input.IsKeyPressed(Key.Mouse1)) {
-				player.Position = new Vector2(game.Canvas.Input.MousePosition.X, game.Canvas.Input.MousePosition.Y);
-				isKeyPressed = true;
-			}
-
-			if (isKeyPressed && game.Canvas.Input.WasKeyReleased(Key.Mouse1)) {
-				isKeyPressed = false;
+			// if (!isKeyPressed && game.Canvas.Input.IsKeyPressed(Key.Mouse1)) {
+			// 	player.Position = new Vector2(game.Canvas.Input.MousePosition.X, game.Canvas.Input.MousePosition.Y);
+			// 	isKeyPressed = true;
+			// }
+			//
+			// if (isKeyPressed && game.Canvas.Input.WasKeyReleased(Key.Mouse1)) {
+			// 	isKeyPressed = false;
+			// }
+			if (player.image.IsMouseOver()) {
+				Console.WriteLine("YES YES YES");
 			}
 		}
 	}

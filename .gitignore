@@ -17,3 +17,7 @@ audio/ApiClient/obj/
 /cncgame/TangerineLog.txt
 /cncgame/*.userprefs
 /cncgame/Generated/Scenes/Bundles/
+
+# Server
+/cncserver/**/bin
+/cncserver/**/obj

@@ -3,6 +3,7 @@ using Lime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Game.Map;
 
 namespace Game
 {
@@ -19,12 +20,25 @@ namespace Game
 
 		private PlayerComponent mainPlayer;
 
+		private HexGrid hexGrid;
+
 		public Game(Widget canvas, Client client)
 		{
+			initHexGrid(canvas);
+			
 			_client = client;
-			_client.Connect("Player");
+			// _client.Connect("Player");
 
 			Canvas = canvas;
+		}
+
+		private void initHexGrid(Widget canvas)
+		{
+			hexGrid = new HexGrid(canvas);
+
+			foreach (var cell in hexGrid.cells) {
+				Processors.Add(new HexInteractionProcessor(cell));
+			}
 		}
 
 		private void CallIfPlayerConnected(UpdateDelegate func)
