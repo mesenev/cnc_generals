@@ -15,11 +15,11 @@ namespace Game
 
 		public void Update(float delta, Game game)
 		{
-			if (!_cell.image) {
-				_cell.image.Color = Color4.White;
-			} else {
-				_cell.image.Color = Color4.Gray;
-			}
+			// if (_cell.image) {
+			// 	_cell.image.Color = Color4.White;
+			// } else {
+			// 	_cell.image.Color = Color4.Gray;
+			// }
 		}
 	}
 }

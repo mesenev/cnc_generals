@@ -24,10 +24,10 @@ namespace Game
 
 		public Game(Widget canvas, Client client)
 		{
-			initHexGrid(canvas);
+			// initHexGrid(canvas);
 			
 			_client = client;
-			// _client.Connect("Player");
+			_client.Connect("Player");
 
 			Canvas = canvas;
 		}
