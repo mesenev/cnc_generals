@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Google.Protobuf;
 using NAudio.Wave;
 
 namespace ApiClient;
@@ -69,12 +70,11 @@ public class YandexSttClient
         call.RequestStream.WriteAsync(makeRequestWithOptions()).Wait();
     }
 
-    public void writeDataToOpenStreamCall(byte[] bytes)
+    public async Task writeDataToOpenStreamCall(ByteString bytes)
     {
-        Console.WriteLine("Method called");
         StreamingRequest rR = new StreamingRequest();
         AudioChunk audioChunk = new AudioChunk();
-        audioChunk.Data = Google.Protobuf.ByteString.CopyFrom(bytes);
+        audioChunk.Data = bytes;
         rR.Chunk = audioChunk;
         call.RequestStream.WriteAsync(rR).Wait();
         Console.WriteLine($"{bytes.Length} байт было отправлено в Yandex Speech Kit Recognition");
@@ -84,24 +84,34 @@ public class YandexSttClient
     async public Task<string> readOneStreamingResponseFromActiveCall()
     {
         string text = "";
-        if (call.ResponseStream.MoveNext().Result)
+        while (true)
         {
-            if (call.ResponseStream.Current.Partial != null)
+            if (call.ResponseStream.MoveNext().Result)
             {
-                if (call.ResponseStream.Current.Partial.Alternatives.Count != 0)
+                Console.WriteLine(call.ResponseStream.Current.AudioCursors);
+                if (call.ResponseStream.Current.Partial != null)
                 {
-                    text = call.ResponseStream.Current.Partial.Alternatives[0].Text;
+                    if (call.ResponseStream.Current.Partial.Alternatives.Count != 0)
+                    {
+                        text = call.ResponseStream.Current.Partial.Alternatives[0].Text;
+                    }
+                }
+
+                if (call.ResponseStream.Current.Final != null)
+                {
+                    if (call.ResponseStream.Current.Final.Alternatives.Count != 0)
+                    {
+                        text = call.ResponseStream.Current.Final.Alternatives[0].Text;
+                    }
                 }
             }
 
-            if (call.ResponseStream.Current.Final != null)
+            if (text != "")
             {
-                if (call.ResponseStream.Current.Final.Alternatives.Count != 0)
-                {
-                    text = call.ResponseStream.Current.Final.Alternatives[0].Text;
-                }
+                break;
             }
         }
+        
 
         return text;
     }
@@ -122,18 +132,17 @@ public class YandexSttClient
         throw new Exception("No final recognize result has been return");
     }
     
-    async public Task<List<string>> readAllDataFromResponseStream()
+    async public Task readAllDataFromResponseStream()
     {
-            List<string> all_data = new List<string>();
             await foreach (var response in call.ResponseStream.ReadAllAsync())
             {
-                //Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
+                Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
+                Console.WriteLine($"CURSOR : {response.AudioCursors}");
                 if (response.Partial != null)
                 {
                     foreach (var alternative in response.Partial.Alternatives)
                     {
                         Console.WriteLine($"RESPONSE PARTIAL : {alternative.Text}");
-                        all_data.Add(alternative.Text);
                     }
                 }
 
@@ -142,7 +151,6 @@ public class YandexSttClient
                     foreach (var alternative in response.Final.Alternatives)
                     {
                         Console.WriteLine($"RESPONSE FINAL : {alternative.Text}");
-                        all_data.Add(alternative.Text);
                     }
                 }
 
@@ -151,11 +159,9 @@ public class YandexSttClient
                     foreach (var alternative in response.FinalRefinement.NormalizedText.Alternatives)
                     {
                         Console.WriteLine($"FINAL REFIREMENT : {alternative.Text}");
-                        all_data.Add(alternative.Text);
                     }
                 }
             }
-            return all_data;
     }
 
     public void disposeAll()

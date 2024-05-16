@@ -1,3 +1,4 @@
+# audio
 /.vscode
 /audio/audio_handlers/bin
 /audio/audio_handlers/obj
@@ -6,6 +7,10 @@
 audio/ApiClient/bin/
 audio/ApiClient/obj/
 .idea/
+
+#CommandRecognitionModule
+/audio/CommandRecognitionModule/bin
+/audio/CommandRecognitionModule/obj
 
 # Citrus
 /cncgame/**/bin

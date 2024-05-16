@@ -74,7 +74,7 @@ WaveFormat format = new WaveFormat(44100, 2);
 WaveInEvent waveIn = new WaveInEvent();
 waveIn.WaveFormat = format;
 
-YandexSttClient apiClient = new YandexSttClient("t1.9euelZrGx8zKjZvMjpiTzpCJmZPGku3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_dYGwlO-e83PmIo_N3z9xhKBk757zc-Yij8zef1656VmpCOmZmSlcmPmo6UisqTlJvN7_zF656VmpCOmZmSlcmPmo6UisqTlJvN.G9sLwyzIcuUkOjwn5D2lzQlxBCQkaHVnH39aGfNTroKfTtfveLlnsGIRYvStg-P_AFtSHJt9F69zUrfghMKtAw", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
+YandexSttClient apiClient = new YandexSttClient("t1.9euelZrPls-SlsqSnJSQkZuSmJGcme3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_dZWQRO-e8wBUM9_d3z9xkIAk757zAFQz39zef1656VmsaSz8iPy8yWlYmRj8jMm4-Q7_zF656VmsaSz8iPy8yWlYmRj8jMm4-Q.mp8JnyeE4Kpk7OJDA9UtREKba3hMXNMWPN9XPVgwHLiDUtYz_zsMWvlVRqd85YRtDiFp0sKoTN62fZ__OSjSCQ", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
 apiClient.startStreamToApi();
 
 waveIn.DataAvailable += (s, a) =>
@@ -86,19 +86,20 @@ waveIn.DataAvailable += (s, a) =>
     // call.RequestStream.WriteAsync(rR).Wait();
     // Console.WriteLine(a.Buffer.Length);
     
-    apiClient.writeDataToOpenStreamCall(a.Buffer);
+    apiClient.writeDataToOpenStreamCall(Google.Protobuf.ByteString.CopyFrom(a.Buffer));
     
 };
 
 
 waveIn.StartRecording();
-
 Thread.Sleep(10000);
-
 waveIn.StopRecording();
 
-apiClient.readAllDataFromResponseStream();
-apiClient.disposeAll();
+List<string> coms = new List<string>(["вверх", "вниз", "влево", "вправо"]);
+
+CommandParser parser = new CommandParser(coms);
+
+Console.WriteLine(apiClient.readFirstFinalResponseInStream().Result);
 // using (FileStream fs = File.Open("test_file_ogg.opus", FileMode.Open))
 // {
 //     using (BufferedStream bs = new BufferedStream(fs, 32 * 1024))
