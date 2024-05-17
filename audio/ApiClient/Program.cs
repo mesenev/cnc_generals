@@ -74,7 +74,7 @@ WaveFormat format = new WaveFormat(44100, 2);
 WaveInEvent waveIn = new WaveInEvent();
 waveIn.WaveFormat = format;
 
-YandexSttClient apiClient = new YandexSttClient("t1.9euelZrPls-SlsqSnJSQkZuSmJGcme3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_dZWQRO-e8wBUM9_d3z9xkIAk757zAFQz39zef1656VmsaSz8iPy8yWlYmRj8jMm4-Q7_zF656VmsaSz8iPy8yWlYmRj8jMm4-Q.mp8JnyeE4Kpk7OJDA9UtREKba3hMXNMWPN9XPVgwHLiDUtYz_zsMWvlVRqd85YRtDiFp0sKoTN62fZ__OSjSCQ", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
+YandexSttClient apiClient = new YandexSttClient("t1.9euelZrKlpPLjcaRiZKKl4nLz46Rz-3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_dfAGRN-e80Umw0_t3z9x8vYU357zRSbDT-zef1656Vmo2UzcebzJaWnYyMmZmOzZOX7_zF656Vmo2UzcebzJaWnYyMmZmOzZOX.lHvCasZ6cCJC977tS0nSLYQQKn4zfqHMraTvitlSrpndipCM-vW_MUelDeuSczt3EjkbWPe5Kyx7VZ9YA0XmAw", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
 apiClient.startStreamToApi();
 
 waveIn.DataAvailable += (s, a) =>
@@ -99,7 +99,7 @@ List<string> coms = new List<string>(["вверх", "вниз", "влево", "�
 
 CommandParser parser = new CommandParser(coms);
 
-Console.WriteLine(apiClient.readFirstFinalResponseInStream().Result);
+await apiClient.readAllDataFromResponseStream();
 // using (FileStream fs = File.Open("test_file_ogg.opus", FileMode.Open))
 // {
 //     using (BufferedStream bs = new BufferedStream(fs, 32 * 1024))

@@ -134,10 +134,11 @@ public class YandexSttClient
     
     async public Task readAllDataFromResponseStream()
     {
+            Console.WriteLine("START READ ALL DATA");
             await foreach (var response in call.ResponseStream.ReadAllAsync())
             {
-                Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
-                Console.WriteLine($"CURSOR : {response.AudioCursors}");
+                //Console.WriteLine($"RESPONSE Uuid : {response.SessionUuid}");
+                //Console.WriteLine($"CURSOR : {response.AudioCursors}");
                 if (response.Partial != null)
                 {
                     foreach (var alternative in response.Partial.Alternatives)
