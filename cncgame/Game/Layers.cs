@@ -2,6 +2,9 @@ namespace Game;
 
 public static class Layers
 {
+	public const int Background = 0;
+	public const int HexMap = 1;
+	public const int Entities = 2;
 	public const int Interface = 10;
 	public const int OverInterface = 20;
 	public const int Transition = 40;

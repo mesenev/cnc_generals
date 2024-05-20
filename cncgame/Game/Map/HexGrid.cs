@@ -1,3 +1,4 @@
+using System;
 using Lime;
 
 namespace Game.Map
@@ -18,6 +19,11 @@ namespace Game.Map
 					cells[y, x] = new HexCell(canvas, new Vector2(x,y));
 				}
 			}
+		}
+		public Vector2 getRandomCellPosition()
+		{
+			Random random = new Random();
+			return cells[random.Next(0, height), random.Next(0, width)].PixelPosition;
 		}
 	}
 }

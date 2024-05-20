@@ -20,10 +20,6 @@ namespace Game
 				Position = newPos,
 				Pivot = Vector2.Half,
 			};
-			
-			// var angle = Mathf.RandomFloat(0, Mathf.Pi * 2);
-			// Velocity = 1000 * Vector2.CosSin(angle);
-			
 			canvas.Nodes.Add(image);
 		}
 	}

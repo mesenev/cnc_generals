@@ -22,14 +22,14 @@ namespace Game
 
 		private HexGrid hexGrid;
 
-		public Game(Widget canvas, Client client)
+		public Game(Client client)
 		{
-			// initHexGrid(canvas);
+			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 			
 			_client = client;
 			_client.Connect("Player");
 
-			Canvas = canvas;
+			Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
 		}
 
 		private void initHexGrid(Widget canvas)
@@ -50,7 +50,7 @@ namespace Game
 
 		public void SetMainPlayer(int pid)
 		{
-			mainPlayer = new PlayerComponent(Canvas, Canvas.Size / 2, pid);
+			mainPlayer = new PlayerComponent(Canvas, hexGrid.getRandomCellPosition(), pid);
 			var playerInputProcessor = new PlayerInputProcessor(mainPlayer);
 
 			Components.Add(mainPlayer);
