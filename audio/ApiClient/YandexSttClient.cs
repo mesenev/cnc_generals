@@ -69,7 +69,8 @@ public class YandexSttClient
         call = recognizerClient.RecognizeStreaming(makeMetadata(), deadline: DateTime.UtcNow.AddMinutes(5));
         call.RequestStream.WriteAsync(makeRequestWithOptions()).Wait();
     }
-
+    
+    
     public async Task writeDataToOpenStreamCall(ByteString bytes)
     {
         StreamingRequest rR = new StreamingRequest();
@@ -116,15 +117,67 @@ public class YandexSttClient
         return text;
     }
 
-    async public Task<string> readFirstFinalResponseInStream()
+    async public Task<string> ReadOneResultFromOpenStream()
+    {
+        if (call.ResponseStream.MoveNext().Result)
+        {
+            if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.Final)
+            {
+                if (call.ResponseStream.Current.Final.Alternatives.Count != 0)
+                {
+                    return call.ResponseStream.Current.Final.Alternatives[0].Text;   
+                }
+            }
+            if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.Partial)
+            {
+                if (call.ResponseStream.Current.Partial.Alternatives.Count != 0)
+                {
+                    return call.ResponseStream.Current.Partial.Alternatives[0].Text;
+                }
+            }
+
+            if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.FinalRefinement)
+            {
+                if (call.ResponseStream.Current.FinalRefinement.NormalizedText.Alternatives.Count != 0)
+                {
+                    return call.ResponseStream.Current.FinalRefinement.NormalizedText.Alternatives[0].Text;
+                }
+            }
+        }
+
+        return "";
+    }
+
+    async public Task<string> ReadFinalRefirementResponseFromOpenStream()
     {
         await foreach (var response in call.ResponseStream.ReadAllAsync())
         {
-            if (response.Final != null)
+            if (response.EventCase == StreamingResponse.EventOneofCase.FinalRefinement)
+            {
+                return response.FinalRefinement.NormalizedText.Alternatives[0].Text;
+            }
+        }
+
+        return "";
+    }
+
+    async public Task<string> readFirstResponseWithContentInStream()
+    {
+        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        {
+            if (response.EventCase == StreamingResponse.EventOneofCase.Final)
             {
                 if (response.Final.Alternatives.Count != 0)
                 {
                     return response.Final.Alternatives[0].Text;
+                }
+            }
+
+            if (response.EventCase == StreamingResponse.EventOneofCase.Partial)
+            {
+                if (response.Partial.Alternatives.Count != 0)
+                {
+                    return response.Partial.Alternatives[0].Text;
                 }
             }
         }
@@ -162,7 +215,35 @@ public class YandexSttClient
                         Console.WriteLine($"FINAL REFIREMENT : {alternative.Text}");
                     }
                 }
+                
             }
+    }
+
+    async public Task<string> ReadLastResultInStream()
+    {
+        string last_result_in_stream = "";
+        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        {
+            if (response.EventCase == StreamingResponse.EventOneofCase.Final)
+            {
+                if (response.Final.Alternatives.Count != 0 && response.Final.Alternatives[0].Text != "")
+                {
+                    last_result_in_stream = response.Final.Alternatives[0].Text;
+                }
+            }
+            if (response.EventCase == StreamingResponse.EventOneofCase.Partial)
+            {
+                if (response.Partial.Alternatives.Count != 0 && response.Partial.Alternatives[0].Text != "")
+                {
+                    last_result_in_stream = response.Partial.Alternatives[0].Text;
+                }
+            }
+            else if (last_result_in_stream != "")
+            {
+                return last_result_in_stream;
+            }
+        }
+        return last_result_in_stream;
     }
 
     public void disposeAll()
