@@ -14,4 +14,50 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.63.0">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+      <PackageReference Include="NAudio" Version="2.2.1" />
+      <PackageReference Include="Serilog" Version="3.1.1" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="google/api/http.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="google/api/annotations.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="yandex/cloud/api/operation.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="google/rpc/status.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="yandex/cloud/operation/operation.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="yandex/cloud/validation.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="yandex/cloud/ai/stt/v3/stt_service.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="yandex/cloud/ai/stt/v3/stt.proto" GrpcServices="Client" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="TestClientForRecognitionModule\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="TestClientForRecognitionModule\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="TestClientForRecognitionModule\**" />
+    </ItemGroup>
+
 </Project>
