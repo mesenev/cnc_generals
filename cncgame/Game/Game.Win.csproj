@@ -38,6 +38,7 @@
     
     <ProjectReference Include="..\CitrusTypes\CitrusTypes.Win.csproj" />
     <ProjectReference Include="..\Generated\Scenes\Scenes.Win.csproj" />
+    <ProjectReference Include="..\..\SharedClasses\SharedClasses.csproj" />
   </ItemGroup>
 
   <ItemGroup>

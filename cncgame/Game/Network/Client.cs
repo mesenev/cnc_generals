@@ -35,7 +35,7 @@ namespace Game
 
 		public void UpdateClientPlayer(Vector2 newPos)
 		{
-			clientPlayer.state.position = newPos;
+			clientPlayer.state.position = new System.Numerics.Vector2(newPos.X, newPos.Y);
 		}
 
 		public void Connect(string username)

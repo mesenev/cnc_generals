@@ -25,7 +25,7 @@ namespace Game
 		public Game(Client client)
 		{
 			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
-			
+
 			_client = client;
 			_client.Connect("Player");
 
@@ -92,9 +92,9 @@ namespace Game
 			foreach (var remotePlayer in _client.GetServerPlayers()
 				         .FindAll(el => (int)el.state.pid != mainPlayer.EntityId)) {
 				Components.Add(
-					new PlayerComponent(Canvas, remotePlayer.state.position, spritePath: "Sprites/Unit") {
-						EntityId = (int)remotePlayer.state.pid
-					});
+					new PlayerComponent(Canvas,
+						new Vector2(remotePlayer.state.position.X, remotePlayer.state.position.Y),
+						spritePath: "Sprites/Unit") { EntityId = (int)remotePlayer.state.pid });
 			}
 		}
 	}
