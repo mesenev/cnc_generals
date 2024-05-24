@@ -22,7 +22,7 @@ namespace Game
 
 		private HexGrid hexGrid;
 
-		public Game(Client client)
+		public Game(Client client)gt
 		{
 			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 			
@@ -52,9 +52,11 @@ namespace Game
 		{
 			mainPlayer = new PlayerComponent(Canvas, hexGrid.getRandomCellPosition(), pid);
 			var playerInputProcessor = new PlayerInputProcessor(mainPlayer);
+			var receiveCommandsFromRecognitionModule = new ReceiveCommandsFromCommandRecognitionModule(mainPlayer);
 
 			Components.Add(mainPlayer);
 			Processors.Add(playerInputProcessor);
+			//Processors.Add(receiveCommandsFromRecognitionModule);
 		}
 
 		public void Update(float delta)

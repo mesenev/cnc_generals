@@ -41,7 +41,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.63.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="LiteNetLib" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Stuff\Protos\stt.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

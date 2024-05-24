@@ -150,11 +150,11 @@ public class YandexSttClient
 
     async public Task<string> ReadFinalRefirementResponseFromOpenStream()
     {
-        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        if (call.ResponseStream.MoveNext().Result)
         {
-            if (response.EventCase == StreamingResponse.EventOneofCase.FinalRefinement)
+            if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.FinalRefinement)
             {
-                return response.FinalRefinement.NormalizedText.Alternatives[0].Text;
+                return call.ResponseStream.Current.FinalRefinement.NormalizedText.Alternatives[0].Text;
             }
         }
 

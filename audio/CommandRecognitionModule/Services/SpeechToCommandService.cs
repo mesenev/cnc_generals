@@ -11,7 +11,7 @@ public class SpeechToCommandService : SpeechToCommand.SpeechToCommandBase
     public SpeechToCommandService(ILogger<SpeechToCommandService> logger)
     {
         _logger = logger;
-        _yandexSttClient = new YandexSttClient("t1.9euelZqJzp6WlsqSzZSOyMjMkJ2eyO3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_cfaU5N-e9bexxN_d3z918XTE3571t7HE39zef1656VmpmYlp3OlpbNiZSei5aVi8jI7_zF656VmpmYlp3OlpbNiZSei5aVi8jI.nzWyaVHgEqg6O96jUB80tPwrHIWoY8jTzpdoFG2M2TvkaHVSFwTNc78NYDw4yyLPK9x9dN7xle2qDCNZ7ZN-Cg", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
+        _yandexSttClient = new YandexSttClient("t1.9euelZrJjM_Om53Ijc6PlZaWyMuNzO3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_d6VT5N-e9zQXhR_t3z9zoEPE3573NBeFH-zef1656Vms-UyJ2Si5yOy8_KlpaQjZ6b7_zF656Vms-UyJ2Si5yOy8_KlpaQjZ6b.Mas-C0E5ef1sjX3mv1V_a13mx6Asr21H90pEp_hmzFCAkQMAAzcOywvawRbHM7tg67C1y4bNOUztcFpuGG4nDw", new Uri("https://stt.api.cloud.yandex.net:443"), "b1gv6ij7c6frub5g0dk2");
         _yandexSttClient.startStreamToApi();
     }
 
