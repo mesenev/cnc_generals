@@ -22,7 +22,7 @@ namespace Game
 
 		private HexGrid hexGrid;
 
-		public Game(Client client)gt
+		public Game(Client client)
 		{
 			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 			
