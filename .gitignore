@@ -26,3 +26,7 @@ audio/ApiClient/obj/
 # Server
 /cncserver/**/bin
 /cncserver/**/obj
+
+# Shared
+/SharedClasses/**/bin
+/SharedClasses/**/obj
