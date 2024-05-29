@@ -1,11 +1,11 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace SharedClasses.GameObjects.Units;
 
-public class BaseUnit(HexCell position, uint unitId, uint ownerId)
+public class BaseUnit(uint unitId, uint ownerId)
 {
     public int Health;
-    public HexCell Position = position;
     public bool CanMove;
     public bool CanAttack;
     public bool HasAbility;
@@ -17,6 +17,6 @@ public class BaseUnit(HexCell position, uint unitId, uint ownerId)
 
     public void UpdatePosition(HexCell newPosition)
     {
-        Position = newPosition;
+	    throw new NotImplementedException();
     }
 }

@@ -4,8 +4,7 @@ namespace SharedClasses.GameObjects.Units;
 
 public class ArtilleryUnit : BaseUnit
 {
-    public ArtilleryUnit(HexCell position, uint unitId, uint ownerId) :
-        base(position, unitId, ownerId)
+    public ArtilleryUnit(HexCell position, uint unitId, uint ownerId) : base( unitId, ownerId)
     {
         CanMove = false;
         CanAttack = false;
