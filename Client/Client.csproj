@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ApplicationIcon>..\Icon.ico</ApplicationIcon>
+    <AssemblyName>Client</AssemblyName>
+    <Configurations>Release;Debug;Profiler.Release;Profiler.Debug</Configurations>
+    <OutputType>WinExe</OutputType>
+    <PlatformTarget>x64</PlatformTarget>
+    <RootNamespace>Client</RootNamespace>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Bundles\Data.Win">
+      <Link>Data.Win</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Yuzu">
+      <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
+    </Reference>
+    <Content Include="..\Citrus\Lime\LemonNative.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <PackageReference Include="Menees.Analyzers" Version="3.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <Reference Include="Lemon">
+      <HintPath>..\Citrus\Lime\Lemon.dll</HintPath>
+    </Reference>
+    <Reference Include="Lzma, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\Lzma.dll</HintPath>
+    </Reference>
+    <Reference Include="MFDecoder, Version=1.0.6621.19204, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Citrus\Lime\MFDecoder.dll</HintPath>
+    </Reference>
+    <PackageReference Include="OpenTK" Version="3.3.3" />
+    <Content Include="..\Citrus\Lime\OpenAL32.dll">
+      <Link>OpenAL32.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Citrus\Lime\wrap_oal.dll">
+      <Link>wrap_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Citrus\Lime\d3dcompiler_47.dll">
+      <Link>d3dcompiler_47.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Citrus\Lime\libEGL.dll">
+      <Link>libEGL.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Citrus\Lime\libGLESv2.dll">
+      <Link>libGLESv2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Citrus\Lime\ShaderCompiler.dll">
+      <Link>ShaderCompiler.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+    <Reference Include="YuzuGenerator">
+      <HintPath>..\Citrus\Lime\YuzuGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="Lime">
+      <HintPath>..\Citrus\Lime\Lime.dll</HintPath>
+    </Reference>
+    
+    <ProjectReference Include="..\Game\Game.csproj" />
+  </ItemGroup>
+
+</Project>

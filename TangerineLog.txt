@@ -1,0 +1,293 @@
+[16:08:46] Unknown command category: CreateCommands
+[16:08:46] Unknown command category: Client
+[16:09:30] New project name is "Client"
+[16:09:30] Copying: .editorconfig => C:\Users\user\RiderProjects\Client\.editorconfig
+[16:09:30] Copying: .gitattributes => C:\Users\user\RiderProjects\Client\.gitattributes
+[16:09:30] Copying: .gitignore => C:\Users\user\RiderProjects\Client\.gitignore
+[16:09:30] Copying: Analyzers.props => C:\Users\user\RiderProjects\Client\Analyzers.props
+[16:09:30] Copying: Application.Win/Application.cs => C:\Users\user\RiderProjects\Client\Application.Win/Application.cs
+[16:09:30] Copying: Application.Win/EmptyProject.Win.csproj => C:\Users\user\RiderProjects\Client\Application.Win/Client.Win.csproj
+[16:09:30] Copying: Application.Win/EmptyProject.Win.sln => C:\Users\user\RiderProjects\Client\Application.Win/Client.Win.sln
+[16:09:30] Copying: CitrusPlugin/CitrusPlugin.cs => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.cs
+[16:09:30] Copying: CitrusPlugin/CitrusPlugin.Win.csproj => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.csproj
+[16:09:30] Copying: CitrusPlugin/CitrusPlugin.Win.sln => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.sln
+[16:09:30] Copying: CitrusPlugin/ConfigWindow.cs => C:\Users\user\RiderProjects\Client\CitrusPlugin/ConfigWindow.cs
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount1.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount1.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount2.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount2.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount3.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount3.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount4.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount4.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount5.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount5.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount6.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount6.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount7.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount7.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount8.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount8.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount9.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount9.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount9+.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount9+.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount1.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount1.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount2.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount2.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount3.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount3.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount4.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount4.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount5.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount5.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount6.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount6.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount7.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount7.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount8.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount8.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount9.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount9.png
+[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount9+.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount9+.png
+[16:09:30] Copying: CitrusTypes/CitrusTypes.props => C:\Users\user\RiderProjects\Client\CitrusTypes/CitrusTypes.props
+[16:09:30] Copying: CitrusTypes/CitrusTypes.Win.csproj => C:\Users\user\RiderProjects\Client\CitrusTypes/CitrusTypes.Win.csproj
+[16:09:30] Copying: CitrusTypes/ColorizeComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/ColorizeComponent.cs
+[16:09:30] Copying: CitrusTypes/CommentComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/CommentComponent.cs
+[16:09:30] Copying: CitrusTypes/DataLayer.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/DataLayer.cs
+[16:09:30] Copying: CitrusTypes/EmptyComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/EmptyComponent.cs
+[16:09:30] Copying: CitrusTypes/RunAnimationComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/RunAnimationComponent.cs
+[16:09:30] Copying: CitrusTypes/SplitVectorPropertiesComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/SplitVectorPropertiesComponent.cs
+[16:09:30] Copying: Data/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/#CookingRules.txt
+[16:09:30] Copying: Data/Audio/Music/Ingame.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Music/Ingame.ogg
+[16:09:30] Copying: Data/Audio/Music/Theme.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Music/Theme.ogg
+[16:09:30] Copying: Data/Audio/Sounds/ButtonClick.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Sounds/ButtonClick.ogg
+[16:09:30] Copying: Data/Dictionary.txt => C:\Users\user\RiderProjects\Client\Data/Dictionary.txt
+[16:09:30] Copying: Data/Fonts/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Fonts/#CookingRules.txt
+[16:09:30] Copying: Data/Fonts/Default.png => C:\Users\user\RiderProjects\Client\Data/Fonts/Default.png
+[16:09:30] Copying: Data/Fonts/Default.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/Default.tft
+[16:09:30] Copying: Data/Fonts/RobotoMed.png => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.png
+[16:09:30] Copying: Data/Fonts/RobotoMed.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.tft
+[16:09:30] Copying: Data/Fonts/RobotoMed.tftconf => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.tftconf
+[16:09:30] Copying: Data/Fonts/RobotoMed.ttf => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.ttf
+[16:09:30] Copying: Data/Fonts/RussoOne.png => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.png
+[16:09:30] Copying: Data/Fonts/RussoOne.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.tft
+[16:09:30] Copying: Data/Fonts/RussoOne.tftconf => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.tftconf
+[16:09:30] Copying: Data/Fonts/RussoOne.ttf => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.ttf
+[16:09:30] Copying: Data/Shell/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/#CookingRules.txt
+[16:09:30] Copying: Data/Shell/AlertDialog.tan => C:\Users\user\RiderProjects\Client\Data/Shell/AlertDialog.tan
+[16:09:30] Copying: Data/Shell/Confirmation.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Confirmation.tan
+[16:09:30] Copying: Data/Shell/Externals/BtnOk.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnOk.tan
+[16:09:30] Copying: Data/Shell/Externals/BtnOptions.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnOptions.tan
+[16:09:30] Copying: Data/Shell/Externals/BtnPlay.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnPlay.tan
+[16:09:30] Copying: Data/Shell/Externals/BtnX.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnX.tan
+[16:09:30] Copying: Data/Shell/Externals/Shade.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/Shade.tan
+[16:09:30] Copying: Data/Shell/Externals/TitleBar.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/TitleBar.tan
+[16:09:30] Copying: Data/Shell/Externals/Win.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/Win.tan
+[16:09:30] Copying: Data/Shell/GameScreen.tan => C:\Users\user\RiderProjects\Client\Data/Shell/GameScreen.tan
+[16:09:30] Copying: Data/Shell/MainMenu.tan => C:\Users\user\RiderProjects\Client\Data/Shell/MainMenu.tan
+[16:09:30] Copying: Data/Shell/Options.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Options.tan
+[16:09:30] Copying: Data/Shell/Splash.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Splash.tan
+[16:09:30] Copying: Data/Shell/Splash/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/#CookingRules.txt
+[16:09:30] Copying: Data/Shell/Splash/CitrusLogo.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/CitrusLogo.png
+[16:09:30] Copying: Data/Shell/Splash/GameForest.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/GameForest.png
+[16:09:30] Copying: Data/Shell/Splash/GF.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/GF.png
+[16:09:30] Copying: Data/Shell/Ui/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/#CookingRules.txt
+[16:09:30] Copying: Data/Shell/Ui/Bg.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.png
+[16:09:30] Copying: Data/Shell/Ui/Bg.png.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.png.txt
+[16:09:30] Copying: Data/Shell/Ui/Bg.texture => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.texture
+[16:09:30] Copying: Data/Shell/Ui/BtnDis.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnDis.png
+[16:09:30] Copying: Data/Shell/Ui/BtnOrange.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnOrange.png
+[16:09:30] Copying: Data/Shell/Ui/BtnRed.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnRed.png
+[16:09:30] Copying: Data/Shell/Ui/IcoCheck.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoCheck.png
+[16:09:30] Copying: Data/Shell/Ui/IcoGear.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoGear.png
+[16:09:30] Copying: Data/Shell/Ui/IcoPlay.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoPlay.png
+[16:09:30] Copying: Data/Shell/Ui/IcoX.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoX.png
+[16:09:30] Copying: Data/Shell/Ui/WinBiege.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinBiege.png
+[16:09:30] Copying: Data/Shell/Ui/WinBlue.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinBlue.png
+[16:09:30] Copying: Data/Shell/Ui/WinGrey.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinGrey.png
+[16:09:30] Copying: Data/Stuff/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Stuff/#CookingRules.txt
+[16:09:30] Copying: Data/Stuff/BoxBlurred.png => C:\Users\user\RiderProjects\Client\Data/Stuff/BoxBlurred.png
+[16:09:30] Copying: Data/Stuff/Circle.png => C:\Users\user\RiderProjects\Client\Data/Stuff/Circle.png
+[16:09:30] Copying: Data/Stuff/CircleBig.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBig.png
+[16:09:30] Copying: Data/Stuff/CircleBlured.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBlured.png
+[16:09:30] Copying: Data/Stuff/CircleBluredLess.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBluredLess.png
+[16:09:30] Copying: Data/Stuff/CircleBluredMore.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBluredMore.png
+[16:09:30] Copying: Data/Stuff/DotBig.png => C:\Users\user\RiderProjects\Client\Data/Stuff/DotBig.png
+[16:09:30] Copying: Data/Stuff/LineGradient.png => C:\Users\user\RiderProjects\Client\Data/Stuff/LineGradient.png
+[16:09:30] Copying: Data/Stuff/LineGradientHard.png => C:\Users\user\RiderProjects\Client\Data/Stuff/LineGradientHard.png
+[16:09:30] Copying: Data/Stuff/RadialRaysClassy.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RadialRaysClassy.png
+[16:09:30] Copying: Data/Stuff/RingBlured.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RingBlured.png
+[16:09:30] Copying: Data/Stuff/RingBluredBold.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RingBluredBold.png
+[16:09:30] Copying: Directory.Build.props => C:\Users\user\RiderProjects\Client\Directory.Build.props
+[16:09:30] Copying: Directory.Build.targets => C:\Users\user\RiderProjects\Client\Directory.Build.targets
+[16:09:30] Copying: EmptyProject.citproj => C:\Users\user\RiderProjects\Client\Client.citproj
+[16:09:30] Copying: Game/Application/AppData.cs => C:\Users\user\RiderProjects\Client\Game/Application/AppData.cs
+[16:09:30] Copying: Game/Application/Application.cs => C:\Users\user\RiderProjects\Client\Game/Application/Application.cs
+[16:09:30] Copying: Game/Application/Display.cs => C:\Users\user\RiderProjects\Client\Game/Application/Display.cs
+[16:09:30] Copying: Game/Application/DisplayInfo.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.cs
+[16:09:30] Copying: Game/Application/DisplayInfo.Desktop.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.Desktop.cs
+[16:09:30] Copying: Game/Application/DisplayInfo.Mobile.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.Mobile.cs
+[16:09:30] Copying: Game/Application/SoundManager.cs => C:\Users\user\RiderProjects\Client\Game/Application/SoundManager.cs
+[16:09:30] Copying: Game/Debug/Cheats.cs => C:\Users\user\RiderProjects\Client\Game/Debug/Cheats.cs
+[16:09:30] Copying: Game/Debug/DevPanel.cs => C:\Users\user\RiderProjects\Client\Game/Debug/DevPanel.cs
+[16:09:30] Copying: Game/Dialogs/AlertDialog.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/AlertDialog.cs
+[16:09:30] Copying: Game/Dialogs/Confirmation.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Confirmation.cs
+[16:09:30] Copying: Game/Dialogs/Dialog.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Dialog.cs
+[16:09:30] Copying: Game/Dialogs/DialogManager.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/DialogManager.cs
+[16:09:30] Copying: Game/Dialogs/GameScreen.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/GameScreen.cs
+[16:09:30] Copying: Game/Dialogs/MainMenu.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/MainMenu.cs
+[16:09:30] Copying: Game/Dialogs/Options.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Options.cs
+[16:09:30] Copying: Game/Dialogs/ScreenCrossfade.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/ScreenCrossfade.cs
+[16:09:30] Copying: Game/Dialogs/SplashScreen.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/SplashScreen.cs
+[16:09:30] Copying: Game/Extensions/RemoteScriptingClientExtension.cs => C:\Users\user\RiderProjects\Client\Game/Extensions/RemoteScriptingClientExtension.cs
+[16:09:30] Copying: Game/Game.props => C:\Users\user\RiderProjects\Client\Game/Game.props
+[16:09:30] Copying: Game/Game.Win.csproj => C:\Users\user\RiderProjects\Client\Game/Game.Win.csproj
+[16:09:30] Copying: Game/Layers.cs => C:\Users\user\RiderProjects\Client\Game/Layers.cs
+[16:09:30] Copying: Game/Logger.cs => C:\Users\user\RiderProjects\Client\Game/Logger.cs
+[16:09:30] Copying: Game/Profile.cs => C:\Users\user\RiderProjects\Client\Game/Profile.cs
+[16:09:30] Copying: Game/The.cs => C:\Users\user\RiderProjects\Client\Game/The.cs
+[16:09:30] Copying: Generated/Scenes/ParsedWidget.cs => C:\Users\user\RiderProjects\Client\Generated/Scenes/ParsedWidget.cs
+[16:09:30] Copying: Generated/Scenes/Scenes.props => C:\Users\user\RiderProjects\Client\Generated/Scenes/Scenes.props
+[16:09:30] Copying: Generated/Scenes/Scenes.Win.csproj => C:\Users\user\RiderProjects\Client\Generated/Scenes/Scenes.Win.csproj
+[16:09:30] Copying: Generated/Schema/game_1.json => C:\Users\user\RiderProjects\Client\Generated/Schema/game_1.json
+[16:09:30] Copying: Icon.ico => C:\Users\user\RiderProjects\Client\Icon.ico
+[16:09:30] Copying: Menees.Analyzers.Settings.xml => C:\Users\user\RiderProjects\Client\Menees.Analyzers.Settings.xml
+[16:09:30] Copying: QualityAssurance/Common/Command.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Common/Command.cs
+[16:09:30] Copying: QualityAssurance/Common/WaitDialogTaskParameters.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Common/WaitDialogTaskParameters.cs
+[16:09:30] Copying: QualityAssurance/Coroutines/CommonCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/CommonCoroutines.cs
+[16:09:30] Copying: QualityAssurance/Coroutines/ConfirmationCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/ConfirmationCoroutines.cs
+[16:09:30] Copying: QualityAssurance/Coroutines/GameScreenCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/GameScreenCoroutines.cs
+[16:09:30] Copying: QualityAssurance/Coroutines/MainMenuCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/MainMenuCoroutines.cs
+[16:09:30] Copying: QualityAssurance/Coroutines/OptionsCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/OptionsCoroutines.cs
+[16:09:30] Copying: QualityAssurance/EntryPoints.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/EntryPoints.cs
+[16:09:30] Copying: QualityAssurance/QualityAssurance.csproj => C:\Users\user\RiderProjects\Client\QualityAssurance/QualityAssurance.csproj
+[16:09:30] Copying: QualityAssurance/ScriptsPreserve.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/ScriptsPreserve.cs
+[16:09:30] Copying: QualityAssurance/Tests/DummyTest.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Tests/DummyTest.cs
+[16:09:30] Copying: QualityAssurance/Tests/ExampleTest.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Tests/ExampleTest.cs
+[16:09:30] Copying: stylecop.json => C:\Users\user\RiderProjects\Client\stylecop.json
+[16:09:30] Starting 'dotnet build -c Tangerine.Release --getProperty:OutputPath --getProperty:OutputType --getProperty:AssemblyName "C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.csproj"'
+[16:09:31] {
+  "Properties": {
+    "OutputPath": "bin\\Tangerine.Release\\net8.0-windows\\",
+    "OutputType": "Library",
+    "AssemblyName": "CitrusPlugin"
+  }
+}
+[16:09:31] [16:09:31] Starting 'dotnet build -c:Tangerine.Release "C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[16:09:32]   Determining projects to restore...
+[16:09:32]   Restored C:\Users\user\RiderProjects\Client\CitrusTypes\CitrusTypes.Win.csproj (in 170 ms).
+  Restored C:\Users\user\RiderProjects\Client\CitrusPlugin\CitrusPlugin.Win.csproj (in 170 ms).
+[16:09:33]   CitrusTypes.Win -> C:\Users\user\RiderProjects\Client\CitrusTypes\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll
+[16:09:33]   CitrusPlugin.Win -> C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll
+
+Build succeeded.
+[16:09:33]     0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.69
+[16:09:33] [16:09:33] Orange plugin initialized.
+[16:09:33] Citrus plugin 'C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll' loaded.
+[16:09:33] Citrus plugin 'C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll' loaded.
+[16:09:33] Building Cooking Rules.
+[16:09:33] Done building cooking rules (19ms).
+[16:09:33] Building Cooking Rules.
+[16:09:33] Done building cooking rules (1ms).
+[16:09:33] Resolution presets was successfully loaded.
+[16:09:33] Remote scripting preferences was successfully loaded.
+[16:09:33] Using legacy dictionary path: "C:\Users\user\RiderProjects\Client\Data\Dictionary.txt". Consider moving dictionary to "C:\Users\user\RiderProjects\Client\Data\Localization\Dictionary.txt".
+[16:09:33] Dictionary was successfully loaded from "C:\Users\user\RiderProjects\Client\Data\Dictionary.txt"
+[16:09:33] Unknown command: CreateCommands.CreateCamera2D
+[16:09:33] Unknown command: CreateCommands.CreateViewport2D
+[16:09:33] Unknown command category: Client
+[16:10:08] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:/Users/user/RiderProjects/Client\Client.citproj. Switched to LOCAL cache
+[16:10:08] Computing modified cooking unit count for bundle 'Data', (1/1)
+[16:10:08] ------------- Cooking Assets (Data) -------------
+[16:10:08] Calculating new and modified cooking units.
+[16:10:08] Cooking assets.
+[16:10:09] + Atlases_Data/#Fonts.000.pvr
+[16:10:09] + Atlases_Data/#Fonts.001.pvr
+[16:10:09] + Fonts/Default.sprite
+[16:10:09] + Fonts/RobotoMed.sprite
+[16:10:09] + Fonts/RussoOne.sprite
+[16:10:09] + Atlases_Data/#Shell#Splash.000.pvr
+[16:10:09] + Shell/Splash/CitrusLogo.sprite
+[16:10:09] + Shell/Splash/GameForest.sprite
+[16:10:09] + Shell/Splash/GF.sprite
+[16:10:09] + Atlases_Data/#Shell#Ui.000.pvr
+[16:10:09] + Shell/Ui/BtnDis.sprite
+[16:10:09] + Shell/Ui/BtnOrange.sprite
+[16:10:09] + Shell/Ui/BtnRed.sprite
+[16:10:09] + Shell/Ui/IcoCheck.sprite
+[16:10:09] + Shell/Ui/IcoGear.sprite
+[16:10:09] + Shell/Ui/IcoPlay.sprite
+[16:10:09] + Shell/Ui/IcoX.sprite
+[16:10:09] + Shell/Ui/WinBiege.sprite
+[16:10:09] + Shell/Ui/WinBlue.sprite
+[16:10:09] + Shell/Ui/WinGrey.sprite
+[16:10:09] + Atlases_Data/#Stuff.000.pvr
+[16:10:09] + Stuff/BoxBlurred.sprite
+[16:10:09] + Stuff/Circle.sprite
+[16:10:09] + Stuff/CircleBig.sprite
+[16:10:09] + Stuff/CircleBlured.sprite
+[16:10:09] + Stuff/CircleBluredLess.sprite
+[16:10:09] + Stuff/CircleBluredMore.sprite
+[16:10:09] + Stuff/DotBig.sprite
+[16:10:09] + Stuff/LineGradient.sprite
+[16:10:09] + Stuff/LineGradientHard.sprite
+[16:10:09] + Stuff/RadialRaysClassy.sprite
+[16:10:09] + Stuff/RingBlured.sprite
+[16:10:09] + Stuff/RingBluredBold.sprite
+[16:10:09] + Dictionary.txt
+[16:10:09] + Shell/Ui/Bg.pvr
+[16:10:09] + Shell/Ui/Bg.texture
+[16:10:09] + Fonts/Default.tft
+[16:10:09] + Fonts/RobotoMed.tft
+[16:10:09] + Fonts/RussoOne.tft
+[16:10:09] + Fonts/RobotoMed.ttf
+[16:10:09] + Fonts/RussoOne.ttf
+[16:10:09] + Shell/AlertDialog.tan
+[16:10:09] + Shell/Confirmation.tan
+[16:10:09] + Shell/Externals/BtnOk.tan
+[16:10:09] + Shell/Externals/BtnOptions.tan
+[16:10:09] + Shell/Externals/BtnPlay.tan
+[16:10:09] + Shell/Externals/BtnX.tan
+[16:10:09] + Shell/Externals/Shade.tan
+[16:10:09] + Shell/Externals/TitleBar.tan
+[16:10:09] + Shell/Externals/Win.tan
+[16:10:09] + Shell/GameScreen.tan
+[16:10:09] + Shell/MainMenu.tan
+[16:10:09] + Shell/Options.tan
+[16:10:09] + Shell/Splash.tan
+[16:10:09] + Audio/Music/Ingame.sound
+[16:10:09] + Audio/Music/Theme.sound
+[16:10:09] Converting sound to ADPCM/IMA4 format...
+[16:10:09] + Audio/Sounds/ButtonClick.sound
+[16:10:09] Generating scene code for 13 scenes...
+[16:10:09] Created directory C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/AlertDialog.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Confirmation.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnOk.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnOptions.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnPlay.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnX.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/GameScreen.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/MainMenu.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Options.cs
+[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Splash.cs
+[16:10:09] Created directory C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Common
+[16:10:09] Starting 'dotnet build -c:Release "C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[16:10:10]   Determining projects to restore...
+[16:10:10]   Restored C:\Users\user\RiderProjects\Client\Generated\Scenes\Scenes.Win.csproj (in 75 ms).
+[16:10:10] C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln]
+  Restored C:\Users\user\RiderProjects\Client\CitrusTypes\CitrusTypes.Win.csproj (in 185 ms).
+  Restored C:\Users\user\RiderProjects\Client\Game\Game.Win.csproj (in 185 ms).
+[16:10:10]   Restored C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj (in 197 ms).
+[16:10:11] C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+[16:10:11]   Scenes.Win -> C:\Users\user\RiderProjects\Client\Generated\Scenes\bin\Release\net8.0-windows\Scenes.dll
+[16:10:11]   CitrusTypes.Win -> C:\Users\user\RiderProjects\Client\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.dll
+[16:10:11]   Game.Win -> C:\Users\user\RiderProjects\Client\Game\bin\Release\net8.0-windows\Game.dll
+[16:10:12]   Client.Win -> C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows\Client.dll
+
+Build succeeded.
+
+C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.13
+[16:10:12] [16:10:12] ------------- Starting Application -------------
+[16:10:12] Starting 'dotnet build -c Release --getProperty:OutputPath --getProperty:OutputType --getProperty:AssemblyName "C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj"'
+[16:10:12] {
+  "Properties": {
+    "OutputPath": "bin\\Release\\net8.0-windows\\",
+    "OutputType": "WinExe",
+    "AssemblyName": "Client"
+  }
+}
+[16:10:12] [16:10:12] Working directory: 'C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows'
+[16:10:12] Starting 'C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows\Client.exe  '
+[16:10:19] [16:10:19] Done
