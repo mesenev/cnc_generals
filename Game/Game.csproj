@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scenes\Scenes.csproj" />
     <Reference Include="Yuzu">
       <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
     </Reference>
@@ -37,7 +38,6 @@
     </Reference>
     
     <ProjectReference Include="..\CitrusTypes\CitrusTypes.csproj" />
-    <ProjectReference Include="..k\Scenes\Scenes.csproj" />
   </ItemGroup>
 
   <ItemGroup>
