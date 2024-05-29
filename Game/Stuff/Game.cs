@@ -79,7 +79,7 @@ namespace Game
 		{
 			Console.WriteLine("UpdatePlayers");
 			CallIfPlayerConnected(RemovePlayersFromCanvas);
-
+			
 			CallIfPlayerConnected(GetPlayersFromServer);
 		}
 

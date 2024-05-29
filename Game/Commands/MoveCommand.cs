@@ -1,11 +1,11 @@
-﻿using LiteNetLib.Utils;
-using SharedClasses.GameObjects;
-using SharedClasses.GameObjects.Units;
-using System;
+﻿using System;
+using Game.GameObjects;
+using Game.GameObjects.Units;
+using LiteNetLib.Utils;
 
-namespace SharedClasses.Commands;
+namespace Game.Commands;
 
-public class MoveCommand : ICommand, INetSerializable
+public class MoveCommand : ICommand
 {
     private BaseUnit _unit;
     private HexCell _cell;
@@ -24,11 +24,13 @@ public class MoveCommand : ICommand, INetSerializable
 
     public void Serialize(NetDataWriter writer)
     {
-        throw new NotImplementedException();
+	    _unit.Serialize(writer);
+	    _cell.Serialize(writer);
     }
 
     public void Deserialize(NetDataReader reader)
     {
-        throw new NotImplementedException();
+	    _unit.Deserialize(reader);
+	    _cell.Deserialize(reader);
     }
 }

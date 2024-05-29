@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Game.GameObjects;
 using Lime;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using SharedClasses.GameObjects;
+using Game.GameObjects;
 
 namespace Game.Network
 {
@@ -24,6 +25,7 @@ namespace Game.Network
 		private ClientPlayer clientPlayer;
 		private Dictionary<uint, ServerPlayer> serverPlayers = new();
 		public GameState gameState;
+		public Queue<Commands.ICommand> commands;
 
 		public List<ServerPlayer> GetServerPlayers()
 		{
@@ -35,11 +37,6 @@ namespace Game.Network
 			return clientPlayer;
 		}
 
-		public void UpdateClientPlayer(Vector2 newPos)
-		{
-			clientPlayer.state.position = new System.Numerics.Vector2(newPos.X, newPos.Y);
-		}
-
 		public void Connect(string username)
 		{
 			clientPlayer.username = username;
@@ -48,14 +45,12 @@ namespace Game.Network
 			packetProcessor.RegisterNestedType(
 				(w, v) => w.Put(v), reader => reader.GetVector2()
 			);
-			packetProcessor.RegisterNestedType<GameState>(
-				(w, v) => w.Put(v), reader => reader.GetGameState()
-			);
 			packetProcessor.RegisterNestedType<ClientPlayer>();
 			packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);
 			packetProcessor.SubscribeReusable<PlayerJoinedGamePacket>(OnPlayerJoin);
 			packetProcessor.SubscribeReusable<PlayerReceiveUpdatePacket>(OnReceiveUpdate);
 			packetProcessor.SubscribeReusable<PlayerLeftGamePacket>(OnPlayerLeave);
+			packetProcessor.SubscribeReusable<PlayerAwaitPacket>(OnPlayerAwait);
 
 			_client = new NetManager(this) { AutoRecycle = true };
 
@@ -90,51 +85,46 @@ namespace Game.Network
 
 		public void OnJoinAccept(JoinAcceptPacket packet)
 		{
-			Console.WriteLine($"Join accepted by server (pid: {packet.state.pid})");
+			Console.WriteLine($"Join accepted by server (pid: {packet.state})");
 			gameState = packet.state;
 			isPLayerJoined = true;
 		}
 
 		public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet)
 		{
-			foreach (PlayerState state in packet.states) {
-				if (state.pid == clientPlayer.state.pid)
-					continue;
-
-
-				if (serverPlayers.ContainsKey(state.pid)) {
-					serverPlayers[state.pid].state.position = state.position;
-				} else {
-					var newServerPlayer = new ServerPlayer { state = state };
-					serverPlayers.Add(state.pid, newServerPlayer);
-				}
-			}
+			gameState = packet.state;
 		}
 
 		public void OnPlayerJoin(PlayerJoinedGamePacket packet)
 		{
-			Console.WriteLine($"Player '{packet.player.username}' (pid: {packet.player.state.pid}) joined the game");
-			ServerPlayer newServerPlayer = new ServerPlayer { state = packet.player.state };
-			serverPlayers.Add(newServerPlayer.state.pid, newServerPlayer);
+			Console.WriteLine($"Player '{packet.player.username}' (pid: {packet.player.playerId}) joined the game");
+			ServerPlayer newServerPlayer =
+				new ServerPlayer { username = packet.player.username, playerId = packet.player.playerId};
+			serverPlayers.Add(newServerPlayer.playerId, newServerPlayer);
 		}
 
 		public void OnPlayerLeave(PlayerLeftGamePacket packet)
 		{
-			Console.WriteLine($"Player (pid: {packet.pid}) left the game");
-			serverPlayers.Remove(packet.pid);
+			Console.WriteLine($"Player (pid: {packet.playerId}) left the game");
+			serverPlayers.Remove(packet.playerId);
 		}
 
 		public void Update()
 		{
-			if (_client != null && isPLayerJoined) {
-				_client.PollEvents();
-				if (clientPlayer.username != null) {
-					SendPacket(new PlayerSendUpdatePacket { position = clientPlayer.state.position },
-						DeliveryMethod.Unreliable);
-				}
+			if (_client == null || !isPLayerJoined) {
+				return;
+			}
+
+			_client.PollEvents();
+			if (clientPlayer.username != null) {
+				SendPacket(new SendCommandPacket { command = commands.Dequeue() },
+					DeliveryMethod.Unreliable);
 			}
 		}
-
+		public void OnPlayerAwait(PlayerAwaitPacket packet)
+		{
+			
+		}
 		public void OnConnectionRequest(ConnectionRequest request)
 		{
 		}
@@ -161,5 +151,7 @@ namespace Game.Network
 		public void OnNetworkLatencyUpdate(NetPeer peer, int latency)
 		{
 		}
+
+		
 	}
 }

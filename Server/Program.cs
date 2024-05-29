@@ -1,4 +1,4 @@
-﻿Server server = new Server();
+﻿var server = new Server.Server();
 
 while (true)
 {

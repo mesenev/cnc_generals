@@ -1,6 +1,8 @@
+namespace Server;
+
 public enum ServerState
 {
-	playerAwait,
-	running,
-	shuttingDown
+	PlayerAwait,
+	Running,
+	ShuttingDown
 }

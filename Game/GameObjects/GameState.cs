@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.GameObjects.Units;
 using LiteNetLib.Utils;
-using SharedClasses.GameObjects.Units;
 
-namespace SharedClasses.GameObjects;
+namespace Game.GameObjects;
 
 public class GameState : INetSerializable
 {

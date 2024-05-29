@@ -1,10 +1,8 @@
-﻿using SharedClasses.Commands;
-
-namespace SharedClasses.GameObjects.Units;
+﻿namespace Game.GameObjects.Units;
 
 public class ArtilleryUnit : BaseUnit
 {
-    public ArtilleryUnit(HexCell position, uint unitId, uint ownerId) : base( unitId, ownerId)
+    public ArtilleryUnit(uint unitId, uint ownerId, int x, int y) : base(unitId, ownerId,x,y)
     {
         CanMove = false;
         CanAttack = false;
@@ -19,4 +17,5 @@ public class ArtilleryUnit : BaseUnit
     {
         cell.GetCellUnit().Health -= 100;
     }
+	
 }

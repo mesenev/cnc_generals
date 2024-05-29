@@ -1,11 +1,14 @@
-﻿using SharedClasses.GameObjects.Units;
+﻿using Game.GameObjects.Units;
+using LiteNetLib.Utils;
 
-namespace SharedClasses.GameObjects;
+namespace Game.GameObjects;
 
-public class HexCell
+public class HexCell(int x, int y) : INetSerializable
 {
-    public BaseUnit? CellUnit = null;
+    public BaseUnit CellUnit = null;
     public bool Occupied = false;
+    public int x = x;
+    public int y = y;
 
     public void UpdateCellUnit(BaseUnit newUnit)
     {
@@ -22,5 +25,21 @@ public class HexCell
     public BaseUnit GetCellUnit()
     {
         return CellUnit;
+    }
+
+    public void Serialize(NetDataWriter writer)
+    {
+	    CellUnit.Serialize(writer);
+	    writer.Put(Occupied);
+	    writer.Put(x);
+	    writer.Put(y);
+    }
+
+    public void Deserialize(NetDataReader reader)
+    {
+	    CellUnit.Deserialize(reader);
+	    Occupied = reader.GetBool();
+	    x = reader.GetInt();
+	    y = reader.GetInt();
     }
 }

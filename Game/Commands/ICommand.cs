@@ -1,6 +1,8 @@
-﻿namespace SharedClasses.Commands;
+﻿using LiteNetLib.Utils;
 
-public interface ICommand
+namespace Game.Commands;
+
+public interface ICommand : INetSerializable
 {
     public void Execute();
 }
