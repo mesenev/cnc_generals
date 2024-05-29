@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <ApplicationIcon>..\Icon.ico</ApplicationIcon>
-    <AssemblyName>Client</AssemblyName>
     <Configurations>Release;Debug;Profiler.Release;Profiler.Debug</Configurations>
     <OutputType>WinExe</OutputType>
     <PlatformTarget>x64</PlatformTarget>
     <RootNamespace>Client</RootNamespace>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>True</UseWindowsForms>
+    <PackageId>Application.Win</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

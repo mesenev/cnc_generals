@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Numerics;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using SharedClasses.GameObjects;
 
 
 public class Server : INetEventListener
@@ -13,18 +14,28 @@ public class Server : INetEventListener
 	private NetDataWriter writer;
 	private NetPacketProcessor packetProcessor;
 	private Dictionary<uint, ServerPlayer> players = new();
+	private GameState gameState;
+	private DateTime? t0;
+	private DateTime? t1;
+	private ServerState serverState;
 
+	public Server()
+	{
+		gameState = new GameState();
+		serverState = ServerState.playerAwait;
+		Start();
+	}
 
 	public void Start()
 	{
 		writer = new NetDataWriter();
 		packetProcessor = new NetPacketProcessor();
 		packetProcessor.RegisterNestedType((w, v) => w.Put(v), reader => reader.GetVector2());
-		packetProcessor.RegisterNestedType<PlayerState>();
+		packetProcessor.RegisterNestedType<GameState>((w, v) => w.Put(v), reader => reader.GetGameState());
 		packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
 
 		packetProcessor.RegisterNestedType<ClientPlayer>();
-		packetProcessor.SubscribeReusable<PlayerSendUpdatePacket, NetPeer>(OnPlayerUpdate);
+		packetProcessor.SubscribeReusable<SendCommandPacket, NetPeer>(OnPlayerUpdate);
 
 		_server = new NetManager(this) { AutoRecycle = true, UpdateTime = 1 };
 
@@ -55,50 +66,48 @@ public class Server : INetEventListener
 	{
 		Console.WriteLine($"Received join from {packet.username} (pid: {(uint)peer.Id})");
 
-		ServerPlayer newPlayer = (players[(uint)peer.Id] = new ServerPlayer {
-			peer = peer,
-			state = new PlayerState { pid = (uint)peer.Id, position = initialPosition, },
-			username = packet.username,
-		});
+		ServerPlayer newPlayer =
+			(players[(uint)peer.Id] = new ServerPlayer { peer = peer, username = packet.username, });
 
-		SendPacket(new JoinAcceptPacket { state = newPlayer.state }, peer, DeliveryMethod.ReliableOrdered);
+		SendPacket(new JoinAcceptPacket { state = gameState }, peer, DeliveryMethod.ReliableOrdered);
 
 		foreach (ServerPlayer player in players.Values) {
-			if (player.state.pid != newPlayer.state.pid) {
+			if (player.playerId != newPlayer.playerId) {
 				SendPacket(
-					new PlayerJoinedGamePacket {
-						player = new ClientPlayer { username = newPlayer.username, state = newPlayer.state, },
-					}, player.peer, DeliveryMethod.ReliableOrdered);
+					new PlayerJoinedGamePacket { player = new ClientPlayer { username = newPlayer.username }, },
+					player.peer, DeliveryMethod.ReliableOrdered);
 
 				SendPacket(
-					new PlayerJoinedGamePacket {
-						player = new ClientPlayer { username = player.username, state = player.state, },
-					}, newPlayer.peer, DeliveryMethod.ReliableOrdered);
+					new PlayerJoinedGamePacket { player = new ClientPlayer { username = player.username }, },
+					newPlayer.peer, DeliveryMethod.ReliableOrdered);
 			}
 		}
 	}
 
-	public void OnPlayerUpdate(PlayerSendUpdatePacket packet, NetPeer peer)
+	public void OnPlayerUpdate(SendCommandPacket packet, NetPeer peer)
 	{
-		players[(uint)peer.Id].state.position = packet.position;
 	}
 
 	public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
 	{
-		Console.WriteLine($"Player (pid: {(uint)peer.Id}) left the game");
-		if (peer.Tag != null) {
-			ServerPlayer playerLeft;
-			if (players.TryGetValue(((uint)peer.Id), out playerLeft)) {
-				foreach (ServerPlayer player in players.Values) {
-					if (player.state.pid != playerLeft.state.pid) {
-						SendPacket(new PlayerLeftGamePacket { pid = playerLeft.state.pid }, player.peer,
-							DeliveryMethod.ReliableOrdered);
-					}
-				}
+		Console.WriteLine($"Player (pid: {peer.Id}) left the game");
+		if (peer.Tag == null)
+			return;
+		
 
-				players.Remove((uint)peer.Id);
+		ServerPlayer playerLeft;
+		if (!players.TryGetValue((uint)peer.Id, out playerLeft))
+			return;
+		
+
+		foreach (ServerPlayer player in players.Values) {
+			if (player.playerId != playerLeft.playerId) {
+				SendPacket(new PlayerLeftGamePacket { pid = playerLeft.playerId }, player.peer,
+					DeliveryMethod.ReliableOrdered);
 			}
 		}
+
+		players.Remove((uint)peer.Id);
 	}
 
 	public void OnConnectionRequest(ConnectionRequest request)
@@ -110,11 +119,26 @@ public class Server : INetEventListener
 	public void Update()
 	{
 		_server.PollEvents();
+		if (this.serverState == ServerState.playerAwait) {
+			foreach (var player in players.Values)
+				SendPacket(new PlayerAwaitPacket(), player.peer, DeliveryMethod.Unreliable);
 
-		PlayerState[] states = players.Values.Select(p => p.state).ToArray();
-		foreach (ServerPlayer player in players.Values) {
-			SendPacket(new PlayerReceiveUpdatePacket { states = states }, player.peer, DeliveryMethod.Unreliable);
+			return;
 		}
+
+		if (this.serverState == ServerState.shuttingDown) {
+			return;
+		}
+
+		t0 ??= DateTime.Now;
+		t1 = DateTime.Now;
+		var timeSpan = (TimeSpan)(t1 - t0);
+		gameState.Update(timeSpan);
+		foreach (ServerPlayer player in players.Values) {
+			SendPacket(new PlayerReceiveUpdatePacket { state = gameState }, player.peer, DeliveryMethod.Unreliable);
+		}
+
+		t0 = t1;
 
 		// Thread.Sleep(1000);
 	}

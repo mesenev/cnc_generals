@@ -1,3 +1,5 @@
+using System;
+using Game.Network;
 using Lime;
 
 namespace Game.Dialogs;
@@ -8,6 +10,22 @@ public class GameScreen : Dialog<Scenes.Data.GameScreen>
 	{
 		SoundManager.PlayMusic("Ingame");
 		Scene._BtnExit.It.Clicked = ReturnToMenu;
+	}
+
+	private Game game;
+
+	protected override void Shown()
+	{
+		var canvas = Scene.It["Scene1"];
+		CanvasManager.Instance.InitLayers(canvas);
+		game = new Game(Client);
+		canvas.Updated += game.UpdatePlayers;
+		canvas.Updated += game.Update;
+	}
+
+	protected override void Closing()
+	{
+		Client.Disconnect();
 	}
 
 	protected override void Update(float delta)

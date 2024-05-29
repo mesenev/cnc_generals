@@ -10,7 +10,7 @@ public class Application
 {
 	public static Application Instance;
 
-	public const string ApplicationName = "Client";
+	public const string ApplicationName = "Application.Win";
 	public static readonly Vector2 DefaultWorldSize = new (1024, 768);
 
 	public static void Initialize()
@@ -30,16 +30,13 @@ public class Application
 
 		LoadDictionary();
 		SetWindowSize();
-#if !WEB && !MAC
 		Extensions.RemoteScriptingClientExtension.Initialize();
-#endif
-
-		if (AppData.Instance.EnableSplashScreen) {
+		
+		if (AppData.Instance.EnableSplashScreen) 
 			The.DialogManager.Open<SplashScreen>();
-		}
-		else {
+		else  
 			The.DialogManager.Open<MainMenu>();
-		}
+		
 	}
 
 	public WindowWidget World { get; private set; }
@@ -64,7 +61,7 @@ public class Application
 #elif MAC
 		return new PackedAssetBundle("Contents/Resources/Data.Mac");
 #elif WEB
-		return new PackedAssetBundle("Client.Resources.Data.Web", "Client");
+		return new PackedAssetBundle("Application.Win.Resources.Data.Web", "Application.Win");
 #endif
 		throw new System.InvalidOperationException("Invalid Platform.");
 	}

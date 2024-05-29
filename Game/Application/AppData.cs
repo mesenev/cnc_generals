@@ -27,7 +27,7 @@ public class AppData
 	public DeviceOrientation SimulateDeviceOrientation = DeviceOrientation.LandscapeLeft;
 
 	[YuzuMember]
-	public bool EnableSplashScreen = true;
+	public bool EnableSplashScreen = false;
 
 	public static string GetDataFilePath()
 	{

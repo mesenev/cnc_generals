@@ -1,12 +1,15 @@
 using System.Threading;
 using Game.Application;
 using Game.Dialogs;
+using Game.Network;
 using Lime;
 
 namespace Game;
 
 public static class The
 {
+	public static CanvasManager CanvasManager => CanvasManager.Instance;
+	public static Client Client => Client.Instance;
 	public static Application.Application App => Application.Application.Instance;
 	public static WindowWidget World => App.World;
 	public static IWindow Window => World.Window;

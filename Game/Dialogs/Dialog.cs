@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game.Application;
+using Game.Network;
 using Lime;
 using Game.Scenes;
 
@@ -196,7 +197,8 @@ public class Dialog : IDisposable
 	public bool IsTopDialog => DialogManager.Top == this;
 
 	public virtual void FillDebugMenuItems(DevPanel.Menu menu) { }
-
+	
+	protected Client Client => The.Client;
 	protected Application.Application App => The.App;
 	protected WindowWidget World => The.World;
 	protected IWindow Window => The.Window;
