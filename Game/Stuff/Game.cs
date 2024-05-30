@@ -3,8 +3,9 @@ using Lime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Game.Map;
+using Game.GameObjects;
 using Game.Network;
+using HexGrid = Game.Map.HexGrid;
 
 namespace Game
 {
@@ -19,8 +20,6 @@ namespace Game
 
 		private Client _client;
 
-		private PlayerComponent mainPlayer;
-
 		private HexGrid hexGrid;
 
 		public Game(Client client)
@@ -28,7 +27,7 @@ namespace Game
 			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 
 			_client = client;
-			_client.Connect("Player");	
+			_client.Connect("Player");
 
 			Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
 		}
@@ -42,22 +41,6 @@ namespace Game
 			}
 		}
 
-		private void CallIfPlayerConnected(UpdateDelegate func)
-		{
-			if (_client.isPLayerJoined) {
-				func();
-			}
-		}
-
-		public void SetMainPlayer(int pid)
-		{
-			mainPlayer = new PlayerComponent(Canvas, hexGrid.getRandomCellPosition(), pid);
-			var playerInputProcessor = new PlayerInputProcessor(mainPlayer);
-
-			Components.Add(mainPlayer);
-			Processors.Add(playerInputProcessor);
-		}
-
 		public void Update(float delta)
 		{
 			Console.WriteLine("Update");
@@ -66,38 +49,31 @@ namespace Game
 			}
 
 			_client.Update();
-			if (_client.isPLayerJoined && mainPlayer != null) {
-				_client.UpdateClientPlayer(mainPlayer.Position);
-			}
-
-			if (_client.isPLayerJoined && mainPlayer == null) {
-				SetMainPlayer((int)_client.GetClientPlayer().state.pid);
-			}
 		}
 
 		public void UpdatePlayers(float delta)
 		{
-			Console.WriteLine("UpdatePlayers");
-			CallIfPlayerConnected(RemovePlayersFromCanvas);
-			
-			CallIfPlayerConnected(GetPlayersFromServer);
+			RemovePlayersFromCanvas();
+			GetPlayersFromServer();
 		}
 
 		private void RemovePlayersFromCanvas()
 		{
-			Canvas.Nodes.RemoveAll(node => node != mainPlayer.image);
-
-			Components.RemoveAll(el => el.EntityId != mainPlayer.EntityId);
+			Canvas.Nodes.RemoveAll(node => true);
+			Components.RemoveAll(el => true);
+			Processors.RemoveAll(el => true);
 		}
 
 		private void GetPlayersFromServer()
 		{
-			foreach (var remotePlayer in _client.GetServerPlayers()
-				         .FindAll(el => (int)el.state.pid != mainPlayer.EntityId)) {
-				Components.Add(
-					new PlayerComponent(Canvas,
-						new Vector2(remotePlayer.state.position.X, remotePlayer.state.position.Y),
-						spritePath: "Sprites/Unit") { EntityId = (int)remotePlayer.state.pid });
+			foreach (var unit in _client.gameState.Units) {
+				var newUnit =
+					new UnitComponent(Canvas,
+						hexGrid.cells[0, 0].GetPosition((float)unit.x, (float)unit.y),
+						unit.UnitId,
+						spritePath: "Sprites/Unit");
+				Components.Add(newUnit);
+				Processors.Add(new PlayerInputProcessor(newUnit));
 			}
 		}
 	}

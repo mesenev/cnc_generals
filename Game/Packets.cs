@@ -13,14 +13,17 @@ namespace Game
 		public ClientPlayer player { get; set; }
 	}
 	public struct ClientPlayer : INetSerializable {
-		public string username;
 		public uint playerId;
+		public string username;
 
 		public void Serialize(NetDataWriter writer) {
+			writer.Put(playerId);
 			writer.Put(username);
 		}
 
-		public void Deserialize(NetDataReader reader) {
+		public void Deserialize(NetDataReader reader)
+		{
+			playerId = reader.GetUInt();
 			username = reader.GetString();
 		}
 	}
@@ -31,8 +34,8 @@ namespace Game
 		public uint playerId;
 	}
 
-	public class SendCommandPacket {
-		public ICommand command { get; set; }
+	public class MoveCommandPacket {
+		public MoveCommand2 command { get; set; }
 	}
 
 	public class PlayerReceiveUpdatePacket {

@@ -20,6 +20,11 @@ public class GameState : INetSerializable
         Units.Remove(unitToRemove);
     }
 
+    public BaseUnit GetUnitById(uint unitId)
+    {
+	    return Units.Find(unit => unit.UnitId == unitId);
+    }
+
     public void Update(TimeSpan timeDelta)
     {
 	    throw new NotImplementedException();
@@ -27,11 +32,18 @@ public class GameState : INetSerializable
 
     public void Serialize(NetDataWriter writer)
     {
-        throw new NotImplementedException();
+        Grid.Serialize(writer);
+        writer.Put(Units.Count);
+        foreach (var unit in Units) {
+	        unit.Serialize(writer);
+        }
     }
 
     public void Deserialize(NetDataReader reader)
     {
-        throw new NotImplementedException();
+        Grid.Deserialize(reader);
+        for (var i = 0; i < reader.GetInt(); i++) {
+	        
+        }
     }
 }

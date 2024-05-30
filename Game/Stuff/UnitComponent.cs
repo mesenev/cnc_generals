@@ -4,16 +4,16 @@ using Lime;
 
 namespace Game
 {
-	public class PlayerComponent : Component
+	public class UnitComponent : Component
 	{
 		private readonly int size = 16;
 		
 		public readonly Image image;
 		public Vector2 Position { get => image.Position; set => image.Position = value; }
 		
-		public PlayerComponent(Widget canvas, Vector2 newPos, int newPID=0, string spritePath="Sprites/Hero")
+		public UnitComponent(Widget canvas, Vector2 newPos, uint unitId, string spritePath="Sprites/Hero")
 		{
-			EntityId = newPID;
+			EntityId = unitId;
 			image = new Image {
 				Sprite = new SerializableSprite(spritePath),
 				Size = new Vector2(size, size),

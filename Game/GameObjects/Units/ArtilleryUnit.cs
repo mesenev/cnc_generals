@@ -4,6 +4,7 @@ public class ArtilleryUnit : BaseUnit
 {
     public ArtilleryUnit(uint unitId, uint ownerId, int x, int y) : base(unitId, ownerId,x,y)
     {
+	    unitType = 1;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;

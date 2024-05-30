@@ -4,32 +4,23 @@ using System.Linq;
 
 namespace Game
 {
-	public class PlayerInputProcessor : IProcessor
+	public class PlayerInputProcessor(UnitComponent unitComponent) : IProcessor
 	{
 		private bool isKeyPressed = false;
-		private PlayerComponent player;
-		private Vector2 destination;
+		private Vector2 destination = unitComponent.Position;
 		private float speed = 5f;
-
-		public PlayerInputProcessor(PlayerComponent playerComponent)
-		{
-			player = playerComponent;
-			destination = playerComponent.Position;
-		}
 
 		public void Update(float delta, Game game)
 		{
-			if (game == null) {
-				throw new ArgumentNullException(nameof(game));
-			}
+			ArgumentNullException.ThrowIfNull(game);
 
-			var direction = destination - player.Position;
-			if (direction != Vector2.Zero) {
-				player.Position += direction * speed * delta;
-			}
+			// var direction = destination - unitComponent.Position;
+			// if (direction != Vector2.Zero) {
+			// 	unitComponent.Position += direction * speed * delta;
+			// }
 			
 			if (!isKeyPressed && game.Canvas.Input.IsKeyPressed(Key.Mouse1)) {
-				destination = game.Canvas.Input.MousePosition;
+				// destination = game.Canvas.Input.MousePosition;
 				isKeyPressed = true;
 			}
 			

@@ -7,6 +7,7 @@ public class MarineUnit : BaseUnit
 {
 	public MarineUnit(uint unitId, uint ownerId, int x, int y) : base(unitId, ownerId, x, y)
 	{
+		unitType = 0;
 		CanMove = true;
 		CanAttack = true;
 		HasAbility = false;

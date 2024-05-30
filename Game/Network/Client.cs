@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Game.Commands;
 using Game.GameObjects;
 using Lime;
 using LiteNetLib;
@@ -25,7 +26,7 @@ namespace Game.Network
 		private ClientPlayer clientPlayer;
 		private Dictionary<uint, ServerPlayer> serverPlayers = new();
 		public GameState gameState;
-		public Queue<Commands.ICommand> commands;
+		public Queue<MoveCommand2> commands;
 
 		public List<ServerPlayer> GetServerPlayers()
 		{
@@ -46,6 +47,8 @@ namespace Game.Network
 				(w, v) => w.Put(v), reader => reader.GetVector2()
 			);
 			packetProcessor.RegisterNestedType<ClientPlayer>();
+			packetProcessor.RegisterNestedType<MoveCommand2>();
+			
 			packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);
 			packetProcessor.SubscribeReusable<PlayerJoinedGamePacket>(OnPlayerJoin);
 			packetProcessor.SubscribeReusable<PlayerReceiveUpdatePacket>(OnReceiveUpdate);
@@ -117,7 +120,7 @@ namespace Game.Network
 
 			_client.PollEvents();
 			if (clientPlayer.username != null) {
-				SendPacket(new SendCommandPacket { command = commands.Dequeue() },
+				SendPacket(new MoveCommandPacket() { command = commands.Dequeue() },
 					DeliveryMethod.Unreliable);
 			}
 		}

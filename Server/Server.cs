@@ -2,10 +2,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
 using Game;
+using Game.Commands;
 using Game.GameObjects;
 using LiteNetLib;
 using LiteNetLib.Utils;
 using Game.GameObjects;
+using Game.GameObjects.Units;
 
 namespace Server;
 
@@ -21,9 +23,11 @@ public class Server : INetEventListener
 	private DateTime? t0;
 	private DateTime? t1;
 	private ServerState serverState;
+	private uint unitCounter;
 
 	public Server()
 	{
+		unitCounter = 0;
 		gameState = new GameState();
 		serverState = ServerState.PlayerAwait;
 		Start();
@@ -34,10 +38,11 @@ public class Server : INetEventListener
 		writer = new NetDataWriter();
 		packetProcessor = new NetPacketProcessor();
 		packetProcessor.RegisterNestedType((w, v) => w.Put(v), reader => reader.GetVector2());
-		packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
-
 		packetProcessor.RegisterNestedType<ClientPlayer>();
-		packetProcessor.SubscribeReusable<SendCommandPacket, NetPeer>(OnPlayerUpdate);
+		packetProcessor.RegisterNestedType<MoveCommand2>();
+		
+		packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
+		packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
 
 		server = new NetManager(this) { AutoRecycle = true, UpdateTime = 1 };
 
@@ -71,6 +76,8 @@ public class Server : INetEventListener
 		uint peerId = (uint)peer.Id;
 		ServerPlayer newPlayer =
 			(players[peerId] = new ServerPlayer { peer = peer, username = packet.username, playerId = peerId });
+		var randomCell = gameState.Grid.GetRandomCell();
+		gameState.AddUnit(new MarineUnit(unitId: unitCounter++, ownerId: peerId, randomCell.x, randomCell.y));
 
 		SendPacket(
 			new JoinAcceptPacket {
@@ -83,6 +90,9 @@ public class Server : INetEventListener
 					player = new ClientPlayer { playerId = newPlayer.playerId, username = newPlayer.username },
 				},
 				player.peer, DeliveryMethod.ReliableOrdered);
+			SendPacket(
+				new PlayerReceiveUpdatePacket() { state = gameState },
+				player.peer, DeliveryMethod.ReliableOrdered);
 
 			// SendPacket(
 			// 	new PlayerJoinedGamePacket { player = new ClientPlayer { username = player.username }, },
@@ -90,9 +100,13 @@ public class Server : INetEventListener
 		}
 	}
 
-	public void OnPlayerUpdate(SendCommandPacket packet, NetPeer peer)
+	public void OnPlayerMove(MoveCommandPacket packet, NetPeer peer)
 	{
-		packet.command.Execute();
+		var currentUnit = gameState.GetUnitById(packet.command.unitId);
+		var getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
+		var getNewCell = gameState.Grid.GetCell(packet.command.x, packet.command.y);
+		getCurrentCell.RemoveCellUnit();
+		getNewCell.UpdateCellUnit(currentUnit);
 	}
 
 	public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
@@ -127,6 +141,7 @@ public class Server : INetEventListener
 		if (players.Count == 2) {
 			serverState = ServerState.Running;
 		}
+
 		if (this.serverState == ServerState.PlayerAwait) {
 			foreach (var player in players.Values)
 				SendPacket(new PlayerAwaitPacket(), player.peer, DeliveryMethod.Unreliable);
