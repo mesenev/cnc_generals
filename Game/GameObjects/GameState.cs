@@ -5,45 +5,37 @@ using LiteNetLib.Utils;
 
 namespace Game.GameObjects;
 
-public class GameState : INetSerializable
-{
+public class GameState : INetSerializable {
     public HexGrid Grid = new();
     public List<BaseUnit> Units = [];
 
-    public void AddUnit(BaseUnit newUnit)
-    {
+    public void AddUnit(BaseUnit newUnit) {
         Units.Add(newUnit);
     }
 
-    public void RemoveUnit(BaseUnit unitToRemove)
-    {
+    public void RemoveUnit(BaseUnit unitToRemove) {
         Units.Remove(unitToRemove);
     }
 
-    public BaseUnit GetUnitById(uint unitId)
-    {
-	    return Units.Find(unit => unit.UnitId == unitId);
+    public BaseUnit GetUnitById(uint unitId) {
+        return Units.Find(unit => unit.UnitId == unitId);
     }
 
-    public void Update(TimeSpan timeDelta)
-    {
-	    throw new NotImplementedException();
+    public void Update(TimeSpan timeDelta) {
+        throw new NotImplementedException();
     }
 
-    public void Serialize(NetDataWriter writer)
-    {
+    public void Serialize(NetDataWriter writer) {
         Grid.Serialize(writer);
         writer.Put(Units.Count);
         foreach (var unit in Units) {
-	        unit.Serialize(writer);
+            unit.Serialize(writer);
         }
     }
 
-    public void Deserialize(NetDataReader reader)
-    {
+    public void Deserialize(NetDataReader reader) {
         Grid.Deserialize(reader);
-        for (var i = 0; i < reader.GetInt(); i++) {
-	        
-        }
+        for (var i = 0; i < reader.GetInt(); i++) { }
+        //
     }
 }

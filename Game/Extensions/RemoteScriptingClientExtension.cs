@@ -11,7 +11,7 @@ namespace Game.Extensions;
 
 public class RemoteScriptingClientExtension
 {
-	private static readonly Dictionary<string, IPAddress> serversAddresses = new Dictionary<string, IPAddress> {
+	private static readonly Dictionary<string, IPAddress> serversAddresses = new() {
 		{ "Localhost", IPAddress.Parse("127.0.0.1") },
 	};
 	private static string lastEnteredIpAddress;
@@ -55,9 +55,8 @@ public class RemoteScriptingClientExtension
 					void OnDone(bool success)
 					{
 						scene.UnlinkAndDispose();
-						if (!success) {
+						if (!success)
 							return;
-						}
 						lastEnteredIpAddress = scene.Value;
 						RemoteScriptingManager.Instance.Environment.Client.Connect(IPAddress.Parse(scene.Value));
 					}

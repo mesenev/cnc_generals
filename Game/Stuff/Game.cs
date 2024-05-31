@@ -67,11 +67,12 @@ namespace Game
 		private void GetPlayersFromServer()
 		{
 			foreach (var unit in _client.gameState.Units) {
-				var newUnit =
-					new UnitComponent(Canvas,
-						hexGrid.cells[0, 0].GetPosition((float)unit.x, (float)unit.y),
-						unit.UnitId,
-						spritePath: "Sprites/Unit");
+				var newUnit = new UnitComponent(
+					Canvas,
+					hexGrid.cells[0, 0].GetPosition((float)unit.x, (float)unit.y),
+					unit.UnitId,
+					spritePath: "Sprites/Unit"
+				);
 				Components.Add(newUnit);
 				Processors.Add(new PlayerInputProcessor(newUnit));
 			}
