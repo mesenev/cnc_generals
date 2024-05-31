@@ -8,9 +8,10 @@ namespace Game.GameObjects {
         public int GridWidth;
         public int UnitsAmount;
         public List<UnitInfo> UnitsInfo = [];
+        private string _presetFolder = "GameStatePresets/";
 
-        public Preset(string presetPath) {
-            var input = File.ReadAllLines(presetPath)
+        public Preset(string presetName) {
+            var input = File.ReadAllLines(_presetFolder + presetName)
                 .Where(x => !x.StartsWith('#'));
 
             var data = string.Join(" ", input).Split().Select(int.Parse).ToList();
@@ -19,11 +20,10 @@ namespace Game.GameObjects {
             GridWidth = data[1];
             UnitsAmount = data[2];
             var units = new List<List<int>>();
-            data =  data.Slice(3, data.Count - 3);
-            
+            data = data.Slice(3, data.Count - 3);
+
             for (int i = 0; i < UnitsAmount; i++) {
-                    units.Add(data.Slice(i * 4, 4));
-                
+                units.Add(data.Slice(i * 4, 4));
             }
 
             foreach (var unitData in units) {
