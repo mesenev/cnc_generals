@@ -37,10 +37,12 @@ public class Server : INetEventListener
 	{
 		writer = new NetDataWriter();
 		packetProcessor = new NetPacketProcessor();
-		packetProcessor.RegisterNestedType((w, v) => w.Put(v), reader => reader.GetVector2());
+		packetProcessor.RegisterNestedType(
+			(w, v) => w.Put(v), reader => reader.GetVector2()
+		);
 		packetProcessor.RegisterNestedType<ClientPlayer>();
 		packetProcessor.RegisterNestedType<MoveCommand2>();
-		
+
 		packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
 		packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
 

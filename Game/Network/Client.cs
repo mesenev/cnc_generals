@@ -43,12 +43,16 @@ namespace Game.Network
 			clientPlayer.username = username;
 			writer = new NetDataWriter();
 			packetProcessor = new NetPacketProcessor();
+
+			Console.WriteLine("registering f. gamestate");
+			packetProcessor.RegisterNestedType(() => new GameState());
 			packetProcessor.RegisterNestedType(
 				(w, v) => w.Put(v), reader => reader.GetVector2()
 			);
 			packetProcessor.RegisterNestedType<ClientPlayer>();
 			packetProcessor.RegisterNestedType<MoveCommand2>();
-			
+
+
 			packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);
 			packetProcessor.SubscribeReusable<PlayerJoinedGamePacket>(OnPlayerJoin);
 			packetProcessor.SubscribeReusable<PlayerReceiveUpdatePacket>(OnReceiveUpdate);
@@ -102,7 +106,7 @@ namespace Game.Network
 		{
 			Console.WriteLine($"Player '{packet.player.username}' (pid: {packet.player.playerId}) joined the game");
 			ServerPlayer newServerPlayer =
-				new ServerPlayer { username = packet.player.username, playerId = packet.player.playerId};
+				new ServerPlayer { username = packet.player.username, playerId = packet.player.playerId };
 			serverPlayers.Add(newServerPlayer.playerId, newServerPlayer);
 		}
 
@@ -114,20 +118,21 @@ namespace Game.Network
 
 		public void Update()
 		{
-			if (_client == null || !isPLayerJoined) {
+			if (_client == null || !isPLayerJoined)
 				return;
-			}
 
 			_client.PollEvents();
-			if (clientPlayer.username != null) {
-				SendPacket(new MoveCommandPacket() { command = commands.Dequeue() },
-					DeliveryMethod.Unreliable);
-			}
+			if (clientPlayer.username != null)
+				SendPacket(
+					new MoveCommandPacket { command = commands.Dequeue() },
+					DeliveryMethod.Unreliable
+				);
 		}
+
 		public void OnPlayerAwait(PlayerAwaitPacket packet)
 		{
-			
 		}
+
 		public void OnConnectionRequest(ConnectionRequest request)
 		{
 		}
@@ -154,7 +159,5 @@ namespace Game.Network
 		public void OnNetworkLatencyUpdate(NetPeer peer, int latency)
 		{
 		}
-
-		
 	}
 }
