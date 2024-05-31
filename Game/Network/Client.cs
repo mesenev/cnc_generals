@@ -94,8 +94,6 @@ namespace Game.Network {
 
         public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet) {
             gameState = packet.state;
-            gameState.PrintGameState();
-            Environment.Exit(0);
         }
 
         public void OnPlayerJoin(PlayerJoinedGamePacket packet) {

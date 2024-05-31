@@ -1,293 +1,503 @@
-[16:08:46] Unknown command category: CreateCommands
-[16:08:46] Unknown command category: Client
-[16:09:30] New project name is "Client"
-[16:09:30] Copying: .editorconfig => C:\Users\user\RiderProjects\Client\.editorconfig
-[16:09:30] Copying: .gitattributes => C:\Users\user\RiderProjects\Client\.gitattributes
-[16:09:30] Copying: .gitignore => C:\Users\user\RiderProjects\Client\.gitignore
-[16:09:30] Copying: Analyzers.props => C:\Users\user\RiderProjects\Client\Analyzers.props
-[16:09:30] Copying: Application.Win/Application.cs => C:\Users\user\RiderProjects\Client\Application.Win/Application.cs
-[16:09:30] Copying: Application.Win/EmptyProject.Win.csproj => C:\Users\user\RiderProjects\Client\Application.Win/Client.Win.csproj
-[16:09:30] Copying: Application.Win/EmptyProject.Win.sln => C:\Users\user\RiderProjects\Client\Application.Win/Client.Win.sln
-[16:09:30] Copying: CitrusPlugin/CitrusPlugin.cs => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.cs
-[16:09:30] Copying: CitrusPlugin/CitrusPlugin.Win.csproj => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.csproj
-[16:09:30] Copying: CitrusPlugin/CitrusPlugin.Win.sln => C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.sln
-[16:09:30] Copying: CitrusPlugin/ConfigWindow.cs => C:\Users\user\RiderProjects\Client\CitrusPlugin/ConfigWindow.cs
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount1.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount1.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount2.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount2.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount3.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount3.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount4.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount4.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount5.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount5.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount6.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount6.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount7.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount7.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount8.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount8.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount9.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount9.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Dark/CommentCount9+.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Dark/CommentCount9+.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount1.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount1.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount2.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount2.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount3.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount3.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount4.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount4.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount5.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount5.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount6.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount6.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount7.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount7.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount8.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount8.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount9.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount9.png
-[16:09:30] Copying: CitrusPlugin/Resources/Icons/Light/CommentCount9+.png => C:\Users\user\RiderProjects\Client\CitrusPlugin/Resources/Icons/Light/CommentCount9+.png
-[16:09:30] Copying: CitrusTypes/CitrusTypes.props => C:\Users\user\RiderProjects\Client\CitrusTypes/CitrusTypes.props
-[16:09:30] Copying: CitrusTypes/CitrusTypes.Win.csproj => C:\Users\user\RiderProjects\Client\CitrusTypes/CitrusTypes.Win.csproj
-[16:09:30] Copying: CitrusTypes/ColorizeComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/ColorizeComponent.cs
-[16:09:30] Copying: CitrusTypes/CommentComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/CommentComponent.cs
-[16:09:30] Copying: CitrusTypes/DataLayer.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/DataLayer.cs
-[16:09:30] Copying: CitrusTypes/EmptyComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/EmptyComponent.cs
-[16:09:30] Copying: CitrusTypes/RunAnimationComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/RunAnimationComponent.cs
-[16:09:30] Copying: CitrusTypes/SplitVectorPropertiesComponent.cs => C:\Users\user\RiderProjects\Client\CitrusTypes/SplitVectorPropertiesComponent.cs
-[16:09:30] Copying: Data/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/#CookingRules.txt
-[16:09:30] Copying: Data/Audio/Music/Ingame.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Music/Ingame.ogg
-[16:09:30] Copying: Data/Audio/Music/Theme.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Music/Theme.ogg
-[16:09:30] Copying: Data/Audio/Sounds/ButtonClick.ogg => C:\Users\user\RiderProjects\Client\Data/Audio/Sounds/ButtonClick.ogg
-[16:09:30] Copying: Data/Dictionary.txt => C:\Users\user\RiderProjects\Client\Data/Dictionary.txt
-[16:09:30] Copying: Data/Fonts/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Fonts/#CookingRules.txt
-[16:09:30] Copying: Data/Fonts/Default.png => C:\Users\user\RiderProjects\Client\Data/Fonts/Default.png
-[16:09:30] Copying: Data/Fonts/Default.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/Default.tft
-[16:09:30] Copying: Data/Fonts/RobotoMed.png => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.png
-[16:09:30] Copying: Data/Fonts/RobotoMed.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.tft
-[16:09:30] Copying: Data/Fonts/RobotoMed.tftconf => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.tftconf
-[16:09:30] Copying: Data/Fonts/RobotoMed.ttf => C:\Users\user\RiderProjects\Client\Data/Fonts/RobotoMed.ttf
-[16:09:30] Copying: Data/Fonts/RussoOne.png => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.png
-[16:09:30] Copying: Data/Fonts/RussoOne.tft => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.tft
-[16:09:30] Copying: Data/Fonts/RussoOne.tftconf => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.tftconf
-[16:09:30] Copying: Data/Fonts/RussoOne.ttf => C:\Users\user\RiderProjects\Client\Data/Fonts/RussoOne.ttf
-[16:09:30] Copying: Data/Shell/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/#CookingRules.txt
-[16:09:30] Copying: Data/Shell/AlertDialog.tan => C:\Users\user\RiderProjects\Client\Data/Shell/AlertDialog.tan
-[16:09:30] Copying: Data/Shell/Confirmation.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Confirmation.tan
-[16:09:30] Copying: Data/Shell/Externals/BtnOk.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnOk.tan
-[16:09:30] Copying: Data/Shell/Externals/BtnOptions.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnOptions.tan
-[16:09:30] Copying: Data/Shell/Externals/BtnPlay.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnPlay.tan
-[16:09:30] Copying: Data/Shell/Externals/BtnX.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/BtnX.tan
-[16:09:30] Copying: Data/Shell/Externals/Shade.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/Shade.tan
-[16:09:30] Copying: Data/Shell/Externals/TitleBar.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/TitleBar.tan
-[16:09:30] Copying: Data/Shell/Externals/Win.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Externals/Win.tan
-[16:09:30] Copying: Data/Shell/GameScreen.tan => C:\Users\user\RiderProjects\Client\Data/Shell/GameScreen.tan
-[16:09:30] Copying: Data/Shell/MainMenu.tan => C:\Users\user\RiderProjects\Client\Data/Shell/MainMenu.tan
-[16:09:30] Copying: Data/Shell/Options.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Options.tan
-[16:09:30] Copying: Data/Shell/Splash.tan => C:\Users\user\RiderProjects\Client\Data/Shell/Splash.tan
-[16:09:30] Copying: Data/Shell/Splash/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/#CookingRules.txt
-[16:09:30] Copying: Data/Shell/Splash/CitrusLogo.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/CitrusLogo.png
-[16:09:30] Copying: Data/Shell/Splash/GameForest.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/GameForest.png
-[16:09:30] Copying: Data/Shell/Splash/GF.png => C:\Users\user\RiderProjects\Client\Data/Shell/Splash/GF.png
-[16:09:30] Copying: Data/Shell/Ui/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/#CookingRules.txt
-[16:09:30] Copying: Data/Shell/Ui/Bg.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.png
-[16:09:30] Copying: Data/Shell/Ui/Bg.png.txt => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.png.txt
-[16:09:30] Copying: Data/Shell/Ui/Bg.texture => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/Bg.texture
-[16:09:30] Copying: Data/Shell/Ui/BtnDis.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnDis.png
-[16:09:30] Copying: Data/Shell/Ui/BtnOrange.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnOrange.png
-[16:09:30] Copying: Data/Shell/Ui/BtnRed.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/BtnRed.png
-[16:09:30] Copying: Data/Shell/Ui/IcoCheck.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoCheck.png
-[16:09:30] Copying: Data/Shell/Ui/IcoGear.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoGear.png
-[16:09:30] Copying: Data/Shell/Ui/IcoPlay.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoPlay.png
-[16:09:30] Copying: Data/Shell/Ui/IcoX.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/IcoX.png
-[16:09:30] Copying: Data/Shell/Ui/WinBiege.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinBiege.png
-[16:09:30] Copying: Data/Shell/Ui/WinBlue.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinBlue.png
-[16:09:30] Copying: Data/Shell/Ui/WinGrey.png => C:\Users\user\RiderProjects\Client\Data/Shell/Ui/WinGrey.png
-[16:09:30] Copying: Data/Stuff/#CookingRules.txt => C:\Users\user\RiderProjects\Client\Data/Stuff/#CookingRules.txt
-[16:09:30] Copying: Data/Stuff/BoxBlurred.png => C:\Users\user\RiderProjects\Client\Data/Stuff/BoxBlurred.png
-[16:09:30] Copying: Data/Stuff/Circle.png => C:\Users\user\RiderProjects\Client\Data/Stuff/Circle.png
-[16:09:30] Copying: Data/Stuff/CircleBig.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBig.png
-[16:09:30] Copying: Data/Stuff/CircleBlured.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBlured.png
-[16:09:30] Copying: Data/Stuff/CircleBluredLess.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBluredLess.png
-[16:09:30] Copying: Data/Stuff/CircleBluredMore.png => C:\Users\user\RiderProjects\Client\Data/Stuff/CircleBluredMore.png
-[16:09:30] Copying: Data/Stuff/DotBig.png => C:\Users\user\RiderProjects\Client\Data/Stuff/DotBig.png
-[16:09:30] Copying: Data/Stuff/LineGradient.png => C:\Users\user\RiderProjects\Client\Data/Stuff/LineGradient.png
-[16:09:30] Copying: Data/Stuff/LineGradientHard.png => C:\Users\user\RiderProjects\Client\Data/Stuff/LineGradientHard.png
-[16:09:30] Copying: Data/Stuff/RadialRaysClassy.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RadialRaysClassy.png
-[16:09:30] Copying: Data/Stuff/RingBlured.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RingBlured.png
-[16:09:30] Copying: Data/Stuff/RingBluredBold.png => C:\Users\user\RiderProjects\Client\Data/Stuff/RingBluredBold.png
-[16:09:30] Copying: Directory.Build.props => C:\Users\user\RiderProjects\Client\Directory.Build.props
-[16:09:30] Copying: Directory.Build.targets => C:\Users\user\RiderProjects\Client\Directory.Build.targets
-[16:09:30] Copying: EmptyProject.citproj => C:\Users\user\RiderProjects\Client\Client.citproj
-[16:09:30] Copying: Game/Application/AppData.cs => C:\Users\user\RiderProjects\Client\Game/Application/AppData.cs
-[16:09:30] Copying: Game/Application/Application.cs => C:\Users\user\RiderProjects\Client\Game/Application/Application.cs
-[16:09:30] Copying: Game/Application/Display.cs => C:\Users\user\RiderProjects\Client\Game/Application/Display.cs
-[16:09:30] Copying: Game/Application/DisplayInfo.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.cs
-[16:09:30] Copying: Game/Application/DisplayInfo.Desktop.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.Desktop.cs
-[16:09:30] Copying: Game/Application/DisplayInfo.Mobile.cs => C:\Users\user\RiderProjects\Client\Game/Application/DisplayInfo.Mobile.cs
-[16:09:30] Copying: Game/Application/SoundManager.cs => C:\Users\user\RiderProjects\Client\Game/Application/SoundManager.cs
-[16:09:30] Copying: Game/Debug/Cheats.cs => C:\Users\user\RiderProjects\Client\Game/Debug/Cheats.cs
-[16:09:30] Copying: Game/Debug/DevPanel.cs => C:\Users\user\RiderProjects\Client\Game/Debug/DevPanel.cs
-[16:09:30] Copying: Game/Dialogs/AlertDialog.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/AlertDialog.cs
-[16:09:30] Copying: Game/Dialogs/Confirmation.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Confirmation.cs
-[16:09:30] Copying: Game/Dialogs/Dialog.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Dialog.cs
-[16:09:30] Copying: Game/Dialogs/DialogManager.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/DialogManager.cs
-[16:09:30] Copying: Game/Dialogs/GameScreen.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/GameScreen.cs
-[16:09:30] Copying: Game/Dialogs/MainMenu.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/MainMenu.cs
-[16:09:30] Copying: Game/Dialogs/Options.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/Options.cs
-[16:09:30] Copying: Game/Dialogs/ScreenCrossfade.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/ScreenCrossfade.cs
-[16:09:30] Copying: Game/Dialogs/SplashScreen.cs => C:\Users\user\RiderProjects\Client\Game/Dialogs/SplashScreen.cs
-[16:09:30] Copying: Game/Extensions/RemoteScriptingClientExtension.cs => C:\Users\user\RiderProjects\Client\Game/Extensions/RemoteScriptingClientExtension.cs
-[16:09:30] Copying: Game/Game.props => C:\Users\user\RiderProjects\Client\Game/Game.props
-[16:09:30] Copying: Game/Game.Win.csproj => C:\Users\user\RiderProjects\Client\Game/Game.Win.csproj
-[16:09:30] Copying: Game/Layers.cs => C:\Users\user\RiderProjects\Client\Game/Layers.cs
-[16:09:30] Copying: Game/Logger.cs => C:\Users\user\RiderProjects\Client\Game/Logger.cs
-[16:09:30] Copying: Game/Profile.cs => C:\Users\user\RiderProjects\Client\Game/Profile.cs
-[16:09:30] Copying: Game/The.cs => C:\Users\user\RiderProjects\Client\Game/The.cs
-[16:09:30] Copying: Generated/Scenes/ParsedWidget.cs => C:\Users\user\RiderProjects\Client\Generated/Scenes/ParsedWidget.cs
-[16:09:30] Copying: Generated/Scenes/Scenes.props => C:\Users\user\RiderProjects\Client\Generated/Scenes/Scenes.props
-[16:09:30] Copying: Generated/Scenes/Scenes.Win.csproj => C:\Users\user\RiderProjects\Client\Generated/Scenes/Scenes.Win.csproj
-[16:09:30] Copying: Generated/Schema/game_1.json => C:\Users\user\RiderProjects\Client\Generated/Schema/game_1.json
-[16:09:30] Copying: Icon.ico => C:\Users\user\RiderProjects\Client\Icon.ico
-[16:09:30] Copying: Menees.Analyzers.Settings.xml => C:\Users\user\RiderProjects\Client\Menees.Analyzers.Settings.xml
-[16:09:30] Copying: QualityAssurance/Common/Command.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Common/Command.cs
-[16:09:30] Copying: QualityAssurance/Common/WaitDialogTaskParameters.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Common/WaitDialogTaskParameters.cs
-[16:09:30] Copying: QualityAssurance/Coroutines/CommonCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/CommonCoroutines.cs
-[16:09:30] Copying: QualityAssurance/Coroutines/ConfirmationCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/ConfirmationCoroutines.cs
-[16:09:30] Copying: QualityAssurance/Coroutines/GameScreenCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/GameScreenCoroutines.cs
-[16:09:30] Copying: QualityAssurance/Coroutines/MainMenuCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/MainMenuCoroutines.cs
-[16:09:30] Copying: QualityAssurance/Coroutines/OptionsCoroutines.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Coroutines/OptionsCoroutines.cs
-[16:09:30] Copying: QualityAssurance/EntryPoints.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/EntryPoints.cs
-[16:09:30] Copying: QualityAssurance/QualityAssurance.csproj => C:\Users\user\RiderProjects\Client\QualityAssurance/QualityAssurance.csproj
-[16:09:30] Copying: QualityAssurance/ScriptsPreserve.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/ScriptsPreserve.cs
-[16:09:30] Copying: QualityAssurance/Tests/DummyTest.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Tests/DummyTest.cs
-[16:09:30] Copying: QualityAssurance/Tests/ExampleTest.cs => C:\Users\user\RiderProjects\Client\QualityAssurance/Tests/ExampleTest.cs
-[16:09:30] Copying: stylecop.json => C:\Users\user\RiderProjects\Client\stylecop.json
-[16:09:30] Starting 'dotnet build -c Tangerine.Release --getProperty:OutputPath --getProperty:OutputType --getProperty:AssemblyName "C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.csproj"'
-[16:09:31] {
+[23:56:05] Unknown command category: CreateCommands
+[23:56:10] Starting 'dotnet build -c Tangerine.Release --getProperty:OutputPath --getProperty:OutputType --getProperty:AssemblyName "C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin/CitrusPlugin.Win.csproj"'
+[23:56:10] {
   "Properties": {
     "OutputPath": "bin\\Tangerine.Release\\net8.0-windows\\",
     "OutputType": "Library",
     "AssemblyName": "CitrusPlugin"
   }
 }
-[16:09:31] [16:09:31] Starting 'dotnet build -c:Tangerine.Release "C:\Users\user\RiderProjects\Client\CitrusPlugin/CitrusPlugin.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
-[16:09:32]   Determining projects to restore...
-[16:09:32]   Restored C:\Users\user\RiderProjects\Client\CitrusTypes\CitrusTypes.Win.csproj (in 170 ms).
-  Restored C:\Users\user\RiderProjects\Client\CitrusPlugin\CitrusPlugin.Win.csproj (in 170 ms).
-[16:09:33]   CitrusTypes.Win -> C:\Users\user\RiderProjects\Client\CitrusTypes\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll
-[16:09:33]   CitrusPlugin.Win -> C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll
-
-Build succeeded.
-[16:09:33]     0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:01.69
-[16:09:33] [16:09:33] Orange plugin initialized.
-[16:09:33] Citrus plugin 'C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll' loaded.
-[16:09:33] Citrus plugin 'C:\Users\user\RiderProjects\Client\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll' loaded.
-[16:09:33] Building Cooking Rules.
-[16:09:33] Done building cooking rules (19ms).
-[16:09:33] Building Cooking Rules.
-[16:09:33] Done building cooking rules (1ms).
-[16:09:33] Resolution presets was successfully loaded.
-[16:09:33] Remote scripting preferences was successfully loaded.
-[16:09:33] Using legacy dictionary path: "C:\Users\user\RiderProjects\Client\Data\Dictionary.txt". Consider moving dictionary to "C:\Users\user\RiderProjects\Client\Data\Localization\Dictionary.txt".
-[16:09:33] Dictionary was successfully loaded from "C:\Users\user\RiderProjects\Client\Data\Dictionary.txt"
-[16:09:33] Unknown command: CreateCommands.CreateCamera2D
-[16:09:33] Unknown command: CreateCommands.CreateViewport2D
-[16:09:33] Unknown command category: Client
-[16:10:08] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:/Users/user/RiderProjects/Client\Client.citproj. Switched to LOCAL cache
-[16:10:08] Computing modified cooking unit count for bundle 'Data', (1/1)
-[16:10:08] ------------- Cooking Assets (Data) -------------
-[16:10:08] Calculating new and modified cooking units.
-[16:10:08] Cooking assets.
-[16:10:09] + Atlases_Data/#Fonts.000.pvr
-[16:10:09] + Atlases_Data/#Fonts.001.pvr
-[16:10:09] + Fonts/Default.sprite
-[16:10:09] + Fonts/RobotoMed.sprite
-[16:10:09] + Fonts/RussoOne.sprite
-[16:10:09] + Atlases_Data/#Shell#Splash.000.pvr
-[16:10:09] + Shell/Splash/CitrusLogo.sprite
-[16:10:09] + Shell/Splash/GameForest.sprite
-[16:10:09] + Shell/Splash/GF.sprite
-[16:10:09] + Atlases_Data/#Shell#Ui.000.pvr
-[16:10:09] + Shell/Ui/BtnDis.sprite
-[16:10:09] + Shell/Ui/BtnOrange.sprite
-[16:10:09] + Shell/Ui/BtnRed.sprite
-[16:10:09] + Shell/Ui/IcoCheck.sprite
-[16:10:09] + Shell/Ui/IcoGear.sprite
-[16:10:09] + Shell/Ui/IcoPlay.sprite
-[16:10:09] + Shell/Ui/IcoX.sprite
-[16:10:09] + Shell/Ui/WinBiege.sprite
-[16:10:09] + Shell/Ui/WinBlue.sprite
-[16:10:09] + Shell/Ui/WinGrey.sprite
-[16:10:09] + Atlases_Data/#Stuff.000.pvr
-[16:10:09] + Stuff/BoxBlurred.sprite
-[16:10:09] + Stuff/Circle.sprite
-[16:10:09] + Stuff/CircleBig.sprite
-[16:10:09] + Stuff/CircleBlured.sprite
-[16:10:09] + Stuff/CircleBluredLess.sprite
-[16:10:09] + Stuff/CircleBluredMore.sprite
-[16:10:09] + Stuff/DotBig.sprite
-[16:10:09] + Stuff/LineGradient.sprite
-[16:10:09] + Stuff/LineGradientHard.sprite
-[16:10:09] + Stuff/RadialRaysClassy.sprite
-[16:10:09] + Stuff/RingBlured.sprite
-[16:10:09] + Stuff/RingBluredBold.sprite
-[16:10:09] + Dictionary.txt
-[16:10:09] + Shell/Ui/Bg.pvr
-[16:10:09] + Shell/Ui/Bg.texture
-[16:10:09] + Fonts/Default.tft
-[16:10:09] + Fonts/RobotoMed.tft
-[16:10:09] + Fonts/RussoOne.tft
-[16:10:09] + Fonts/RobotoMed.ttf
-[16:10:09] + Fonts/RussoOne.ttf
-[16:10:09] + Shell/AlertDialog.tan
-[16:10:09] + Shell/Confirmation.tan
-[16:10:09] + Shell/Externals/BtnOk.tan
-[16:10:09] + Shell/Externals/BtnOptions.tan
-[16:10:09] + Shell/Externals/BtnPlay.tan
-[16:10:09] + Shell/Externals/BtnX.tan
-[16:10:09] + Shell/Externals/Shade.tan
-[16:10:09] + Shell/Externals/TitleBar.tan
-[16:10:09] + Shell/Externals/Win.tan
-[16:10:09] + Shell/GameScreen.tan
-[16:10:09] + Shell/MainMenu.tan
-[16:10:09] + Shell/Options.tan
-[16:10:09] + Shell/Splash.tan
-[16:10:09] + Audio/Music/Ingame.sound
-[16:10:09] + Audio/Music/Theme.sound
-[16:10:09] Converting sound to ADPCM/IMA4 format...
-[16:10:09] + Audio/Sounds/ButtonClick.sound
-[16:10:09] Generating scene code for 13 scenes...
-[16:10:09] Created directory C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/AlertDialog.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Confirmation.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnOk.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnOptions.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnPlay.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/BtnX.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/GameScreen.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/MainMenu.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Options.cs
-[16:10:09] + C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Data/Splash.cs
-[16:10:09] Created directory C:\Users\user\RiderProjects\Client/Generated/Scenes/Bundles/Common
-[16:10:09] Starting 'dotnet build -c:Release "C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
-[16:10:10]   Determining projects to restore...
-[16:10:10]   Restored C:\Users\user\RiderProjects\Client\Generated\Scenes\Scenes.Win.csproj (in 75 ms).
-[16:10:10] C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln]
-  Restored C:\Users\user\RiderProjects\Client\CitrusTypes\CitrusTypes.Win.csproj (in 185 ms).
-  Restored C:\Users\user\RiderProjects\Client\Game\Game.Win.csproj (in 185 ms).
-[16:10:10]   Restored C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj (in 197 ms).
-[16:10:11] C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
-[16:10:11]   Scenes.Win -> C:\Users\user\RiderProjects\Client\Generated\Scenes\bin\Release\net8.0-windows\Scenes.dll
-[16:10:11]   CitrusTypes.Win -> C:\Users\user\RiderProjects\Client\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.dll
-[16:10:11]   Game.Win -> C:\Users\user\RiderProjects\Client\Game\bin\Release\net8.0-windows\Game.dll
-[16:10:12]   Client.Win -> C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows\Client.dll
+[23:56:10] [23:56:10] Starting 'dotnet build -c:Tangerine.Release "C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin/CitrusPlugin.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[23:56:11]   Determining projects to restore...
+[23:56:11] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.sln]
+  All projects are up-to-date for restore.
+[23:56:11] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+[23:56:11] C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+[23:56:11]   CitrusTypes -> C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll
+[23:56:11]   CitrusPlugin.Win -> C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll
 
 Build succeeded.
 
-C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.sln]
-C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
-    2 Warning(s)
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\CitrusPlugin.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+    4 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.13
-[16:10:12] [16:10:12] ------------- Starting Application -------------
-[16:10:12] Starting 'dotnet build -c Release --getProperty:OutputPath --getProperty:OutputType --getProperty:AssemblyName "C:\Users\user\RiderProjects\Client\Application.Win\Client.Win.csproj"'
-[16:10:12] {
-  "Properties": {
-    "OutputPath": "bin\\Release\\net8.0-windows\\",
-    "OutputType": "WinExe",
-    "AssemblyName": "Client"
-  }
-}
-[16:10:12] [16:10:12] Working directory: 'C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows'
-[16:10:12] Starting 'C:\Users\user\RiderProjects\Client\Application.Win\bin\Release\net8.0-windows\Client.exe  '
-[16:10:19] [16:10:19] Done
+Time Elapsed 00:00:01.23
+[23:56:11] [23:56:11] Orange plugin initialized.
+[23:56:11] Citrus plugin 'C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusPlugin.dll' loaded.
+[23:56:11] Citrus plugin 'C:\Users\user\RiderProjects\cnc_generals\CitrusPlugin\bin\Tangerine.Release\net8.0-windows\CitrusTypes.dll' loaded.
+[23:56:11] Building Cooking Rules.
+[23:56:11] Done building cooking rules (18ms).
+[23:56:12] Building Cooking Rules.
+[23:56:12] Done building cooking rules (1ms).
+[23:56:12] Resolution presets was successfully loaded.
+[23:56:12] Remote scripting preferences was successfully loaded.
+[23:56:12] Using legacy dictionary path: "C:\Users\user\RiderProjects\cnc_generals\Data\Dictionary.txt". Consider moving dictionary to "C:\Users\user\RiderProjects\cnc_generals\Data\Localization\Dictionary.txt".
+[23:56:12] Dictionary was successfully loaded from "C:\Users\user\RiderProjects\cnc_generals\Data\Dictionary.txt"
+[23:56:20] Deleting C:\Users\user\RiderProjects\cnc_generals\Bundles\Data.Win
+[23:56:20] Starting 'dotnet clean -c:Release "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[23:56:20] Build started 31.05.2024 23:56:20.
+[23:56:20]      1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" on node 1 (Clean target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Release|Any CPU".
+[23:56:21]      1>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (Clean target(s)).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.75
+[23:56:21] [23:56:21] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:\Users\user\RiderProjects\cnc_generals\Client.citproj. Switched to LOCAL cache
+[23:56:21] Computing modified cooking unit count for bundle 'Data', (1/1)
+[23:56:21] ------------- Cooking Assets (Data) -------------
+[23:56:21] Calculating new and modified cooking units.
+[23:56:21] Cooking assets.
+[23:56:21] + Atlases_Data/#Fonts.000.pvr
+[23:56:21] + Atlases_Data/#Fonts.001.pvr
+[23:56:21] + Fonts/Default.sprite
+[23:56:21] + Fonts/RobotoMed.sprite
+[23:56:21] + Fonts/RussoOne.sprite
+[23:56:21] + Atlases_Data/#Shell#Splash.000.pvr
+[23:56:21] + Shell/Splash/CitrusLogo.sprite
+[23:56:21] + Shell/Splash/GameForest.sprite
+[23:56:21] + Shell/Splash/GF.sprite
+[23:56:21] + Atlases_Data/#Shell#Ui.000.pvr
+[23:56:21] + Shell/Ui/BtnDis.sprite
+[23:56:21] + Shell/Ui/BtnOrange.sprite
+[23:56:21] + Shell/Ui/BtnRed.sprite
+[23:56:21] + Shell/Ui/IcoCheck.sprite
+[23:56:21] + Shell/Ui/IcoGear.sprite
+[23:56:21] + Shell/Ui/IcoPlay.sprite
+[23:56:21] + Shell/Ui/IcoX.sprite
+[23:56:21] + Shell/Ui/WinBiege.sprite
+[23:56:21] + Shell/Ui/WinBlue.sprite
+[23:56:21] + Shell/Ui/WinGrey.sprite
+[23:56:21] + Atlases_Data/#Stuff.000.pvr
+[23:56:21] + Stuff/BoxBlurred.sprite
+[23:56:21] + Stuff/Circle.sprite
+[23:56:21] + Stuff/CircleBig.sprite
+[23:56:21] + Stuff/CircleBlured.sprite
+[23:56:21] + Stuff/CircleBluredLess.sprite
+[23:56:21] + Stuff/CircleBluredMore.sprite
+[23:56:21] + Stuff/DotBig.sprite
+[23:56:21] + Stuff/LineGradient.sprite
+[23:56:21] + Stuff/LineGradientHard.sprite
+[23:56:21] + Stuff/RadialRaysClassy.sprite
+[23:56:21] + Stuff/RingBlured.sprite
+[23:56:21] + Stuff/RingBluredBold.sprite
+[23:56:21] + Dictionary.txt
+[23:56:21] + Shell/Ui/Bg.pvr
+[23:56:21] + Shell/Ui/Bg.texture
+[23:56:21] + Fonts/Default.tft
+[23:56:21] + Fonts/RobotoMed.tft
+[23:56:21] + Fonts/RussoOne.tft
+[23:56:21] + Fonts/RobotoMed.ttf
+[23:56:21] + Fonts/RussoOne.ttf
+[23:56:21] + Shell/AlertDialog.tan
+[23:56:21] + Shell/Confirmation.tan
+[23:56:21] + Shell/Externals/BtnOk.tan
+[23:56:21] + Shell/Externals/BtnOptions.tan
+[23:56:21] + Shell/Externals/BtnPlay.tan
+[23:56:21] + Shell/Externals/BtnX.tan
+[23:56:21] + Shell/Externals/Shade.tan
+[23:56:21] + Shell/Externals/TitleBar.tan
+[23:56:21] + Shell/Externals/Win.tan
+[23:56:21] + Shell/GameScreen.tan
+[23:56:21] + Shell/MainMenu.tan
+[23:56:21] + Shell/Options.tan
+[23:56:21] + Shell/Splash.tan
+[23:56:21] + Audio/Music/Ingame.sound
+[23:56:21] + Audio/Music/Theme.sound
+[23:56:21] Converting sound to ADPCM/IMA4 format...
+[23:56:21] + Audio/Sounds/ButtonClick.sound
+[23:56:21] Generating scene code for 13 scenes...
+[23:56:21] Generating generated scenes project files
+[23:56:21] Created directory C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/AlertDialog.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Confirmation.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOk.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOptions.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnPlay.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnX.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/GameScreen.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/MainMenu.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Options.cs
+[23:56:21] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Splash.cs
+[23:56:21] Created directory C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Common
+[23:56:21] Starting 'dotnet build -c:Release "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[23:56:22]   Determining projects to restore...
+[23:56:22] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+[23:56:22]   Restored C:\Users\user\RiderProjects\cnc_generals\Scenes\Scenes.csproj (in 79 ms).
+[23:56:49] C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+[23:56:49]   Restored C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj (in 26,62 sec).
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+  Restored C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj (in 26,64 sec).
+  1 of 4 projects are up-to-date for restore.
+[23:56:49] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+[23:56:49] C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+[23:56:49]   Scenes -> C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Scenes.dll
+[23:56:49]   CitrusTypes -> C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.dll
+[23:56:50]   Game -> C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Game.dll
+[23:56:50]   Application.Win -> C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.dll
+[23:56:50] 
+Build succeeded.
+
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+    8 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:28.61
+[23:56:50] [23:56:51] Done
+[23:59:17] Building Cooking Rules.
+[23:59:17] Done building cooking rules (12ms).
+[23:59:17] Deleting C:\Users\user\RiderProjects\cnc_generals\Bundles\Data.Win
+[23:59:17] Starting 'dotnet clean -c:Release "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[23:59:17] Build started 31.05.2024 23:59:17.
+[23:59:17]      1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" on node 1 (Clean target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Release|Any CPU".
+[23:59:17]      1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (1) is building "C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj" (2) on node 1 (Clean target(s)).
+     2>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\GameStatePresets\default.txt".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Game.deps.json".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Game.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Game.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\CitrusTypes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Lemon.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Lime.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Lzma.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\MFDecoder.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\RemoteScripting.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\RemoteScriptingClient.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Scenes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Yuzu.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\YuzuGenerator.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Scenes.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\CitrusTypes.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.csproj.AssemblyReference.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.GeneratedMSBuildEditorConfig.editorconfig".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.AssemblyInfoInputs.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.AssemblyInfo.cs".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.csproj.CoreCompileInputs.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.sourcelink.json".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.csproj.Up2Date".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\refint\Game.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\Game.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Game\obj\Release\net8.0-windows\ref\Game.dll".
+[23:59:18]      1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (1) is building "C:\Users\user\RiderProjects\cnc_generals\Scenes\Scenes.csproj" (3) on node 2 (Clean target(s)).
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Scenes.deps.json".
+     1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (1) is building "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj" (4) on node 3 (Clean target(s)).
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.deps.json".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Scenes.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.pdb".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Scenes.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Lemon.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\Lemon.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Lime.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\Lime.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Lzma.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\Lzma.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\MFDecoder.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\MFDecoder.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\Yuzu.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Yuzu.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\YuzuGenerator.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\YuzuGenerator.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.csproj.AssemblyReference.cache".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.csproj.AssemblyReference.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.GeneratedMSBuildEditorConfig.editorconfig".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.GeneratedMSBuildEditorConfig.editorconfig".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.AssemblyInfoInputs.cache".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.AssemblyInfoInputs.cache".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.AssemblyInfo.cs".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.AssemblyInfo.cs".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.csproj.CoreCompileInputs.cache".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.csproj.CoreCompileInputs.cache".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.sourcelink.json".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.sourcelink.json".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\refint\CitrusTypes.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\refint\Scenes.dll".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\CitrusTypes.pdb".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\Scenes.pdb".
+     4>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\obj\Release\net8.0-windows\ref\CitrusTypes.dll".
+     3>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Scenes\obj\Release\net8.0-windows\ref\Scenes.dll".
+     1>Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (1) is building "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj" (5) on node 4 (Clean target(s)).
+     5>CoreClean:
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\LemonNative.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\OpenAL32.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\wrap_oal.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\d3dcompiler_47.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\libEGL.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\libGLESv2.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ShaderCompiler.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\GameStatePresets\default.txt".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Data.Win".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.exe".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.deps.json".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.runtimeconfig.json".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\LiteNetLib.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Microsoft.CodeAnalysis.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Microsoft.CodeAnalysis.CSharp.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\OpenTK.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\System.ComponentModel.Composition.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\cs\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\de\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\es\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\fr\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\it\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ja\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ko\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\pl\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\pt-BR\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ru\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\tr\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\zh-Hans\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\cs\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\de\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\es\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\fr\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\it\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ja\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ko\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\pl\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\ru\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\tr\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\CitrusTypes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Game.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Lemon.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Lime.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Lzma.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\MFDecoder.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Scenes.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Yuzu.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\YuzuGenerator.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\RemoteScriptingClient.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\RemoteScripting.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Game.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\CitrusTypes.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Scenes.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.csproj.AssemblyReference.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.GeneratedMSBuildEditorConfig.editorconfig".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.AssemblyInfoInputs.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.AssemblyInfo.cs".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.csproj.CoreCompileInputs.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.sourcelink.json".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Applicat.D39B5DC8.Up2Date".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.dll".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\refint\Application.Win.dll".
+[23:59:18]          Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.pdb".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\Application.Win.genruntimeconfig.cache".
+         Deleting file "C:\Users\user\RiderProjects\cnc_generals\Application.Win\obj\Release\net8.0-windows\ref\Application.Win.dll".
+     3>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\Scenes\Scenes.csproj" (Clean target(s)).
+     4>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj" (Clean target(s)).
+[23:59:18]      2>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj" (Clean target(s)).
+[23:59:18]      5>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj" (Clean target(s)).
+     1>Done Building Project "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" (Clean target(s)).
+[23:59:18] 
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.79
+[23:59:18] [23:59:18] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:\Users\user\RiderProjects\cnc_generals\Client.citproj. Switched to LOCAL cache
+[23:59:18] Computing modified cooking unit count for bundle 'Data', (1/1)
+[23:59:18] ------------- Cooking Assets (Data) -------------
+[23:59:18] Calculating new and modified cooking units.
+[23:59:18] Cooking assets.
+[23:59:18] + Atlases_Data/#Fonts.000.pvr
+[23:59:18] + Atlases_Data/#Fonts.001.pvr
+[23:59:18] + Fonts/Default.sprite
+[23:59:18] + Fonts/RobotoMed.sprite
+[23:59:18] + Fonts/RussoOne.sprite
+[23:59:18] + Atlases_Data/#Shell#Splash.000.pvr
+[23:59:18] + Shell/Splash/CitrusLogo.sprite
+[23:59:18] + Shell/Splash/GameForest.sprite
+[23:59:18] + Shell/Splash/GF.sprite
+[23:59:18] + Atlases_Data/#Shell#Ui.000.pvr
+[23:59:18] + Shell/Ui/BtnDis.sprite
+[23:59:18] + Shell/Ui/BtnOrange.sprite
+[23:59:18] + Shell/Ui/BtnRed.sprite
+[23:59:18] + Shell/Ui/IcoCheck.sprite
+[23:59:18] + Shell/Ui/IcoGear.sprite
+[23:59:18] + Shell/Ui/IcoPlay.sprite
+[23:59:18] + Shell/Ui/IcoX.sprite
+[23:59:18] + Shell/Ui/WinBiege.sprite
+[23:59:18] + Shell/Ui/WinBlue.sprite
+[23:59:18] + Shell/Ui/WinGrey.sprite
+[23:59:18] + Atlases_Data/#.000.pvr
+[23:59:18] + Sprites/cell.sprite
+[23:59:18] + Sprites/Hero.sprite
+[23:59:18] + Sprites/Unit.sprite
+[23:59:18] + Atlases_Data/#Stuff.000.pvr
+[23:59:18] + Stuff/BoxBlurred.sprite
+[23:59:18] + Stuff/Circle.sprite
+[23:59:18] + Stuff/CircleBig.sprite
+[23:59:18] + Stuff/CircleBlured.sprite
+[23:59:18] + Stuff/CircleBluredLess.sprite
+[23:59:18] + Stuff/CircleBluredMore.sprite
+[23:59:18] + Stuff/DotBig.sprite
+[23:59:18] + Stuff/LineGradient.sprite
+[23:59:18] + Stuff/LineGradientHard.sprite
+[23:59:18] + Stuff/RadialRaysClassy.sprite
+[23:59:18] + Stuff/RingBlured.sprite
+[23:59:18] + Stuff/RingBluredBold.sprite
+[23:59:18] + Dictionary.txt
+[23:59:18] + Shell/Ui/Bg.pvr
+[23:59:18] + Shell/Ui/Bg.texture
+[23:59:18] + Fonts/Default.tft
+[23:59:18] + Fonts/RobotoMed.tft
+[23:59:18] + Fonts/RussoOne.tft
+[23:59:18] + Fonts/RobotoMed.ttf
+[23:59:18] + Fonts/RussoOne.ttf
+[23:59:18] + Shell/AlertDialog.tan
+[23:59:18] + Shell/Confirmation.tan
+[23:59:18] + Shell/Externals/BtnOk.tan
+[23:59:18] + Shell/Externals/BtnOptions.tan
+[23:59:18] + Shell/Externals/BtnPlay.tan
+[23:59:18] + Shell/Externals/BtnX.tan
+[23:59:18] + Shell/Externals/Shade.tan
+[23:59:18] + Shell/Externals/TitleBar.tan
+[23:59:18] + Shell/Externals/Win.tan
+[23:59:18] + Shell/GameScreen.tan
+[23:59:18] + Shell/MainMenu.tan
+[23:59:18] + Shell/Options.tan
+[23:59:18] + Shell/Splash.tan
+[23:59:18] + Audio/Music/Ingame.sound
+[23:59:18] + Audio/Music/Theme.sound
+[23:59:18] Converting sound to ADPCM/IMA4 format...
+[23:59:18] + Audio/Sounds/ButtonClick.sound
+[23:59:18] Generating scene code for 13 scenes...
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/AlertDialog.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Confirmation.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOk.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOptions.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnPlay.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnX.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/GameScreen.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/MainMenu.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Options.cs
+[23:59:18] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Splash.cs
+[23:59:18] Created directory C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Common
+[23:59:18] Starting 'dotnet build -c:Release "C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln" -nodeReuse:false --property:WarningLevel=0 '
+[23:59:19]   Determining projects to restore...
+[23:59:19] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+[23:59:19]   Restored C:\Users\user\RiderProjects\cnc_generals\Scenes\Scenes.csproj (in 97 ms).
+  3 of 4 projects are up-to-date for restore.
+[23:59:19] C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+[23:59:20]   Scenes -> C:\Users\user\RiderProjects\cnc_generals\Scenes\bin\Release\net8.0-windows\Scenes.dll
+  CitrusTypes -> C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\bin\Release\net8.0-windows\CitrusTypes.dll
+[23:59:20]   Game -> C:\Users\user\RiderProjects\cnc_generals\Game\bin\Release\net8.0-windows\Game.dll
+[23:59:21]   Application.Win -> C:\Users\user\RiderProjects\cnc_generals\Application.Win\bin\Release\net8.0-windows\Application.Win.dll
+
+Build succeeded.
+
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project. [C:\Users\user\RiderProjects\cnc_generals\Application.Win\Client.Win.sln]
+C:\Users\user\RiderProjects\cnc_generals\CitrusTypes\CitrusTypes.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Game\Game.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1900: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.
+C:\Users\user\RiderProjects\cnc_generals\Application.Win\Application.Win.csproj : warning NU1701: Package 'OpenTK 3.3.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.
+    8 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.43
+[23:59:21] [23:59:21] Done
+[00:03:28] Building Cooking Rules.
+[00:03:28] Done building cooking rules (1ms).
+[00:03:31] Building Cooking Rules.
+[00:03:31] Done building cooking rules (1ms).
+[00:03:31] Building Cooking Rules.
+[00:03:31] Done building cooking rules (0ms).
+[00:03:46] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:\Users\user\RiderProjects\cnc_generals\Client.citproj. Switched to LOCAL cache
+[00:03:46] Computing modified cooking unit count for bundle 'Data', (1/1)
+[00:03:46] Generating scene code for 13 scenes...
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/AlertDialog.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Confirmation.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOk.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOptions.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnPlay.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnX.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/GameScreen.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/MainMenu.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Options.cs
+[00:03:46] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Splash.cs
+[00:03:46] Created directory C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Common
+[00:03:46] Done
+[00:04:00] [Cache] WARNING: 'ServerAddress' field not found in AssetCache settings in C:\Users\user\RiderProjects\cnc_generals\Client.citproj. Switched to LOCAL cache
+[00:04:00] Computing modified cooking unit count for bundle 'Data', (1/1)
+[00:04:00] Generating scene code for 13 scenes...
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/AlertDialog.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Confirmation.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOk.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnOptions.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnPlay.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/BtnX.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/GameScreen.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/MainMenu.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Options.cs
+[00:04:00] + C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Data/Splash.cs
+[00:04:00] Created directory C:\Users\user\RiderProjects\cnc_generals/Generated/Scenes/Bundles/Common
+[00:04:00] Done

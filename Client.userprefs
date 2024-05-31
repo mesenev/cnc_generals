@@ -1,0 +1,19 @@
+{
+	"class":"Tangerine.Core.ProjectUserPreferences, Tangerine.Core",
+	"ActiveRuler":{
+		"Lines":[],
+		"Name":null
+	},
+	"CurrentDocument":null,
+	"DisplayedOverlays":[],
+	"DisplayedRulers":[],
+	"Documents":[],
+	"Locale":"EN",
+	"RecentDocuments":[],
+	"RemoteDevicesLogFolder":null,
+	"RemoteScriptingAutoRebuildAssembly":false,
+	"RemoteScriptingAutoStartHosting":false,
+	"RemoteScriptingProcedureCalls":{},
+	"RulerVisible":true,
+	"Rulers":[]
+}

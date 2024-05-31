@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Client.GeneratedScenes</AssemblyName>
+    <RootNamespace>Client.Scenes</RootNamespace>
+    <TargetFramework>net8.0-macos</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Citrus\Lime\Lime.Mac.csproj" />
+  </ItemGroup>
+
+</Project>
