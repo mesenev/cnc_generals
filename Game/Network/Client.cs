@@ -45,7 +45,7 @@ namespace Game.Network
 			packetProcessor = new NetPacketProcessor();
 
 			Console.WriteLine("registering f. gamestate");
-			packetProcessor.RegisterNestedType(() => new GameState());
+			packetProcessor.RegisterNestedType(() => new GameState(new Preset("")));
 			packetProcessor.RegisterNestedType(
 				(w, v) => w.Put(v), reader => reader.GetVector2()
 			);

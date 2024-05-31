@@ -3,54 +3,52 @@ using Game.GameObjects;
 using LiteNetLib;
 using LiteNetLib.Utils;
 
-namespace Game
-{
-	public class JoinPacket {
-		public string username { get; set; }
-	}
-	public class JoinAcceptPacket {
-		public GameState state { get; set; }
-		public ClientPlayer player { get; set; }
-	}
-	public struct ClientPlayer : INetSerializable {
-		public uint playerId;
-		public string username;
+namespace Game {
+    public class JoinPacket {
+        public string username { get; set; }
+    }
 
-		public void Serialize(NetDataWriter writer) {
-			writer.Put(playerId);
-			writer.Put(username);
-		}
+    public class JoinAcceptPacket {
+        public GameState state { get; set; }
+        public ClientPlayer player { get; set; }
+    }
 
-		public void Deserialize(NetDataReader reader)
-		{
-			playerId = reader.GetUInt();
-			username = reader.GetString();
-		}
-	}
+    public struct ClientPlayer : INetSerializable {
+        public uint playerId;
+        public string username;
 
-	public class ServerPlayer {
-		public NetPeer peer;
-		public string username;
-		public uint playerId;
-	}
+        public void Serialize(NetDataWriter writer) {
+            writer.Put(playerId);
+            writer.Put(username);
+        }
 
-	public class MoveCommandPacket {
-		public MoveCommand2 command { get; set; }
-	}
+        public void Deserialize(NetDataReader reader) {
+            playerId = reader.GetUInt();
+            username = reader.GetString();
+        }
+    }
 
-	public class PlayerReceiveUpdatePacket {
-		public GameState state { get; set; }
-	}
+    public class ServerPlayer {
+        public NetPeer peer;
+        public string username;
+        public uint playerId;
+    }
 
-	public class PlayerJoinedGamePacket {
-		public ClientPlayer player { get; set; }
-	}
+    public class MoveCommandPacket {
+        public MoveCommand2 command { get; set; }
+    }
 
-	public class PlayerLeftGamePacket {
-		public uint playerId { get; set; }
-	}
+    public class PlayerReceiveUpdatePacket {
+        public GameState state { get; set; }
+    }
 
-	public class PlayerAwaitPacket
-	{
-	}
+    public class PlayerJoinedGamePacket {
+        public ClientPlayer player { get; set; }
+    }
+
+    public class PlayerLeftGamePacket {
+        public uint playerId { get; set; }
+    }
+
+    public class PlayerAwaitPacket { }
 }

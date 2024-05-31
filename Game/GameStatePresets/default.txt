@@ -1,0 +1,9 @@
+# template
+# gridHeight, gridWidth, unitsAmount
+10 10 4
+# unitsInfo {unitsAmount} times
+# ownerId, unitType, x, y
+0 1 0 0
+0 1 0 1
+1 1 4 4
+1 1 4 5

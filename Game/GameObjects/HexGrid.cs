@@ -5,13 +5,14 @@ namespace Game.GameObjects;
 
 public class HexGrid : INetSerializable
 {
-	public int width = 20;
-	public int height = 11;
+	public int width;
+	public int height;
 
 	public HexCell[,] cells;
 
-	public HexGrid()
-	{
+	public HexGrid(int gridHeight, int gridWidth) {
+        height = gridHeight;
+        width = gridWidth;
 		cells = new HexCell[height, width];
 
 		for (int y = 0; y < height; y++) {
