@@ -28,7 +28,7 @@ namespace Game.GameObjects {
 
             foreach (var unitData in units) {
                 UnitsInfo.Add(new UnitInfo {
-                    ownerId = (uint)unitData[0], unitType = (uint)unitData[1], x = unitData[2], y = unitData[3],
+                    ownerId = unitData[0], unitType = unitData[1], x = unitData[2], y = unitData[3],
                 });
             }
 
@@ -37,8 +37,8 @@ namespace Game.GameObjects {
     }
 
     public struct UnitInfo {
-        public uint ownerId;
-        public uint unitType;
+        public int ownerId;
+        public int unitType;
         public int x;
         public int y;
     }

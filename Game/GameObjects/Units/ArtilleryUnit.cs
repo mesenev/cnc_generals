@@ -1,10 +1,8 @@
 ﻿namespace Game.GameObjects.Units;
 
-public class ArtilleryUnit : BaseUnit
-{
-    public ArtilleryUnit(uint unitId, uint ownerId, int x, int y) : base(unitId, ownerId,x,y)
-    {
-	    unitType = 1;
+public class ArtilleryUnit : BaseUnit {
+    public ArtilleryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : base(unitId, ownerId, x, y) {
+        unitType = 1;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;
@@ -14,9 +12,7 @@ public class ArtilleryUnit : BaseUnit
         AttackDamage = 0;
     }
 
-    public void AttackCell(HexCell cell)
-    {
-        cell.GetCellUnit().Health -= 100;
+    public void AttackCell(GameState state, HexCell cell) {
+        // cell.GetCellUnit().Health -= 100;
     }
-	
 }

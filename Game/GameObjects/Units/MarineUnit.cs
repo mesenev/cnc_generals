@@ -3,17 +3,15 @@ using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Units;
 
-public class MarineUnit : BaseUnit
-{
-	public MarineUnit(uint unitId, uint ownerId, int x, int y) : base(unitId, ownerId, x, y)
-	{
-		unitType = 0;
-		CanMove = true;
-		CanAttack = true;
-		HasAbility = false;
-		Health = 100;
-		MovementSpeed = 5f;
-		AttackSpeed = 1;
-		AttackDamage = 20;
-	}
+public class MarineUnit : BaseUnit {
+    public MarineUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : base(unitId, ownerId, x, y) {
+        unitType = 0;
+        CanMove = true;
+        CanAttack = true;
+        HasAbility = false;
+        Health = 100;
+        MovementSpeed = 5f;
+        AttackSpeed = 1;
+        AttackDamage = 20;
+    }
 }

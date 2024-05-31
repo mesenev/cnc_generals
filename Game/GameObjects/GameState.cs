@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Game.GameObjects.Units;
 using LiteNetLib.Utils;
 
@@ -7,34 +8,51 @@ namespace Game.GameObjects;
 
 public class GameState : INetSerializable {
     public HexGrid Grid;
-    public List<BaseUnit> Units = [];
-    private uint unitIdCounter = 0;
+    public List<MarineUnit> MarineUnits = [];
+    public List<ArtilleryUnit> ArtilleryUnits = [];
+    private int unitIdCounter;
 
     public GameState(Preset preset) {
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
-        for (int i = 0; i < preset.UnitsAmount; i++) {
+        for (var i = 0; i < preset.UnitsAmount; i++) {
             UnitInfo info = preset.UnitsInfo[i];
             AddUnit(info.unitType, info.ownerId, info.x, info.y);
         }
     }
 
-    public void AddUnit(uint unitType, uint ownerId, int x, int y) {
-        BaseUnit newUnit = default;
+    public GameState() {
+        Grid = new HexGrid(0, 0);
+    }
+
+
+    public IEnumerable<BaseUnit> Units {
+        get {
+            return MarineUnits
+                .Concat(ArtilleryUnits.Cast<BaseUnit>());
+        }
+    }
+
+    public BaseUnit GetUnitById(int id) {
+        return Units.First(unit => unit.UnitId == id);
+    }
+
+    public void AddUnit(int unitType, int ownerId, int x, int y) {
         if (unitType == 0)
-            newUnit = new MarineUnit(unitIdCounter, ownerId, x, y);
+            MarineUnits.Add(new MarineUnit(unitIdCounter, ownerId, x, y));
         if (unitType == 1)
-            newUnit = new ArtilleryUnit(unitIdCounter, ownerId, x, y);
-        Units.Add(newUnit);
-        Grid.cells[newUnit.y,newUnit.x].UpdateCellUnit(newUnit);
+            ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y));
+        Grid.cells[y, x].UpdateCellUnit(unitIdCounter);
         unitIdCounter++;
     }
 
     public void RemoveUnit(BaseUnit unitToRemove) {
-        Units.Remove(unitToRemove);
-    }
+        if (unitToRemove.GetType() == typeof(MarineUnit)) {
+            MarineUnits.Remove(unitToRemove as MarineUnit);
+        }
 
-    public BaseUnit GetUnitById(uint unitId) {
-        return Units.Find(unit => unit.UnitId == unitId);
+        if (unitToRemove.GetType() == typeof(ArtilleryUnit)) {
+            ArtilleryUnits.Remove(unitToRemove as ArtilleryUnit);
+        }
     }
 
     public void Update(TimeSpan timeDelta) {
@@ -43,26 +61,42 @@ public class GameState : INetSerializable {
 
     public void PrintGameState() {
         for (int y = Grid.height - 1; y >= 0; y--) {
-            for (int x = 0; x < Grid.width; x++) {
-                string sign = Grid.cells[y, x].Occupied ? (Grid.cells[y, x].CellUnit.OwnerId == 0 ? "?" : "!") : " ";
+            for (var x = 0; x < Grid.width; x++) {
+                var sign = " ";
+
+                if (Grid.cells[y, x].Occupied)
+                    sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
+
                 Console.Write($"|{sign}");
             }
 
-            Console.Write("\n" + (y % 2 == 0 ? "": " "));
+            Console.Write("\n" + (y % 2 == 0 ? "" : " "));
         }
     }
 
     public void Serialize(NetDataWriter writer) {
         Grid.Serialize(writer);
-        writer.Put(Units.Count);
-        foreach (var unit in Units) {
+        writer.Put(MarineUnits.Count);
+        writer.Put(ArtilleryUnits.Count);
+        foreach (var unit in MarineUnits)
             unit.Serialize(writer);
-        }
+
+
+        foreach (var unit in ArtilleryUnits)
+            unit.Serialize(writer);
     }
 
     public void Deserialize(NetDataReader reader) {
         Grid.Deserialize(reader);
-        for (var i = 0; i < reader.GetInt(); i++) { }
-        //
+        int marineCount = reader.GetInt();
+        int artilleryCount = reader.GetInt();
+        for (var i = 0; i < marineCount; i++)
+            MarineUnits.Add(reader.Get(() => new MarineUnit()));
+
+
+        for (var i = 0; i < artilleryCount; i++)
+            ArtilleryUnits.Add(reader.Get(() => new ArtilleryUnit()));
+
+        return;
     }
 }

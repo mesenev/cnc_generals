@@ -1,16 +1,15 @@
-﻿using System;
-using LiteNetLib.Utils;
+﻿using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Units;
 
-public abstract class BaseUnit(uint UnitId, uint OwnerId, int x, int y) : INetSerializable {
+public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : INetSerializable {
     public int Health;
     public int unitType;
     public bool CanMove;
     public bool CanAttack;
     public bool HasAbility;
-    public uint UnitId = UnitId;
-    public uint OwnerId = OwnerId;
+    public int UnitId = unitId;
+    public int OwnerId = ownerId;
     public float MovementSpeed;
     public float AttackSpeed;
     public int AttackDamage;
@@ -18,20 +17,11 @@ public abstract class BaseUnit(uint UnitId, uint OwnerId, int x, int y) : INetSe
     public int y = y;
 
     public void UpdatePosition(HexCell newPosition) {
-        x = newPosition.x;
-        y = newPosition.y;
+        x = newPosition.XCoord;
+        y = newPosition.YCoord;
     }
 
-    public void Serialize(NetDataWriter writer) {
-        writer.Put(unitType);
-        writer.Put(UnitId);
-        writer.Put(OwnerId);
-        writer.Put(Health);
-        writer.Put(x);
-        writer.Put(y);
-    }
-
-    public static BaseUnit CreateUnitByType(int unitType, uint unitId, uint ownerId, int x, int y) {
+    public static BaseUnit CreateUnitByType(int unitType, int unitId, int ownerId, int x, int y) {
         if (unitType == 0) {
             return new MarineUnit(unitId, ownerId, x, y);
         }
@@ -43,10 +33,19 @@ public abstract class BaseUnit(uint UnitId, uint OwnerId, int x, int y) : INetSe
         return new MarineUnit(unitId, ownerId, x, y);
     }
 
+    public void Serialize(NetDataWriter writer) {
+        writer.Put(unitType);
+        writer.Put(UnitId);
+        writer.Put(OwnerId);
+        writer.Put(Health);
+        writer.Put(x);
+        writer.Put(y);
+    }
+
     public virtual void Deserialize(NetDataReader reader) {
         unitType = reader.GetInt();
-        UnitId = reader.GetUInt();
-        OwnerId = reader.GetUInt();
+        UnitId = reader.GetInt();
+        OwnerId = reader.GetInt();
         Health = reader.GetInt();
         x = reader.GetInt();
         y = reader.GetInt();

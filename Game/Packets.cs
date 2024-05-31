@@ -14,7 +14,7 @@ namespace Game {
     }
 
     public struct ClientPlayer : INetSerializable {
-        public uint playerId;
+        public int playerId;
         public string username;
 
         public void Serialize(NetDataWriter writer) {
@@ -23,7 +23,7 @@ namespace Game {
         }
 
         public void Deserialize(NetDataReader reader) {
-            playerId = reader.GetUInt();
+            playerId = reader.GetInt();
             username = reader.GetString();
         }
     }
@@ -31,7 +31,7 @@ namespace Game {
     public class ServerPlayer {
         public NetPeer peer;
         public string username;
-        public uint playerId;
+        public int playerId;
     }
 
     public class MoveCommandPacket {
@@ -47,7 +47,23 @@ namespace Game {
     }
 
     public class PlayerLeftGamePacket {
-        public uint playerId { get; set; }
+        public int playerId { get; set; }
+    }
+
+    public class TestClass : INetSerializable {
+        public int firstVal;
+
+        public void Serialize(NetDataWriter writer) {
+            writer.Put(firstVal);
+        }
+
+        public void Deserialize(NetDataReader reader) {
+            firstVal = reader.GetInt();
+        }
+    }
+
+    public class SimplePacket {
+        public TestClass testVariable { get; set; }
     }
 
     public class PlayerAwaitPacket { }

@@ -1,45 +1,34 @@
-﻿using Game.GameObjects.Units;
-using LiteNetLib.Utils;
+﻿using LiteNetLib.Utils;
 
 namespace Game.GameObjects;
 
-public class HexCell(int x, int y) : INetSerializable
-{
-    public BaseUnit CellUnit = null;
-    public bool Occupied = false;
-    public int x = x;
-    public int y = y;
+public class HexCell(int xCoord = 1, int yCoord = 1) : INetSerializable {
+    public int CellUnitId = -1;
+    public bool Occupied;
+    public int XCoord = xCoord;
+    public int YCoord = yCoord;
 
-    public void UpdateCellUnit(BaseUnit newUnit)
-    {
-        CellUnit = newUnit;
+    public void UpdateCellUnit(int unitId) {
+        CellUnitId = unitId;
         Occupied = true;
     }
 
-    public void RemoveCellUnit()
-    {
-        CellUnit = null;
+    public void RemoveCellUnit() {
+        CellUnitId = -1;
         Occupied = false;
     }
 
-    public BaseUnit GetCellUnit()
-    {
-        return CellUnit;
+    public void Serialize(NetDataWriter writer) {
+        writer.Put(CellUnitId);
+        writer.Put(Occupied);
+        writer.Put(XCoord);
+        writer.Put(YCoord);
     }
 
-    public void Serialize(NetDataWriter writer)
-    {
-	    CellUnit.Serialize(writer);
-	    writer.Put(Occupied);
-	    writer.Put(x);
-	    writer.Put(y);
-    }
-
-    public void Deserialize(NetDataReader reader)
-    {
-	    CellUnit.Deserialize(reader);
-	    Occupied = reader.GetBool();
-	    x = reader.GetInt();
-	    y = reader.GetInt();
+    public void Deserialize(NetDataReader reader) {
+        CellUnitId = reader.GetInt();
+        Occupied = reader.GetBool();
+        XCoord = reader.GetInt();
+        YCoord = reader.GetInt();
     }
 }

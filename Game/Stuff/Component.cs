@@ -2,6 +2,6 @@ namespace Game
 {
 	public class Component
 	{
-		public uint EntityId;
+		public int EntityId;
 	}
 }

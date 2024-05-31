@@ -4,7 +4,7 @@ namespace Game.Commands
 {
 	public struct MoveCommand2 : INetSerializable
 	{
-		public uint unitId;
+		public int unitId;
 		public int x;
 		public int y;
 		public void Serialize(NetDataWriter writer)
@@ -16,7 +16,7 @@ namespace Game.Commands
 
 		public void Deserialize(NetDataReader reader)
 		{
-			unitId=reader.GetUInt();
+			unitId=reader.GetInt();
 			x=reader.GetInt();
 			y=reader.GetInt();
 		}

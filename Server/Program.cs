@@ -4,11 +4,16 @@ namespace Server;
 
 public class Program {
     private class Options {
-        [Option('a', "players", Default = 2, HelpText = "Set amount of players for server to await")]
+        [Option(
+            'a', "players",
+            Default = 1, HelpText = "Set amount of players for server to await"
+        )]
         public int PlayersAmount { get; set; }
 
-        [Option('p', "preset", Default = "default.txt"
-            , HelpText = "Path to the preset of initial game state")]
+        [Option(
+            'p', "preset",
+            Default = "default.txt", HelpText = "Path to the preset of initial game state"
+        )]
         public string? PresetPath { get; set; }
     }
 

@@ -11,7 +11,7 @@ namespace Game
 		public readonly Image image;
 		public Vector2 Position { get => image.Position; set => image.Position = value; }
 		
-		public UnitComponent(Widget canvas, Vector2 newPos, uint unitId, string spritePath="Sprites/Hero")
+		public UnitComponent(Widget canvas, Vector2 newPos, int unitId, string spritePath="Sprites/Hero")
 		{
 			EntityId = unitId;
 			image = new Image {
