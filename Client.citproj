@@ -8,7 +8,7 @@
 			"CleanBeforeBuild": false,
 			"Configuration": "$(AUTO_CONFIGURATION)",
 			"Hidden": true,
-			"Project": "CitrusPlugin/CitrusPlugin.$(PLATFORM).sln"
+			"Project": "CitrusPlugin/CitrusPlugin.$(PLATFORM).csproj"
 		}
 	],
 	"PluginAssemblies": {
