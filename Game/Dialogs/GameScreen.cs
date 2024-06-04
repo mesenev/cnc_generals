@@ -1,5 +1,6 @@
 using System;
 using Game.Network;
+using Game.Stuff;
 using Lime;
 
 namespace Game.Dialogs;
@@ -12,13 +13,13 @@ public class GameScreen : Dialog<Scenes.Data.GameScreen>
 		Scene._BtnExit.It.Clicked = ReturnToMenu;
 	}
 
-	private Game game;
+	private Stuff.Game game;
 
 	protected override void Shown()
 	{
 		var canvas = Scene.It["Scene1"];
 		CanvasManager.Instance.InitLayers(canvas);
-		game = new Game(Client);
+		game = new Stuff.Game(Client);
 		canvas.Updated += game.UpdatePlayers;
 		canvas.Updated += game.Update;
 	}

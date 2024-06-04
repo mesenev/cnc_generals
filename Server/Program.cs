@@ -18,17 +18,22 @@ public class Program {
     }
 
     public static void Main(string[] args) {
+        double tickrate = 30.0;
+        double interval = 1000.0 / tickrate;
+
         int playersAmount = default;
         string? presetPath = default!;
         Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(o => {
             playersAmount = o.PlayersAmount;
             presetPath = o.PresetPath;
         });
+
         Console.WriteLine(playersAmount);
         Console.WriteLine(presetPath);
         var server = new Server(playersAmount, presetPath);
-        while (true) {
-            server.Update();
-        }
+
+        var gameTimer = new System.Timers.Timer(interval) { AutoReset = true, Enabled = true };
+        gameTimer.Elapsed += server.Update;
+        while (true) { }
     }
 }

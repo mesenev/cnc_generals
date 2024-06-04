@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Timers;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
@@ -99,6 +100,8 @@ public class Server : INetEventListener {
         var currentUnit = gameState.GetUnitById(packet.command.unitId);
         var getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
         var getNewCell = gameState.Grid.GetCell(packet.command.x, packet.command.y);
+        currentUnit.x = packet.command.x;
+        currentUnit.y = packet.command.y;
         getCurrentCell.RemoveCellUnit();
         getNewCell.UpdateCellUnit(currentUnit.UnitId);
     }
@@ -127,7 +130,7 @@ public class Server : INetEventListener {
         request.Accept();
     }
 
-    public void Update() {
+    public void Update(object? sender, ElapsedEventArgs e) {
         server.PollEvents();
         if (players.Count == playersAmount) {
             serverState = ServerState.Running;
@@ -148,11 +151,9 @@ public class Server : INetEventListener {
         t1 = DateTime.Now;
         var timeSpan = (TimeSpan)(t1 - t0);
         // gameState.Update(timeSpan);
-        // var packet = new SimplePacket { testVariable = new TestClass{firstVal = 228} };
-        var packet = new PlayerReceiveUpdatePacket { state = gameState };
         foreach (ServerPlayer player in players.Values) {
-            SendPacket(packet, player.peer, DeliveryMethod.Unreliable);
-            // SendPacket(new PlayerReceiveUpdatePacket { state = gameState }, player.peer, DeliveryMethod.Unreliable);
+            Console.WriteLine($"Sending x={gameState.ArtilleryUnits[1].x} y={gameState.ArtilleryUnits[1].y}");
+            SendPacket(new PlayerReceiveUpdatePacket { state = gameState }, player.peer, DeliveryMethod.Unreliable);
         }
 
         t0 = t1;

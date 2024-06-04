@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Lime;
 
-namespace Game
+namespace Game.Stuff
 {
 	public class UnitComponent : Component
 	{

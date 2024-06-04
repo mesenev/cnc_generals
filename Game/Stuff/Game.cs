@@ -1,13 +1,12 @@
 using System;
-using Lime;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Game.GameObjects;
+using Game.Commands;
+using Game.Map;
 using Game.Network;
+using Lime;
 using HexGrid = Game.Map.HexGrid;
 
-namespace Game {
+namespace Game.Stuff {
     public delegate void UpdateDelegate();
 
     public class Game {
@@ -20,8 +19,11 @@ namespace Game {
 
         private HexGrid hexGrid;
 
+        public HexCell SelectedCell = null;
+        public HexCell DestinationCell = null;
+
         public Game(Client client) {
-            initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
+            InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 
             _client = client;
             _client.Connect("Player");
@@ -29,7 +31,7 @@ namespace Game {
             Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
         }
 
-        private void initHexGrid(Widget canvas) {
+        private void InitHexGrid(Widget canvas) {
             hexGrid = new HexGrid(canvas);
 
             foreach (var cell in hexGrid.cells) {
@@ -38,9 +40,17 @@ namespace Game {
         }
 
         public void Update(float delta) {
-            Console.WriteLine("Update");
+            // Console.WriteLine("Update");
             foreach (var processor in Processors) {
                 processor.Update(delta, this);
+            }
+
+            if (SelectedCell != null && DestinationCell != null) {
+                _client.commands.Enqueue(new MoveCommand2 {
+                    unitId = SelectedCell.CellUnitId, x = DestinationCell.XCoord, y = DestinationCell.YCoord
+                });
+                SelectedCell = null;
+                DestinationCell = null;
             }
 
             _client.Update();
@@ -49,12 +59,13 @@ namespace Game {
         public void UpdatePlayers(float delta) {
             RemovePlayersFromCanvas();
             GetPlayersFromServer();
+            UpdateHexCells();
         }
 
         private void RemovePlayersFromCanvas() {
             Canvas.Nodes.RemoveAll(node => true);
             Components.RemoveAll(el => true);
-            Processors.RemoveAll(el => true);
+            Processors.RemoveAll(el => el.GetType() == typeof(PlayerInputProcessor));
         }
 
         private void GetPlayersFromServer() {
@@ -63,12 +74,23 @@ namespace Game {
             foreach (var unit in _client.gameState.Units) {
                 var newUnit = new UnitComponent(
                     Canvas,
-                    hexGrid.cells[0, 0].GetPosition((float)unit.x, (float)unit.y),
+                    hexGrid.cells[unit.x, unit.y].GetPosition((float)unit.x, (float)unit.y),
                     unit.UnitId,
                     spritePath: "Sprites/Unit"
                 );
                 Components.Add(newUnit);
                 Processors.Add(new PlayerInputProcessor(newUnit));
+            }
+        }
+
+        private void UpdateHexCells() {
+            if (_client.gameState == null)
+                return;
+            foreach (GameObjects.HexCell cell in _client.gameState.Grid.cells) {
+                hexGrid.cells[cell.YCoord, cell.XCoord].XCoord = cell.XCoord;
+                hexGrid.cells[cell.YCoord, cell.XCoord].YCoord = cell.YCoord;
+                hexGrid.cells[cell.YCoord, cell.XCoord].Occupied = cell.Occupied;
+                hexGrid.cells[cell.YCoord, cell.XCoord].CellUnitId = cell.CellUnitId;
             }
         }
     }

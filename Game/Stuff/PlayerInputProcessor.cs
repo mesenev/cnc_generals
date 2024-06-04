@@ -1,8 +1,7 @@
 using System;
 using Lime;
-using System.Linq;
 
-namespace Game
+namespace Game.Stuff
 {
 	public class PlayerInputProcessor(UnitComponent unitComponent) : IProcessor
 	{
@@ -10,7 +9,7 @@ namespace Game
 		private Vector2 destination = unitComponent.Position;
 		private float speed = 5f;
 
-		public void Update(float delta, Game game)
+		public void Update(float delta, Stuff.Game game)
 		{
 			ArgumentNullException.ThrowIfNull(game);
 

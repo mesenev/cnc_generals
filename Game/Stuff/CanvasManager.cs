@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Lime;
 
-namespace Game
+namespace Game.Stuff
 {
 	public class CanvasManager
 	{
