@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Game.Commands;
-using Game.Map;
+using Game.GameObjects;
 using Game.Network;
 using Lime;
+using HexCell = Game.Map.HexCell;
 using HexGrid = Game.Map.HexGrid;
 
 namespace Game.Stuff {
@@ -23,16 +24,14 @@ namespace Game.Stuff {
         public HexCell DestinationCell = null;
 
         public Game(Client client) {
-            InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
-
             _client = client;
             _client.Connect("Player");
 
             Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
         }
 
-        private void InitHexGrid(Widget canvas) {
-            hexGrid = new HexGrid(canvas);
+        private void InitHexGrid(Widget canvas, int width, int height) {
+            hexGrid = new HexGrid(canvas,width,height);
 
             foreach (var cell in hexGrid.cells) {
                 Processors.Add(new HexInteractionProcessor(cell));
@@ -57,6 +56,11 @@ namespace Game.Stuff {
         }
 
         public void UpdatePlayers(float delta) {
+            if (_client.gameState != null && hexGrid == null) {
+                InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap), _client.gameState.Grid.width,
+                    _client.gameState.Grid.height);
+            }
+
             RemovePlayersFromCanvas();
             GetPlayersFromServer();
             UpdateHexCells();

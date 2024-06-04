@@ -3,12 +3,14 @@ using Lime;
 
 namespace Game.Map {
     public class HexGrid {
-        public int width = 20;
-        public int height = 11;
+        public int width;
+        public int height;
 
         public HexCell[,] cells;
 
-        public HexGrid(Widget canvas) {
+        public HexGrid(Widget canvas, int width, int height) {
+            this.width = width;
+            this.height = height;
             cells = new HexCell[height, width];
 
             for (int y = 0; y < height; y++) {

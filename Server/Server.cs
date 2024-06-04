@@ -152,7 +152,6 @@ public class Server : INetEventListener {
         var timeSpan = (TimeSpan)(t1 - t0);
         // gameState.Update(timeSpan);
         foreach (ServerPlayer player in players.Values) {
-            Console.WriteLine($"Sending x={gameState.ArtilleryUnits[1].x} y={gameState.ArtilleryUnits[1].y}");
             SendPacket(new PlayerReceiveUpdatePacket { state = gameState }, player.peer, DeliveryMethod.Unreliable);
         }
 

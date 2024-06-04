@@ -93,7 +93,6 @@ namespace Game.Network {
         }
 
         public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet) {
-            Console.WriteLine($"Receiving x={packet.state.ArtilleryUnits[1].x} y={packet.state.ArtilleryUnits[1].y}");
             gameState = packet.state;
         }
 
