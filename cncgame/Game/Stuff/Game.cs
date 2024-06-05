@@ -30,34 +30,31 @@ namespace Game
 			_client = client;
 			_client.Connect("Player");
 			
-			viewport = new Viewport2D();
-			
-			camera = new Camera2D();
-			camera.Pivot = Vector2.Zero;
-			
-			
-			viewport.Camera = camera;
-			viewport.Size = Scene.Size;
-			viewport.Position = Scene.Size * 0;
-			viewport.Pivot = Vector2.Zero;
-			
-			
-			Scene.AddNode(viewport);
-			viewport.Anchors = Anchors.LeftRightTopBottom;
-
-			camera.X = viewport.Width;
-			camera.OrthographicSize = viewport.Height;
-			camera.Y = viewport.Height * 0.5f;
-			
-			viewport.AddNode(camera);
-			
+			InitializeViewportAndCameraAndAddToWidget(Scene);
 			CanvasManager.Instance.InitLayers(viewport);
-			
 			initHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap));
 			setSpriteToBackground(CanvasManager.Instance.GetCanvas(Layers.Background));
 			Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
 			
-			//Scene.PushNode(camera);
+		}
+		
+		private void InitializeViewportAndCameraAndAddToWidget(Widget parent)
+		{
+			viewport = new Viewport2D();
+			viewport.Size = parent.Size;
+			viewport.Position = parent.Size * 0;
+			viewport.Pivot = Vector2.Zero;
+			viewport.Anchors = Anchors.LeftRightTopBottom;
+			parent.AddNode(viewport);
+			
+			camera = new Camera2D();
+			camera.X = viewport.Width;
+			camera.OrthographicSize = viewport.Height;
+			camera.Y = viewport.Height * 0.5f;
+			camera.Pivot = Vector2.Zero;
+			
+			viewport.Camera = camera;
+			viewport.AddNode(camera);
 		}
 
 		private void setSpriteToBackground(Widget canvas)
