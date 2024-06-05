@@ -1,6 +1,8 @@
+using Lime;
+
 namespace Game
 {
-	public class Component
+	public class Component : Widget
 	{
 		public int EntityId;
 	}

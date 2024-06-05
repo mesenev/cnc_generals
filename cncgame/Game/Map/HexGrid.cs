@@ -5,8 +5,8 @@ namespace Game.Map
 {
 	public class HexGrid
 	{
-		public int width = 20;
-		public int height = 11;
+		public int width = 40;
+		public int height = 40;
 
 		public HexCell[,] cells;
 

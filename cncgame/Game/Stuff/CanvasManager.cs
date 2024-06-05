@@ -14,16 +14,22 @@ namespace Game
 			CreateNewCanvas(Layers.Background, parent);
 			CreateNewCanvas(Layers.HexMap, canvases[Layers.Background]);
 			CreateNewCanvas(Layers.Entities, canvases[Layers.HexMap]);
+			CreateNewCanvas(Layers.AboveAllElse, canvases[Layers.Entities]);
 		}
 
 		public void CreateNewCanvas(int layer, Node parent)
 		{
 			if (canvases.ContainsKey(layer)) return;
 			var newCanvas = new Frame { Id = layer.ToString() };
-			parent.Nodes.Add(newCanvas);
+			parent.PushNode(newCanvas);
 			canvases.Add(layer, newCanvas);
 		}
 
+		public Dictionary<int, Frame> GetAllCanvases()
+		{
+			return canvases;
+		}
+		
 		public Frame GetCanvas(int layer)
 		{
 			Frame frame;

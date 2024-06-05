@@ -1,6 +1,6 @@
-using System;
+using Game.Widgets;
 using Lime;
-using System.Linq;
+
 
 namespace Game
 {
@@ -10,9 +10,11 @@ namespace Game
 		private PlayerComponent player;
 		private Vector2 destination;
 		private float speed = 5f;
+		private Viewport2D viewport;
 
-		public PlayerInputProcessor(PlayerComponent playerComponent)
+		public PlayerInputProcessor(PlayerComponent playerComponent, Viewport2D viewport)
 		{
+			this.viewport = viewport;
 			player = playerComponent;
 			destination = playerComponent.Position;
 		}
@@ -25,7 +27,7 @@ namespace Game
 			}
 			
 			if (!isKeyPressed && game.Canvas.Input.IsKeyPressed(Key.Mouse1)) {
-				destination = game.Canvas.Input.MousePosition;
+				destination = viewport.ViewportToWorldPoint(Window.Current.Input.MousePosition);
 				isKeyPressed = true;
 			}
 			

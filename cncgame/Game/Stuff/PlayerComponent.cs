@@ -9,7 +9,7 @@ namespace Game
 		private readonly int size = 16;
 		
 		public readonly Image image;
-		public Vector2 Position { get => image.Position; set => image.Position = value; }
+		public new Vector2 Position { get => image.Position; set => image.Position = value; }
 		
 		public PlayerComponent(Widget canvas, Vector2 newPos, int newPID=0, string spritePath="Sprites/Hero")
 		{
