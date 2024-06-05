@@ -86,11 +86,13 @@ namespace Game
 			 mainPlayer = new PlayerComponent(Canvas, hexGrid.getRandomCellPosition(), pid);
 			 var playerInputProcessor = new PlayerInputProcessor(mainPlayer, viewport);
 			 var receiveCommandsFromRecognitionModule = new ReceiveCommandsFromCommandRecognitionModule(mainPlayer);
+			 var moveCameraProcessor = new MoveCameraProcessor(camera);
 			
 			 viewport.PushNode(mainPlayer);
 			
 			 Components.Add(mainPlayer);
 			 Processors.Add(playerInputProcessor);
+			 Processors.Add(moveCameraProcessor);
 			//Processors.Add(receiveCommandsFromRecognitionModule;
 		}
 
@@ -109,19 +111,7 @@ namespace Game
 				SetMainPlayer((int)_client.GetClientPlayer().state.pid);
 			}
 			
-			camera.X += 10 * delta;
-			//camera.OrthographicSize = viewport.Height;
-			//camera.Y = viewport.Height * 0.5f;
-
-			// if (img == null) {
-			// 	img = new Image();
-			// 	img.Sprite = new SerializableSprite();
-			// 	img.Size = new Vector2(50, 50);
-			// 	img.Pivot = Vector2.Half;
-			// 	viewport.PushNode(img);
-			// }
-			//
-			// img.Position = viewport.ViewportToWorldPoint(new Vector2(0, 0));
+			//camera.X += 10 * delta;
 			
 		}
 
