@@ -1,39 +1,97 @@
-﻿using CommandLine;
+﻿using Server.InterfaceViews;
+using CommandLine;
+using Game.GameObjects;
+using Terminal.Gui;
 
 namespace Server;
 
-public class Program {
-    private class Options {
+internal static class Program {
+    public class Options {
         [Option(
             'a', "players",
             Default = 1, HelpText = "Set amount of players for server to await"
         )]
-        public int PlayersAmount { get; set; }
+        public required int PlayersAmountParam { get; set; }
 
         [Option(
             'p', "preset",
             Default = "default.txt", HelpText = "Path to the preset of initial game state"
         )]
-        public string? PresetPath { get; set; }
+        public required string PresetPathParam { get; set; }
     }
 
-    public static void Main(string[] args) {
-        double tickrate = 30.0;
-        double interval = 1000.0 / tickrate;
+    public static int PlayersAmount;
+    public static string PresetPath = "";
+    public static Server Server;
+    public static GameState GameState;
 
-        int playersAmount = default;
-        string? presetPath = default!;
-        Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(o => {
-            playersAmount = o.PlayersAmount;
-            presetPath = o.PresetPath;
+    private static int Main(string[] args) {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        Parser.Default.ParseArguments<Options>(args).WithParsed(o => {
+            PlayersAmount = o.PlayersAmountParam;
+            PresetPath = o.PresetPathParam;
         });
 
-        Console.WriteLine(playersAmount);
-        Console.WriteLine(presetPath);
-        var server = new Server(playersAmount, presetPath);
+        Application.Init();
+        Application.Top.Add(new MainView(new Rect(1, 1, 75, 20)) {
+            Border = new Border { BorderStyle = BorderStyle.Single }
+        });
+        Console.WriteLine("Initializing server ...");
+        GameState = new GameState(new Preset(PresetPath));
+        Server = new Server(GameState) { PlayersAmount = PlayersAmount};
 
-        var gameTimer = new System.Timers.Timer(interval) { AutoReset = true, Enabled = true };
-        gameTimer.Elapsed += server.Update;
-        while (true) { }
+        Thread gameLoopThread = new Thread(GameLoop);
+        Thread networkThread = new Thread(NetworkLoop);
+        Thread broadcastThread = new Thread(BroadcastLoop);
+        Thread consoleThread = new Thread(ConsoleLoop);
+        
+        gameLoopThread.Start();
+        networkThread.Start();
+        broadcastThread.Start();
+        consoleThread.Start();
+        
+        gameLoopThread.Join();
+        networkThread.Join();
+        broadcastThread.Join();
+        consoleThread.Join();
+
+        return 0;
+    }
+
+    private static void NetworkLoop() {
+        while (true) {
+            Server.Update();
+            Thread.Sleep(10);
+        }
+    }
+
+    private static void ConsoleLoop() {
+        Application.Run();
+        Application.Shutdown();
+    }
+
+    private static void GameLoop() {
+        Server.Start();
+        while (true) {
+            UpdateGameState();
+            Thread.Sleep(16); // 60fps
+        }
+    }
+
+    private static void UpdateGameState() {
+        GameState.Update(new TimeSpan(123));
+    }
+
+    private static void ReceivePlayerPackets() {
+
+    }
+
+    private static void BroadcastLoop() {
+        while (true) {
+            // Сериализация и рассылка игрового состояния
+            // BroadcastGameState();
+            Thread.Sleep(50); // Частота рассылки состояния
+        }
     }
 }

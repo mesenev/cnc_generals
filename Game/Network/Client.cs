@@ -47,7 +47,7 @@ namespace Game.Network {
             );
             packetProcessor.RegisterNestedType<ClientPlayer>();
             packetProcessor.RegisterNestedType<MoveCommand2>();
-            packetProcessor.RegisterNestedType<TestClass>(() => new TestClass());
+            packetProcessor.RegisterNestedType(() => new TestClass());
 
 
             packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);

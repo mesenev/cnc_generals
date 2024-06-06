@@ -56,7 +56,7 @@ public class GameState : INetSerializable {
     }
 
     public void Update(TimeSpan timeDelta) {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     public void PrintGameState() {

@@ -16,4 +16,5 @@ networkClient.Connect(playerName);
 networkClient.SendPacket(new JoinPacket { username = playerName }, DeliveryMethod.Unreliable);
 while (true) {
     networkClient.Update();
+    Thread.Sleep(10);
 }

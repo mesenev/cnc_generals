@@ -11,32 +11,24 @@ using LiteNetLib.Utils;
 namespace Server;
 
 public class Server : INetEventListener {
-    private NetManager server;
-
-    public Vector2 initialPosition = new();
-    private NetDataWriter writer;
-    private NetPacketProcessor packetProcessor;
-    private Dictionary<uint, ServerPlayer> players = new();
-    private GameState gameState;
+    private readonly NetManager netManager;
+    private NetDataWriter? writer;
+    private NetPacketProcessor? packetProcessor;
+    private readonly Dictionary<uint, ServerPlayer> players = new();
     private DateTime? t0;
     private DateTime? t1;
-    private ServerState serverState;
-    private int unitCounter;
-    private string? presetPath;
-    private int playersAmount;
+    public ServerState ServerState;
+    private GameState gameState;
+    public required int PlayersAmount;
 
-    public Server(int playersAmount = 2, string? presetPath = "") {
-        this.playersAmount = playersAmount;
-        this.presetPath = presetPath;
-        unitCounter = 0;
-        gameState = new GameState(new Preset(this.presetPath));
-        serverState = ServerState.PlayerAwait;
-        gameState.PrintGameState();
-        Start();
+    public Server(GameState gameState) {
+        this.gameState = gameState;
+        ServerState = ServerState.PlayerAwait;
+        netManager = new NetManager(this) { AutoRecycle = true, UpdateTime = 1 };
+        writer = new NetDataWriter();
     }
 
     public void Start() {
-        writer = new NetDataWriter();
         packetProcessor = new NetPacketProcessor();
         packetProcessor.RegisterNestedType(
             (w, v) => w.Put(v), reader => reader.GetVector2()
@@ -45,20 +37,14 @@ public class Server : INetEventListener {
         packetProcessor.RegisterNestedType<MoveCommand2>();
         packetProcessor.RegisterNestedType(() => new GameState());
 
-
         packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
         packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
-
-        server = new NetManager(this) { AutoRecycle = true, UpdateTime = 1 };
-
-        Console.WriteLine("Starting server");
-        server.Start(12345);
+        netManager.Start(12345);
     }
 
     public void Stop() {
-        server.Stop();
+        netManager.Stop();
     }
-
 
     public void SendPacket<T>(T packet, NetPeer peer, DeliveryMethod deliveryMethod) where T : class, new() {
         writer.Reset();
@@ -130,22 +116,22 @@ public class Server : INetEventListener {
         request.Accept();
     }
 
-    public void Update(object? sender, ElapsedEventArgs e) {
-        server.PollEvents();
-        if (players.Count == playersAmount) {
-            serverState = ServerState.Running;
+    public void Update() {
+        netManager.PollEvents();
+        if (players.Count == PlayersAmount) {
+            ServerState = ServerState.Running;
         }
 
-        if (this.serverState == ServerState.PlayerAwait) {
+        if (ServerState == ServerState.PlayerAwait) {
             foreach (var player in players.Values)
                 SendPacket(new PlayerAwaitPacket(), player.peer, DeliveryMethod.Unreliable);
 
             return;
         }
 
-        if (this.serverState == ServerState.ShuttingDown) {
+        if (ServerState == ServerState.ShuttingDown)
             return;
-        }
+        
 
         t0 ??= DateTime.Now;
         t1 = DateTime.Now;
