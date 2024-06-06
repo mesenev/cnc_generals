@@ -3,46 +3,85 @@ using Terminal.Gui;
 namespace Server.InterfaceViews;
 
 public sealed class PromptAndStatusView : View {
-    private readonly TextField prompt = new("some editable text") {
-        X = 3, Y = 0,
-        Height = 1, Width = 30
-    };
-    private readonly Label promptCursor = new(">:") { X = 0, Y = 0, Height = 1, };
-
+    private readonly TextField prompt = new("some editable text") { X = 3, Y = 0, Height = 1, Width = 30 };
+    private Label gameState;
+    private Label gameStatus;
     private ProgressBar serverStatus;
-        
+    private TimeSpan serverLastValue = new();
+
+    private readonly TextField commandResult = new() {
+        Text = "help",
+        Y = 1,
+        X = 1,
+        Height = 25,
+        Width = 25
+    };
+
+    private readonly Label promptCursor = new(">:") { X = 0, Y = 0, Height = 1, };
+    private readonly Label serverStatusLabel = new("launching");
+
+
     public PromptAndStatusView() {
         InitializeComponent();
     }
 
     private void InitializeComponent() {
-        this.Width = Dim.Fill();
-        this.Height = Dim.Fill();
+        Width = Dim.Fill();
+        Height = Dim.Fill();
         Add(promptCursor);
         Add(prompt);
         var serverLabel = new Label("server is:") { X = 40, Y = 0 };
         Add(serverLabel);
-        serverStatus = new ProgressBar {
-            ProgressBarFormat = ProgressBarFormat.Simple, ProgressBarStyle = ProgressBarStyle.Continuous,
-            X = Pos.Right(serverLabel) + 1, Y = 0, Width = 2,
+        serverStatusLabel.X = 51;
+        serverStatusLabel.Y = Pos.Y(serverLabel);
+        serverStatusLabel.Height = 1;
+        Add(serverStatusLabel);
+        
+        serverStatus = new ProgressBar() {
+            ProgressBarFormat = ProgressBarFormat.Simple,
+            ProgressBarStyle = ProgressBarStyle.MarqueeContinuous,
+            X = 59,
+            Y = 0,
+            Width = 7,
+            Height = 1,
         };
         Add(serverStatus);
         var gameStatusLabel = new Label("game state:") { X = 40, Y = 1 };
         Add(gameStatusLabel);
-        var gameStatus = new Label("waiting players 0/2") { X = Pos.Right(gameStatusLabel) + 1, Y = 1 };
+        gameStatus =
+            new Label($"waiting players 0/{Program.PlayersAmount}") { X = Pos.Right(gameStatusLabel) + 1, Y = 1 };
         Add(gameStatus);
         var presetLabel = new Label("preset:") { X = 40, Y = 2 };
         Add(presetLabel);
-        var presetName = new Label("default.txt"){ X = Pos.Right(presetLabel) + 1, Y = 2};
+        var presetName = new Label(Program.PresetPath) { X = Pos.Right(presetLabel) + 1, Y = 2 };
         Add(presetName);
-        
-        Add(new Label("F1 - current") { X = 45, Y = 4 }); 
-        Add(new Label("F2 - game state"){ X = 45, Y = 5 });  
-        Add(new Label("F3 - logs"){X=45, Y = 6}); 
-        
-        serverStatus.Pulse();
 
+        Add(commandResult);
+        Add(new Label("F1 - current") { X = 45, Y = 4 });
+        Add(new Label("F2 - game state") { X = 45, Y = 5 });
+        Add(new Label("F3 - logs") { X = 45, Y = 6 });
     }
-    
-    
+
+    public void Update() {
+        gameStatus.Text = desideGameStatus();
+
+        if (!(Program.Server.TimeAlive > serverLastValue)) {
+            serverStatusLabel.Text = "paused";
+            serverStatus.Visible = false;
+        } else {
+            serverStatus.Visible = true;
+            serverStatusLabel.Text = "running";
+            serverLastValue = (TimeSpan)Program.Server.TimeAlive;
+            serverStatus.Pulse();
+        }
+    }
+
+    private string desideGameStatus() {
+        if (Program.Server.ConnectedPeers < Program.PlayersAmount)
+            return $"waiting players {Program.Server.ConnectedPeers}/{Program.PlayersAmount}";
+        if (Program.GameState.IsPaused)
+            return "paused";
+
+        return $"time elapsed {Program.GameState.ElapsedTime:g}";
+    }
 }

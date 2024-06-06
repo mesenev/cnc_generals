@@ -12,6 +12,8 @@ public class GameState : INetSerializable {
     public List<ArtilleryUnit> ArtilleryUnits = [];
     private int unitIdCounter;
 
+    public TimeSpan ElapsedTime { get; set; } = new TimeSpan(0);
+
     public GameState(Preset preset) {
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
         for (var i = 0; i < preset.UnitsAmount; i++) {
@@ -31,6 +33,8 @@ public class GameState : INetSerializable {
                 .Concat(ArtilleryUnits.Cast<BaseUnit>());
         }
     }
+
+    public bool IsPaused { get; set; } = false;
 
     public BaseUnit GetUnitById(int id) {
         return Units.First(unit => unit.UnitId == id);
@@ -59,19 +63,23 @@ public class GameState : INetSerializable {
         // throw new NotImplementedException();
     }
 
-    public void PrintGameState() {
+    public string GameStateAsString() {
+        var answer = "";
         for (int y = Grid.height - 1; y >= 0; y--) {
+            answer += " ";
             for (var x = 0; x < Grid.width; x++) {
                 var sign = " ";
 
                 if (Grid.cells[y, x].Occupied)
                     sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
 
-                Console.Write($"|{sign}");
+                answer += ($"{sign}");
             }
 
-            Console.Write("\n" + (y % 2 == 0 ? "" : " "));
+            answer += ("\n" + (y % 2 == 0 ? "" : " "));
         }
+
+        return answer;
     }
 
     public void Serialize(NetDataWriter writer) {

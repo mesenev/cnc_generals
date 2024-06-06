@@ -5,31 +5,34 @@ using System.Timers;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
+using Game.Stuff;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using Terminal.Gui;
+using Timer = System.Timers.Timer;
 
 namespace Server;
 
 public class Server : INetEventListener {
     private readonly NetManager netManager;
-    private NetDataWriter? writer;
-    private NetPacketProcessor? packetProcessor;
+    private readonly NetDataWriter writer = new();
+    private readonly NetPacketProcessor packetProcessor = new();
     private readonly Dictionary<uint, ServerPlayer> players = new();
-    private DateTime? t0;
-    private DateTime? t1;
-    public ServerState ServerState;
-    private GameState gameState;
+    private readonly GameState gameState;
+    public ServerState ServerState = ServerState.PlayerAwait;
     public required int PlayersAmount;
+    public TimeSpan? TimeAlive { get; set; } = null;
 
     public Server(GameState gameState) {
         this.gameState = gameState;
-        ServerState = ServerState.PlayerAwait;
         netManager = new NetManager(this) { AutoRecycle = true, UpdateTime = 1 };
-        writer = new NetDataWriter();
+    }
+
+    public int ConnectedPeers {
+        get => netManager.ConnectedPeersCount;
     }
 
     public void Start() {
-        packetProcessor = new NetPacketProcessor();
         packetProcessor.RegisterNestedType(
             (w, v) => w.Put(v), reader => reader.GetVector2()
         );
@@ -39,6 +42,8 @@ public class Server : INetEventListener {
 
         packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
         packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
+
+        TimeAlive = new TimeSpan(0);
         netManager.Start(12345);
     }
 
@@ -53,7 +58,7 @@ public class Server : INetEventListener {
     }
 
     public void OnJoinReceived(JoinPacket packet, NetPeer peer) {
-        Console.WriteLine($"Received join from {packet.username} (pid: {(uint)peer.Id})");
+        Program.Logs.Add($"Received join from {packet.username} (pid: {(uint)peer.Id})");
 
         int peerId = peer.Id;
         ServerPlayer newPlayer =
@@ -93,7 +98,7 @@ public class Server : INetEventListener {
     }
 
     public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {
-        Console.WriteLine($"Player (pid: {peer.Id}) left the game");
+        Program.Logs.Add($"Player (pid: {peer.Id}) left the game");
         if (peer.Tag == null)
             return;
 
@@ -112,38 +117,44 @@ public class Server : INetEventListener {
     }
 
     public void OnConnectionRequest(ConnectionRequest request) {
-        Console.WriteLine($"Incoming connection from {request.RemoteEndPoint}");
+        Program.Logs.Add($"Incoming connection from {request.RemoteEndPoint}");
         request.Accept();
     }
 
+
     public void Update() {
+        var time = DateTime.Now;
+        _update();
+        TimeAlive += DateTime.Now - time;
+    }
+
+    private void _update() {
         netManager.PollEvents();
-        if (players.Count == PlayersAmount) {
+        if (players.Count == PlayersAmount)
             ServerState = ServerState.Running;
-        }
 
         if (ServerState == ServerState.PlayerAwait) {
             foreach (var player in players.Values)
                 SendPacket(new PlayerAwaitPacket(), player.peer, DeliveryMethod.Unreliable);
-
             return;
         }
 
         if (ServerState == ServerState.ShuttingDown)
             return;
-        
 
-        t0 ??= DateTime.Now;
-        t1 = DateTime.Now;
-        var timeSpan = (TimeSpan)(t1 - t0);
-        // gameState.Update(timeSpan);
+        if (ServerState == ServerState.Running)
+            BroadcastStateUpdate();
+
+    }
+
+    private void BroadcastStateUpdate() {
         foreach (ServerPlayer player in players.Values) {
-            SendPacket(new PlayerReceiveUpdatePacket { state = gameState }, player.peer, DeliveryMethod.Unreliable);
+            SendPacket(
+                new PlayerReceiveUpdatePacket { state = gameState },
+                player.peer,
+                DeliveryMethod.Unreliable
+            );
         }
-
-        t0 = t1;
-
-        // Thread.Sleep(1000);
     }
 
     public void OnNetworkError(IPEndPoint endPoint, SocketError socketError) { }

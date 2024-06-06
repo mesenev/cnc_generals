@@ -1,11 +1,17 @@
-﻿using Server.InterfaceViews;
+﻿using System.Collections;
+using System.Text;
+using Autofac;
 using CommandLine;
 using Game.GameObjects;
+using Server.InterfaceViews;
 using Terminal.Gui;
+using Attribute = Terminal.Gui.Attribute;
 
 namespace Server;
 
 internal static class Program {
+    public static readonly List<string> Logs = ["123123"];
+
     public class Options {
         [Option(
             'a', "players",
@@ -25,32 +31,52 @@ internal static class Program {
     public static Server Server;
     public static GameState GameState;
 
+    public static ColorScheme ColorScheme = new() {
+        Normal = Attribute.Make(Color.BrightGreen, Color.Black),
+        Focus = Attribute.Make(Color.Brown, Color.Black),
+    };
+
     private static int Main(string[] args) {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.OutputEncoding = Encoding.UTF8;
 
         Parser.Default.ParseArguments<Options>(args).WithParsed(o => {
             PlayersAmount = o.PlayersAmountParam;
             PresetPath = o.PresetPathParam;
         });
 
+
+        Application.UseSystemConsole = true;
+
         Application.Init();
-        Application.Top.Add(new MainView(new Rect(1, 1, 75, 20)) {
-            Border = new Border { BorderStyle = BorderStyle.Single }
-        });
-        Console.WriteLine("Initializing server ...");
+
         GameState = new GameState(new Preset(PresetPath));
-        Server = new Server(GameState) { PlayersAmount = PlayersAmount};
+        Server = new Server(GameState) { PlayersAmount = PlayersAmount };
+
+        var builder = new ContainerBuilder();
+
+        builder.RegisterInstance(GameState).AsSelf();
+        builder.RegisterInstance(Server).AsSelf();
+
+        var container = builder.Build();
+
+
+        var mainView = new MainView(new Rect(1, 1, 75, 20)) {
+            Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = ColorScheme,
+        };
+
+        Application.Top.Add(mainView);
+
 
         Thread gameLoopThread = new Thread(GameLoop);
         Thread networkThread = new Thread(NetworkLoop);
         Thread broadcastThread = new Thread(BroadcastLoop);
         Thread consoleThread = new Thread(ConsoleLoop);
-        
+
         gameLoopThread.Start();
         networkThread.Start();
         broadcastThread.Start();
         consoleThread.Start();
-        
+
         gameLoopThread.Join();
         networkThread.Join();
         broadcastThread.Join();
@@ -60,6 +86,7 @@ internal static class Program {
     }
 
     private static void NetworkLoop() {
+        Server.Start();
         while (true) {
             Server.Update();
             Thread.Sleep(10);
@@ -72,7 +99,6 @@ internal static class Program {
     }
 
     private static void GameLoop() {
-        Server.Start();
         while (true) {
             UpdateGameState();
             Thread.Sleep(16); // 60fps
@@ -80,11 +106,7 @@ internal static class Program {
     }
 
     private static void UpdateGameState() {
-        GameState.Update(new TimeSpan(123));
-    }
-
-    private static void ReceivePlayerPackets() {
-
+        GameState.Update(new TimeSpan(16));
     }
 
     private static void BroadcastLoop() {
