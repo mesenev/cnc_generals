@@ -7,7 +7,7 @@ public sealed class MainView : View {
     private readonly PromptAndStatusView promptAndStatusView = new() { Y = 2 };
     private readonly GameStateView gameStateView = new() { Y = 2 };
 
-    private readonly LogView logView = new() { Y = 2 };
+    private readonly LogView logView = new() { Y = 2, Width = 70, Height = 50, };
 
     private int currentViewToDisplay;
 
@@ -16,6 +16,8 @@ public sealed class MainView : View {
         Add(promptAndStatusView);
         Add(gameStateView);
         Add(logView);
+        
+
         KeyPress += OnHandleF;
 
         Application.MainLoop.AddTimeout(TimeSpan.FromMilliseconds(500), TerminalUpdate);

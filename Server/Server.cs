@@ -1,15 +1,11 @@
 using System.Net;
 using System.Net.Sockets;
-using System.Numerics;
-using System.Timers;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
-using Game.Stuff;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using Terminal.Gui;
-using Timer = System.Timers.Timer;
+
 
 namespace Server;
 
@@ -44,7 +40,9 @@ public class Server : INetEventListener {
         packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
 
         TimeAlive = new TimeSpan(0);
-        netManager.Start(12345);
+        var port = 12345;
+        netManager.Start(port);
+        Program.Logs.Add($"Server is up! port: {port}");
     }
 
     public void Stop() {
@@ -144,7 +142,6 @@ public class Server : INetEventListener {
 
         if (ServerState == ServerState.Running)
             BroadcastStateUpdate();
-
     }
 
     private void BroadcastStateUpdate() {
@@ -170,4 +167,10 @@ public class Server : INetEventListener {
 
     public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader,
         UnconnectedMessageType messageType) { }
+}
+
+public enum ServerState {
+    PlayerAwait,
+    Running,
+    ShuttingDown
 }

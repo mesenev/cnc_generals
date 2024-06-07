@@ -10,7 +10,7 @@ using Attribute = Terminal.Gui.Attribute;
 namespace Server;
 
 internal static class Program {
-    public static readonly List<string> Logs = ["123123"];
+    public static readonly List<string> Logs = [];
 
     public class Options {
         [Option(
@@ -32,7 +32,9 @@ internal static class Program {
     public static GameState GameState;
 
     public static ColorScheme ColorScheme = new() {
-        Normal = Attribute.Make(Color.BrightGreen, Color.Black),
+        Normal = Attribute.Make(
+            Color.BrightGreen, Color.Black
+        ),
         Focus = Attribute.Make(Color.Brown, Color.Black),
     };
 
@@ -59,11 +61,9 @@ internal static class Program {
 
         var container = builder.Build();
 
-
         var mainView = new MainView(new Rect(1, 1, 75, 20)) {
             Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = ColorScheme,
         };
-
         Application.Top.Add(mainView);
 
 
