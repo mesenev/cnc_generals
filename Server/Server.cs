@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
@@ -28,8 +29,9 @@ namespace Server {
 
         public int ConnectedPeers => netManager.ConnectedPeersCount;
 
-        public static event Handler ConnectedEvent = () => { };
-        public static event Handler DisconnectedEvent = () => { };
+        public static event Handler ConnectedEvent = () => PeersAmountChanged.Invoke();
+        public static event Handler DisconnectedEvent = () => PeersAmountChanged.Invoke();
+        public static event Action PeersAmountChanged = () => { };
 
         public void Start() {
             packetProcessor.RegisterNestedType(
@@ -172,6 +174,7 @@ namespace Server {
 
         public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader,
             UnconnectedMessageType messageType) { }
+
     }
 
     public enum ServerState {

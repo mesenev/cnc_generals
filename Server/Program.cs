@@ -38,6 +38,8 @@ namespace Server {
 
             GameState = new GameState(new Preset(PresetPath));
             Server = new Server(GameState) { PlayersAmount = PlayersAmount };
+            Server.PeersAmountChanged += PeersAmountChangedHandler;
+            
             SoundEventsSetup();
 
             var builder = new ContainerBuilder();
@@ -89,6 +91,15 @@ namespace Server {
             Application.Run();
             Application.Shutdown();
         }
+
+         private static void PeersAmountChangedHandler() {
+            if (Server.ConnectedPeers == 0)
+                GameState.IsPaused = true;
+            if (Server.ConnectedPeers > 1)
+                GameState.IsPaused = false;
+            if (Server.ConnectedPeers == PlayersAmount)
+                GameState.InitializeWorld();
+         }
 
         private static void GameLoop() {
             var t0 = DateTime.Now;

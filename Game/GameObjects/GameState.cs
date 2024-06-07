@@ -12,6 +12,8 @@ public class GameState : INetSerializable {
     public List<ArtilleryUnit> ArtilleryUnits = [];
     private int unitIdCounter;
     public TimeSpan ElapsedGameTime { get; set; } = new(0);
+    public bool GameInitiated { get; set; } = false;
+    public bool IsPaused { get; set; } = true;
 
 
     public GameState(Preset preset) {
@@ -34,7 +36,6 @@ public class GameState : INetSerializable {
         }
     }
 
-    public bool IsPaused { get; set; } = false;
 
     public BaseUnit GetUnitById(int id) {
         return Units.First(unit => unit.UnitId == id);
@@ -60,6 +61,9 @@ public class GameState : INetSerializable {
     }
 
     public void Update(TimeSpan timeDelta) {
+        if (!GameInitiated | IsPaused)
+            return;
+        
         ElapsedGameTime += timeDelta;
     }
 
@@ -106,5 +110,10 @@ public class GameState : INetSerializable {
             ArtilleryUnits.Add(reader.Get(() => new ArtilleryUnit()));
 
         return;
+    }
+
+    public void InitializeWorld() {
+        GameInitiated = true;
+        IsPaused = false;
     }
 }
