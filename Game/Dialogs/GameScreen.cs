@@ -18,8 +18,7 @@ public class GameScreen : Dialog<Scenes.Data.GameScreen>
 	protected override void Shown()
 	{
 		var canvas = Scene.It["Scene1"];
-		CanvasManager.Instance.InitLayers(canvas);
-		game = new Stuff.Game(Client);
+		game = new Stuff.Game(Client, canvas);
 		canvas.Updated += game.UpdatePlayers;
 		canvas.Updated += game.Update;
 	}
