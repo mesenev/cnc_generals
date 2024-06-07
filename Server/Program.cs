@@ -1,39 +1,137 @@
-﻿using CommandLine;
+﻿using System.Text;
+using Autofac;
+using CommandLine;
+using Game.GameObjects;
+using Server.InterfaceViews;
+using Terminal.Gui;
+using Attribute = Terminal.Gui.Attribute;
 
-namespace Server;
+namespace Server {
+    internal static class Program {
+        public static readonly List<string> Logs = [];
 
-public class Program {
-    private class Options {
-        [Option(
-            'a', "players",
-            Default = 1, HelpText = "Set amount of players for server to await"
-        )]
-        public int PlayersAmount { get; set; }
+        public static int PlayersAmount;
+        public static string PresetPath = "";
+        public static Server Server = null!;
+        public static GameState GameState = null!;
+        public static SoundNotificationsService SoundManager = new();
 
-        [Option(
-            'p', "preset",
-            Default = "default.txt", HelpText = "Path to the preset of initial game state"
-        )]
-        public string? PresetPath { get; set; }
-    }
+        public static readonly ColorScheme ColorScheme = new() {
+            Normal = Attribute.Make(
+                Color.BrightGreen, Color.Black
+            ),
+            Focus = Attribute.Make(Color.Brown, Color.Black)
+        };
 
-    public static void Main(string[] args) {
-        double tickrate = 30.0;
-        double interval = 1000.0 / tickrate;
+        private static int Main(string[] args) {
+            Console.OutputEncoding = Encoding.UTF8;
 
-        int playersAmount = default;
-        string? presetPath = default!;
-        Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(o => {
-            playersAmount = o.PlayersAmount;
-            presetPath = o.PresetPath;
-        });
+            Parser.Default.ParseArguments<Options>(args).WithParsed(o => {
+                PlayersAmount = o.PlayersAmountParam;
+                PresetPath = o.PresetPathParam;
+            });
 
-        Console.WriteLine(playersAmount);
-        Console.WriteLine(presetPath);
-        var server = new Server(playersAmount, presetPath);
 
-        var gameTimer = new System.Timers.Timer(interval) { AutoReset = true, Enabled = true };
-        gameTimer.Elapsed += server.Update;
-        while (true) { }
+            Application.UseSystemConsole = true;
+
+            Application.Init();
+
+            GameState = new GameState(new Preset(PresetPath));
+            Server = new Server(GameState) { PlayersAmount = PlayersAmount };
+            Server.PeersAmountChanged += PeersAmountChangedHandler;
+            
+            SoundEventsSetup();
+
+            var builder = new ContainerBuilder();
+
+            builder.RegisterInstance(GameState).AsSelf();
+            builder.RegisterInstance(Server).AsSelf();
+
+            var container = builder.Build();
+
+
+            var mainView = new MainView(new Rect(1, 1, 90, 28)) {
+                Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = ColorScheme
+            };
+            Application.Top.Add(mainView);
+
+
+            var gameLoopThread = new Thread(GameLoop);
+            var networkThread = new Thread(NetworkLoop);
+            var broadcastThread = new Thread(BroadcastLoop);
+            var consoleThread = new Thread(ConsoleLoop);
+
+            gameLoopThread.Start();
+            networkThread.Start();
+            broadcastThread.Start();
+            consoleThread.Start();
+
+            gameLoopThread.Join();
+            networkThread.Join();
+            broadcastThread.Join();
+            consoleThread.Join();
+
+            return 0;
+        }
+
+        private static void SoundEventsSetup() {
+            Server.ConnectedEvent += SoundManager.PlayConnectedSound;
+            Server.DisconnectedEvent += SoundManager.PlayDisconnectedSound;
+        }
+
+        private static void NetworkLoop() {
+            Server.Start();
+            while (true) {
+                Server.Update();
+                Thread.Sleep(10);
+            }
+        }
+
+        private static void ConsoleLoop() {
+            Application.Run();
+            Application.Shutdown();
+        }
+
+         private static void PeersAmountChangedHandler() {
+            if (Server.ConnectedPeers == 0)
+                GameState.IsPaused = true;
+            if (Server.ConnectedPeers > 1)
+                GameState.IsPaused = false;
+            if (Server.ConnectedPeers == PlayersAmount)
+                GameState.InitializeWorld();
+         }
+
+        private static void GameLoop() {
+            var t0 = DateTime.Now;
+            var t1 = DateTime.Now;
+            while (true) {
+                t1 = DateTime.Now;
+                GameState.Update(t1 - t0);
+                t0 = t1;
+                Thread.Sleep(16); // 60fps
+            }
+        }
+
+        private static void BroadcastLoop() {
+            while (true) {
+                // Сериализация и рассылка игрового состояния
+                // BroadcastGameState();
+                Thread.Sleep(50); // Частота рассылки состояния
+            }
+        }
+
+        public class Options {
+            [Option(
+                'a', "players",
+                Default = 1, HelpText = "Set amount of players for server to await"
+            )]
+            public required int PlayersAmountParam { get; set; }
+
+            [Option(
+                'p', "preset",
+                Default = "default.txt", HelpText = "Path to the preset of initial game state"
+            )]
+            public required string PresetPathParam { get; set; }
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace Game.Network {
             );
             packetProcessor.RegisterNestedType<ClientPlayer>();
             packetProcessor.RegisterNestedType<MoveCommand2>();
-            packetProcessor.RegisterNestedType<TestClass>(() => new TestClass());
+            packetProcessor.RegisterNestedType(() => new TestClass());
 
 
             packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);
@@ -94,6 +94,7 @@ namespace Game.Network {
 
         public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet) {
             gameState = packet.state;
+            Console.WriteLine("Got game state");
         }
 
         public void OnPlayerJoin(PlayerJoinedGamePacket packet) {

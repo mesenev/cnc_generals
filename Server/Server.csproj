@@ -8,13 +8,26 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Autofac" Version="8.0.0" />
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
       <PackageReference Include="LiteNetLib" Version="1.2.0" />
+      <PackageReference Include="NetCoreAudio" Version="2.0.0" />
+      <PackageReference Include="Terminal.Gui" Version="1.17.0" />
     </ItemGroup>
 
 
     <ItemGroup>
         <ProjectReference Include="..\Game\Game.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Update="Assets\peer-connected.wav">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\peer-disconnected.wav">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
     <!-- Ensure this matches the output pathfhdjulhfukdshfksdjjfkldsajflkdsajfoasldkosdfla -->
 
