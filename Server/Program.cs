@@ -12,8 +12,8 @@ namespace Server {
 
         public static int PlayersAmount;
         public static string PresetPath = "";
-        public static Server Server;
-        public static GameState GameState;
+        public static Server Server = null!;
+        public static GameState GameState = null!;
         public static SoundNotificationsService SoundManager = new();
 
         public static readonly ColorScheme ColorScheme = new() {

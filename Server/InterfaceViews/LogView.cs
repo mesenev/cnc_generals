@@ -22,6 +22,8 @@ namespace Server.InterfaceViews {
         }
 
         public void Update() {
+            if (lastLogIndex == Program.Logs.Count)
+                return;
             logs.Text += string.Join("\n", Program.Logs.Slice(
                 lastLogIndex, Program.Logs.Count - lastLogIndex)) + "\n";
             lastLogIndex = Program.Logs.Count;

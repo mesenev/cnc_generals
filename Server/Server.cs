@@ -52,13 +52,13 @@ namespace Server {
             netManager.Stop();
         }
 
-        public void SendPacket<T>(T packet, NetPeer peer, DeliveryMethod deliveryMethod) where T : class, new() {
+        private void SendPacket<T>(T packet, NetPeer peer, DeliveryMethod deliveryMethod) where T : class, new() {
             writer.Reset();
             packetProcessor.Write(writer, packet);
-            peer.Send(writer, DeliveryMethod.ReliableOrdered);
+            peer.Send(writer, deliveryMethod);
         }
 
-        public void OnJoinReceived(JoinPacket packet, NetPeer peer) {
+        private void OnJoinReceived(JoinPacket packet, NetPeer peer) {
             Program.Logs.Add($"Received join from {packet.username} (pid: {(uint)peer.Id})");
 
             int peerId = peer.Id;
@@ -88,7 +88,7 @@ namespace Server {
             }
         }
 
-        public void OnPlayerMove(MoveCommandPacket packet, NetPeer peer) {
+        private void OnPlayerMove(MoveCommandPacket packet, NetPeer peer) {
             BaseUnit? currentUnit = gameState.GetUnitById(packet.command.unitId);
             HexCell? getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
             HexCell? getNewCell = gameState.Grid.GetCell(packet.command.x, packet.command.y);
@@ -106,7 +106,7 @@ namespace Server {
 
 
             ServerPlayer playerLeft;
-            if (!players.TryGetValue((uint)peer.Id, out playerLeft))
+            if (!players.TryGetValue((uint)peer.Id, out playerLeft!))
                 return;
 
 
@@ -154,7 +154,7 @@ namespace Server {
                 SendPacket(
                     new PlayerReceiveUpdatePacket { state = gameState },
                     player.peer,
-                    DeliveryMethod.Unreliable
+                    DeliveryMethod.ReliableOrdered
                 );
             }
         }
