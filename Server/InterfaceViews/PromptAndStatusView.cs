@@ -77,11 +77,12 @@ namespace Server.InterfaceViews {
 
         private string desideGameStatus() {
             if (Program.Server.ConnectedPeers < Program.PlayersAmount)
-                return $"waiting players {Program.Server.ConnectedPeers}/{Program.PlayersAmount}";
+                return $"waiting players {Program.Server.ConnectedPeers}/{Program.PlayersAmount}" +
+                       $"  {Program.GameState.ElapsedGameTime:g}";
             if (Program.GameState.IsPaused)
-                return "paused";
+                return $"paused {Program.GameState.ElapsedGameTime:g}";
 
-            return $"time elapsed {Program.GameState.ElapsedTime:g}";
+            return $"running {Program.GameState.ElapsedGameTime:g}";
         }
     }
 }

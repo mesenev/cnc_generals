@@ -11,8 +11,8 @@ public class GameState : INetSerializable {
     public List<MarineUnit> MarineUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
     private int unitIdCounter;
+    public TimeSpan ElapsedGameTime { get; set; } = new(0);
 
-    public TimeSpan ElapsedTime { get; set; } = new TimeSpan(0);
 
     public GameState(Preset preset) {
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
@@ -60,7 +60,7 @@ public class GameState : INetSerializable {
     }
 
     public void Update(TimeSpan timeDelta) {
-        // throw new NotImplementedException();
+        ElapsedGameTime += timeDelta;
     }
 
     public string GameStateAsString() {

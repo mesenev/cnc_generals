@@ -48,7 +48,7 @@ namespace Server {
             var container = builder.Build();
 
 
-            var mainView = new MainView(new Rect(1, 1, 75, 20)) {
+            var mainView = new MainView(new Rect(1, 1, 90, 28)) {
                 Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = ColorScheme
             };
             Application.Top.Add(mainView);
@@ -91,14 +91,14 @@ namespace Server {
         }
 
         private static void GameLoop() {
+            var t0 = DateTime.Now;
+            var t1 = DateTime.Now;
             while (true) {
-                UpdateGameState();
+                t1 = DateTime.Now;
+                GameState.Update(t1 - t0);
+                t0 = t1;
                 Thread.Sleep(16); // 60fps
             }
-        }
-
-        private static void UpdateGameState() {
-            GameState.Update(new TimeSpan(16));
         }
 
         private static void BroadcastLoop() {
