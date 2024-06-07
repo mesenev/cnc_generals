@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Commands;
 using Game.GameObjects;
 using Game.Network;
+using Game.Widgets;
 using Lime;
 using HexCell = Game.Map.HexCell;
 using HexGrid = Game.Map.HexGrid;
@@ -22,20 +23,60 @@ namespace Game.Stuff {
 
         public HexCell SelectedCell = null;
         public HexCell DestinationCell = null;
+        
+        // нужно выносить это все в level
+        private Camera2D camera;
+        private Viewport2D viewport;
 
-        public Game(Client client) {
+        public Game(Client client, Widget Scene) {
             _client = client;
             _client.Connect("Player");
-
+            
+            
+            InitializeViewportAndCameraAndAddToWidget(Scene);
+            CanvasManager.Instance.InitLayers(viewport);
+            
+            setSpriteToBackground(CanvasManager.Instance.GetCanvas(Layers.Background));
             Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
+            
+            // ToDO скорее всего процесс перемещения камеры должен создаваться в другом месте
+            var moveCameraProcessor = new MoveCameraProcessor(camera);
+            Processors.Add(moveCameraProcessor);
+        }
+        
+        private void InitializeViewportAndCameraAndAddToWidget(Widget parent)
+        {
+            viewport = new Viewport2D();
+            viewport.Size = parent.Size;
+            viewport.Position = parent.Size * 0;
+            viewport.Pivot = Vector2.Zero;
+            viewport.Anchors = Anchors.LeftRightTopBottom;
+            parent.AddNode(viewport);
+			
+            camera = new Camera2D();
+            camera.X = viewport.Width * 0.5f;
+            camera.OrthographicSize = viewport.Height;
+            camera.Y = viewport.Height * 0.5f;
+            camera.Pivot = Vector2.Zero;
+			
+            viewport.Camera = camera;
+            viewport.AddNode(camera);
         }
 
         private void InitHexGrid(Widget canvas, int width, int height) {
             hexGrid = new HexGrid(canvas,width,height);
 
             foreach (var cell in hexGrid.cells) {
-                Processors.Add(new HexInteractionProcessor(cell));
+                Processors.Add(new HexInteractionProcessor(cell, viewport));
             }
+        }
+        
+        private void setSpriteToBackground(Widget canvas)
+        {
+            canvas.AddNode(new Image {
+                Sprite = new SerializableSprite("Sprites/Grass"),
+                Size = new Vector2(The.World.Width, The.World.Height)
+            });
         }
 
         public void Update(float delta) {

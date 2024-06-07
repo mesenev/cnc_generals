@@ -22,7 +22,7 @@ namespace Server {
             ),
             Focus = Attribute.Make(Color.Brown, Color.Black)
         };
-
+        
         private static int Main(string[] args) {
             Console.OutputEncoding = Encoding.UTF8;
 
@@ -132,6 +132,7 @@ namespace Server {
                 Default = "default.txt", HelpText = "Path to the preset of initial game state"
             )]
             public required string PresetPathParam { get; set; }
+
         }
     }
 }

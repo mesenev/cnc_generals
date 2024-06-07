@@ -20,7 +20,7 @@ namespace Game.Stuff
 		{
 			if (canvases.ContainsKey(layer)) return;
 			var newCanvas = new Frame { Id = layer.ToString() };
-			parent.Nodes.Add(newCanvas);
+			parent.PushNode(newCanvas);
 			canvases.Add(layer, newCanvas);
 		}
 
