@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.63.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="google\api\annotations.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="google\api\http.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="google\rpc\status.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+    <Protobuf Include="yandex\cloud\ai\stt\v3\stt.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="yandex\cloud\ai\stt\v3\stt_service.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="yandex\cloud\api\operation.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="yandex\cloud\operation\operation.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+    <Protobuf Include="yandex\cloud\validation.proto">
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\stt.proto" GrpcServices="Server" />
+  </ItemGroup>
+  
+</Project>

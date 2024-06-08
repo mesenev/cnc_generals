@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitrusPlugin.Win", "CitrusPlugin\CitrusPlugin.Win.csproj", "{290DC176-0848-4A4A-BC99-500A6AF8D003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandRecognitionModule", "CommandRecognitionModule\CommandRecognitionModule.csproj", "{7F4CE238-3A27-43DE-8709-2EAAE029F383}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{290DC176-0848-4A4A-BC99-500A6AF8D003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290DC176-0848-4A4A-BC99-500A6AF8D003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290DC176-0848-4A4A-BC99-500A6AF8D003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4CE238-3A27-43DE-8709-2EAAE029F383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4CE238-3A27-43DE-8709-2EAAE029F383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4CE238-3A27-43DE-8709-2EAAE029F383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4CE238-3A27-43DE-8709-2EAAE029F383}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
