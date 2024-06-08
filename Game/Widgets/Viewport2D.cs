@@ -86,7 +86,8 @@ public class Viewport2D : Widget {
     }
 
     private Rectangle ComputeViewRect() {
-        var invViewProj = ((Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix()).CalcInverted();
+        var invViewProj =
+            ((Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix()).CalcInverted();
 
         var lb = invViewProj.ProjectVector(new Vector2(-1.0f, -1.0f));
         var rb = invViewProj.ProjectVector(new Vector2(1.0f, -1.0f));
@@ -131,7 +132,9 @@ public class Viewport2D : Widget {
         public override void Render() {
             System.Diagnostics.Debug.Assert(Renderer.Transform2.IsIdentity());
 
-            Renderer.PushState(RenderState.Transform2 | RenderState.Viewport | RenderState.Projection);
+            Renderer.PushState(
+                RenderState.Transform2 | RenderState.Viewport | RenderState.Projection
+            );
 
             try {
                 Renderer.Viewport = new Viewport(ComputeViewportBounds());
@@ -155,10 +158,14 @@ public class Viewport2D : Widget {
 
             var bounds = Renderer.Viewport.Bounds;
 
-            var minScreen = (Vector2)bounds.Origin + (minNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
-            var maxScreen = (Vector2)bounds.Origin + (maxNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
+            var minScreen = (Vector2)bounds.Origin
+                            + (minNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
+            var maxScreen = (Vector2)bounds.Origin
+                            + (maxNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
 
-            return new WindowRect { Origin = (IntVector2)minScreen, Size = (IntVector2)(maxScreen - minScreen) };
+            return new WindowRect {
+                Origin = (IntVector2)minScreen, Size = (IntVector2)(maxScreen - minScreen)
+            };
         }
 
         protected override void OnRelease() {
