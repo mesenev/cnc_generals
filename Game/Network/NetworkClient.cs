@@ -5,18 +5,15 @@ using System.Net;
 using System.Net.Sockets;
 using Game.Commands;
 using Game.GameObjects;
-using Lime;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using Game.GameObjects;
-using Game.GameObjects.Units;
-using Environment = System.Environment;
+using Game.Network.ClientPackets;
 
 namespace Game.Network {
     public class NetworkClient : INetEventListener {
         public static readonly NetworkClient Instance = new();
 
-        public bool isPLayerJoined = false;
+        public bool IsPLayerJoined;
 
         private NetManager _client;
         private NetPeer _server;
@@ -26,12 +23,12 @@ namespace Game.Network {
         private ClientPlayer clientPlayer;
         private Dictionary<int, ServerPlayer> serverPlayers = new();
         public GameState gameState;
-        public Queue<MoveCommand2> commands = new();
+        public Queue<ICommand> commands = new();
         public string LastPackageType { get; set; } = "";
         public DateTime LastPackageTimeStamp { get; set; } = new(0);
 
         public delegate void NewPacketArrivedHandler(object packet);
-        
+
 
         public List<ServerPlayer> GetServerPlayers() {
             return serverPlayers.Values.ToList();
@@ -51,8 +48,8 @@ namespace Game.Network {
                 (w, v) => w.Put(v), reader => reader.GetVector2()
             );
             packetProcessor.RegisterNestedType<ClientPlayer>();
-            packetProcessor.RegisterNestedType<MoveCommand2>();
-            packetProcessor.RegisterNestedType(() => new TestClass());
+            packetProcessor.RegisterNestedType<MoveCommand>();
+            packetProcessor.RegisterNestedType<OrderUnitCommand>();
 
 
             packetProcessor.SubscribeReusable<JoinAcceptPacket>(OnJoinAccept);
@@ -60,7 +57,6 @@ namespace Game.Network {
             packetProcessor.SubscribeReusable<PlayerReceiveUpdatePacket>(OnReceiveUpdate);
             packetProcessor.SubscribeReusable<PlayerLeftGamePacket>(OnPlayerLeave);
             packetProcessor.SubscribeReusable<PlayerAwaitPacket>(OnPlayerAwait);
-            packetProcessor.SubscribeReusable<SimplePacket>(OnSimplePacket);
 
             _client = new NetManager(this) { AutoRecycle = true };
 
@@ -77,15 +73,13 @@ namespace Game.Network {
             Console.WriteLine("Connected to server");
             _server = peer;
 
-            SendPacket(new JoinPacket { username = clientPlayer.username }, DeliveryMethod.ReliableOrdered);
+            SendPacket(
+                new JoinPacket { username = clientPlayer.username }, DeliveryMethod.ReliableOrdered
+            );
         }
 
         public void SendPacket<T>(T packet, DeliveryMethod deliveryMethod) where T : class, new() {
             Console.WriteLine($"Trying to send packet: {packet.GetType()}");
-            if (_server == null)
-                return;
-
-
             writer.Reset();
             packetProcessor.Write(writer, packet);
             _server.Send(writer, deliveryMethod);
@@ -94,7 +88,7 @@ namespace Game.Network {
         public void OnJoinAccept(JoinAcceptPacket packet) {
             Console.WriteLine($"Join accepted by server (pid: {packet.state})");
             gameState = packet.state;
-            isPLayerJoined = true;
+            IsPLayerJoined = true;
         }
 
         public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet) {
@@ -102,9 +96,12 @@ namespace Game.Network {
         }
 
         public void OnPlayerJoin(PlayerJoinedGamePacket packet) {
-            Console.WriteLine($"Player '{packet.player.username}' (pid: {packet.player.playerId}) joined the game");
+            Console.WriteLine(
+                $"Player '{packet.player.username}' (pid: {packet.player.playerId}) joined the game"
+            );
             ServerPlayer newServerPlayer =
-                new ServerPlayer { username = packet.player.username, playerId = packet.player.playerId };
+                new ServerPlayer
+                    { username = packet.player.username, playerId = packet.player.playerId };
             serverPlayers.Add(newServerPlayer.playerId, newServerPlayer);
         }
 
@@ -113,20 +110,22 @@ namespace Game.Network {
             serverPlayers.Remove(packet.playerId);
         }
 
-        public void OnSimplePacket(SimplePacket packet) {
-            Console.WriteLine(packet.testVariable.firstVal);
-        }
-
         public void Update() {
             if (_client == null)
                 return;
 
             _client.PollEvents();
-            if (clientPlayer.username != null && commands.Count != 0)
-                SendPacket(
-                    new MoveCommandPacket { command = commands.Dequeue() },
-                    DeliveryMethod.Unreliable
-                );
+
+            if (clientPlayer.username != null && commands.Count != 0) {
+                BaseCommandPacket packet = commands.Dequeue().ToPacket();
+                
+                if (packet.GetType() == typeof(MoveCommandPacket))
+                    SendPacket((MoveCommandPacket)packet, DeliveryMethod.ReliableOrdered);
+                
+                if (packet.GetType() == typeof(OrderUnitPacket))
+                    SendPacket((OrderUnitPacket)packet, DeliveryMethod.ReliableOrdered);
+                
+            }
         }
 
         public void OnPlayerAwait(PlayerAwaitPacket packet) { }

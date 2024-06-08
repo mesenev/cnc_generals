@@ -1,11 +1,11 @@
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
 using Game.GameObjects.Units;
 using Game.Network;
+using Game.Network.ClientPackets;
 using LiteNetLib;
 using LiteNetLib.Utils;
 
@@ -39,11 +39,15 @@ namespace Server {
                 (w, v) => w.Put(v), reader => reader.GetVector2()
             );
             packetProcessor.RegisterNestedType<ClientPlayer>();
-            packetProcessor.RegisterNestedType<MoveCommand2>();
+            packetProcessor.RegisterNestedType<MoveCommand>();
+            packetProcessor.RegisterNestedType<OrderUnitCommand>();
             packetProcessor.RegisterNestedType(() => new GameState());
 
             packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
             packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
+            packetProcessor.SubscribeReusable<OrderUnitPacket, NetPeer>(
+                (packet, peer) => gameState.OrderUnit(packet.Command)
+                    );
 
             TimeAlive = new TimeSpan(0);
             var port = 12345;
@@ -92,11 +96,11 @@ namespace Server {
         }
 
         private void OnPlayerMove(MoveCommandPacket packet, NetPeer peer) {
-            BaseUnit? currentUnit = gameState.GetUnitById(packet.command.unitId);
+            BaseUnit? currentUnit = gameState.GetUnitById(packet.Command.unitId);
             HexCell? getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
-            HexCell? getNewCell = gameState.Grid.GetCell(packet.command.x, packet.command.y);
-            currentUnit.x = packet.command.x;
-            currentUnit.y = packet.command.y;
+            HexCell? getNewCell = gameState.Grid.GetCell(packet.Command.x, packet.Command.y);
+            currentUnit.x = packet.Command.x;
+            currentUnit.y = packet.Command.y;
             getCurrentCell.RemoveCellUnit();
             getNewCell.UpdateCellUnit(currentUnit.UnitId);
         }

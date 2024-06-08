@@ -1,30 +1,31 @@
 ﻿using System;
-using Game.GameObjects;
-using Game.GameObjects.Units;
+using Game.Network.ClientPackets;
 using LiteNetLib.Utils;
 
 namespace Game.Commands;
 
-public class MoveCommand : ICommand {
-    private BaseUnit _unit;
-    private HexCell _cell;
-
-    public void Execute() {
-        if (_cell.Occupied) {
-            _cell.UpdateCellUnit(_unit.UnitId);
-            _unit.UpdatePosition(_cell);
-        } else {
-            Console.WriteLine($"Can't move unit to cell: occupied");
-        }
-    }
+public struct MoveCommand : ICommand {
+    public int unitId;
+    public int x;
+    public int y;
 
     public void Serialize(NetDataWriter writer) {
-        _unit.Serialize(writer);
-        _cell.Serialize(writer);
+        writer.Put(unitId);
+        writer.Put(x);
+        writer.Put(y);
     }
 
     public void Deserialize(NetDataReader reader) {
-        _unit.Deserialize(reader);
-        _cell.Deserialize(reader);
+        unitId = reader.GetInt();
+        x = reader.GetInt();
+        y = reader.GetInt();
+    }
+
+    public BaseCommandPacket ToPacket() {
+        return new MoveCommandPacket { Command = this };
+    }
+
+    public void Execute() {
+        throw new NotImplementedException();
     }
 }

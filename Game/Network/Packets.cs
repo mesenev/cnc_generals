@@ -35,9 +35,7 @@ public class ServerPlayer {
     public int playerId;
 }
 
-public class MoveCommandPacket {
-    public MoveCommand2 command { get; set; }
-}
+
 
 public class PlayerReceiveUpdatePacket {
     public GameState state { get; set; }
@@ -51,20 +49,5 @@ public class PlayerLeftGamePacket {
     public int playerId { get; set; }
 }
 
-public class TestClass : INetSerializable {
-    public int firstVal;
-
-    public void Serialize(NetDataWriter writer) {
-        writer.Put(firstVal);
-    }
-
-    public void Deserialize(NetDataReader reader) {
-        firstVal = reader.GetInt();
-    }
-}
-
-public class SimplePacket {
-    public TestClass testVariable { get; set; }
-}
-
 public class PlayerAwaitPacket { }
+

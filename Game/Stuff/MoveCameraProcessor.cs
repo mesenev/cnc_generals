@@ -4,40 +4,48 @@ using Lime;
 namespace Game.Stuff;
 
 public class MoveCameraProcessor : IProcessor {
-    private Camera2D camera;
+    public Viewport2D Viewport2D { get; }
 
-    public MoveCameraProcessor(Camera2D camera) {
-        this.camera = camera;
+    private Camera2D Camera {
+        get { return Viewport2D.Camera; }
+    }
+
+    public MoveCameraProcessor(Viewport2D viewport2D) {
+        Viewport2D = viewport2D;
     }
 
     public void Update(float delta, Game game) {
-        // Logger.Instance.Debug(
-        // $"CameraPosition: {camera.Position} "
-        // + $" HexLayerSize:"
-        // + $" {CanvasManager.Instance.GetCanvas(Layers.HexMap).Size}"
-        // );
+
+        if (Window.Current.Input.IsKeyPressed(Key.Tab)) {
+            Viewport2D.UserInterface.topContainer.Visible = true;
+        }
+
+        if (Window.Current.Input.WasKeyReleased(Key.Tab)) {
+            Viewport2D.UserInterface.topContainer.Visible = false;
+        }
+
 
         if (Window.Current.Input.IsKeyPressed(Key.Down)) {
-            if (camera.X < 64 * 50 - camera.Parent.AsWidget.Size.X / 2) {
-                camera.Y += 1;
+            if (Camera.X < 64 * 50 - Camera.Parent.AsWidget.Size.X / 2) {
+                Camera.Y += 1;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Up)) {
-            if (camera.Y > camera.Parent.AsWidget.Height / 2) {
-                camera.Y -= 1;
+            if (Camera.Y > Camera.Parent.AsWidget.Height / 2) {
+                Camera.Y -= 1;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Left)) {
-            if (camera.X > camera.Parent.AsWidget.Width / 2) {
-                camera.X -= 1;
+            if (Camera.X > Camera.Parent.AsWidget.Width / 2) {
+                Camera.X -= 1;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Right)) {
-            if (camera.X < 64 * 50) {
-                camera.X += 1;
+            if (Camera.X < 64 * 50) {
+                Camera.X += 1;
             }
         }
 

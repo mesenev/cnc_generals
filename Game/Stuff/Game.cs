@@ -39,7 +39,7 @@ public class Game {
         Canvas = CanvasManager.Instance.GetCanvas(Layers.Entities);
 
         // ToDO скорее всего процесс перемещения камеры должен создаваться в другом месте
-        var moveCameraProcessor = new MoveCameraProcessor(camera);
+        var moveCameraProcessor = new MoveCameraProcessor(viewport);
         processors.Add(moveCameraProcessor);
     }
 
@@ -70,10 +70,12 @@ public class Game {
     }
 
     private static void SetSpriteToBackground(Widget canvas) {
-        canvas.AddNode(new Image {
-            Sprite = new SerializableSprite("Sprites/Grass"), 
-            Size = new Vector2(The.World.Width, The.World.Height)
-        });
+        canvas.AddNode(
+            new Image {
+                Sprite = new SerializableSprite("Sprites/Grass"),
+                Size = new Vector2(The.World.Width, The.World.Height)
+            }
+        );
     }
 
     public void Update(float delta) {
@@ -83,9 +85,13 @@ public class Game {
         }
 
         if (SelectedCell != null && DestinationCell != null) {
-            networkClient.commands.Enqueue(new MoveCommand2 {
-                unitId = SelectedCell.CellUnitId, x = DestinationCell.XCoord, y = DestinationCell.YCoord
-            });
+            if (SelectedCell.CellUnitId != -1)
+                networkClient.commands.Enqueue(
+                    new MoveCommand {
+                        unitId = SelectedCell.CellUnitId, x = DestinationCell.XCoord,
+                        y = DestinationCell.YCoord
+                    }
+                );
             SelectedCell = null;
             DestinationCell = null;
         }
@@ -95,8 +101,10 @@ public class Game {
 
     public void UpdatePlayers(float delta) {
         if (networkClient.gameState != null && hexGrid == null) {
-            InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap), networkClient.gameState.Grid.width,
-                networkClient.gameState.Grid.height);
+            InitHexGrid(
+                CanvasManager.Instance.GetCanvas(Layers.HexMap), networkClient.gameState.Grid.width,
+                networkClient.gameState.Grid.height
+            );
         }
 
         RemovePlayersFromCanvas();
@@ -131,7 +139,6 @@ public class Game {
         foreach (GameObjects.HexCell cell in networkClient.gameState.Grid.cells) {
             hexGrid.cells[cell.YCoord, cell.XCoord].XCoord = cell.XCoord;
             hexGrid.cells[cell.YCoord, cell.XCoord].YCoord = cell.YCoord;
-            hexGrid.cells[cell.YCoord, cell.XCoord].Occupied = cell.Occupied;
             hexGrid.cells[cell.YCoord, cell.XCoord].CellUnitId = cell.CellUnitId;
         }
     }

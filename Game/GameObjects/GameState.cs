@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Commands;
 using Game.GameObjects.Units;
 using LiteNetLib.Utils;
 
@@ -10,9 +11,10 @@ public class GameState : INetSerializable {
     public HexGrid Grid;
     public List<MarineUnit> MarineUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
+    public List<AirUnit> AirUnits = [];
     private int unitIdCounter;
     public TimeSpan ElapsedGameTime { get; set; } = new(0);
-    public bool GameInitiated { get; set; } = false;
+    public bool GameInitiated { get; set; }
     public bool IsPaused { get; set; } = true;
 
 
@@ -31,8 +33,9 @@ public class GameState : INetSerializable {
 
     public IEnumerable<BaseUnit> Units {
         get {
-            return MarineUnits
-                .Concat(ArtilleryUnits.Cast<BaseUnit>());
+            return MarineUnits 
+                .Concat(ArtilleryUnits.Cast<BaseUnit>())
+                .Concat(AirUnits);
         }
     }
 
@@ -46,6 +49,8 @@ public class GameState : INetSerializable {
             MarineUnits.Add(new MarineUnit(unitIdCounter, ownerId, x, y));
         if (unitType == 1)
             ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y));
+        if (unitType == 2)
+            AirUnits.Add(new AirUnit(unitIdCounter, ownerId, x, y));
         Grid.cells[y, x].UpdateCellUnit(unitIdCounter);
         unitIdCounter++;
     }
@@ -63,7 +68,7 @@ public class GameState : INetSerializable {
     public void Update(TimeSpan timeDelta) {
         if (!GameInitiated | IsPaused)
             return;
-        
+
         ElapsedGameTime += timeDelta;
     }
 
@@ -74,7 +79,7 @@ public class GameState : INetSerializable {
             for (var x = 0; x < Grid.width; x++) {
                 var sign = " ";
 
-                if (Grid.cells[y, x].Occupied)
+                if (Grid.cells[y, x].CellUnitId != -1)
                     sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
 
                 answer += ($"{sign}");
@@ -90,11 +95,14 @@ public class GameState : INetSerializable {
         Grid.Serialize(writer);
         writer.Put(MarineUnits.Count);
         writer.Put(ArtilleryUnits.Count);
+        writer.Put(AirUnits.Count);
         foreach (var unit in MarineUnits)
             unit.Serialize(writer);
 
-
         foreach (var unit in ArtilleryUnits)
+            unit.Serialize(writer);
+
+        foreach (var unit in AirUnits)
             unit.Serialize(writer);
     }
 
@@ -102,12 +110,15 @@ public class GameState : INetSerializable {
         Grid.Deserialize(reader);
         int marineCount = reader.GetInt();
         int artilleryCount = reader.GetInt();
+        int airCount = reader.GetInt();
         for (var i = 0; i < marineCount; i++)
             MarineUnits.Add(reader.Get(() => new MarineUnit()));
 
-
         for (var i = 0; i < artilleryCount; i++)
             ArtilleryUnits.Add(reader.Get(() => new ArtilleryUnit()));
+
+        for (var i = 0; i < airCount; i++)
+            AirUnits.Add(reader.Get(() => new AirUnit()));
 
         return;
     }
@@ -115,5 +126,9 @@ public class GameState : INetSerializable {
     public void InitializeWorld() {
         GameInitiated = true;
         IsPaused = false;
+    }
+
+    public void OrderUnit(OrderUnitCommand packetCommand) {
+        AddUnit(packetCommand.UnitType, packetCommand.UserId, 6, 6);
     }
 }

@@ -6,8 +6,11 @@ namespace Game.Widgets;
 [TangerineRegisterNode]
 public class Viewport2D : Widget {
     public Camera2D Camera { get; set; }
+    public readonly UserInterface UserInterface;
 
-    public Viewport2D() { }
+    public Viewport2D() {
+        UserInterface = new UserInterface(this);
+    }
 
     public override void AddToRenderChain(RenderChain chain) {
         AddSelfToRenderChain(chain, Layer);
