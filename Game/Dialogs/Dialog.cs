@@ -198,7 +198,7 @@ public class Dialog : IDisposable
 
 	public virtual void FillDebugMenuItems(DevPanel.Menu menu) { }
 	
-	protected Client Client => The.Client;
+	protected NetworkClient NetworkClient => The.NetworkClient;
 	protected Application.Application App => The.App;
 	protected WindowWidget World => The.World;
 	protected IWindow Window => The.Window;

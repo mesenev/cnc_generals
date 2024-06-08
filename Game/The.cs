@@ -10,7 +10,7 @@ namespace Game;
 public static class The
 {
 	public static CanvasManager CanvasManager => CanvasManager.Instance;
-	public static Client Client => Client.Instance;
+	public static NetworkClient NetworkClient => NetworkClient.Instance;
 	public static Application.Application App => Application.Application.Instance;
 	public static WindowWidget World => App.World;
 	public static IWindow Window => World.Window;

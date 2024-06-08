@@ -16,7 +16,7 @@ public class Game {
     private readonly List<Component> components = [];
     private readonly List<IProcessor> processors = [];
 
-    private readonly Client client;
+    private readonly NetworkClient networkClient;
 
     private HexGrid hexGrid;
 
@@ -27,9 +27,9 @@ public class Game {
     private Camera2D camera;
     private Viewport2D viewport;
 
-    public Game(Client client, Widget scene) {
-        this.client = client;
-        this.client.Connect("Player");
+    public Game(NetworkClient networkClient, Widget scene) {
+        this.networkClient = networkClient;
+        this.networkClient.Connect("Player");
 
 
         InitializeViewportAndCameraAndAddToWidget(scene);
@@ -83,20 +83,20 @@ public class Game {
         }
 
         if (SelectedCell != null && DestinationCell != null) {
-            client.commands.Enqueue(new MoveCommand2 {
+            networkClient.commands.Enqueue(new MoveCommand2 {
                 unitId = SelectedCell.CellUnitId, x = DestinationCell.XCoord, y = DestinationCell.YCoord
             });
             SelectedCell = null;
             DestinationCell = null;
         }
 
-        client.Update();
+        networkClient.Update();
     }
 
     public void UpdatePlayers(float delta) {
-        if (client.gameState != null && hexGrid == null) {
-            InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap), client.gameState.Grid.width,
-                client.gameState.Grid.height);
+        if (networkClient.gameState != null && hexGrid == null) {
+            InitHexGrid(CanvasManager.Instance.GetCanvas(Layers.HexMap), networkClient.gameState.Grid.width,
+                networkClient.gameState.Grid.height);
         }
 
         RemovePlayersFromCanvas();
@@ -111,9 +111,9 @@ public class Game {
     }
 
     private void GetPlayersFromServer() {
-        if (client.gameState == null)
+        if (networkClient.gameState == null)
             return;
-        foreach (var unit in client.gameState.Units) {
+        foreach (var unit in networkClient.gameState.Units) {
             var newUnit = new UnitComponent(
                 Canvas,
                 hexGrid.cells[unit.x, unit.y].GetPosition(unit.x, unit.y),
@@ -126,9 +126,9 @@ public class Game {
     }
 
     private void UpdateHexCells() {
-        if (client.gameState == null)
+        if (networkClient.gameState == null)
             return;
-        foreach (GameObjects.HexCell cell in client.gameState.Grid.cells) {
+        foreach (GameObjects.HexCell cell in networkClient.gameState.Grid.cells) {
             hexGrid.cells[cell.YCoord, cell.XCoord].XCoord = cell.XCoord;
             hexGrid.cells[cell.YCoord, cell.XCoord].YCoord = cell.YCoord;
             hexGrid.cells[cell.YCoord, cell.XCoord].Occupied = cell.Occupied;

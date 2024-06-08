@@ -12,13 +12,13 @@ public class GameScreen : Dialog<Scenes.Data.GameScreen> {
 
     protected override void Shown() {
         var canvas = Scene.It["Scene1"];
-        game = new Stuff.Game(Client, canvas);
+        game = new Stuff.Game(NetworkClient, canvas);
         canvas.Updated += game.UpdatePlayers;
         canvas.Updated += game.Update;
     }
 
     protected override void Closing() {
-        Client.Disconnect();
+        NetworkClient.Disconnect();
     }
 
     protected override void Update(float delta) {

@@ -13,8 +13,8 @@ using Game.GameObjects.Units;
 using Environment = System.Environment;
 
 namespace Game.Network {
-    public class Client : INetEventListener {
-        public static readonly Client Instance = new();
+    public class NetworkClient : INetEventListener {
+        public static readonly NetworkClient Instance = new();
 
         public bool isPLayerJoined = false;
 
@@ -27,6 +27,11 @@ namespace Game.Network {
         private Dictionary<int, ServerPlayer> serverPlayers = new();
         public GameState gameState;
         public Queue<MoveCommand2> commands = new();
+        public string LastPackageType { get; set; } = "";
+        public DateTime LastPackageTimeStamp { get; set; } = new(0);
+
+        public delegate void NewPacketArrivedHandler(object packet);
+        
 
         public List<ServerPlayer> GetServerPlayers() {
             return serverPlayers.Values.ToList();
@@ -94,7 +99,6 @@ namespace Game.Network {
 
         public void OnReceiveUpdate(PlayerReceiveUpdatePacket packet) {
             gameState = packet.state;
-            Console.WriteLine("Got game state");
         }
 
         public void OnPlayerJoin(PlayerJoinedGamePacket packet) {
@@ -134,6 +138,7 @@ namespace Game.Network {
         public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, byte channelNumber,
             DeliveryMethod deliveryMethod) {
             packetProcessor.ReadAllPackets(reader);
+            LastPackageTimeStamp = DateTime.Now;
         }
 
         public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader,

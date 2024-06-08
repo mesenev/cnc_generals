@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Game.Application;
 using Lime;
@@ -152,6 +153,9 @@ public static class Cheats
 			$"FPS: {The.Window.FPS}",
 			$"Window Size: {The.Window.ClientSize}",
 			$"World Size: {The.World.Size}",
+            $"Last package: {
+                (DateTime.Now - The.NetworkClient.LastPackageTimeStamp).Seconds
+            } sec. ago",
 		};
 #if PROFILER
 		if (Lime.Profiler.Graphics.Overdraw.MetricRequired) {

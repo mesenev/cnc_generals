@@ -11,7 +11,7 @@ const string playerName = "consolist"; //Console.ReadLine()!;
 
 
 
-var networkClient = new Client();
+var networkClient = new NetworkClient();
 networkClient.Connect(playerName);
 networkClient.SendPacket(new JoinPacket { username = playerName }, DeliveryMethod.Unreliable);
 while (true) {
