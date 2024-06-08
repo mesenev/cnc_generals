@@ -4,180 +4,167 @@ using Lime;
 namespace Game.Widgets;
 
 [TangerineRegisterNode]
-public class Viewport2D : Widget
-{
-	public Camera2D Camera { get; set; }
+public class Viewport2D : Widget {
+    public Camera2D Camera { get; set; }
 
-	public Viewport2D()
-	{
-	}
+    public Viewport2D() { }
 
-	public override void AddToRenderChain(RenderChain chain)
-	{
-		AddSelfToRenderChain(chain, Layer);
-	}
+    public override void AddToRenderChain(RenderChain chain) {
+        AddSelfToRenderChain(chain, Layer);
+    }
 
-	private RenderChain renderChain = new RenderChain();
+    private RenderChain renderChain = new RenderChain();
 
-	public Vector2 ViewportToWorldPoint(Vector2 worlPoint)
-	{
-		var pNdc = LocalToWorldTransform.CalcInversed().TransformVector(worlPoint);
-		pNdc.X = (pNdc.X / Size.X) * 2.0f - 1.0f;
-		pNdc.Y = 1.0f - (pNdc.Y / Size.Y) * 2.0f;
+    public Vector2 ViewportToWorldPoint(Vector2 worlPoint) {
+        var pNdc = LocalToWorldTransform.CalcInversed().TransformVector(worlPoint);
+        pNdc.X = (pNdc.X / Size.X) * 2.0f - 1.0f;
+        pNdc.Y = 1.0f - (pNdc.Y / Size.Y) * 2.0f;
 
-		var viewProj = (Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix();
-		var p = viewProj.CalcInverted().ProjectVector(pNdc);
-		return p;
-	}
+        var viewProj = (Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix();
+        var p = viewProj.CalcInverted().ProjectVector(pNdc);
+        return p;
+    }
 
-	protected override bool PartialHitTest(ref HitTestArgs args)
-	{
-		if (!BoundingRectHitTest(args.Point)) {
-			return false;
-		}
+    protected override bool PartialHitTest(ref HitTestArgs args) {
+        if (!BoundingRectHitTest(args.Point))
+            return false;
 
-		var prevPoint = args.Point;
 
-		try {
-			foreach (var n in Nodes) {
-				n.RenderChainBuilder?.AddToRenderChain(renderChain);
-			}
+        var prevPoint = args.Point;
 
-			var pNdc = LocalToWorldTransform.CalcInversed().TransformVector(args.Point);
-			pNdc.X = (pNdc.X / Size.X) * 2.0f - 1.0f;
-			pNdc.Y = 1.0f - (pNdc.Y / Size.Y) * 2.0f;
+        try {
+            foreach (var n in Nodes)
+                n.RenderChainBuilder?.AddToRenderChain(renderChain);
 
-			var viewProj = (Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix();
-			var p = viewProj.CalcInverted().ProjectVector(pNdc);
 
-			args.Point = p;
+            var pNdc = LocalToWorldTransform.CalcInversed().TransformVector(args.Point);
+            pNdc.X = (pNdc.X / Size.X) * 2.0f - 1.0f;
+            pNdc.Y = 1.0f - (pNdc.Y / Size.Y) * 2.0f;
 
-			if (renderChain.HitTest(ref args)) {
-				return true;
-			}
-		} finally {
-			renderChain.Clear();
+            var viewProj = (Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix();
+            var p = viewProj.CalcInverted().ProjectVector(pNdc);
 
-			args.Point = prevPoint;
-		}
+            args.Point = p;
 
-		return base.PartialHitTest(ref args);
-	}
+            if (renderChain.HitTest(ref args)) {
+                return true;
+            }
+        } finally {
+            renderChain.Clear();
 
-	protected override Lime.RenderObject GetRenderObject()
-	{
-		var prevClipRegion = renderChain.ClipRegion;
+            args.Point = prevPoint;
+        }
 
-		try {
-			var ro = RenderObjectPool<RenderObject>.Acquire();
+        return base.PartialHitTest(ref args);
+    }
 
-			ro.ViewportSize = Size;
-			ro.ViewportWorldTransform = LocalToWorldTransform;
+    protected override Lime.RenderObject GetRenderObject() {
+        var prevClipRegion = renderChain.ClipRegion;
 
-			ro.ViewMatrix = ComputeViewMatrix();
-			ro.ProjectionMatrix = ComputeProjectionMatrix();
+        try {
+            var ro = RenderObjectPool<RenderObject>.Acquire();
 
-			renderChain.ClipRegion = ComputeViewRect();
-			
-			foreach (var n in Nodes) {
-				n.RenderChainBuilder?.AddToRenderChain(renderChain);
-			}
+            ro.ViewportSize = Size;
+            ro.ViewportWorldTransform = LocalToWorldTransform;
 
-			renderChain.GetRenderObjects(ro.Objects);
+            ro.ViewMatrix = ComputeViewMatrix();
+            ro.ProjectionMatrix = ComputeProjectionMatrix();
 
-			return ro;
-		} finally {
-			renderChain.Clear();
-			renderChain.ClipRegion = prevClipRegion;
-		}
-	}
+            renderChain.ClipRegion = ComputeViewRect();
 
-	private Rectangle ComputeViewRect()
-	{
-		var invViewProj = ((Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix()).CalcInverted();
+            foreach (var n in Nodes) {
+                n.RenderChainBuilder?.AddToRenderChain(renderChain);
+            }
 
-		var lb = invViewProj.ProjectVector(new Vector2(-1.0f, -1.0f));
-		var rb = invViewProj.ProjectVector(new Vector2(1.0f, -1.0f));
-		var rt = invViewProj.ProjectVector(new Vector2(1.0f, 1.0f));
-		var lt = invViewProj.ProjectVector(new Vector2(-1.0f, 1.0f));
+            renderChain.GetRenderObjects(ro.Objects);
 
-		var aabb = new Rectangle(float.MaxValue, float.MaxValue, float.MinValue, float.MinValue)
-			.IncludingPoint(lb)
-			.IncludingPoint(rb)
-			.IncludingPoint(rt)
-			.IncludingPoint(lt);
+            return ro;
+        } finally {
+            renderChain.Clear();
+            renderChain.ClipRegion = prevClipRegion;
+        }
+    }
 
-		return aabb;
-	}
+    private Rectangle ComputeViewRect() {
+        var invViewProj = ((Matrix44)ComputeViewMatrix() * ComputeProjectionMatrix()).CalcInverted();
 
-	private Matrix32 ComputeViewMatrix()
-	{
-		// TODO: Don't use scale
-		return Camera.LocalToWorldTransform.CalcInversed();
-	}
+        var lb = invViewProj.ProjectVector(new Vector2(-1.0f, -1.0f));
+        var rb = invViewProj.ProjectVector(new Vector2(1.0f, -1.0f));
+        var rt = invViewProj.ProjectVector(new Vector2(1.0f, 1.0f));
+        var lt = invViewProj.ProjectVector(new Vector2(-1.0f, 1.0f));
 
-	private Matrix44 ComputeProjectionMatrix()
-	{
-		var aspectRatio = Camera.UseCustomAspectRatio ? Camera.CustomAspectRatio : Width / Height;
-		var w = aspectRatio * Camera.OrthographicSize;
-		var h = Camera.OrthographicSize;
+        var aabb = new Rectangle(
+                float.MaxValue, float.MaxValue,
+                float.MinValue, float.MinValue
+            ).IncludingPoint(lb)
+            .IncludingPoint(rb)
+            .IncludingPoint(rt)
+            .IncludingPoint(lt);
 
-		return Matrix44.CreateOrthographicOffCenter(-w * 0.5f, w * 0.5f, h * 0.5f, -h * 0.5f, -50.0f, 50.0f);
-	}
+        return aabb;
+    }
 
-	private class RenderObject : Lime.RenderObject
-	{
-		public RenderObjectList Objects = new RenderObjectList();
+    private Matrix32 ComputeViewMatrix() {
+        // TODO: Don't use scale
+        return Camera.LocalToWorldTransform.CalcInversed();
+    }
 
-		public Matrix32 ViewMatrix;
-		public Matrix44 ProjectionMatrix;
+    private Matrix44 ComputeProjectionMatrix() {
+        var aspectRatio = Camera.UseCustomAspectRatio ? Camera.CustomAspectRatio : Width / Height;
+        var w = aspectRatio * Camera.OrthographicSize;
+        var h = Camera.OrthographicSize;
 
-		public Vector2 ViewportSize;
-		public Matrix32 ViewportWorldTransform;
+        return Matrix44.CreateOrthographicOffCenter(
+            -w * 0.5f, w * 0.5f, h * 0.5f, -h * 0.5f, -50.0f, 50.0f
+        );
+    }
 
-		public override void Render()
-		{
-			System.Diagnostics.Debug.Assert(Renderer.Transform2.IsIdentity());
+    private class RenderObject : Lime.RenderObject {
+        public RenderObjectList Objects = new RenderObjectList();
 
-			Renderer.PushState(RenderState.Transform2 | RenderState.Viewport | RenderState.Projection);
+        public Matrix32 ViewMatrix;
+        public Matrix44 ProjectionMatrix;
 
-			try {
-				Renderer.Viewport = new Viewport(ComputeViewportBounds());
-				Renderer.Transform2 = ViewMatrix;
-				Renderer.Projection = ProjectionMatrix;
+        public Vector2 ViewportSize;
+        public Matrix32 ViewportWorldTransform;
 
-				Objects.Render();
-			} finally {
-				Renderer.PopState();
-			}
-		}
+        public override void Render() {
+            System.Diagnostics.Debug.Assert(Renderer.Transform2.IsIdentity());
 
-		private WindowRect ComputeViewportBounds()
-		{
-			var proj = (Matrix44)ViewportWorldTransform * Renderer.FixupWVP(Renderer.Projection);
+            Renderer.PushState(RenderState.Transform2 | RenderState.Viewport | RenderState.Projection);
 
-			var lt = proj.ProjectVector(Vector2.Zero);
-			var rb = proj.ProjectVector(ViewportSize);
+            try {
+                Renderer.Viewport = new Viewport(ComputeViewportBounds());
+                Renderer.Transform2 = ViewMatrix;
+                Renderer.Projection = ProjectionMatrix;
 
-			var minNdc = Vector2.Min(lt, rb);
-			var maxNdc = Vector2.Max(lt, rb);
+                Objects.Render();
+            } finally {
+                Renderer.PopState();
+            }
+        }
 
-			var bounds = Renderer.Viewport.Bounds;
+        private WindowRect ComputeViewportBounds() {
+            var proj = (Matrix44)ViewportWorldTransform * Renderer.FixupWVP(Renderer.Projection);
 
-			var minScreen = (Vector2)bounds.Origin + (minNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
-			var maxScreen = (Vector2)bounds.Origin + (maxNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
+            var lt = proj.ProjectVector(Vector2.Zero);
+            var rb = proj.ProjectVector(ViewportSize);
 
-			return new WindowRect {
-				Origin = (IntVector2)minScreen,
-				Size = (IntVector2)(maxScreen - minScreen)
-			};
-		}
+            var minNdc = Vector2.Min(lt, rb);
+            var maxNdc = Vector2.Max(lt, rb);
 
-		protected override void OnRelease()
-		{
-			base.OnRelease();
+            var bounds = Renderer.Viewport.Bounds;
 
-			Objects.Clear();
-		}
-	}
+            var minScreen = (Vector2)bounds.Origin + (minNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
+            var maxScreen = (Vector2)bounds.Origin + (maxNdc + Vector2.One) * (Vector2)bounds.Size * 0.5f;
+
+            return new WindowRect { Origin = (IntVector2)minScreen, Size = (IntVector2)(maxScreen - minScreen) };
+        }
+
+        protected override void OnRelease() {
+            base.OnRelease();
+
+            Objects.Clear();
+        }
+    }
 }
