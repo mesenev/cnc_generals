@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using Autofac;
 using CommandLine;
 using Game.GameObjects;
@@ -25,6 +26,7 @@ namespace Server {
         
         private static int Main(string[] args) {
             Console.OutputEncoding = Encoding.UTF8;
+            Trace.Listeners.Add(new DebugListener());
 
             Parser.Default.ParseArguments<Options>(args).WithParsed(o => {
                 PlayersAmount = o.PlayersAmountParam;
@@ -133,6 +135,16 @@ namespace Server {
             )]
             public required string PresetPathParam { get; set; }
 
+        }
+
+        private class DebugListener : TraceListener {
+            public override void Write(string? message) {
+                if (message != null) Logs.Add(message);
+            }
+
+            public override void WriteLine(string? message) {
+                if (message != null) Logs.Add(message+"\n");
+            }
         }
     }
 }

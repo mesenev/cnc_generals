@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using Game;
@@ -52,7 +53,7 @@ namespace Server {
             TimeAlive = new TimeSpan(0);
             var port = 12345;
             netManager.Start(port);
-            Program.Logs.Add($"Server is up! port: {port}");
+            Debug.WriteLine($"Server is up! port: {port}");
         }
 
         public void Stop() {
@@ -66,7 +67,7 @@ namespace Server {
         }
 
         private void OnJoinReceived(JoinPacket packet, NetPeer peer) {
-            Program.Logs.Add($"Received join from {packet.username} (pid: {(uint)peer.Id})");
+            Debug.WriteLine($"Received join from {packet.username} (pid: {(uint)peer.Id})");
 
             int peerId = peer.Id;
             ServerPlayer newPlayer =
@@ -107,7 +108,7 @@ namespace Server {
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {
             DisconnectedEvent.Invoke();
-            Program.Logs.Add($"Player (pid: {peer.Id}) left the game");
+            Debug.WriteLine($"Player (pid: {peer.Id}) left the game");
             if (peer.Tag == null)
                 return;
 
@@ -126,7 +127,7 @@ namespace Server {
         }
 
         public void OnConnectionRequest(ConnectionRequest request) {
-            Program.Logs.Add($"Incoming connection from {request.RemoteEndPoint}");
+            Debug.WriteLine($"Incoming connection from {request.RemoteEndPoint}");
             request.Accept();
             ConnectedEvent.Invoke();
         }
