@@ -9,7 +9,7 @@ namespace Game.GameObjects;
 
 public class GameState : INetSerializable {
     public HexGrid Grid;
-    public List<MarineUnit> MarineUnits = [];
+    public List<InfantryUnit> MarineUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
     public List<AirUnit> AirUnits = [];
     private int unitIdCounter;
@@ -46,7 +46,7 @@ public class GameState : INetSerializable {
 
     public void AddUnit(int unitType, int ownerId, int x, int y) {
         if (unitType == 0)
-            MarineUnits.Add(new MarineUnit(unitIdCounter, ownerId, x, y));
+            MarineUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y));
         if (unitType == 1)
             ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y));
         if (unitType == 2)
@@ -56,8 +56,8 @@ public class GameState : INetSerializable {
     }
 
     public void RemoveUnit(BaseUnit unitToRemove) {
-        if (unitToRemove.GetType() == typeof(MarineUnit)) {
-            MarineUnits.Remove(unitToRemove as MarineUnit);
+        if (unitToRemove.GetType() == typeof(InfantryUnit)) {
+            MarineUnits.Remove(unitToRemove as InfantryUnit);
         }
 
         if (unitToRemove.GetType() == typeof(ArtilleryUnit)) {
@@ -112,7 +112,7 @@ public class GameState : INetSerializable {
         int artilleryCount = reader.GetInt();
         int airCount = reader.GetInt();
         for (var i = 0; i < marineCount; i++)
-            MarineUnits.Add(reader.Get(() => new MarineUnit()));
+            MarineUnits.Add(reader.Get(() => new InfantryUnit()));
 
         for (var i = 0; i < artilleryCount; i++)
             ArtilleryUnits.Add(reader.Get(() => new ArtilleryUnit()));

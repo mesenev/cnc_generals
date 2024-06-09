@@ -23,14 +23,14 @@ public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y
 
     public static BaseUnit CreateUnitByType(int unitType, int unitId, int ownerId, int x, int y) {
         if (unitType == 0) {
-            return new MarineUnit(unitId, ownerId, x, y);
+            return new InfantryUnit(unitId, ownerId, x, y);
         }
 
         if (unitType == 1) {
             return new ArtilleryUnit(unitId, ownerId, x, y);
         }
 
-        return new MarineUnit(unitId, ownerId, x, y);
+        return new InfantryUnit(unitId, ownerId, x, y);
     }
 
     public void Serialize(NetDataWriter writer) {

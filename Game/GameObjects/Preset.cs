@@ -1,45 +1,58 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Game.GameObjects.Units;
+using BindingFlags = System.Reflection.BindingFlags;
 
-namespace Game.GameObjects {
-    public class Preset {
-        public int GridHeight;
-        public int GridWidth;
-        public int UnitsAmount;
-        public List<UnitInfo> UnitsInfo = [];
-        private string _presetFolder = "GameStatePresets/";
 
-        public Preset(string presetName) {
-            var input = File.ReadAllLines(_presetFolder + presetName)
-                .Where(x => !x.StartsWith('#'));
+namespace Game.GameObjects;
 
-            var data = string.Join(" ", input).Split().Select(int.Parse).ToList();
+public class Preset {
+    public int GridHeight;
+    public int GridWidth;
+    public int UnitsAmount;
+    public List<UnitInfo> UnitsInfo = [];
+    private string _presetFolder = "GameStatePresets/";
 
-            GridHeight = data[0];
-            GridWidth = data[1];
-            UnitsAmount = data[2];
-            var units = new List<List<int>>();
-            data = data.Slice(3, data.Count - 3);
+    public Preset(string presetName) {
+        var input = File.ReadAllLines(_presetFolder + presetName)
+            .Where(x => !x.StartsWith('#')).ToList();
 
-            for (int i = 0; i < UnitsAmount; i++) {
-                units.Add(data.Slice(i * 4, 4));
+
+        GridHeight = input.Count;
+        GridWidth = input.First().Length;
+        var x = 0;
+        var y = 0;
+        foreach (var lineFeed in input) {
+            foreach (char symbol in lineFeed) {
+                x += 1;
+                var lower = Char.ToLower(symbol).ToString();
+                if (!unitTypes.ContainsKey(lower))
+                    continue;
+                var owner = Char.IsLower(symbol) ? 0 : 1;
+                var constructor = unitTypes[lower];
+                
             }
 
-            foreach (var unitData in units) {
-                UnitsInfo.Add(new UnitInfo {
-                    ownerId = unitData[0], unitType = unitData[1], x = unitData[2], y = unitData[3],
-                });
-            }
-
-            return;
+            y += 1;
         }
+
+        return;
     }
 
-    public struct UnitInfo {
-        public int ownerId;
-        public int unitType;
-        public int x;
-        public int y;
-    }
+
+    private Dictionary<string, Type> unitTypes = new Dictionary<string, Type>() {
+        { "i", typeof(InfantryUnit) },
+        { "b", typeof(PlayerBase) },
+        { "a", typeof(ArtilleryUnit) },
+        { "v", typeof(AirUnit) },
+    };
+}
+
+public struct UnitInfo {
+    public int ownerId;
+    public int unitType;
+    public int x;
+    public int y;
 }
