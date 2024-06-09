@@ -88,6 +88,7 @@ namespace Game.Network {
         public void OnJoinAccept(JoinAcceptPacket packet) {
             Console.WriteLine($"Join accepted by server (pid: {packet.state})");
             gameState = packet.state;
+            clientPlayer = packet.player;
             IsPLayerJoined = true;
         }
 

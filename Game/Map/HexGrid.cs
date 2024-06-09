@@ -15,7 +15,9 @@ namespace Game.Map {
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    cells[y, x] = new HexCell(canvas, new Vector2(x, y), x, y);
+                    cells[y, x] = new HexCell(
+                        canvas, new Vector2(x, y), x, y, width, height
+                    );
                 }
             }
         }

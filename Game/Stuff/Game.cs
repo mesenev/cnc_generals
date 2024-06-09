@@ -126,7 +126,9 @@ public class Game {
                 Canvas,
                 hexGrid.cells[unit.x, unit.y].GetPosition(unit.x, unit.y),
                 unit.UnitId,
-                spritePath: "Sprites/Unit"
+                spritePath: networkClient.GetClientPlayer().playerId == unit.OwnerId
+                    ? "Sprites/Unit"
+                    : "Sprites/Hero"
             );
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
