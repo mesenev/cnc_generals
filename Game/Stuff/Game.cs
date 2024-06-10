@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.Commands;
+using Game.Map;
 using Game.Network;
 using Game.Widgets;
 using Lime;
@@ -8,7 +10,7 @@ using HexGrid = Game.Map.HexGrid;
 
 namespace Game.Stuff;
 
-public delegate void UpdateDelegate();
+public delegate void Handler();
 
 public class Game {
     public Widget Canvas { get; set; }
@@ -19,6 +21,8 @@ public class Game {
     private readonly NetworkClient networkClient;
 
     private HexGrid hexGrid;
+    private FOWGrid fowGrid;
+    public static event Handler OnMovementEvent = () => { };
 
     public HexCell SelectedCell;
     public HexCell DestinationCell;
@@ -63,6 +67,9 @@ public class Game {
 
     private void InitHexGrid(Widget canvas, int width, int height) {
         hexGrid = new HexGrid(canvas, width, height);
+        fowGrid = new FOWGrid(networkClient.gameState.Units.ToList());
+        fowGrid.InitFOW(width, height);
+        OnMovementEvent += fowGrid.EventTest;
 
         foreach (var cell in hexGrid.cells) {
             processors.Add(new HexInteractionProcessor(cell, viewport));
@@ -106,14 +113,14 @@ public class Game {
                 networkClient.gameState.Grid.height
             );
         }
-
+        
         RemovePlayersFromCanvas();
         GetPlayersFromServer();
         UpdateHexCells();
     }
 
     private void RemovePlayersFromCanvas() {
-        Canvas.Nodes.RemoveAll(_ => true);
+        Canvas.Nodes.RemoveAll(el => el.GetType() == typeof(Image));
         components.RemoveAll(_ => true);
         processors.RemoveAll(el => el.GetType() == typeof(PlayerInputProcessor));
     }
@@ -133,6 +140,8 @@ public class Game {
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
         }
+        fowGrid.UpdateUnits(networkClient.gameState.Units.ToList());
+        OnMovementEvent.Invoke();
     }
 
     private void UpdateHexCells() {

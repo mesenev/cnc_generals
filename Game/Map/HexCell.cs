@@ -18,6 +18,7 @@ namespace Game.Map {
         }
 
         public Vector2 HexPosition;
+        public Vector2 AxialCoords;
 
         public HexCell(Widget canvas, Vector2 newPos, int xCoord, int yCoord, int gridX,
             int gridY) {
@@ -30,14 +31,28 @@ namespace Game.Map {
                 Pivot = Vector2.Half,
             };
             HexPosition = newPos;
+            AxialCoords = newPos;
             image.Position = GetPosition(newPos.X, newPos.Y);
-            canvas.Nodes.Add(image);
+            canvas.AddNode(image);
         }
 
-        public Vector2 GetPosition(float x, float y) {
+        public void AddCoords(Widget canvas) {
+            var text = new SimpleText {
+                Text = $"{AxialCoords.Y},{AxialCoords.X}",
+                TextColor = Color4.White,
+                FontHeight = 16,
+                Position = image.Position
+            };
+            canvas.PushNode(text);
+        }
+
+        public Vector2 GetPosition(float y, float x) {
             return new Vector2(
-                x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
-                (GridY - y) * 0.75f * image.Width
+                // x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
+                // (GridY - y) * 0.75f * image.Width
+                
+                y * image.Height + (x % 2 * image.Height / 2) + image.Height / 2,
+                x * 0.75f * image.Width + image.Width / 2
             );
         }
     }

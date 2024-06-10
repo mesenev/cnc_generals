@@ -13,7 +13,7 @@ public class HexInteractionProcessor(HexCell cell, Viewport2D viewport) : IProce
     public void Update(float delta, Game game) {
         var canvasInput = game.Canvas.Input;
         if (!IsMouseOver(viewport.ViewportToWorldPoint(Window.Current.Input.MousePosition))) {
-            _cell.image.Color = Color4.Gray;
+            // _cell.image.Color = Color4.Gray;
             return;
         }
 

@@ -18,7 +18,7 @@ namespace Game.Stuff
 				Position = newPos,
 				Pivot = Vector2.Half,
 			};
-			canvas.Nodes.Add(image);
+			canvas.AddNode(image);
 		}
 	}
 }

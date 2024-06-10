@@ -12,6 +12,7 @@ public class CanvasManager {
         CreateNewCanvas(Layers.Background, parent);
         CreateNewCanvas(Layers.HexMap, canvases[Layers.Background]);
         CreateNewCanvas(Layers.Entities, canvases[Layers.HexMap]);
+        CreateNewCanvas(Layers.FogMask, canvases[Layers.Entities]);
     }
 
     private void CreateNewCanvas(int layer, Node parent) {
