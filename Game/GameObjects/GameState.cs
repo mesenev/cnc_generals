@@ -21,8 +21,7 @@ public class GameState : INetSerializable {
 
     public GameState(Preset preset) {
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
-        for (var i = 0; i < preset.UnitsAmount; i++) {
-            UnitInfo info = preset.UnitsInfo[i];
+        foreach (var info in preset.UnitsInfo) {
             AddUnit(info.unitType, info.ownerId, info.x, info.y);
         }
     }
@@ -36,7 +35,8 @@ public class GameState : INetSerializable {
         get {
             return MarineUnits
                 .Concat(ArtilleryUnits.Cast<BaseUnit>())
-                .Concat(AirUnits);
+                .Concat(AirUnits)
+                .Concat(PlayerBases);
         }
     }
 
@@ -100,13 +100,15 @@ public class GameState : INetSerializable {
         writer.Put(MarineUnits.Count);
         writer.Put(ArtilleryUnits.Count);
         writer.Put(AirUnits.Count);
+        writer.Put(PlayerBases.Count);
+
         foreach (var unit in MarineUnits)
             unit.Serialize(writer);
 
         foreach (var unit in ArtilleryUnits)
             unit.Serialize(writer);
 
-        foreach (var unit in AirUnits)
+        foreach (var unit in PlayerBases)
             unit.Serialize(writer);
     }
 
@@ -115,6 +117,7 @@ public class GameState : INetSerializable {
         int marineCount = reader.GetInt();
         int artilleryCount = reader.GetInt();
         int airCount = reader.GetInt();
+        int basesCount = reader.GetInt();
         for (var i = 0; i < marineCount; i++)
             MarineUnits.Add(reader.Get(() => new InfantryUnit()));
 
@@ -124,6 +127,8 @@ public class GameState : INetSerializable {
         for (var i = 0; i < airCount; i++)
             AirUnits.Add(reader.Get(() => new AirUnit()));
 
+        for (var i = 0; i < basesCount; i++)
+            PlayerBases.Add(reader.Get(() => new PlayerBase()));
         return;
     }
 

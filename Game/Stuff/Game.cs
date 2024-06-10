@@ -124,7 +124,7 @@ public class Game {
         foreach (var unit in networkClient.gameState.Units) {
             var newUnit = new UnitComponent(
                 Canvas,
-                hexGrid.cells[unit.x, unit.y].GetPosition(unit.x, unit.y),
+                hexGrid.cells[unit.y, unit.x].GetPosition(unit.x, unit.y),
                 unit.UnitId,
                 spritePath: networkClient.GetClientPlayer().playerId == unit.OwnerId
                     ? "Sprites/Unit"

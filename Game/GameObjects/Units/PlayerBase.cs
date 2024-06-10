@@ -1,7 +1,9 @@
 namespace Game.GameObjects.Units;
 
 public class PlayerBase : BaseUnit {
-    public PlayerBase(int unitId, int ownerId, int x, int y) : base(unitId, ownerId, x, y) {
+    public PlayerBase(
+        int unitId = 0, int ownerId = 0, int x = 0, int y = 0
+    ) : base(unitId, ownerId, x, y) {
         unitType = UnitType.PlayerBase;
         CanMove = false;
         CanAttack = true;

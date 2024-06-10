@@ -50,7 +50,7 @@
     <None Update="GameStatePresets\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="GameStatePresets\default_new.txt">
+    <None Update="GameStatePresets\default.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

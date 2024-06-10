@@ -12,7 +12,6 @@ namespace Game.GameObjects;
 public class Preset {
     public int GridHeight;
     public int GridWidth;
-    public int UnitsAmount;
     public List<UnitInfo> UnitsInfo = [];
     private string _presetFolder = "GameStatePresets/";
 
@@ -32,9 +31,12 @@ public class Preset {
                 if (!unitTypes.ContainsKey(lower))
                     continue;
                 var owner = Char.IsLower(symbol) ? 0 : 1;
-                var unitInfo = new UnitInfo {
-                    unitType = unitTypes[lower], ownerId = owner, x = x, y = y
-                };
+                UnitsInfo.Add(
+                    new UnitInfo {
+                        unitType = unitTypes[lower], ownerId = owner, x = x, y = y
+                    }
+                );
+
             }
 
             y += 1;
