@@ -8,17 +8,12 @@ using Lime;
 
 namespace Game.Map {
     public class FOWGrid {
-        public delegate void Handler();
-
+        
         private HexGrid gridMask;
         private Dictionary<Vector2, HexCell> axialGridMask = new();
         private List<BaseUnit> units;
-
-        public static event Handler OnMovementEvent = () => { };
-
-
+        
         public FOWGrid(List<BaseUnit> units) {
-            OnMovementEvent += SetUnitsPositionVisible;
             UpdateUnits(units);
         }
 
@@ -33,7 +28,7 @@ namespace Game.Map {
             gridMask = new HexGrid(canvas, width, height);
             InitAxialGrid();
 
-            SetUnitsPositionVisible();
+            RecalculateFOW();
         }
 
         private void SetFog() {
@@ -42,10 +37,10 @@ namespace Game.Map {
             }
         }
 
-        private void SetUnitsPositionVisible() {
+        public void RecalculateFOW() {
             SetFog();
-            foreach (var unitCell in GetUnitsCells()) {
-                var visibleUnitCells = GetVisibleCellsByUnit(unitCell);
+            foreach (var unit in units) {
+                var visibleUnitCells = GetVisibleCellsByUnit(unit);
                 foreach (var cell in gridMask.cells) {
                     if (visibleUnitCells.Contains(cell)) cell.image.Color = Color4.Transparent;
                 }
@@ -56,11 +51,10 @@ namespace Game.Map {
             return units.Select(x => gridMask.cells[x.y, x.x]).ToList();
         }
 
-        private List<HexCell> GetVisibleCellsByUnit(HexCell unitCell) {
-            var visionRadius = 1;
+        private List<HexCell> GetVisibleCellsByUnit(BaseUnit unit) {
             var visibleCells = new List<HexCell>();
-            
-            var unitCellAxialCoords = unitCell.AxialCoords;
+            var visionRadius = unit.VisibleRadius;
+            var unitCellAxialCoords = gridMask.cells[unit.y, unit.x].AxialCoords;
 
             for (int i = -visionRadius; i <= visionRadius; i++) {
                 for (int j = int.Max(-visionRadius, -i - visionRadius);
@@ -80,10 +74,6 @@ namespace Game.Map {
 
         public void UpdateUnits(List<BaseUnit> units) {
             this.units = units;
-        }
-
-        public void EventTest() {
-            SetUnitsPositionVisible();
         }
     }
 }

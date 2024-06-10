@@ -13,5 +13,6 @@ public class InfantryUnit : BaseUnit {
         MovementSpeed = 5f;
         AttackSpeed = 1;
         AttackDamage = 20;
+        VisibleRadius = 3;
     }
 }

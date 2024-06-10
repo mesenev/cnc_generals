@@ -15,14 +15,13 @@ public delegate void Handler();
 public class Game {
     public Widget Canvas { get; set; }
 
-    private readonly List<Component> components = [];
-    private readonly List<IProcessor> processors = [];
+    private readonly List<Component> components =  [];
+    private readonly List<IProcessor> processors =  [];
 
     private readonly NetworkClient networkClient;
 
     private HexGrid hexGrid;
     private FOWGrid fowGrid;
-    public static event Handler OnMovementEvent = () => { };
 
     public HexCell SelectedCell;
     public HexCell DestinationCell;
@@ -69,7 +68,6 @@ public class Game {
         hexGrid = new HexGrid(canvas, width, height);
         fowGrid = new FOWGrid(networkClient.gameState.Units.ToList());
         fowGrid.InitFOW(width, height);
-        OnMovementEvent += fowGrid.EventTest;
 
         foreach (var cell in hexGrid.cells) {
             processors.Add(new HexInteractionProcessor(cell, viewport));
@@ -113,7 +111,7 @@ public class Game {
                 networkClient.gameState.Grid.height
             );
         }
-        
+
         RemovePlayersFromCanvas();
         GetPlayersFromServer();
         UpdateHexCells();
@@ -140,8 +138,12 @@ public class Game {
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
         }
-        fowGrid.UpdateUnits(networkClient.gameState.Units.ToList());
-        OnMovementEvent.Invoke();
+
+        fowGrid.UpdateUnits(
+            networkClient.gameState.Units
+                .Where(unit => unit.OwnerId == networkClient.GetClientPlayer().playerId).ToList()
+        );
+        fowGrid.RecalculateFOW();
     }
 
     private void UpdateHexCells() {

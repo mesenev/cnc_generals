@@ -10,5 +10,6 @@ public class PlayerBase : BaseUnit {
         MovementSpeed = 0;
         AttackSpeed = 1;
         AttackDamage = 10;
+        VisibleRadius = 1;
     }
 }

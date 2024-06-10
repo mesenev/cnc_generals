@@ -13,6 +13,7 @@ public class AirUnit : BaseUnit {
         MovementSpeed = 0.5f;
         AttackSpeed = 0;
         AttackDamage = 0;
+        VisibleRadius = 2;
     }
 
     public void AttackCell(GameState state, HexCell cell) {

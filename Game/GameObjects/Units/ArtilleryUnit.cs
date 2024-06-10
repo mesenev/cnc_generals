@@ -10,6 +10,7 @@ public class ArtilleryUnit : BaseUnit {
         MovementSpeed = 0.5f;
         AttackSpeed = 0;
         AttackDamage = 0;
+        VisibleRadius = 1;
     }
 
     public void AttackCell(GameState state, HexCell cell) {

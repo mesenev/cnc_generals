@@ -18,6 +18,7 @@ public class CanvasManager {
     private void CreateNewCanvas(int layer, Node parent) {
         if (canvases.ContainsKey(layer)) return;
         var newCanvas = new Frame { Id = layer.ToString() };
+        newCanvas.Unlink();
         parent.PushNode(newCanvas);
         canvases.Add(layer, newCanvas);
     }

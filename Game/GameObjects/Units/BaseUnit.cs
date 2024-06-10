@@ -21,6 +21,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public float MovementSpeed;
     public float AttackSpeed;
     public int AttackDamage;
+    public int VisibleRadius;
     public int x = x;
     public int y = y;
 
