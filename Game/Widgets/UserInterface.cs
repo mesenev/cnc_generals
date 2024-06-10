@@ -1,23 +1,18 @@
-using System;
-using DevPanel;
 using Game.Commands;
+using Game.GameObjects.Units;
 using Lime;
-using Yuzu;
-using Menu = Lime.Menu;
 
 namespace Game.Widgets;
 
-// [TangerineRegisterNode]
 public class UserInterface {
-    private static Menu instance;
-    private Widget parentContainer;
-    public readonly Frame topContainer;
-    private SerializableFont Font = new SerializableFont("RobotoMed");
+    private readonly Widget parentContainer;
+    public readonly Frame TopContainer;
+    private readonly SerializableFont Font = new("RobotoMed");
 
 
     public UserInterface(Widget currentContainer) {
         parentContainer = currentContainer;
-        topContainer = new Frame {
+        TopContainer = new Frame {
             Anchors = Anchors.LeftRightTopBottom,
             Size = new Vector2(50, 50),
             Visible = false,
@@ -25,20 +20,20 @@ public class UserInterface {
             Color = Color4.DarkGray,
             Presenter = new WidgetFlatFillPresenter(Theme.Colors.TabActive),
         };
-        parentContainer.AddNode(topContainer);
-        topContainer.CenterOnParent();
+        parentContainer.AddNode(TopContainer);
+        TopContainer.CenterOnParent();
         // var listContainer = (Frame)topContainer.Clone();
-        topContainer.Layer = Layers.Interface;
+        TopContainer.Layer = Layers.Interface;
         var w = new Widget() {
-            Layout = new VBoxLayout(), Size = topContainer.Size,
+            Layout = new VBoxLayout(), Size = TopContainer.Size,
             Anchors = Anchors.LeftRightTopBottom
         };
         // w.AddNode(listContainer);
         w.AddNode(CreateToolPanel());
-        topContainer.AddNode(w);
+        TopContainer.AddNode(w);
         // topContainer.AddNode(back);
         // back.CenterOnParent();
-        topContainer.SetFocus();
+        TopContainer.SetFocus();
     }
 
     private Widget CreateToolPanel() {
@@ -65,13 +60,19 @@ public class UserInterface {
         w.AddNode(orderAir);
         w.AddNode(orderInfantry);
         orderArtillery.Clicked = () => {
-            The.NetworkClient.commands.Enqueue(new OrderUnitCommand(0, 1));
+            The.NetworkClient.commands.Enqueue(
+                new OrderUnitCommand(0, UnitType.ArtilleryUnit)
+            );
         };
         orderInfantry.Clicked = () => {
-            The.NetworkClient.commands.Enqueue(new OrderUnitCommand(0, 0));
+            The.NetworkClient.commands.Enqueue(
+                new OrderUnitCommand(0, UnitType.InfantryUnit)
+            );
         };
         orderAir.Clicked = () => {
-            The.NetworkClient.commands.Enqueue(new OrderUnitCommand(0, 2));
+            The.NetworkClient.commands.Enqueue(
+                new OrderUnitCommand(0, UnitType.AirUnit)
+            );
         };
         return w;
     }

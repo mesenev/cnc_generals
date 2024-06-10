@@ -1,21 +1,22 @@
 using System;
+using Game.GameObjects.Units;
 using Game.Network.ClientPackets;
 using LiteNetLib.Utils;
 
 namespace Game.Commands;
 
-public struct OrderUnitCommand(int userId, int unitType) : ICommand {
+public struct OrderUnitCommand(int userId, UnitType unitType) : ICommand {
     public int UserId = userId;
-    public int UnitType = unitType;
+    public UnitType UnitType = unitType;
 
     public void Serialize(NetDataWriter writer) {
         writer.Put(UserId);
-        writer.Put(UnitType);
+        writer.Put((int)UnitType);
     }
 
     public void Deserialize(NetDataReader reader) {
         UserId = reader.GetInt();
-        UnitType = reader.GetInt();
+        UnitType = (UnitType)reader.GetInt();
     }
 
     public BaseCommandPacket ToPacket() {

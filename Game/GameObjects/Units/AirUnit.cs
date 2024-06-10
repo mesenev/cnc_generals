@@ -5,7 +5,7 @@ public class AirUnit : BaseUnit {
         int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : base(
         unitId, ownerId, x, y
     ) {
-        unitType = 1;
+        unitType = UnitType.AirUnit;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;

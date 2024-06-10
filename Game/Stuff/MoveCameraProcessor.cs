@@ -17,11 +17,11 @@ public class MoveCameraProcessor : IProcessor {
     public void Update(float delta, Game game) {
 
         if (Window.Current.Input.IsKeyPressed(Key.Tab)) {
-            Viewport2D.UserInterface.topContainer.Visible = true;
+            Viewport2D.UserInterface.TopContainer.Visible = true;
         }
 
         if (Window.Current.Input.WasKeyReleased(Key.Tab)) {
-            Viewport2D.UserInterface.topContainer.Visible = false;
+            Viewport2D.UserInterface.TopContainer.Visible = false;
         }
 
 

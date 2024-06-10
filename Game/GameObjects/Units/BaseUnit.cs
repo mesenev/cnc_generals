@@ -1,10 +1,18 @@
-﻿using LiteNetLib.Utils;
+﻿using System;
+using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Units;
 
-public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : INetSerializable {
+public enum UnitType {
+    PlayerBase,
+    InfantryUnit,
+    ArtilleryUnit,
+    AirUnit,
+}
+
+public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSerializable {
     public int Health;
-    public int unitType;
+    protected UnitType unitType;
     public bool CanMove;
     public bool CanAttack;
     public bool HasAbility;
@@ -34,7 +42,7 @@ public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y
     }
 
     public void Serialize(NetDataWriter writer) {
-        writer.Put(unitType);
+        writer.Put((int)unitType);
         writer.Put(UnitId);
         writer.Put(OwnerId);
         writer.Put(Health);
@@ -43,7 +51,7 @@ public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y
     }
 
     public virtual void Deserialize(NetDataReader reader) {
-        unitType = reader.GetInt();
+        unitType = (UnitType)reader.GetInt();
         UnitId = reader.GetInt();
         OwnerId = reader.GetInt();
         Health = reader.GetInt();
@@ -51,3 +59,5 @@ public abstract class BaseUnit(int unitId = 0, int ownerId = 0, int x = 0, int y
         y = reader.GetInt();
     }
 }
+
+

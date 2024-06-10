@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Game.GameObjects.Units;
 using BindingFlags = System.Reflection.BindingFlags;
 
@@ -21,18 +22,19 @@ public class Preset {
 
 
         GridHeight = input.Count;
-        GridWidth = input.First().Length;
-        var x = 0;
+        GridWidth = input.Max(s => s.Length);
         var y = 0;
-        foreach (var lineFeed in input) {
+        foreach (string lineFeed in input) {
+            var x = 0;
             foreach (char symbol in lineFeed) {
                 x += 1;
                 var lower = Char.ToLower(symbol).ToString();
                 if (!unitTypes.ContainsKey(lower))
                     continue;
                 var owner = Char.IsLower(symbol) ? 0 : 1;
-                var constructor = unitTypes[lower];
-                
+                var unitInfo = new UnitInfo {
+                    unitType = unitTypes[lower], ownerId = owner, x = x, y = y
+                };
             }
 
             y += 1;
@@ -42,17 +44,17 @@ public class Preset {
     }
 
 
-    private Dictionary<string, Type> unitTypes = new Dictionary<string, Type>() {
-        { "i", typeof(InfantryUnit) },
-        { "b", typeof(PlayerBase) },
-        { "a", typeof(ArtilleryUnit) },
-        { "v", typeof(AirUnit) },
+    private static readonly Dictionary<string, UnitType> unitTypes = new() {
+        { "i", UnitType.InfantryUnit },
+        { "b", UnitType.PlayerBase },
+        { "a", UnitType.ArtilleryUnit },
+        { "v", UnitType.AirUnit },
     };
 }
 
 public struct UnitInfo {
     public int ownerId;
-    public int unitType;
+    public UnitType unitType;
     public int x;
     public int y;
 }

@@ -12,6 +12,7 @@ public class GameState : INetSerializable {
     public List<InfantryUnit> MarineUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
     public List<AirUnit> AirUnits = [];
+    public List<PlayerBase> PlayerBases = [];
     private int unitIdCounter;
     public TimeSpan ElapsedGameTime { get; set; } = new(0);
     public bool GameInitiated { get; set; }
@@ -33,7 +34,7 @@ public class GameState : INetSerializable {
 
     public IEnumerable<BaseUnit> Units {
         get {
-            return MarineUnits 
+            return MarineUnits
                 .Concat(ArtilleryUnits.Cast<BaseUnit>())
                 .Concat(AirUnits);
         }
@@ -44,13 +45,16 @@ public class GameState : INetSerializable {
         return Units.First(unit => unit.UnitId == id);
     }
 
-    public void AddUnit(int unitType, int ownerId, int x, int y) {
-        if (unitType == 0)
+    public void AddUnit(UnitType unitType, int ownerId, int x, int y) {
+        if (unitType == UnitType.InfantryUnit)
             MarineUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y));
-        if (unitType == 1)
+        if (unitType == UnitType.ArtilleryUnit)
             ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y));
-        if (unitType == 2)
+        if (unitType == UnitType.AirUnit)
             AirUnits.Add(new AirUnit(unitIdCounter, ownerId, x, y));
+        if (unitType == UnitType.PlayerBase)
+            PlayerBases.Add(new PlayerBase(unitIdCounter, ownerId, x, y));
+
         Grid.cells[y, x].UpdateCellUnit(unitIdCounter);
         unitIdCounter++;
     }
