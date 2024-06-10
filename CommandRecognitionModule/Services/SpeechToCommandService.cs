@@ -12,19 +12,19 @@ public class SpeechToCommandService : SpeechToCommand.SpeechToCommandBase {
     public SpeechToCommandService(ILogger<SpeechToCommandService> logger) {
         _logger = logger;
         iamToken =
-            "t1.9euelZrIyYqdkpXKm8bOj5OblpqXj-3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_ceVTVN-e9Xekpn_d3z914DM03571d6Smf9zef1656VmpeVl8aTlYyPjMiZzY2YzIuV7_zF656VmpeVl8aTlYyPjMiZzY2YzIuV.iZag2k_Y9-G9X4ub9-ujIQ23Ftn_EFvYHEw6x5eQRtZ7nYktSJQGqeqr4lSuEhROoVRm0zBMDMElbgCAYV5oBA";
+            "t1.9euelZrGkc7GiYvPl5TNl4qLyZCTmu3rnpWamM2dy5eVz8aMx8-NncqKzZ3l8_c9Q2VM-e85czoN_d3z931xYkz57zlzOg39zef1656VmpGPiZSJi82azpXJkJ2ejMmY7_zF656VmpGPiZSJi82azpXJkJ2ejMmY.p3a4Ct6iAJ7FZq2dI7mt5Wvre7Bw6ysPY9lj5pRrVgVtqgdLKGJZUMvZ2lEQHDIWj-NLjcSGMZraJ52rZdO9Bg";
         _yandexSttClient = new YandexSttClient(iamToken, new Uri("https://stt.api.cloud.yandex.net:443"),
             "b1gv6ij7c6frub5g0dk2");
-        _yandexSttClient.startStreamToApi();
     }
 
     public override async Task<Response> AudioToText(IAsyncStreamReader<VoiceAudio> requestStream,
         ServerCallContext context) {
+        Console.WriteLine("START AUDIO TO TEXT!");
+        _yandexSttClient.startStreamToApi();
         await foreach (VoiceAudio audio_voice in requestStream.ReadAllAsync()) {
             try {
                 _yandexSttClient.writeDataToOpenStreamCall(audio_voice.RecordVoice).Wait();
             }
-            //Если ytt deadline истек, пересоздает поток к ytt, и записывает в него последнее полученное сообщение
             catch (Exception error) {
                 Console.WriteLine("Exception during write to yandex stt. Trying reconnect");
                 _yandexSttClient.disposeAll();
@@ -40,38 +40,35 @@ public class SpeechToCommandService : SpeechToCommand.SpeechToCommandBase {
         InputText request,
         IServerStreamWriter<DummyCommand> responseStream,
         ServerCallContext context) {
+        
         List<string> known_commands = new List<string>(["вверх", "вниз", "влево", "вправо"]);
         CommandParser parser = new CommandParser(known_commands);
         Console.WriteLine("START TEXT TO COMMAND SERVICE");
         while (true) {
-            Console.WriteLine("ITERATION");
             string recString = "";
             try {
-                recString = _yandexSttClient.ReadFinalRefirementResponseFromOpenStream().Result;
-            } catch (Exception error) {
-                _yandexSttClient.disposeAll();
-                _yandexSttClient.startStreamToApi();
-                Console.WriteLine(error);
-                Console.WriteLine(
-                    "Exception during read final refirement from yandex stt. You should write something to request stream of CRM to recreate stream to YSTT");
+                // в случае ошибки возвращается пустота
+                recString = _yandexSttClient.TryReadFinalRefirementResponseFromOpenStream().Result;
+            } catch (AggregateException error) {
+                Console.WriteLine("Нечего считывать из потока  TextToCommand. Начните писать в AudioToText");
             }
-
-            //recString = Encoding.Default.GetString(Encoding.Default.GetBytes(recString));
-            Console.WriteLine($"REC STRING: {recString}");
+            
             if (recString.Split().Length >= 2) {
                 try {
                     int offset = Int32.Parse(recString.Split()[1]);
                     await responseStream.WriteAsync(new DummyCommand {
                         Direction = recString.Split()[0], Offset = offset
                     });
+                    Console.WriteLine($"REC STRING: {recString}");
                 } catch (FormatException e) {
-                    Console.WriteLine("");
+                    //Console.WriteLine("");
                 }
             }
-            //else
-            // {
-            //     await responseStream.WriteAsync(new DummyCommand{ Direction = "EMPTY ANSWER", Offset = 0 });
-            // }
+            else
+            {
+                
+                await responseStream.WriteAsync(new DummyCommand{ Direction = "EMPTY ANSWER", Offset = 0 });
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ public class YandexSttClient {
     private string iamToken;
     private Uri apiUri;
     private string folderId;
+
+    private GrpcChannel channel;
     private Recognizer.RecognizerClient recognizerClient;
     private AsyncDuplexStreamingCall<StreamingRequest, StreamingResponse> call;
 
@@ -56,7 +58,7 @@ public class YandexSttClient {
         GrpcChannelOptions channelOptions = new GrpcChannelOptions();
         channelOptions.Credentials = creds;
 
-        GrpcChannel channel = GrpcChannel.ForAddress(apiUri, channelOptions);
+        channel = GrpcChannel.ForAddress(apiUri, channelOptions);
         recognizerClient = new Recognizer.RecognizerClient(channel);
         call = recognizerClient.RecognizeStreaming(makeMetadata(), deadline: DateTime.UtcNow.AddMinutes(5));
         call.RequestStream.WriteAsync(makeRequestWithOptions()).Wait();
@@ -124,13 +126,14 @@ public class YandexSttClient {
         return "";
     }
 
-    async public Task<string> ReadFinalRefirementResponseFromOpenStream() {
-        if (call.ResponseStream.MoveNext().Result) {
-            if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.FinalRefinement) {
-                return call.ResponseStream.Current.FinalRefinement.NormalizedText.Alternatives[0].Text;
+    async public Task<string> TryReadFinalRefirementResponseFromOpenStream() {
+        if (channel.State == ConnectivityState.Ready) {
+            if (call.ResponseStream.MoveNext(new CancellationToken()).Result) {
+                if (call.ResponseStream.Current.EventCase == StreamingResponse.EventOneofCase.FinalRefinement) {
+                    return call.ResponseStream.Current.FinalRefinement.NormalizedText.Alternatives[0].Text;
+                }
             }
         }
-
         return "";
     }
 
@@ -199,6 +202,7 @@ public class YandexSttClient {
     }
 
     public void disposeAll() {
+        channel.Dispose();
         call.Dispose();
     }
 }

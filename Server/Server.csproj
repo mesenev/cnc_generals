@@ -13,6 +13,12 @@
       <PackageReference Include="LiteNetLib" Version="1.2.0" />
       <PackageReference Include="NetCoreAudio" Version="2.0.0" />
       <PackageReference Include="Terminal.Gui" Version="1.17.0" />
+      <PackageReference Include="Google.Protobuf" Version="3.25.1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.59.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.59.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
     </ItemGroup>
 
 
@@ -33,9 +39,9 @@
 
     <Target Name="CopyFilesFromProjectA" AfterTargets="Build">
         <ItemGroup>
-            <FilesFromA Include="$(SolutionDir)\..\Game\bin\$(Configuration)\net8.0-windows\GameStatePresets\**\*" />
+            <FilesFromA Include="%(SolutionDir)\..\Game\bin\$(Configuration)\net8.0-windows\GameStatePresets\**\*" />
         </ItemGroup>
-        <Copy SourceFiles="@(FilesFromA)" DestinationFolder="$(OutDir)\GameStatePresets\" />
+        <Copy SourceFiles="@(FilesFromA)" DestinationFolder="%(OutDir)\GameStatePresets\" />
     </Target>
 
 

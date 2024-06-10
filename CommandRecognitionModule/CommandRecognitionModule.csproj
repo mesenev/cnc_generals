@@ -18,31 +18,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="google\api\annotations.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="google\api\http.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="google\rpc\status.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-    <Protobuf Include="yandex\cloud\ai\stt\v3\stt.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="yandex\cloud\ai\stt\v3\stt_service.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="yandex\cloud\api\operation.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="yandex\cloud\operation\operation.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
-    <Protobuf Include="yandex\cloud\validation.proto">
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
+    <Protobuf Include="google/api/http.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="google/api/annotations.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="yandex/cloud/api/operation.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="google/rpc/status.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="yandex/cloud/operation/operation.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="yandex/cloud/validation.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="yandex/cloud/ai/stt/v3/stt_service.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="yandex/cloud/ai/stt/v3/stt.proto" GrpcServices="Client" />
   </ItemGroup>
 
   <ItemGroup>

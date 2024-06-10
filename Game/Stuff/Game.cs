@@ -40,7 +40,10 @@ public class Game {
 
         // ToDO скорее всего процесс перемещения камеры должен создаваться в другом месте
         var moveCameraProcessor = new MoveCameraProcessor(camera);
+        var voiceStreamingProcessor = new VoiceStreamingProcessor();
+        
         processors.Add(moveCameraProcessor);
+        processors.Add(voiceStreamingProcessor);
     }
 
     private void InitializeViewportAndCameraAndAddToWidget(Widget parent) {
