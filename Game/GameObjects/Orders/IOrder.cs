@@ -1,7 +1,7 @@
 ﻿using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Orders {
-    public interface IOrder: INetSerializable {
+    public interface IOrder : INetSerializable {
         OrderStatus Update(GameState state);
     }
 

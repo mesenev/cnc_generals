@@ -91,7 +91,8 @@ public class GameState : INetSerializable {
         if (!GameInitiated | IsPaused)
             return;
 
-        foreach (IOrder order in Orders) {
+        var copy = Orders.ToList();
+        foreach (IOrder order in copy) {
             if (order.Update(this) == OrderStatus.Finished)
                 RemoveOrder(order);
         }
@@ -124,6 +125,7 @@ public class GameState : INetSerializable {
         writer.Put(ArtilleryUnits.Count);
         writer.Put(AirUnits.Count);
         writer.Put(PlayerBases.Count);
+
         writer.Put(MoveOrders.Count);
 
         foreach (var unit in MarineUnits)
@@ -161,8 +163,7 @@ public class GameState : INetSerializable {
 
         for (var i = 0; i < moveOrdersCount; i++)
             MoveOrders.Add(reader.Get(() => new MoveOrder()));
-
-        return;
+        //TODO Properly serializable orders
     }
 
     public void InitializeWorld() {

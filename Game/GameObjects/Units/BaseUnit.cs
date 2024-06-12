@@ -30,6 +30,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public void UpdatePosition(HexCell newPosition) {
         x = newPosition.XCoord;
         y = newPosition.YCoord;
+        newPosition.CellUnitId = unitId;
     }
 
     public static BaseUnit CreateUnitByType(int unitType, int unitId, int ownerId, int x, int y) {

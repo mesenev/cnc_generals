@@ -8,7 +8,7 @@ using LiteNetLib.Utils;
 namespace Game.GameObjects.Orders {
     public class MoveOrder(int destinationCellX = -1, int destinationCellY = -1, int unitId = -1)
         : IOrder {
-        private bool isPathFound = false;
+        private bool isPathFound;
         private Stack<HexCell> pathCells = new();
         private DateTime t1;
         private DateTime t2;
@@ -28,9 +28,8 @@ namespace Game.GameObjects.Orders {
                 return OrderStatus.Finished;
             }
 
-            bool condition = true; //when should we move unit to the next cell?
             if (t1 > t2) {
-                t2=DateTime.Now.AddSeconds(1);
+                t2 = DateTime.Now.AddSeconds(1);
                 currentCell.RemoveCellUnit();
                 currentCell = pathCells.Pop();
                 currentUnit.UpdatePosition(currentCell);
