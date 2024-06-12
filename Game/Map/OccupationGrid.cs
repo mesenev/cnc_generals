@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;

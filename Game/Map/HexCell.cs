@@ -1,5 +1,3 @@
-using System;
-using Game.GameObjects;
 using Lime;
 
 namespace Game.Map {
@@ -24,12 +22,13 @@ namespace Game.Map {
 
         public HexCell(Widget canvas, Vector2 newPos, int xCoord, int yCoord, int gridX,
             int gridY) {
-            this.XCoord = xCoord;
-            this.YCoord = yCoord;
-            this.GridX = gridX;
-            this.GridY = gridY;
+            XCoord = xCoord;
+            YCoord = yCoord;
+            GridX = gridX;
+            GridY = gridY;
             image = new Image {
-                Sprite = new SerializableSprite("Sprites/WhiteCell"), Size = new Vector2(size, size),
+                Sprite = new SerializableSprite("Sprites/WhiteCell"),
+                Size = new Vector2(size, size),
                 Pivot = Vector2.Half,
             };
             HexPosition = newPos;
@@ -52,7 +51,6 @@ namespace Game.Map {
             return new Vector2(
                 // x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
                 // (GridY - y) * 0.75f * image.Width
-                
                 y * image.Height + (x % 2 * image.Height / 2) + image.Height / 2,
                 x * 0.75f * image.Width + image.Width / 2
             );

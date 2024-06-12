@@ -14,7 +14,7 @@ public class PlayerBase : BaseUnit {
         AttackDamage = 10;
         VisibleRadius = 1;
     }
-    
+
     public override Image GetImage() {
         return new Image {
             Sprite = new SerializableSprite("Sprites/Base"),

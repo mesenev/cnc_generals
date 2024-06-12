@@ -1,17 +1,15 @@
-using Game.GameObjects;
 using Game.Stuff;
 using Lime;
 
 namespace Game.Map {
     public class StatusGrid {
-        private HexGrid gridMask;
         private Widget Canvas;
 
         public StatusGrid(int width, int height) {
             Canvas = CanvasManager.Instance.GetCanvas(Layers.TerrainStatus);
-            gridMask = new HexGrid(Canvas, width, height);
+            var gridMask = new HexGrid(Canvas, width, height);
             gridMask.ChangeColor(Color4.Transparent);
-            
+
             foreach (var cell in gridMask.cells) {
                 AddCoords(cell);
                 AddStatus(cell);

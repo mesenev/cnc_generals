@@ -26,7 +26,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public IOrder CurrentOrder;
     public int x = x;
     public int y = y;
-    
+
     public abstract Image GetImage();
 
     public void UpdatePosition(HexCell newPosition) {
@@ -65,5 +65,3 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
         y = reader.GetInt();
     }
 }
-
-

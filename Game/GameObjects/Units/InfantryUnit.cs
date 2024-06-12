@@ -1,6 +1,4 @@
-﻿using System;
-using Lime;
-using LiteNetLib.Utils;
+﻿using Lime;
 
 namespace Game.GameObjects.Units;
 
@@ -18,7 +16,7 @@ public class InfantryUnit : BaseUnit {
         AttackDamage = 20;
         VisibleRadius = 3;
     }
-    
+
     public override Image GetImage() {
         return new Image {
             Sprite = new SerializableSprite("Sprites/Infantry"),

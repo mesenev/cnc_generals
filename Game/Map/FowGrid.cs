@@ -1,19 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
 using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;
 
 namespace Game.Map {
-    public class FOWGrid {
-        
+    public class FowGrid {
         private HexGrid gridMask;
         private Dictionary<Vector2, HexCell> axialGridMask = new();
         private List<BaseUnit> units;
-        
-        public FOWGrid(List<BaseUnit> units) {
+
+        public FowGrid(List<BaseUnit> units) {
             UpdateUnits(units);
         }
 
@@ -23,12 +19,12 @@ namespace Game.Map {
             }
         }
 
-        public void InitFOW(int width, int height) {
+        public void InitFow(int width, int height) {
             var canvas = CanvasManager.Instance.GetCanvas(Layers.FogMask);
             gridMask = new HexGrid(canvas, width, height);
             InitAxialGrid();
 
-            RecalculateFOW();
+            RecalculateFow();
         }
 
         private void SetFog() {
@@ -37,7 +33,7 @@ namespace Game.Map {
             }
         }
 
-        public void RecalculateFOW() {
+        public void RecalculateFow() {
             SetFog();
             foreach (var unit in units) {
                 var visibleUnitCells = GetVisibleCellsByUnit(unit);
@@ -45,10 +41,6 @@ namespace Game.Map {
                     if (visibleUnitCells.Contains(cell)) cell.image.Color = Color4.Transparent;
                 }
             }
-        }
-
-        private List<HexCell> GetUnitsCells() {
-            return units.Select(x => gridMask.cells[x.y, x.x]).ToList();
         }
 
         private List<HexCell> GetVisibleCellsByUnit(BaseUnit unit) {
@@ -61,7 +53,7 @@ namespace Game.Map {
                      j <= int.Min(visionRadius, -i + visionRadius);
                      j++) {
                     if (axialGridMask.TryGetValue(
-                            unitCellAxialCoords + new Vector2(j,i),
+                            unitCellAxialCoords + new Vector2(j, i),
                             out HexCell visibleCell
                         )) {
                         visibleCells.Add(visibleCell);
@@ -72,8 +64,8 @@ namespace Game.Map {
             return visibleCells;
         }
 
-        public void UpdateUnits(List<BaseUnit> units) {
-            this.units = units;
+        public void UpdateUnits(List<BaseUnit> newUnits) {
+            this.units = newUnits;
         }
     }
 }

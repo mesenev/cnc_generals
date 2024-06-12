@@ -5,7 +5,6 @@ using Game;
 using Game.Commands;
 using Game.GameObjects;
 using Game.GameObjects.Orders;
-using Game.GameObjects.Units;
 using Game.Network;
 using Game.Network.ClientPackets;
 using LiteNetLib;

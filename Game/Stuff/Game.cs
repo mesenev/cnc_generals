@@ -21,7 +21,7 @@ public class Game {
     private readonly NetworkClient networkClient;
 
     private HexGrid hexGrid;
-    private FOWGrid fowGrid;
+    private FowGrid fowGrid;
     private OccupationGrid occupationGrid;
     private StatusGrid statusGrid;
 
@@ -68,10 +68,10 @@ public class Game {
 
     private void InitHexGrid(Widget canvas, int width, int height) {
         hexGrid = new HexGrid(canvas, width, height);
-        fowGrid = new FOWGrid(networkClient.gameState.Units.ToList());
+        fowGrid = new FowGrid(networkClient.gameState.Units.ToList());
         occupationGrid = new OccupationGrid(width, height);
         statusGrid = new StatusGrid(width, height);
-        fowGrid.InitFOW(width, height);
+        fowGrid.InitFow(width, height);
 
         foreach (var cell in hexGrid.cells) {
             processors.Add(new HexInteractionProcessor(cell, viewport));
@@ -147,7 +147,7 @@ public class Game {
         occupationGrid.Occupy(
             networkClient.gameState.Units.ToList(), networkClient.GetClientPlayer().playerId
         );
-        fowGrid.RecalculateFOW();
+        fowGrid.RecalculateFow();
     }
 
     private void UpdateHexCells() {

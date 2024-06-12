@@ -8,10 +8,10 @@ public class HexCell(int xCoord = 1, int yCoord = 1) : INetSerializable {
     public int YCoord = yCoord;
 
     //Cost from start cell to current
-    public int g = 0;
+    public int g;
 
     //Cost from current cell to destination tile
-    public int h = 0;
+    public int h;
     public int F => g + h;
 
     public void UpdateCellUnit(int unitId) {
