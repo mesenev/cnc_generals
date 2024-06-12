@@ -13,6 +13,7 @@ namespace Server {
 
         public static int PlayersAmount;
         public static string PresetPath = "";
+        public static bool DisableSoundNotifications = true;
         public static Server Server = null!;
         public static GameState GameState = null!;
         public static SoundNotificationsService SoundManager = new();
@@ -23,15 +24,18 @@ namespace Server {
             ),
             Focus = Attribute.Make(Color.Brown, Color.Black)
         };
-        
+
         private static int Main(string[] args) {
             Console.OutputEncoding = Encoding.UTF8;
             Trace.Listeners.Add(new DebugListener());
 
-            Parser.Default.ParseArguments<Options>(args).WithParsed(o => {
-                PlayersAmount = o.PlayersAmountParam;
-                PresetPath = o.PresetPathParam;
-            });
+            Parser.Default.ParseArguments<Options>(args).WithParsed(
+                o => {
+                    PlayersAmount = o.PlayersAmountParam;
+                    PresetPath = o.PresetPathParam;
+                    DisableSoundNotifications = o.NoSoundNotificationParam;
+                }
+            );
 
 
             Application.UseSystemConsole = true;
@@ -41,8 +45,8 @@ namespace Server {
             GameState = new GameState(new Preset(PresetPath));
             Server = new Server(GameState) { PlayersAmount = PlayersAmount };
             Server.PeersAmountChanged += PeersAmountChangedHandler;
-            
-            SoundEventsSetup();
+            if (!DisableSoundNotifications)
+                SoundEventsSetup();
 
             var builder = new ContainerBuilder();
 
@@ -94,14 +98,14 @@ namespace Server {
             Application.Shutdown();
         }
 
-         private static void PeersAmountChangedHandler() {
+        private static void PeersAmountChangedHandler() {
             if (Server.ConnectedPeers == 0)
                 GameState.IsPaused = true;
             if (Server.ConnectedPeers > 1)
                 GameState.IsPaused = false;
             if (Server.ConnectedPeers == PlayersAmount)
                 GameState.InitializeWorld();
-         }
+        }
 
         private static void GameLoop() {
             var t0 = DateTime.Now;
@@ -135,6 +139,11 @@ namespace Server {
             )]
             public required string PresetPathParam { get; set; }
 
+            [Option(
+                's', "silent",
+                Default = false, HelpText = "Disable sound notifications"
+            )]
+            public required bool NoSoundNotificationParam { get; set; }
         }
 
         private class DebugListener : TraceListener {
@@ -143,7 +152,7 @@ namespace Server {
             }
 
             public override void WriteLine(string? message) {
-                if (message != null) Logs.Add(message+"\n");
+                if (message != null) Logs.Add(message + "\n");
             }
         }
     }

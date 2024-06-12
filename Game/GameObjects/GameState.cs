@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Commands;
+using Game.GameObjects.Orders;
 using Game.GameObjects.Units;
 using LiteNetLib.Utils;
 
@@ -13,6 +14,7 @@ public class GameState : INetSerializable {
     public List<ArtilleryUnit> ArtilleryUnits = [];
     public List<AirUnit> AirUnits = [];
     public List<PlayerBase> PlayerBases = [];
+    public List<MoveOrder> MoveOrders = [];
     private int unitIdCounter;
     public TimeSpan ElapsedGameTime { get; set; } = new(0);
     public bool GameInitiated { get; set; }
@@ -38,6 +40,10 @@ public class GameState : INetSerializable {
                 .Concat(AirUnits)
                 .Concat(PlayerBases);
         }
+    }
+
+    public IEnumerable<IOrder> Orders {
+        get { return MoveOrders; }
     }
 
 
@@ -69,9 +75,27 @@ public class GameState : INetSerializable {
         }
     }
 
+    public void AddOrder(IOrder order) {
+        if (order.GetType() == typeof(MoveOrder)) {
+            MoveOrders.Add(order as MoveOrder);
+        }
+    }
+
+    public void RemoveOrder(IOrder orderToRemove) {
+        if (orderToRemove.GetType() == typeof(MoveOrder)) {
+            MoveOrders.Remove(orderToRemove as MoveOrder);
+        }
+    }
+
     public void Update(TimeSpan timeDelta) {
         if (!GameInitiated | IsPaused)
             return;
+
+        var copy = Orders.ToList();
+        foreach (IOrder order in copy) {
+            if (order.Update(this) == OrderStatus.Finished)
+                RemoveOrder(order);
+        }
 
         ElapsedGameTime += timeDelta;
     }
@@ -102,6 +126,8 @@ public class GameState : INetSerializable {
         writer.Put(AirUnits.Count);
         writer.Put(PlayerBases.Count);
 
+        writer.Put(MoveOrders.Count);
+
         foreach (var unit in MarineUnits)
             unit.Serialize(writer);
 
@@ -110,6 +136,10 @@ public class GameState : INetSerializable {
 
         foreach (var unit in PlayerBases)
             unit.Serialize(writer);
+
+        foreach (var order in MoveOrders) {
+            order.Serialize(writer);
+        }
     }
 
     public void Deserialize(NetDataReader reader) {
@@ -118,6 +148,7 @@ public class GameState : INetSerializable {
         int artilleryCount = reader.GetInt();
         int airCount = reader.GetInt();
         int basesCount = reader.GetInt();
+        int moveOrdersCount = reader.GetInt();
         for (var i = 0; i < marineCount; i++)
             MarineUnits.Add(reader.Get(() => new InfantryUnit()));
 
@@ -129,7 +160,10 @@ public class GameState : INetSerializable {
 
         for (var i = 0; i < basesCount; i++)
             PlayerBases.Add(reader.Get(() => new PlayerBase()));
-        return;
+
+        for (var i = 0; i < moveOrdersCount; i++)
+            MoveOrders.Add(reader.Get(() => new MoveOrder()));
+        //TODO Properly serializable orders
     }
 
     public void InitializeWorld() {
