@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using Game;
 using Game.Commands;
 using Game.GameObjects;
-using Game.GameObjects.Units;
+using Game.GameObjects.Orders;
 using Game.Network;
 using Game.Network.ClientPackets;
 using LiteNetLib;
@@ -48,7 +48,7 @@ namespace Server {
             packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
             packetProcessor.SubscribeReusable<OrderUnitPacket, NetPeer>(
                 (packet, peer) => gameState.OrderUnit(packet.Command)
-                    );
+            );
 
             TimeAlive = new TimeSpan(0);
             var port = 12345;
@@ -60,7 +60,8 @@ namespace Server {
             netManager.Stop();
         }
 
-        private void SendPacket<T>(T packet, NetPeer peer, DeliveryMethod deliveryMethod) where T : class, new() {
+        private void SendPacket<T>(T packet, NetPeer peer, DeliveryMethod deliveryMethod)
+            where T : class, new() {
             writer.Reset();
             packetProcessor.Write(writer, packet);
             peer.Send(writer, deliveryMethod);
@@ -71,24 +72,32 @@ namespace Server {
 
             int peerId = peer.Id;
             ServerPlayer newPlayer =
-                players[(uint)peer.Id] = new ServerPlayer { peer = peer, username = packet.username };
+                players[(uint)peer.Id] = new ServerPlayer
+                    { peer = peer, username = packet.username };
             // var _packet = new SimplePacket { testVariable = new TestClass{firstVal = 228} };
             // SendPacket(_packet, peer, DeliveryMethod.Unreliable);
 
             SendPacket(
                 new JoinAcceptPacket {
-                    state = gameState, player = new ClientPlayer { playerId = peerId, username = packet.username }
-                }, peer, DeliveryMethod.ReliableOrdered);
+                    state = gameState,
+                    player = new ClientPlayer { playerId = peerId, username = packet.username }
+                }, peer, DeliveryMethod.ReliableOrdered
+            );
 
-            foreach (ServerPlayer player in players.Values.Where(player => player.playerId != newPlayer.playerId)) {
+            foreach (ServerPlayer player in players.Values.Where(
+                         player => player.playerId != newPlayer.playerId
+                     )) {
                 SendPacket(
                     new PlayerJoinedGamePacket {
-                        player = new ClientPlayer { playerId = newPlayer.playerId, username = newPlayer.username }
+                        player = new ClientPlayer
+                            { playerId = newPlayer.playerId, username = newPlayer.username }
                     },
-                    player.peer, DeliveryMethod.ReliableOrdered);
+                    player.peer, DeliveryMethod.ReliableOrdered
+                );
                 SendPacket(
                     new PlayerReceiveUpdatePacket { state = gameState },
-                    player.peer, DeliveryMethod.ReliableOrdered);
+                    player.peer, DeliveryMethod.ReliableOrdered
+                );
 
                 // SendPacket(
                 // 	new PlayerJoinedGamePacket { player = new ClientPlayer { username = player.username }, },
@@ -97,13 +106,17 @@ namespace Server {
         }
 
         private void OnPlayerMove(MoveCommandPacket packet, NetPeer peer) {
-            BaseUnit? currentUnit = gameState.GetUnitById(packet.Command.unitId);
-            HexCell? getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
-            HexCell? getNewCell = gameState.Grid.GetCell(packet.Command.x, packet.Command.y);
-            currentUnit.x = packet.Command.x;
-            currentUnit.y = packet.Command.y;
-            getCurrentCell.RemoveCellUnit();
-            getNewCell.UpdateCellUnit(currentUnit.UnitId);
+            // BaseUnit? currentUnit = gameState.GetUnitById(packet.Command.unitId);
+            // HexCell? getCurrentCell = gameState.Grid.GetCell(currentUnit.x, currentUnit.y);
+            // HexCell? getNewCell = gameState.Grid.GetCell(packet.Command.x, packet.Command.y);
+            // currentUnit.x = packet.Command.x;
+            // currentUnit.y = packet.Command.y;
+            // getCurrentCell.RemoveCellUnit();
+            // getNewCell.UpdateCellUnit(currentUnit.UnitId);
+            MoveOrder order = new MoveOrder(
+                packet.Command.x, packet.Command.y, packet.Command.unitId
+            );
+            gameState.AddOrder(order);
         }
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {
@@ -118,9 +131,13 @@ namespace Server {
                 return;
 
 
-            foreach (ServerPlayer player in players.Values.Where(player => player.playerId != playerLeft.playerId)) {
-                SendPacket(new PlayerLeftGamePacket { playerId = playerLeft.playerId }, player.peer,
-                    DeliveryMethod.ReliableOrdered);
+            foreach (ServerPlayer player in players.Values.Where(
+                         player => player.playerId != playerLeft.playerId
+                     )) {
+                SendPacket(
+                    new PlayerLeftGamePacket { playerId = playerLeft.playerId }, player.peer,
+                    DeliveryMethod.ReliableOrdered
+                );
             }
 
             players.Remove((uint)peer.Id);
@@ -180,7 +197,6 @@ namespace Server {
 
         public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader,
             UnconnectedMessageType messageType) { }
-
     }
 
     public enum ServerState {

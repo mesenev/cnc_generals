@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.GameObjects.Orders;
+using Lime;
 using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Units;
@@ -21,12 +22,17 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public float MovementSpeed;
     public float AttackSpeed;
     public int AttackDamage;
+    public int VisibleRadius;
+    public IOrder CurrentOrder;
     public int x = x;
     public int y = y;
+
+    public abstract Image GetImage();
 
     public void UpdatePosition(HexCell newPosition) {
         x = newPosition.XCoord;
         y = newPosition.YCoord;
+        newPosition.CellUnitId = unitId;
     }
 
     public static BaseUnit CreateUnitByType(int unitType, int unitId, int ownerId, int x, int y) {
@@ -59,5 +65,3 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
         y = reader.GetInt();
     }
 }
-
-

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.Commands;
+using Game.Map;
 using Game.Network;
 using Game.Widgets;
 using Lime;
@@ -8,17 +10,20 @@ using HexGrid = Game.Map.HexGrid;
 
 namespace Game.Stuff;
 
-public delegate void UpdateDelegate();
+public delegate void Handler();
 
 public class Game {
     public Widget Canvas { get; set; }
 
-    private readonly List<Component> components = [];
-    private readonly List<IProcessor> processors = [];
+    private readonly List<Component> components =  [];
+    private readonly List<IProcessor> processors =  [];
 
     private readonly NetworkClient networkClient;
 
     private HexGrid hexGrid;
+    private FowGrid fowGrid;
+    private OccupationGrid occupationGrid;
+    private StatusGrid statusGrid;
 
     public HexCell SelectedCell;
     public HexCell DestinationCell;
@@ -63,6 +68,10 @@ public class Game {
 
     private void InitHexGrid(Widget canvas, int width, int height) {
         hexGrid = new HexGrid(canvas, width, height);
+        fowGrid = new FowGrid(networkClient.gameState.Units.ToList());
+        occupationGrid = new OccupationGrid(width, height);
+        statusGrid = new StatusGrid(width, height);
+        fowGrid.InitFow(width, height);
 
         foreach (var cell in hexGrid.cells) {
             processors.Add(new HexInteractionProcessor(cell, viewport));
@@ -113,7 +122,7 @@ public class Game {
     }
 
     private void RemovePlayersFromCanvas() {
-        Canvas.Nodes.RemoveAll(_ => true);
+        Canvas.Nodes.RemoveAll(el => el.GetType() == typeof(Image));
         components.RemoveAll(_ => true);
         processors.RemoveAll(el => el.GetType() == typeof(PlayerInputProcessor));
     }
@@ -125,14 +134,20 @@ public class Game {
             var newUnit = new UnitComponent(
                 Canvas,
                 hexGrid.cells[unit.y, unit.x].GetPosition(unit.x, unit.y),
-                unit.UnitId,
-                spritePath: networkClient.GetClientPlayer().playerId == unit.OwnerId
-                    ? "Sprites/Unit"
-                    : "Sprites/Hero"
+                unit
             );
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
         }
+
+        fowGrid.UpdateUnits(
+            networkClient.gameState.Units
+                .Where(unit => unit.OwnerId == networkClient.GetClientPlayer().playerId).ToList()
+        );
+        occupationGrid.Occupy(
+            networkClient.gameState.Units.ToList(), networkClient.GetClientPlayer().playerId
+        );
+        fowGrid.RecalculateFow();
     }
 
     private void UpdateHexCells() {

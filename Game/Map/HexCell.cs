@@ -1,4 +1,3 @@
-using System;
 using Lime;
 
 namespace Game.Map {
@@ -9,6 +8,7 @@ namespace Game.Map {
         public int GridY;
         public int CellUnitId = -1;
         public bool Occupied = false;
+        public string TerrainStatus = "H";
         private int size = 64;
         public readonly Image image;
 
@@ -18,26 +18,41 @@ namespace Game.Map {
         }
 
         public Vector2 HexPosition;
+        public Vector2 AxialCoords;
 
         public HexCell(Widget canvas, Vector2 newPos, int xCoord, int yCoord, int gridX,
             int gridY) {
-            this.XCoord = xCoord;
-            this.YCoord = yCoord;
-            this.GridX = gridX;
-            this.GridY = gridY;
+            XCoord = xCoord;
+            YCoord = yCoord;
+            GridX = gridX;
+            GridY = gridY;
             image = new Image {
-                Sprite = new SerializableSprite("Sprites/Cell"), Size = new Vector2(size, size),
+                Sprite = new SerializableSprite("Sprites/WhiteCell"),
+                Size = new Vector2(size, size),
                 Pivot = Vector2.Half,
             };
             HexPosition = newPos;
+            AxialCoords = newPos;
             image.Position = GetPosition(newPos.X, newPos.Y);
-            canvas.Nodes.Add(image);
+            canvas.AddNode(image);
         }
 
-        public Vector2 GetPosition(float x, float y) {
+        public void AddCoords(Widget canvas) {
+            var text = new SimpleText {
+                Text = $"{AxialCoords.Y},{AxialCoords.X}",
+                TextColor = Color4.White,
+                FontHeight = 16,
+                Position = image.Position
+            };
+            canvas.PushNode(text);
+        }
+
+        public Vector2 GetPosition(float y, float x) {
             return new Vector2(
-                x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
-                (GridY - y) * 0.75f * image.Width
+                // x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
+                // (GridY - y) * 0.75f * image.Width
+                y * image.Height + (x % 2 * image.Height / 2) + image.Height / 2,
+                x * 0.75f * image.Width + image.Width / 2
             );
         }
     }

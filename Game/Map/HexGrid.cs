@@ -13,12 +13,22 @@ namespace Game.Map {
             this.height = height;
             cells = new HexCell[height, width];
 
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    cells[y, x] = new HexCell(
-                        canvas, new Vector2(x, y), x, y, width, height
-                    );
+            for (int y = 0, i = 0; y < height; y++) {
+                if (y != 0 && y % 2 == 0) {
+                    i++;
                 }
+
+                for (int x = 0; x < width; x++) {
+                    cells[y, x] = new HexCell(canvas, new Vector2(x, y), x, y, width, height);
+                    var coords = cells[y, x].HexPosition;
+                    cells[y, x].AxialCoords = new Vector2(coords.Y, coords.X - i);
+                }
+            }
+        }
+
+        public void ChangeColor(Color4 color) {
+            foreach (var cell in cells) {
+                cell.image.Color = color;
             }
         }
 
