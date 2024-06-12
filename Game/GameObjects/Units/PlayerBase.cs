@@ -1,3 +1,5 @@
+using Lime;
+
 namespace Game.GameObjects.Units;
 
 public class PlayerBase : BaseUnit {
@@ -11,5 +13,12 @@ public class PlayerBase : BaseUnit {
         AttackSpeed = 1;
         AttackDamage = 10;
         VisibleRadius = 1;
+    }
+    
+    public override Image GetImage() {
+        return new Image {
+            Sprite = new SerializableSprite("Sprites/Base"),
+            Pivot = Vector2.Half,
+        };
     }
 }

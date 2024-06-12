@@ -1,4 +1,6 @@
-﻿namespace Game.GameObjects.Units;
+﻿using Lime;
+
+namespace Game.GameObjects.Units;
 
 public class ArtilleryUnit : BaseUnit {
     public ArtilleryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : base(unitId, ownerId, x, y) {
@@ -11,6 +13,13 @@ public class ArtilleryUnit : BaseUnit {
         AttackSpeed = 0;
         AttackDamage = 0;
         VisibleRadius = 1;
+    }
+    
+    public override Image GetImage() {
+        return new Image {
+            Sprite = new SerializableSprite("Sprites/Artillery"),
+            Pivot = Vector2.Half,
+        };
     }
 
     public void AttackCell(GameState state, HexCell cell) {

@@ -22,6 +22,8 @@ public class Game {
 
     private HexGrid hexGrid;
     private FOWGrid fowGrid;
+    private OccupationGrid occupationGrid;
+    private StatusGrid statusGrid;
 
     public HexCell SelectedCell;
     public HexCell DestinationCell;
@@ -67,6 +69,8 @@ public class Game {
     private void InitHexGrid(Widget canvas, int width, int height) {
         hexGrid = new HexGrid(canvas, width, height);
         fowGrid = new FOWGrid(networkClient.gameState.Units.ToList());
+        occupationGrid = new OccupationGrid(width, height);
+        statusGrid = new StatusGrid(width, height);
         fowGrid.InitFOW(width, height);
 
         foreach (var cell in hexGrid.cells) {
@@ -130,10 +134,7 @@ public class Game {
             var newUnit = new UnitComponent(
                 Canvas,
                 hexGrid.cells[unit.y, unit.x].GetPosition(unit.x, unit.y),
-                unit.UnitId,
-                spritePath: networkClient.GetClientPlayer().playerId == unit.OwnerId
-                    ? "Sprites/Unit"
-                    : "Sprites/Hero"
+                unit
             );
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
@@ -142,6 +143,9 @@ public class Game {
         fowGrid.UpdateUnits(
             networkClient.gameState.Units
                 .Where(unit => unit.OwnerId == networkClient.GetClientPlayer().playerId).ToList()
+        );
+        occupationGrid.Occupy(
+            networkClient.gameState.Units.ToList(), networkClient.GetClientPlayer().playerId
         );
         fowGrid.RecalculateFOW();
     }

@@ -14,7 +14,7 @@
   <ItemGroup>
     <None Include="..\Bundles\Data.Win">
       <Link>Data.Win</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

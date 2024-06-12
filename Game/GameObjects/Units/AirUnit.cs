@@ -1,4 +1,6 @@
-﻿namespace Game.GameObjects.Units;
+﻿using Lime;
+
+namespace Game.GameObjects.Units;
 
 public class AirUnit : BaseUnit {
     public AirUnit(
@@ -14,6 +16,13 @@ public class AirUnit : BaseUnit {
         AttackSpeed = 0;
         AttackDamage = 0;
         VisibleRadius = 2;
+    }
+
+    public override Image GetImage() {
+        return new Image {
+            Sprite = new SerializableSprite("Sprites/Air"),
+            Pivot = Vector2.Half,
+        };
     }
 
     public void AttackCell(GameState state, HexCell cell) {

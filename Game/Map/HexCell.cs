@@ -1,4 +1,5 @@
 using System;
+using Game.GameObjects;
 using Lime;
 
 namespace Game.Map {
@@ -9,6 +10,7 @@ namespace Game.Map {
         public int GridY;
         public int CellUnitId = -1;
         public bool Occupied = false;
+        public string TerrainStatus = "H";
         private int size = 64;
         public readonly Image image;
 
@@ -27,7 +29,7 @@ namespace Game.Map {
             this.GridX = gridX;
             this.GridY = gridY;
             image = new Image {
-                Sprite = new SerializableSprite("Sprites/Cell"), Size = new Vector2(size, size),
+                Sprite = new SerializableSprite("Sprites/WhiteCell"), Size = new Vector2(size, size),
                 Pivot = Vector2.Half,
             };
             HexPosition = newPos;

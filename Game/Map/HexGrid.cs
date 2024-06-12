@@ -22,9 +22,13 @@ namespace Game.Map {
                     cells[y, x] = new HexCell(canvas, new Vector2(x, y), x, y, width, height);
                     var coords = cells[y, x].HexPosition;
                     cells[y, x].AxialCoords = new Vector2(coords.Y, coords.X-i);
-                    
-                    cells[y, x].AddCoords(CanvasManager.Instance.GetCanvas(Layers.Entities));
                 }
+            }
+        }
+
+        public void ChangeColor(Color4 color) {
+            foreach (var cell in cells) {
+                cell.image.Color = color;
             }
         }
 

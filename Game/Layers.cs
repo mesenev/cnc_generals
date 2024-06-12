@@ -5,7 +5,9 @@ public static class Layers
 	public const int Background = 0;
 	public const int HexMap = 1;
 	public const int Entities = 2;
-    public const int FogMask = 3;
+    public const int Occupation = 3;
+    public const int FogMask = 4;
+    public const int TerrainStatus = 5;
 	public const int Interface = 10;
 	public const int OverInterface = 20;
 	public const int Transition = 40;

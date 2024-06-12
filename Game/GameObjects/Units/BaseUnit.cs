@@ -1,5 +1,5 @@
-﻿using System;
-using Game.GameObjects.Orders;
+﻿using Game.GameObjects.Orders;
+using Lime;
 using LiteNetLib.Utils;
 
 namespace Game.GameObjects.Units;
@@ -26,6 +26,8 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public IOrder CurrentOrder;
     public int x = x;
     public int y = y;
+    
+    public abstract Image GetImage();
 
     public void UpdatePosition(HexCell newPosition) {
         x = newPosition.XCoord;
