@@ -2,13 +2,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using Game;
-using Game.Commands;
-using Game.GameObjects;
-using Game.GameObjects.Orders;
-using Game.Network;
-using Game.Network.ClientPackets;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using SharedObjects;
+using SharedObjects.Commands;
+using SharedObjects.GameObjects;
+using SharedObjects.GameObjects.Orders;
+using SharedObjects.Network;
 
 namespace Server {
     public class Server : INetEventListener {

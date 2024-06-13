@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Game.Commands;
-using Game.GameObjects.Orders;
-using Game.GameObjects.Units;
 using LiteNetLib.Utils;
-using SharedObjects;
+using SharedObjects.Commands;
+using SharedObjects.GameObjects.Orders;
+using SharedObjects.GameObjects.Units;
+using SharedObjects.TextToSpeech;
 
-namespace Game.GameObjects;
+namespace SharedObjects.GameObjects;
 
 public class GameState : INetSerializable {
     private readonly UnitVoiceDatabase voiceDatabase;
@@ -23,6 +23,7 @@ public class GameState : INetSerializable {
     public bool IsPaused { get; set; } = true;
 
 
+    //Server only constructor!
     public GameState(UnitVoiceDatabase voiceDatabase, Preset preset) {
         this.voiceDatabase = voiceDatabase;
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
@@ -31,6 +32,7 @@ public class GameState : INetSerializable {
         }
     }
 
+    // Client only constructor!
     public GameState() {
         Grid = new HexGrid(0, 0);
     }
@@ -54,15 +56,17 @@ public class GameState : INetSerializable {
         return Units.First(unit => unit.UnitId == id);
     }
 
-    public void AddUnit(UnitType unitType, int ownerId, int x, int y) {
+    private void AddUnit(UnitType unitType, int ownerId, int x, int y) {
+        var voiceData = voiceDatabase.ReserveAndGetUnitData(unitIdCounter, unitType);
+        string nickname = voiceData.Nickname;
         if (unitType == UnitType.InfantryUnit)
-            MarineUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y));
+            MarineUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y, nickname));
         if (unitType == UnitType.ArtilleryUnit)
-            ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y));
+            ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y, nickname));
         if (unitType == UnitType.AirUnit)
-            AirUnits.Add(new AirUnit(unitIdCounter, ownerId, x, y));
+            AirUnits.Add(new AirUnit(unitIdCounter, ownerId, x, y, nickname));
         if (unitType == UnitType.PlayerBase)
-            PlayerBases.Add(new PlayerBase(unitIdCounter, ownerId, x, y));
+            PlayerBases.Add(new PlayerBase(unitIdCounter, ownerId, x, y, nickname));
 
         Grid.cells[y, x].UpdateCellUnit(unitIdCounter);
         unitIdCounter++;
@@ -105,9 +109,9 @@ public class GameState : INetSerializable {
 
     public string GameStateAsString() {
         var answer = "";
-        for (int y = Grid.height - 1; y >= 0; y--) {
+        for (int y = Grid.Height - 1; y >= 0; y--) {
             answer += " ";
-            for (var x = 0; x < Grid.width; x++) {
+            for (var x = 0; x < Grid.Width; x++) {
                 var sign = " ";
 
                 if (Grid.cells[y, x].CellUnitId != -1)

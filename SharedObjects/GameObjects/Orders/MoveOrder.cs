@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Game.GameObjects.Units;
-using Lime;
+using System.Numerics;
 using LiteNetLib.Utils;
+using SharedObjects.GameObjects.Units;
 
-namespace Game.GameObjects.Orders {
+namespace SharedObjects.GameObjects.Orders;
     public class MoveOrder(int destinationCellX = -1, int destinationCellY = -1, int unitId = -1)
         : IOrder {
         private bool isPathFound;
@@ -129,8 +129,8 @@ namespace Game.GameObjects.Orders {
                 }
 
                 void AddNeighbor(Vector2 coords) {
-                    for (var i = 0; i < state.Grid.height; i++) {
-                        for (var j = 0; j < state.Grid.width; j++) {
+                    for (var i = 0; i < state.Grid.Height; i++) {
+                        for (var j = 0; j < state.Grid.Width; j++) {
                             if (new Vector2(
                                     state.Grid.cells[i, j].XCoord, state.Grid.cells[i, j].YCoord
                                 ) == coords) {
@@ -165,4 +165,3 @@ namespace Game.GameObjects.Orders {
             }
         }
     }
-}

@@ -1,9 +1,8 @@
-﻿using System;
-using Game.Network.ClientPackets;
-using LiteNetLib.Utils;
+﻿using LiteNetLib.Utils;
+using SharedObjects.Network;
 
-namespace Game.Commands;
-
+namespace SharedObjects.Commands;
+    
 public interface ICommand : INetSerializable {
     public BaseCommandPacket ToPacket();
     

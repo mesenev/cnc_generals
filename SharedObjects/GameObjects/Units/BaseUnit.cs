@@ -1,9 +1,7 @@
-﻿using Game.GameObjects.Orders;
-using Lime;
-using LiteNetLib.Utils;
-using SharedObjects;
+﻿using LiteNetLib.Utils;
+using SharedObjects.GameObjects.Orders;
 
-namespace Game.GameObjects.Units;
+namespace SharedObjects.GameObjects.Units;
 
 
 

@@ -1,21 +1,21 @@
 ﻿using System;
 using LiteNetLib.Utils;
 
-namespace Game.GameObjects;
+namespace SharedObjects.GameObjects;
 
 public class HexGrid : INetSerializable {
-    public int width;
-    public int height;
+    public int Width;
+    public int Height;
 
     public HexCell[,] cells;
 
     public HexGrid(int gridHeight, int gridWidth) {
-        height = gridHeight;
-        width = gridWidth;
-        cells = new HexCell[height, width];
+        Height = gridHeight;
+        Width = gridWidth;
+        cells = new HexCell[Height, Width];
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 0; y < Height; y++) {
+            for (int x = 0; x < Width; x++) {
                 cells[y, x] = new HexCell(x, y);
             }
         }
@@ -23,7 +23,7 @@ public class HexGrid : INetSerializable {
 
     public HexCell GetRandomCell() {
         Random random = new Random();
-        return cells[random.Next(0, height), random.Next(0, width)];
+        return cells[random.Next(0, Height), random.Next(0, Width)];
     }
 
     public HexCell GetCell(int x, int y) {
@@ -31,22 +31,22 @@ public class HexGrid : INetSerializable {
     }
 
     public void Serialize(NetDataWriter writer) {
-        writer.Put(height);
-        writer.Put(width);
-        for (var y = 0; y < height; y++) {
-            for (var x = 0; x < width; x++) {
+        writer.Put(Height);
+        writer.Put(Width);
+        for (var y = 0; y < Height; y++) {
+            for (var x = 0; x < Width; x++) {
                 cells[y, x].Serialize(writer);
             }
         }
     }
 
     public void Deserialize(NetDataReader reader) {
-        height = reader.GetInt();
-        width = reader.GetInt();
-        cells = new HexCell[height, width];
+        Height = reader.GetInt();
+        Width = reader.GetInt();
+        cells = new HexCell[Height, Width];
 
-        for (var y = 0; y < height; y++) {
-            for (var x = 0; x < width; x++) {
+        for (var y = 0; y < Height; y++) {
+            for (var x = 0; x < Width; x++) {
                 cells[y, x] = reader.Get(() => new HexCell());
             }
         }

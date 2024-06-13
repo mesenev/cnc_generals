@@ -1,6 +1,7 @@
-using Game.Commands;
-using Game.GameObjects.Units;
 using Lime;
+using SharedObjects;
+using SharedObjects.Commands;
+using SharedObjects.GameObjects.Units;
 
 namespace Game.Widgets;
 

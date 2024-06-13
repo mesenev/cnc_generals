@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using Autofac;
 using CommandLine;
-using Game.GameObjects;
 using Server.InterfaceViews;
+using SharedObjects.GameObjects;
+using SharedObjects.TextToSpeech;
 using Terminal.Gui;
 using Attribute = Terminal.Gui.Attribute;
 
@@ -14,16 +14,11 @@ namespace Server {
         public static int PlayersAmount;
         public static string PresetPath = "";
         public static bool DisableSoundNotifications = true;
+        public static UnitVoiceDatabase VoiceDatabase = UnitVoiceDatabase.Instance;
         public static Server Server = null!;
         public static GameState GameState = null!;
         public static SoundNotificationsService SoundManager = new();
 
-        public static readonly ColorScheme ColorScheme = new() {
-            Normal = Attribute.Make(
-                Color.BrightGreen, Color.Black
-            ),
-            Focus = Attribute.Make(Color.Brown, Color.Black)
-        };
 
         private static int Main(string[] args) {
             Console.OutputEncoding = Encoding.UTF8;
@@ -41,23 +36,19 @@ namespace Server {
             Application.UseSystemConsole = true;
 
             Application.Init();
-
-            GameState = new GameState(new Preset(PresetPath));
+            GameState = new GameState(VoiceDatabase, new Preset(PresetPath));
             Server = new Server(GameState) { PlayersAmount = PlayersAmount };
             Server.PeersAmountChanged += PeersAmountChangedHandler;
             if (!DisableSoundNotifications)
                 SoundEventsSetup();
 
-            var builder = new ContainerBuilder();
-
-            builder.RegisterInstance(GameState).AsSelf();
-            builder.RegisterInstance(Server).AsSelf();
-
-            var container = builder.Build();
-
-
             var mainView = new MainView(new Rect(1, 1, 90, 28)) {
-                Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = ColorScheme
+                Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = new() {
+                    Normal = Attribute.Make(
+                        Color.BrightGreen, Color.Black
+                    ),
+                    Focus = Attribute.Make(Color.Brown, Color.Black)
+                }
             };
             Application.Top.Add(mainView);
 
@@ -116,6 +107,8 @@ namespace Server {
                 t0 = t1;
                 Thread.Sleep(16); // 60fps
             }
+
+            return;
         }
 
         private static void BroadcastLoop() {

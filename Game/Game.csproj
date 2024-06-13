@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Scenes\Scenes.csproj" />
+    <ProjectReference Include="..\SharedObjects\SharedObjects.csproj" />
     <Reference Include="Yuzu">
       <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
     </Reference>
@@ -48,9 +49,6 @@
 
   <ItemGroup>
     <None Update="GameStatePresets\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="GameStatePresets\default.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

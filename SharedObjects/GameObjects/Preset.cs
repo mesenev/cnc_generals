@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using Game.GameObjects.Units;
-using SharedObjects;
-using BindingFlags = System.Reflection.BindingFlags;
+using SharedObjects.GameObjects.Units;
 
 
-namespace Game.GameObjects;
+namespace SharedObjects.GameObjects;
 
 public class Preset {
     public int GridHeight;

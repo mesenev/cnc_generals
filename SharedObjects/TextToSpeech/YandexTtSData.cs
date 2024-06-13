@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SharedObjects;
+namespace SharedObjects.TextToSpeech;
 
-public class YandexTtSBackend {
+public static class YandexTtSData {
     // Default: 22050 Hz, linear 16-bit signed little-endian PCM, with WAV header
     // https://yandex.cloud/ru/docs/speechkit/tts/voices
     
@@ -18,13 +18,10 @@ public class YandexTtSBackend {
         new YandexVoice { is_male = true, name = "kirill", mood = ["neutral", "strict", "good"] },
         new YandexVoice { is_male = true, name = "anton", mood = ["neutral", "good"] },
     };
-    public static List<YandexVoice> MaleVoices { get; set; }
-    public static List<YandexVoice> FemaleVoices { get; set; }
 
-    public YandexTtSBackend() {
-        MaleVoices = Voices.Where(x => x.is_male).ToList();
-        MaleVoices = Voices.Where(x => !x.is_male).ToList();
-    }
+    public static List<YandexVoice> MaleVoices => Voices.Where(x => x.is_male).ToList();
+    public static List<YandexVoice> FemaleVoices => Voices.Where(x => !x.is_male).ToList();
+
 }
 
 //https://yandex.cloud/ru/docs/speechkit/tts/

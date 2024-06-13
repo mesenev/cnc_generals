@@ -1,6 +1,6 @@
 ﻿using Game;
-using Game.Network;
 using LiteNetLib;
+using SharedObjects.Network;
 
 Console.WriteLine("Hello, World!");
 

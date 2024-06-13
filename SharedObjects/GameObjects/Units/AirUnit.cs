@@ -1,7 +1,5 @@
-﻿using Game.GameObjects;
-using Game.GameObjects.Units;
-
-namespace SharedObjects;
+﻿
+namespace SharedObjects.GameObjects.Units;
 
 public class AirUnit : BaseUnit {
     public AirUnit(

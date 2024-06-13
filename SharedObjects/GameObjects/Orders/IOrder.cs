@@ -1,6 +1,6 @@
 ﻿using LiteNetLib.Utils;
 
-namespace Game.GameObjects.Orders {
+namespace SharedObjects.GameObjects.Orders;
     public interface IOrder : INetSerializable {
         OrderStatus Update(GameState state);
     }
@@ -9,4 +9,3 @@ namespace Game.GameObjects.Orders {
         Executing,
         Finished
     }
-}

@@ -1,9 +1,8 @@
-using Game.Commands;
 using LiteNetLib;
 using LiteNetLib.Utils;
 using SharedObjects.GameObjects;
 
-namespace Game.Network;
+namespace SharedObjects.Network;
 
 public class JoinPacket {
     public string username { get; set; }

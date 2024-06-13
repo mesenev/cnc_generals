@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Citrus\Extensions\RemoteScriptingClient\Source\ScriptsPreserve.cs" Link="Extensions\ScriptsPreserve.RemoteScriptingClient.cs" />
-    <Compile Include="..\Citrus\Extensions\Benchmark\Source\ScriptsPreserve.cs" Link="Extensions\ScriptsPreserve.Benchmark.cs" />
+<!--    <Compile Include="..\Citrus\Extensions\RemoteScriptingClient\Source\ScriptsPreserve.cs" Link="Extensions\ScriptsPreserve.RemoteScriptingClient.cs" />-->
+<!--    <Compile Include="..\Citrus\Extensions\Benchmark\Source\ScriptsPreserve.cs" Link="Extensions\ScriptsPreserve.Benchmark.cs" />-->
 <!--    <Compile Include="..\QualityAssurance\ScriptsPreserve.cs" Link="Extensions\ScriptsPreserve.QualityAssurance.cs" />-->
   </ItemGroup>
 

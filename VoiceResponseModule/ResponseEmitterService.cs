@@ -1,10 +1,12 @@
+using System;
+
 namespace VoiceResponseModule;
 
 public class ResponseEmitterService {
         
     public ResponseEmitterService() {}
 
-    // private bytes[] PostProduction(bytes[] audio, object args) {
-        // return 
-    // }
+    private byte[] PostProduction(byte[] audio, object args) {
+        throw new NotImplementedException();
+    }
 }

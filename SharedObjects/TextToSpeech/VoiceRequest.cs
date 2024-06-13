@@ -1,4 +1,4 @@
-namespace VoiceResponseModule;
+namespace SharedObjects.TextToSpeech;
 
 public struct VoiceRequest {
     public int unitId;
@@ -11,7 +11,7 @@ public struct VoiceRequest {
 }
 
 public enum VoiceRequestType {
-    Approvement,
+    Confirmation,
     Report,
     EnemySpotted,
     EnemyEngaged,

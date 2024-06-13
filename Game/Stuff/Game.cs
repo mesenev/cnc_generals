@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Game.Commands;
 using Game.Map;
-using Game.Network;
 using Game.Widgets;
 using Lime;
+using SharedObjects.Commands;
+using SharedObjects.Network;
 using HexCell = Game.Map.HexCell;
 using HexGrid = Game.Map.HexGrid;
 
@@ -109,10 +109,10 @@ public class Game {
     }
 
     public void UpdatePlayers(float delta) {
-        if (networkClient.gameState != null && hexGrid == null) {
+        if (hexGrid == null) {
             InitHexGrid(
-                CanvasManager.Instance.GetCanvas(Layers.HexMap), networkClient.gameState.Grid.width,
-                networkClient.gameState.Grid.height
+                CanvasManager.Instance.GetCanvas(Layers.HexMap), networkClient.gameState.Grid.Width,
+                networkClient.gameState.Grid.Height
             );
         }
 
@@ -128,8 +128,6 @@ public class Game {
     }
 
     private void GetPlayersFromServer() {
-        if (networkClient.gameState == null)
-            return;
         foreach (var unit in networkClient.gameState.Units) {
             var newUnit = new UnitComponent(
                 Canvas,
@@ -151,9 +149,7 @@ public class Game {
     }
 
     private void UpdateHexCells() {
-        if (networkClient.gameState == null)
-            return;
-        foreach (GameObjects.HexCell cell in networkClient.gameState.Grid.cells) {
+        foreach (SharedObjects.GameObjects.HexCell cell in networkClient.gameState.Grid.cells) {
             hexGrid.cells[cell.YCoord, cell.XCoord].XCoord = cell.XCoord;
             hexGrid.cells[cell.YCoord, cell.XCoord].YCoord = cell.YCoord;
             hexGrid.cells[cell.YCoord, cell.XCoord].CellUnitId = cell.CellUnitId;

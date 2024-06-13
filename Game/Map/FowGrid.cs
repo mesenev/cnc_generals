@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;
+using SharedObjects.GameObjects.Units;
 
 namespace Game.Map {
     public class FowGrid {

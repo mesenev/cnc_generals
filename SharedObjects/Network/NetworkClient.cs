@@ -5,10 +5,11 @@ using System.Net;
 using System.Net.Sockets;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using Game.Network.ClientPackets;
+using SharedObjects.Commands;
 using SharedObjects.GameObjects;
 
-namespace Game.Network {
+namespace SharedObjects.Network;
+
     public class NetworkClient : INetEventListener {
         public static readonly NetworkClient Instance = new();
 
@@ -43,9 +44,6 @@ namespace Game.Network {
             packetProcessor = new NetPacketProcessor();
 
             packetProcessor.RegisterNestedType(() => new GameState());
-            packetProcessor.RegisterNestedType(
-                (w, v) => w.Put(v), reader => reader.GetVector2()
-            );
             packetProcessor.RegisterNestedType<ClientPlayer>();
             packetProcessor.RegisterNestedType<MoveCommand>();
             packetProcessor.RegisterNestedType<OrderUnitCommand>();
@@ -147,4 +145,3 @@ namespace Game.Network {
 
         public void OnNetworkLatencyUpdate(NetPeer peer, int latency) { }
     }
-}

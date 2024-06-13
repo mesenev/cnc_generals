@@ -1,6 +1,5 @@
-﻿using Lime;
-
-namespace Game.GameObjects.Units;
+﻿
+namespace SharedObjects.GameObjects.Units;
 
 public class InfantryUnit : BaseUnit {
     public InfantryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0, string nickname = "") : base(
@@ -17,10 +16,4 @@ public class InfantryUnit : BaseUnit {
         VisibleRadius = 3;
     }
 
-    public override Image GetImage() {
-        return new Image {
-            Sprite = new SerializableSprite("Sprites/Infantry"),
-            Pivot = Vector2.Half,
-        };
-    }
 }

@@ -1,10 +1,9 @@
-using System;
-using Game.GameObjects.Units;
-using Game.Network.ClientPackets;
 using LiteNetLib.Utils;
-using SharedObjects;
+using SharedObjects.GameObjects.Units;
+using SharedObjects.Network;
 
-namespace Game.Commands;
+namespace SharedObjects.Commands;
+
 
 public struct OrderUnitCommand(int userId, UnitType unitType) : ICommand {
     public int UserId = userId;

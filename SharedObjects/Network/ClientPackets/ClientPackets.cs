@@ -1,6 +1,7 @@
-using Game.Commands;
 
-namespace Game.Network.ClientPackets;
+using SharedObjects.Commands;
+
+namespace SharedObjects.Network;
 
 public abstract class BaseCommandPacket { 
 }

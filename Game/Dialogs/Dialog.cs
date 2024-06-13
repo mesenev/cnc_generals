@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Game.Application;
-using Game.Network;
 using Lime;
 using Game.Scenes;
+using SharedObjects.Network;
 
 namespace Game.Dialogs;
 

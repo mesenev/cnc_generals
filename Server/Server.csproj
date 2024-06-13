@@ -18,6 +18,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Game\Game.csproj" />
+        <ProjectReference Include="..\VoiceResponseModule\VoiceResponseModule.csproj" />
     </ItemGroup>
 
 
@@ -27,6 +28,24 @@
       </None>
       <None Update="Assets\peer-disconnected.wav">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\AirNicknames.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\ArtilleryNicknames.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\default.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\GenericNicknames.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\InfantryNicknames.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="GameStatePresets\PlayerBaseNicknames.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
     <!-- Ensure this matches the output pathfhdjulhfukdshfksdjjfkldsajflkdsajfoasldkosdfla -->

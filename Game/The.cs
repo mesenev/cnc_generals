@@ -1,9 +1,9 @@
 using System.Threading;
 using Game.Application;
 using Game.Dialogs;
-using Game.Network;
 using Game.Stuff;
 using Lime;
+using SharedObjects.Network;
 
 namespace Game;
 

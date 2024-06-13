@@ -1,8 +1,8 @@
 ﻿using System;
-using Game.Network.ClientPackets;
 using LiteNetLib.Utils;
+using SharedObjects.Network;
 
-namespace Game.Commands;
+namespace SharedObjects.Commands;
 
 public struct MoveCommand : ICommand {
     public int unitId;

@@ -1,7 +1,4 @@
-﻿using Lime;
-using SharedObjects;
-
-namespace Game.GameObjects.Units;
+﻿namespace SharedObjects.GameObjects.Units;
 
 public class ArtilleryUnit : BaseUnit {
     public ArtilleryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0, string nickname = "") : base(
@@ -18,12 +15,6 @@ public class ArtilleryUnit : BaseUnit {
         VisibleRadius = 1;
     }
 
-    public override Image GetImage() {
-        return new Image {
-            Sprite = new SerializableSprite("Sprites/Artillery"),
-            Pivot = Vector2.Half,
-        };
-    }
 
     public void AttackCell(GameState state, HexCell cell) {
         // cell.GetCellUnit().Health -= 100;

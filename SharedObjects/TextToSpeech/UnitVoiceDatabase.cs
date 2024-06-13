@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SharedObjects.GameObjects.Units;
 
-namespace SharedObjects;
+namespace SharedObjects.TextToSpeech;
 
 public sealed class UnitVoiceDatabase {
     private static readonly Random rnd = new();
@@ -55,7 +56,7 @@ public sealed class UnitVoiceDatabase {
         );
 
         genericNicknames = new HashSet<string>(
-            File.ReadAllLines("GameStatePresets/AirNicknames.txt")
+            File.ReadAllLines("GameStatePresets/GenericNicknames.txt")
                 .OrderBy(_ => rnd.Next()).ToList()
         );
         genericNicknames.ExceptWith(infantryNicknames);
@@ -68,42 +69,42 @@ public sealed class UnitVoiceDatabase {
                      .Union(artilleryNicknames)
                      .Union(airNicknames)
                      .Union(genericNicknames)) {
-            unitStubs.Add(nickname, GetRandomUnitData(nickname, rnd));
+            unitStubs.Add(nickname, GetRandomUnitData(nickname));
         }
 
         AdministrationVoices = new List<UnitData>() {
             new(
                 "administrator1", 0,
                 0, 0,
-                YandexTtSBackend.FemaleVoices[
-                    rnd.Next(YandexTtSBackend.FemaleVoices.Count)
+                YandexTtSData.FemaleVoices[
+                    rnd.Next(YandexTtSData.FemaleVoices.Count)
                 ].name
             ),
 
             new(
                 "administrator2", 0,
                 0, 0,
-                YandexTtSBackend.FemaleVoices[
-                    rnd.Next(YandexTtSBackend.FemaleVoices.Count)
+                YandexTtSData.FemaleVoices[
+                    rnd.Next(YandexTtSData.FemaleVoices.Count)
                 ].name
             ),
         };
     }
 
 
-    private static UnitData GetRandomUnitData(string nickname, Random rnd) {
+    private static UnitData GetRandomUnitData(string nickname) {
         return new UnitData(
             nickname: nickname,
             voiceSpeedModificator: 1 + (float)rnd.NextDouble() / 3,
             pitchShift: rnd.NextInt64(-300, 200),
             radioInterferenceModificator: (float)rnd.NextDouble() * 5,
-            yandexVoice: YandexTtSBackend.MaleVoices[
-                rnd.Next(YandexTtSBackend.MaleVoices.Count)
+            yandexVoice: YandexTtSData.MaleVoices[
+                rnd.Next(YandexTtSData.MaleVoices.Count)
             ].name
         );
     }
 
-    public static UnitData reserveAndGetUnitData(int unitId, UnitType unitType) {
+    public UnitData ReserveAndGetUnitData(int unitId, UnitType unitType) {
         HashSet<string> collection = genericNicknames;
         if (unitType == UnitType.InfantryUnit)
             collection = infantryNicknames;

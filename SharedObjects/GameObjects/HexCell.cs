@@ -1,6 +1,6 @@
 ﻿using LiteNetLib.Utils;
 
-namespace Game.GameObjects;
+namespace SharedObjects.GameObjects;
 
 public class HexCell(int xCoord = 1, int yCoord = 1) : INetSerializable {
     public int CellUnitId = -1;
