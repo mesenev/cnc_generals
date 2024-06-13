@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;
 using SharedObjects.GameObjects.Units;
@@ -26,10 +27,10 @@ namespace Game.Map {
             gridMask.ChangeColor(Color4.Transparent);
         }
 
-        public void Occupy(List<BaseUnit> units, int playerId) {
+        public void Occupy(List<IDrawableUnit> units, int playerId) {
             Clear();
             foreach (var unit in units) {
-                gridMask.cells[unit.y, unit.x].image.Color =
+                gridMask.cells[unit.Y, unit.X].image.Color =
                     unit.OwnerId == playerId ? allyColor : enemyColor;
             }
         }

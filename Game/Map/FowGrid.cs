@@ -1,15 +1,15 @@
 using System.Collections.Generic;
+using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;
-using SharedObjects.GameObjects.Units;
 
 namespace Game.Map {
     public class FowGrid {
         private HexGrid gridMask;
         private Dictionary<Vector2, HexCell> axialGridMask = new();
-        private List<BaseUnit> units;
+        private List<IDrawableUnit> units;
 
-        public FowGrid(List<BaseUnit> units) {
+        public FowGrid(List<IDrawableUnit> units) {
             UpdateUnits(units);
         }
 
@@ -43,10 +43,10 @@ namespace Game.Map {
             }
         }
 
-        private List<HexCell> GetVisibleCellsByUnit(BaseUnit unit) {
+        private List<HexCell> GetVisibleCellsByUnit(IDrawableUnit unit) {
             var visibleCells = new List<HexCell>();
             var visionRadius = unit.VisibleRadius;
-            var unitCellAxialCoords = gridMask.cells[unit.y, unit.x].AxialCoords;
+            var unitCellAxialCoords = gridMask.cells[unit.Y, unit.X].AxialCoords;
 
             for (int i = -visionRadius; i <= visionRadius; i++) {
                 for (int j = int.Max(-visionRadius, -i - visionRadius);
@@ -64,7 +64,7 @@ namespace Game.Map {
             return visibleCells;
         }
 
-        public void UpdateUnits(List<BaseUnit> newUnits) {
+        public void UpdateUnits(List<IDrawableUnit> newUnits) {
             this.units = newUnits;
         }
     }

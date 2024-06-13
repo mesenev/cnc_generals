@@ -4,7 +4,7 @@ public class ArtilleryUnit : BaseUnit {
     public ArtilleryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0, string nickname = "") : base(
         unitId, ownerId, x, y, nickname
     ) {
-        unitType = UnitType.ArtilleryUnit;
+        Type = UnitType.ArtilleryUnit;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;

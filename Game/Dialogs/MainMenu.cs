@@ -7,7 +7,7 @@ public class MainMenu : Dialog<Scenes.Data.MainMenu>
 	public MainMenu()
 	{
 		SoundManager.PlayMusic("Theme");
-		Scene._BtnPlay.It.Clicked = CrossfadeInto<GameScreen>;
+		Scene._BtnPlay.It.Clicked = CrossfadeInto<WaitingGameScreen>;
 		Scene._BtnOptions.It.Clicked = Open<Options>;
 	}
 

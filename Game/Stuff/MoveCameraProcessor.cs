@@ -14,7 +14,7 @@ public class MoveCameraProcessor : IProcessor {
         Viewport2D = viewport2D;
     }
 
-    public void Update(float delta, Game game) {
+    public void Update(float delta, GameObjects.Game game) {
 
         if (Window.Current.Input.IsKeyPressed(Key.Tab)) {
             Viewport2D.UserInterface.TopContainer.Visible = true;
@@ -27,25 +27,25 @@ public class MoveCameraProcessor : IProcessor {
 
         if (Window.Current.Input.IsKeyPressed(Key.Down)) {
             if (Camera.X < 64 * 50 - Camera.Parent.AsWidget.Size.X / 2) {
-                Camera.Y += 1;
+                Camera.Y += 10;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Up)) {
             if (Camera.Y > Camera.Parent.AsWidget.Height / 2) {
-                Camera.Y -= 1;
+                Camera.Y -= 10;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Left)) {
             if (Camera.X > Camera.Parent.AsWidget.Width / 2) {
-                Camera.X -= 1;
+                Camera.X -= 10;
             }
         }
 
         if (Window.Current.Input.IsKeyPressed(Key.Right)) {
             if (Camera.X < 64 * 50) {
-                Camera.X += 1;
+                   Camera.X += 10;
             }
         }
 

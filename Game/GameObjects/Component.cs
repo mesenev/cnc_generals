@@ -1,4 +1,4 @@
-namespace Game.Stuff
+namespace Game.GameObjects
 {
 	public class Component
 	{

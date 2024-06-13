@@ -1,4 +1,5 @@
 using System;
+using Game.GameObjects.Units;
 using Lime;
 
 namespace Game.Stuff
@@ -9,7 +10,7 @@ namespace Game.Stuff
 		private Vector2 destination = unitComponent.Position;
 		private float speed = 5f;
 
-		public void Update(float delta, Stuff.Game game)
+		public void Update(float delta, GameObjects.Game game)
 		{
 			ArgumentNullException.ThrowIfNull(game);
 

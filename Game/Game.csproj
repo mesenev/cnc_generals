@@ -9,6 +9,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Scenes\Scenes.csproj" />
     <ProjectReference Include="..\SharedObjects\SharedObjects.csproj" />
+    <Reference Include="Orange">
+      <HintPath>..\Citrus\Orange\Orange.dll</HintPath>
+    </Reference>
     <Reference Include="Yuzu">
       <HintPath>..\Citrus\Lime\Yuzu.dll</HintPath>
     </Reference>

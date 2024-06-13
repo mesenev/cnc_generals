@@ -12,7 +12,7 @@ namespace SharedObjects.GameObjects;
 public class GameState : INetSerializable {
     private readonly UnitVoiceDatabase voiceDatabase;
     public HexGrid Grid;
-    public List<InfantryUnit> MarineUnits = [];
+    public List<InfantryUnit> InfantryUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
     public List<AirUnit> AirUnits = [];
     public List<PlayerBase> PlayerBases = [];
@@ -40,7 +40,7 @@ public class GameState : INetSerializable {
 
     public IEnumerable<BaseUnit> Units {
         get {
-            return MarineUnits
+            return InfantryUnits
                 .Concat(ArtilleryUnits.Cast<BaseUnit>())
                 .Concat(AirUnits)
                 .Concat(PlayerBases);
@@ -60,7 +60,7 @@ public class GameState : INetSerializable {
         var voiceData = voiceDatabase.ReserveAndGetUnitData(unitIdCounter, unitType);
         string nickname = voiceData.Nickname;
         if (unitType == UnitType.InfantryUnit)
-            MarineUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y, nickname));
+            InfantryUnits.Add(new InfantryUnit(unitIdCounter, ownerId, x, y, nickname));
         if (unitType == UnitType.ArtilleryUnit)
             ArtilleryUnits.Add(new ArtilleryUnit(unitIdCounter, ownerId, x, y, nickname));
         if (unitType == UnitType.AirUnit)
@@ -74,7 +74,7 @@ public class GameState : INetSerializable {
 
     public void RemoveUnit(BaseUnit unitToRemove) {
         if (unitToRemove.GetType() == typeof(InfantryUnit)) {
-            MarineUnits.Remove(unitToRemove as InfantryUnit);
+            InfantryUnits.Remove(unitToRemove as InfantryUnit);
         }
 
         if (unitToRemove.GetType() == typeof(ArtilleryUnit)) {
@@ -128,14 +128,14 @@ public class GameState : INetSerializable {
 
     public void Serialize(NetDataWriter writer) {
         Grid.Serialize(writer);
-        writer.Put(MarineUnits.Count);
+        writer.Put(InfantryUnits.Count);
         writer.Put(ArtilleryUnits.Count);
         writer.Put(AirUnits.Count);
         writer.Put(PlayerBases.Count);
 
         writer.Put(MoveOrders.Count);
 
-        foreach (var unit in MarineUnits)
+        foreach (var unit in InfantryUnits)
             unit.Serialize(writer);
 
         foreach (var unit in ArtilleryUnits)
@@ -157,7 +157,7 @@ public class GameState : INetSerializable {
         int basesCount = reader.GetInt();
         int moveOrdersCount = reader.GetInt();
         for (var i = 0; i < marineCount; i++)
-            MarineUnits.Add(reader.Get(() => new InfantryUnit()));
+            InfantryUnits.Add(reader.Get(() => new InfantryUnit()));
 
         for (var i = 0; i < artilleryCount; i++)
             ArtilleryUnits.Add(reader.Get(() => new ArtilleryUnit()));

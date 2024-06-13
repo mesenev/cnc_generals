@@ -50,20 +50,8 @@ public class Application
 
 	private bool requiredToWaitForWindowRendering;
 
-	private AssetBundle CreateAssetBundle()
-	{
-#if ANDROID
-		return new PackedAssetBundle("Assets.Android.Data.Android", "Assets.Android");
-#elif __IOS__
-		return new PackedAssetBundle("Data.iOS");
-#elif WIN
+	private AssetBundle CreateAssetBundle() {
 		return new PackedAssetBundle("Data.Win");
-#elif MAC
-		return new PackedAssetBundle("Contents/Resources/Data.Mac");
-#elif WEB
-		return new PackedAssetBundle("Application.Win.Resources.Data.Web", "Application.Win");
-#endif
-		throw new System.InvalidOperationException("Invalid Platform.");
 	}
 
 	private void LoadDictionary()

@@ -22,7 +22,7 @@ namespace SharedObjects.GameObjects.Orders;
 
             BaseUnit currentUnit = state.GetUnitById(unitId);
             HexCell currentCell =
-                state.Grid.cells[currentUnit.y, currentUnit.x];
+                state.Grid.cells[currentUnit.Y, currentUnit.X];
 
             if (pathCells.Count == 0) {
                 return OrderStatus.Finished;
@@ -46,7 +46,7 @@ namespace SharedObjects.GameObjects.Orders;
             BaseUnit currentUnit = state.GetUnitById(unitId);
             HexCell destinationCell = state.Grid.cells[destinationCellY, destinationCellX];
             HexCell currentCell =
-                state.Grid.cells[currentUnit.y, currentUnit.x];
+                state.Grid.cells[currentUnit.Y, currentUnit.X];
 
             currentCell.g = 0;
             currentCell.h = GetPathCost(

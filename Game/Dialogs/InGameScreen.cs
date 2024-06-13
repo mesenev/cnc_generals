@@ -1,20 +1,19 @@
+using System;
 using Lime;
 
 namespace Game.Dialogs;
 
-public class GameScreen : Dialog<Scenes.Data.GameScreen> {
-    public GameScreen() {
-        SoundManager.PlayMusic("Ingame");
+public class InGameScreen : Dialog<Scenes.Data.GameScreen> {
+    
+    public InGameScreen() {
+        // SoundManager.PlayMusic("Ingame");
         Scene._BtnExit.It.Clicked = ReturnToMenu;
     }
 
-    private Stuff.Game game;
 
     protected override void Shown() {
         var canvas = Scene.It["Scene1"];
-        game = new Stuff.Game(NetworkClient, canvas);
-        canvas.Updated += game.UpdatePlayers;
-        canvas.Updated += game.Update;
+        Console.WriteLine("Hello from ingame screen");
     }
 
     protected override void Closing() {
