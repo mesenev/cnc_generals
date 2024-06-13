@@ -17,7 +17,6 @@ namespace Server.InterfaceViews {
             Add(logView);
             logList = new ListView();
 
-            KeyPress += OnHandleF;
 
             Application.MainLoop.AddTimeout(TimeSpan.FromMilliseconds(500), TerminalUpdate);
             SwitchToOtherView();
@@ -55,7 +54,7 @@ namespace Server.InterfaceViews {
             promptAndStatusView.Update();
             gameStateView.Update();
             logView.Update();
-            Application.Refresh();
+            // Application.Refresh();
             return true;
         }
     }

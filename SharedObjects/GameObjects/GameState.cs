@@ -109,20 +109,20 @@ public class GameState : INetSerializable {
 
     public string GameStateAsString() {
         var answer = "";
-        for (int y = Grid.Height - 1; y >= 0; y--) {
-            answer += " ";
-            for (var x = 0; x < Grid.Width; x++) {
-                var sign = " ";
-
-                if (Grid.cells[y, x].CellUnitId != -1)
-                    sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
-
-                answer += ($"{sign}");
-            }
-
-            answer += ("\n" + (y % 2 == 0 ? "" : " "));
-        }
-
+        // for (int y = Grid.Height - 1; y >= 0; y--) {
+        //     answer += " ";
+        //     for (var x = 0; x < Grid.Width; x++) {
+        //         var sign = " ";
+        //
+        //         if (Grid.cells[y, x].CellUnitId != -1)
+        //             sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
+        //
+        //         answer += ($"{sign}");
+        //     }
+        //
+        //     answer += ("\n" + (y % 2 == 0 ? "" : " "));
+        // }
+        //
         return answer;
     }
 

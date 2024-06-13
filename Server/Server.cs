@@ -4,7 +4,6 @@ using System.Net.Sockets;
 using Game;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using SharedObjects;
 using SharedObjects.Commands;
 using SharedObjects.GameObjects;
 using SharedObjects.GameObjects.Orders;
@@ -47,7 +46,7 @@ namespace Server {
             packetProcessor.SubscribeReusable<JoinPacket, NetPeer>(OnJoinReceived);
             packetProcessor.SubscribeReusable<MoveCommandPacket, NetPeer>(OnPlayerMove);
             packetProcessor.SubscribeReusable<OrderUnitPacket, NetPeer>(
-                (packet, peer) => gameState.OrderUnit(packet.Command)
+                (packet, _) => gameState.OrderUnit(packet.Command)
             );
 
             TimeAlive = new TimeSpan(0);
