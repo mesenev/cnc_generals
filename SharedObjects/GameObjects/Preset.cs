@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Game.GameObjects.Units;
+using SharedObjects;
 using BindingFlags = System.Reflection.BindingFlags;
 
 

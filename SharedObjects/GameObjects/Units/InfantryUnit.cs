@@ -3,8 +3,8 @@
 namespace Game.GameObjects.Units;
 
 public class InfantryUnit : BaseUnit {
-    public InfantryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0) : base(
-        unitId, ownerId, x, y
+    public InfantryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0, string nickname = "") : base(
+        unitId, ownerId, x, y, nickname
     ) {
         unitType = 0;
         CanMove = true;

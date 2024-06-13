@@ -5,10 +5,12 @@ using Game.Commands;
 using Game.GameObjects.Orders;
 using Game.GameObjects.Units;
 using LiteNetLib.Utils;
+using SharedObjects;
 
 namespace Game.GameObjects;
 
 public class GameState : INetSerializable {
+    private readonly UnitVoiceDatabase voiceDatabase;
     public HexGrid Grid;
     public List<InfantryUnit> MarineUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
@@ -21,7 +23,8 @@ public class GameState : INetSerializable {
     public bool IsPaused { get; set; } = true;
 
 
-    public GameState(Preset preset) {
+    public GameState(UnitVoiceDatabase voiceDatabase, Preset preset) {
+        this.voiceDatabase = voiceDatabase;
         Grid = new HexGrid(preset.GridHeight, preset.GridWidth);
         foreach (var info in preset.UnitsInfo) {
             AddUnit(info.unitType, info.ownerId, info.x, info.y);

@@ -1,7 +1,7 @@
 using Game.Commands;
-using Game.GameObjects;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using SharedObjects.GameObjects;
 
 namespace Game.Network;
 

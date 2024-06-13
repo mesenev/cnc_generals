@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using Game.Commands;
-using Game.GameObjects;
 using LiteNetLib;
 using LiteNetLib.Utils;
 using Game.Network.ClientPackets;
+using SharedObjects.GameObjects;
 
 namespace Game.Network {
     public class NetworkClient : INetEventListener {

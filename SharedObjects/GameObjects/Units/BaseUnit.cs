@@ -1,18 +1,16 @@
 ﻿using Game.GameObjects.Orders;
 using Lime;
 using LiteNetLib.Utils;
+using SharedObjects;
 
 namespace Game.GameObjects.Units;
 
-public enum UnitType {
-    PlayerBase,
-    InfantryUnit,
-    ArtilleryUnit,
-    AirUnit,
-}
 
-public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSerializable {
+
+public abstract class BaseUnit(int unitId, int ownerId, int x, int y, string nickname)
+    : INetSerializable {
     public int Health;
+    public string nickname = nickname;
     protected UnitType unitType;
     public bool CanMove;
     public bool CanAttack;
@@ -27,7 +25,6 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
     public int x = x;
     public int y = y;
 
-    public abstract Image GetImage();
 
     public void UpdatePosition(HexCell newPosition) {
         x = newPosition.XCoord;
@@ -35,7 +32,9 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y) : INetSeri
         newPosition.CellUnitId = unitId;
     }
 
-    public static BaseUnit CreateUnitByType(int unitType, int unitId, int ownerId, int x, int y) {
+    public static BaseUnit CreateUnitByType(
+        int unitType, int unitId, int ownerId, int x, int y, string nickname
+        ) {
         if (unitType == 0) {
             return new InfantryUnit(unitId, ownerId, x, y);
         }
