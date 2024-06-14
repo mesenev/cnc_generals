@@ -1,22 +1,22 @@
 using NetCoreAudio;
 
-namespace Server {
-    public class SoundNotificationsService {
-        private static Player soundPlayer = null!;
+namespace Server;
 
-        public Task? CurrentTask;
+public class SoundNotificationsService {
+    private static Player soundPlayer = null!;
 
-        public SoundNotificationsService() {
-            soundPlayer = new Player();
-            // PlayConnectedSound();
-        }
+    public Task? CurrentTask;
 
-        public void PlayConnectedSound() {
-            CurrentTask = soundPlayer.Play("Assets/peer-connected.wav" );
-        }
+    public SoundNotificationsService() {
+        soundPlayer = new Player();
+        // PlayConnectedSound();
+    }
 
-        public void PlayDisconnectedSound() {
-            CurrentTask = soundPlayer.Play("Assets/peer-disconnected.wav");
-        }
+    public void PlayConnectedSound() {
+        CurrentTask = soundPlayer.Play("Assets/peer-connected.wav" );
+    }
+
+    public void PlayDisconnectedSound() {
+        CurrentTask = soundPlayer.Play("Assets/peer-disconnected.wav");
     }
 }
