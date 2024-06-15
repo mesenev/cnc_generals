@@ -10,6 +10,7 @@
     <ItemGroup>
       <PackageReference Include="Autofac" Version="8.0.0" />
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
+      <PackageReference Include="DotNetEnv" Version="3.0.0" />
       <PackageReference Include="LiteNetLib" Version="1.2.0" />
       <PackageReference Include="NetCoreAudio" Version="2.0.0" />
       <PackageReference Include="Terminal.Gui" Version="1.17.0" />
@@ -45,6 +46,9 @@
       </None>
       <None Update="Assets\peer-disconnected.wav">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update=".env">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
     <!-- Ensure this matches the output pathfhdjulhfukdshfksdjjfkldsajflkdsajfoasldkosdfla -->

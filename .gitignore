@@ -40,7 +40,6 @@ x64/
 *.vssscc
 .builds
 *.pidb
-*.log
 *.svclog
 *.scc
 
@@ -137,3 +136,4 @@ _NCrunch*
 *.cache
 .citrus
 TangerineLog.txt
+.env

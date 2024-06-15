@@ -22,6 +22,8 @@ internal static class Program {
 
 
     private static int Main(string[] args) {
+        DotNetEnv.Env.Load();
+        DotNetEnv.Env.TraversePath().Load();
         Console.OutputEncoding = Encoding.UTF8;
         Trace.Listeners.Add(new DebugListener());
 
@@ -101,9 +103,8 @@ internal static class Program {
 
     private static void GameLoop() {
         var t0 = DateTime.Now;
-        var t1 = DateTime.Now;
         while (true) {
-            t1 = DateTime.Now;
+            DateTime t1 = DateTime.Now;
             GameState.Update(t1 - t0);
             t0 = t1;
             Thread.Sleep(16); // 60fps
