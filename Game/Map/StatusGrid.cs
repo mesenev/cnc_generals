@@ -1,11 +1,12 @@
 using Game.Stuff;
 using Lime;
 
-namespace Game.Map {
-    public class StatusGrid {
-        private Widget Canvas;
+namespace Game.Map;
 
-        public StatusGrid(int width, int height) {
+public class StatusGrid {
+    private Widget Canvas;
+
+    public StatusGrid(int width, int height) {
             Canvas = CanvasManager.Instance.GetCanvas(Layers.TerrainStatus);
             var gridMask = new HexGrid(Canvas, width, height);
             gridMask.ChangeColor(Color4.Transparent);
@@ -16,7 +17,7 @@ namespace Game.Map {
             }
         }
 
-        public void AddStatus(HexCell cell) {
+    public void AddStatus(HexCell cell) {
             var text = new SimpleText {
                 Text = $"{cell.TerrainStatus}",
                 TextColor = Color4.Black,
@@ -26,7 +27,7 @@ namespace Game.Map {
             Canvas.AddNode(text);
         }
 
-        private void AddCoords(HexCell cell) {
+    private void AddCoords(HexCell cell) {
             var text = new SimpleText {
                 Text = $"{cell.AxialCoords.Y},{cell.AxialCoords.X}",
                 TextColor = Color4.Black,
@@ -35,5 +36,4 @@ namespace Game.Map {
             };
             Canvas.AddNode(text);
         }
-    }
 }

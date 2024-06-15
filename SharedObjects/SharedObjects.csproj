@@ -10,4 +10,10 @@
       <PackageReference Include="LiteNetLib" Version="1.2.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="TextToSpeech\VoiceRequestTemplates\Confirmation.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

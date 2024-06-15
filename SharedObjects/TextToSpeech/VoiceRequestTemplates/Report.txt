@@ -1,0 +1,1 @@
+!FROM, !FROMSECTOR. (Без проишествий|!TASK).

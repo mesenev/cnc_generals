@@ -1,30 +1,31 @@
 using Terminal.Gui;
 
-namespace Server.InterfaceViews {
-    public sealed class PromptAndStatusView : View {
-        private readonly TextField commandResult = new() {
-            Text = "help",
-            Y = 1,
-            X = 1,
-            Height = 25,
-            Width = 25
-        };
+namespace Server.InterfaceViews;
 
-        private readonly TextField prompt = new("some editable text") { X = 3, Y = 0, Height = 1, Width = 30 };
+public sealed class PromptAndStatusView : View {
+    private readonly TextField commandResult = new() {
+        Text = "help",
+        Y = 1,
+        X = 1,
+        Height = 25,
+        Width = 25
+    };
 
-        private readonly Label promptCursor = new(">:") { X = 0, Y = 0, Height = 1 };
-        private readonly Label serverStatusLabel = new("launching");
-        private Label gameState;
-        private Label gameStatus;
-        private TimeSpan serverLastValue;
-        private ProgressBar serverStatus;
+    private readonly TextField prompt = new("some editable text") { X = 3, Y = 0, Height = 1, Width = 30 };
+
+    private readonly Label promptCursor = new(">:") { X = 0, Y = 0, Height = 1 };
+    private readonly Label serverStatusLabel = new("launching");
+    private Label gameState;
+    private Label gameStatus;
+    private TimeSpan serverLastValue;
+    private ProgressBar serverStatus;
 
 
-        public PromptAndStatusView() {
+    public PromptAndStatusView() {
             InitializeComponent();
         }
 
-        private void InitializeComponent() {
+    private void InitializeComponent() {
             Width = Dim.Fill();
             Height = Dim.Fill();
             Add(promptCursor);
@@ -61,7 +62,7 @@ namespace Server.InterfaceViews {
             Add(new Label("F3 - logs") { X = 45, Y = 6 });
         }
 
-        public void Update() {
+    public void Update() {
             gameStatus.Text = desideGameStatus();
 
             if (!(Program.Server.TimeAlive > serverLastValue)) {
@@ -75,7 +76,7 @@ namespace Server.InterfaceViews {
             }
         }
 
-        private string desideGameStatus() {
+    private string desideGameStatus() {
             if (Program.Server.ConnectedPeers < Program.PlayersAmount)
                 return $"waiting players {Program.Server.ConnectedPeers}/{Program.PlayersAmount}" +
                        $"  {Program.GameState.ElapsedGameTime:g}";
@@ -84,5 +85,4 @@ namespace Server.InterfaceViews {
 
             return $"running {Program.GameState.ElapsedGameTime:g}";
         }
-    }
 }

@@ -1,3 +1,3 @@
-namespace Server.ServerCommands {
-    public class HelpCommand : BaseCommand { }
-}
+namespace Server.ServerCommands;
+
+public class HelpCommand : BaseCommand { }

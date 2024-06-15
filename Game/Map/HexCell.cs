@@ -1,27 +1,28 @@
 using Lime;
 
-namespace Game.Map {
-    public class HexCell {
-        public int XCoord;
-        public int YCoord;
-        public int GridX;
-        public int GridY;
-        public int CellUnitId = -1;
-        public bool Occupied = false;
-        public string TerrainStatus = "H";
-        private int size = 64;
-        public readonly Image image;
+namespace Game.Map;
 
-        public Vector2 PixelPosition {
-            get => image.Position;
-            set => image.Position = value;
-        }
+public class HexCell {
+    public int XCoord;
+    public int YCoord;
+    public int GridX;
+    public int GridY;
+    public int CellUnitId = -1;
+    public bool Occupied = false;
+    public string TerrainStatus = "H";
+    private int size = 64;
+    public readonly Image image;
 
-        public Vector2 HexPosition;
-        public Vector2 AxialCoords;
+    public Vector2 PixelPosition {
+        get => image.Position;
+        set => image.Position = value;
+    }
 
-        public HexCell(Widget canvas, Vector2 newPos, int xCoord, int yCoord, int gridX,
-            int gridY) {
+    public Vector2 HexPosition;
+    public Vector2 AxialCoords;
+
+    public HexCell(Widget canvas, Vector2 newPos, int xCoord, int yCoord, int gridX,
+        int gridY) {
             XCoord = xCoord;
             YCoord = yCoord;
             GridX = gridX;
@@ -37,7 +38,7 @@ namespace Game.Map {
             canvas.AddNode(image);
         }
 
-        public void AddCoords(Widget canvas) {
+    public void AddCoords(Widget canvas) {
             var text = new SimpleText {
                 Text = $"{AxialCoords.Y},{AxialCoords.X}",
                 TextColor = Color4.White,
@@ -47,7 +48,7 @@ namespace Game.Map {
             canvas.PushNode(text);
         }
 
-        public Vector2 GetPosition(float y, float x) {
+    public Vector2 GetPosition(float y, float x) {
             return new Vector2(
                 // x * image.Height + ((y + 1) % 2 * image.Height / 2) + image.Height / 2,
                 // (GridY - y) * 0.75f * image.Width
@@ -55,5 +56,4 @@ namespace Game.Map {
                 x * 0.75f * image.Width + image.Width / 2
             );
         }
-    }
 }

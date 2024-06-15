@@ -13,6 +13,7 @@ public class HexCell(int xCoord = 1, int yCoord = 1) : INetSerializable {
     //Cost from current cell to destination tile
     public int h;
     public int F => g + h;
+    public string Name => $"Координаты {YCoord} {XCoord}";
 
     public void UpdateCellUnit(int unitId) {
         CellUnitId = unitId;

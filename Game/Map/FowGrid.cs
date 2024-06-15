@@ -3,23 +3,24 @@ using Game.GameObjects.Units;
 using Game.Stuff;
 using Lime;
 
-namespace Game.Map {
-    public class FowGrid {
-        private HexGrid gridMask;
-        private Dictionary<Vector2, HexCell> axialGridMask = new();
-        private List<IDrawableUnit> units;
+namespace Game.Map;
 
-        public FowGrid(List<IDrawableUnit> units) {
+public class FowGrid {
+    private HexGrid gridMask;
+    private Dictionary<Vector2, HexCell> axialGridMask = new();
+    private List<IDrawableUnit> units;
+
+    public FowGrid(List<IDrawableUnit> units) {
             UpdateUnits(units);
         }
 
-        private void InitAxialGrid() {
+    private void InitAxialGrid() {
             foreach (var cell in gridMask.cells) {
                 axialGridMask.Add(cell.AxialCoords, cell);
             }
         }
 
-        public void InitFow(int width, int height) {
+    public void InitFow(int width, int height) {
             var canvas = CanvasManager.Instance.GetCanvas(Layers.FogMask);
             gridMask = new HexGrid(canvas, width, height);
             InitAxialGrid();
@@ -27,13 +28,13 @@ namespace Game.Map {
             RecalculateFow();
         }
 
-        private void SetFog() {
+    private void SetFog() {
             foreach (var cell in gridMask.cells) {
                 cell.image.Color = Color4.Gray;
             }
         }
 
-        public void RecalculateFow() {
+    public void RecalculateFow() {
             SetFog();
             foreach (var unit in units) {
                 var visibleUnitCells = GetVisibleCellsByUnit(unit);
@@ -43,7 +44,7 @@ namespace Game.Map {
             }
         }
 
-        private List<HexCell> GetVisibleCellsByUnit(IDrawableUnit unit) {
+    private List<HexCell> GetVisibleCellsByUnit(IDrawableUnit unit) {
             var visibleCells = new List<HexCell>();
             var visionRadius = unit.VisibleRadius;
             var unitCellAxialCoords = gridMask.cells[unit.Y, unit.X].AxialCoords;
@@ -64,8 +65,7 @@ namespace Game.Map {
             return visibleCells;
         }
 
-        public void UpdateUnits(List<IDrawableUnit> newUnits) {
+    public void UpdateUnits(List<IDrawableUnit> newUnits) {
             this.units = newUnits;
         }
-    }
 }

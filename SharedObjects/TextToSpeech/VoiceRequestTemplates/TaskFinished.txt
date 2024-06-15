@@ -1,0 +1,2 @@
+!FROM !TO. Поставленную задачу выполнил.
+!FROM !FROMSECTOR !TO. !TASKNAME Выполнено.

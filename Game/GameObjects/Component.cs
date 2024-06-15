@@ -1,7 +1,6 @@
-namespace Game.GameObjects
+namespace Game.GameObjects;
+
+public class Component
 {
-	public class Component
-	{
-		public int EntityId;
-	}
+    public int EntityId;
 }

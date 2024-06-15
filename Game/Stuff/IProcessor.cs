@@ -1,7 +1,6 @@
-namespace Game.Stuff
+namespace Game.Stuff;
+
+public interface IProcessor
 {
-	public interface IProcessor
-	{
-		void Update(float delta, GameObjects.Game game);
-	}
+    void Update(float delta, GameObjects.Game game);
 }

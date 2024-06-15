@@ -12,6 +12,7 @@ namespace SharedObjects.GameObjects;
 public class GameState : INetSerializable {
     private readonly UnitVoiceDatabase voiceDatabase;
     public HexGrid Grid;
+    public List<PlayerInfo> Players;
     public List<InfantryUnit> InfantryUnits = [];
     public List<ArtilleryUnit> ArtilleryUnits = [];
     public List<AirUnit> AirUnits = [];

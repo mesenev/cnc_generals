@@ -1,17 +1,33 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Google.Protobuf.Collections;
 using Grpc.Core;
 using Grpc.Net.Client;
+using SharedObjects.TextToSpeech;
 using yandex.tts;
 
 namespace VoiceResponseModule;
 
-public class YandexTtSBackend {
-    private static readonly string iamToken = Environment.GetEnvironmentVariable("TTS_YANDEX_IAMTOKEN");
-    private static readonly string folderId = Environment.GetEnvironmentVariable("TTS_YANDEX_FOLDER_ID");
+internal class YandexTtSBackend {
+    private static readonly string iamToken =
+        Environment.GetEnvironmentVariable("TTS_YANDEX_IAMTOKEN")
+        ?? throw new InvalidOperationException();
 
-    public async Task<byte[]> Synthesize(string text) {
+    private static readonly string folderId =
+        Environment.GetEnvironmentVariable("TTS_YANDEX_FOLDER_ID")
+        ?? throw new InvalidOperationException();
+
+    public static async Task<byte[]> Synthesize(string text, UnitVoiceData voiceParams) {
+        
+        RepeatedField<Hints> voiceHints = [
+            new Hints { Voice = voiceParams.YandexVoice },
+            new Hints { Speed = voiceParams.VoiceSpeedModificator },
+            new Hints { PitchShift = voiceParams.PitchShift },
+        ];
+        if (voiceParams.YandexVoiceRole != null)
+            voiceHints.Add(new Hints { Role = voiceParams.YandexVoiceRole });
+        
         var request = new UtteranceSynthesisRequest {
             Text = text,
             OutputAudioSpec = new AudioFormatOptions {
@@ -19,11 +35,7 @@ public class YandexTtSBackend {
                     ContainerAudioType = ContainerAudio.Types.ContainerAudioType.Wav
                 }
             },
-            Hints = {
-                new Hints { Voice = "alexander" },
-                new Hints { Role = "good" },
-                new Hints { Speed = 1.1 }
-            },
+            Hints = { voiceHints },
             LoudnessNormalizationType =
                 UtteranceSynthesisRequest.Types.LoudnessNormalizationType.Lufs
         };

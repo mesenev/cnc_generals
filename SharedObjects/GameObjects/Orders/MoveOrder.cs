@@ -12,6 +12,7 @@ namespace SharedObjects.GameObjects.Orders;
         private Stack<HexCell> pathCells = new();
         private DateTime t1;
         private DateTime t2;
+        public OrderType OrderType => OrderType.Move;
 
         public OrderStatus Update(GameState state) {
             t1 = DateTime.Now;
@@ -37,6 +38,7 @@ namespace SharedObjects.GameObjects.Orders;
 
             return OrderStatus.Executing;
         }
+
 
         private Stack<HexCell> GetPath(GameState state) {
             isPathFound = true;

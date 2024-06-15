@@ -1,14 +1,15 @@
 using System;
 using Lime;
 
-namespace Game.Map {
-    public class HexGrid {
-        public int width;
-        public int height;
+namespace Game.Map;
 
-        public HexCell[,] cells;
+public class HexGrid {
+    public int width;
+    public int height;
 
-        public HexGrid(Widget canvas, int width, int height) {
+    public HexCell[,] cells;
+
+    public HexGrid(Widget canvas, int width, int height) {
             this.width = width;
             this.height = height;
             cells = new HexCell[height, width];
@@ -26,15 +27,14 @@ namespace Game.Map {
             }
         }
 
-        public void ChangeColor(Color4 color) {
+    public void ChangeColor(Color4 color) {
             foreach (var cell in cells) {
                 cell.image.Color = color;
             }
         }
 
-        public Vector2 getRandomCellPosition() {
+    public Vector2 getRandomCellPosition() {
             Random random = new Random();
             return cells[random.Next(0, height), random.Next(0, width)].PixelPosition;
         }
-    }
 }
