@@ -1,2 +1,2 @@
-!FROM !TO. Поставленную задачу выполнил.
-!FROM !FROMSECTOR !TO. !TASKNAME Выполнено.
+!REPORTER !TO!дт . Поставленную задачу выполнил.
+!REPORTER !SECTORFROM !TO. !TASKNAME Выполнено.

@@ -2,8 +2,8 @@
 namespace SharedObjects.GameObjects.Units;
 
 public class InfantryUnit : BaseUnit {
-    public InfantryUnit(int unitId = 0, int ownerId = 0, int x = 0, int y = 0, string nickname = "") : base(
-        unitId, ownerId, x, y, nickname
+    public InfantryUnit(int unitId = 0, int playerId = 0, int x = 0, int y = 0, string nickname = "") : base(
+        unitId, playerId, x, y, nickname
     ) {
         Type = 0;
         CanMove = true;

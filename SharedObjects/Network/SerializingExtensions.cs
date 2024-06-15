@@ -1,7 +1,7 @@
 using System.Numerics;
 using LiteNetLib.Utils;
 
-namespace Game;
+namespace SharedObjects.Network;
 
 public static class SerializingExtensions {
 	public static void Put(this NetDataWriter writer, Vector2 vector) {

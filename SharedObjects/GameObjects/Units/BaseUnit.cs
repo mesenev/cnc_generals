@@ -5,7 +5,7 @@ namespace SharedObjects.GameObjects.Units;
 
 
 
-public abstract class BaseUnit(int unitId, int ownerId, int x, int y, string nickname)
+public abstract class BaseUnit(int unitId, int playerId, int x, int y, string nickname)
     : INetSerializable {
     public int Health { get; set; }
     public string Nickname { get; } = nickname;
@@ -14,7 +14,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y, string nic
     public bool CanAttack { get; set; }
     public bool HasAbility { get; set; }
     public int UnitId { get; set; } = unitId;
-    public int OwnerId { get; set; } = ownerId;
+    public int PlayerId { get; set; } = playerId;
     public float MovementSpeed { get; set; }
     public float AttackSpeed { get; set; }
     public int AttackDamage { get; set; }
@@ -47,7 +47,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y, string nic
     public void Serialize(NetDataWriter writer) {
         writer.Put((int)Type);
         writer.Put(UnitId);
-        writer.Put(OwnerId);
+        writer.Put(PlayerId);
         writer.Put(Health);
         writer.Put(X);
         writer.Put(Y);
@@ -56,7 +56,7 @@ public abstract class BaseUnit(int unitId, int ownerId, int x, int y, string nic
     public virtual void Deserialize(NetDataReader reader) {
         Type = (UnitType)reader.GetInt();
         UnitId = reader.GetInt();
-        OwnerId = reader.GetInt();
+        PlayerId = reader.GetInt();
         Health = reader.GetInt();
         X = reader.GetInt();
         Y = reader.GetInt();

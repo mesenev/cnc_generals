@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DeepMorphy;
+using DeepMorphy.Model;
 using SharedObjects.GameObjects;
 using SharedObjects.GameObjects.Orders;
 using SharedObjects.GameObjects.Units;
@@ -13,15 +15,16 @@ internal static class VoiceRequestToTextService {
     private static readonly Dictionary<VoiceRequestType, string[]> templates = new();
     private static readonly Dictionary<OrderType, string[]> orderTemplates = new();
     private static readonly Random rnd = new();
-    private static GameState gameState = null!;
+    internal static GameState gameState;
+    private static readonly MorphAnalyzer? Morph ; //new();
     private static VoiceRequest currentRequest;
     private static BaseUnit unit = null!;
 
 
     private static readonly Dictionary<string, Func<string>> keywords = new() {
         { "!TO", RenderTo },
-        { "!FROM", RenderFrom },
-        { "!FROMSECTOR", RenderFromSector },
+        { "!SECTORFROM", RenderFromSector },
+        { "!REPORTER", RenderFrom },
         { "!SECTOR", RenderSector },
         { "!TASK", RenderTask },
         { "!TASKNAME", RenderTaskName },
@@ -30,13 +33,14 @@ internal static class VoiceRequestToTextService {
     static VoiceRequestToTextService() {
         foreach (VoiceRequestType type in Enum.GetValues<VoiceRequestType>()) {
             string? typeName = Enum.GetName(type);
-            templates[type] = File.ReadAllLines($"VoiceRequestTemplates/{typeName}.txt");
+            templates[type] =
+                File.ReadAllLines($"TextToSpeech/VoiceRequestTemplates/{typeName}.txt");
         }
 
         foreach (OrderType type in Enum.GetValues<OrderType>()) {
             string? typeName = Enum.GetName(type);
             orderTemplates[type] = File.ReadAllLines(
-                $"VoiceRequestTemplates/Orders/{typeName}.txt"
+                $"TextToSpeech/VoiceRequestTemplates/Orders/{typeName}.txt"
             );
         }
     }
@@ -52,16 +56,39 @@ internal static class VoiceRequestToTextService {
             x => template.Contains(x.Key)
         );
         foreach (var data in requiredData) {
-            answer = template.Replace(data.Key, data.Value());
+            answer = answer.Replace(data.Key, data.Value.Invoke());
+        }
+        
+        return (Morph == null) ? answer : ApplyMorphology(answer);
+        
+    }
+
+    private static string ApplyMorphology(string data) {
+        var answer = "";
+        foreach (var word in data.Split()) {
+            var morphied = word;
+            if (word.Contains("!дт")) {
+                morphied = Morph.Inflect(
+                    [
+                        new InflectTask(
+                            word.Replace("!рд", ""),
+                            Morph.TagHelper.CreateTag("сущ", @case: "им"),
+                            Morph.TagHelper.CreateTag("сущ", @case: "дт")
+                        )
+                    ]
+                ).First();
+            }
+            answer += morphied;
         }
 
         return answer;
     }
 
     private static string RenderTo() {
-        return gameState.Players.First(
-            player => player.PlayerId == unit.OwnerId
-        ).PlayerBaseName;
+        return "Севастополь";
+        // return gameState.Players.First(
+        // player => player.PlayerId == unit.PlayerId
+        // ).PlayerBaseName;
     }
 
     private static string RenderFrom() {

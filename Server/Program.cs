@@ -5,6 +5,7 @@ using Server.InterfaceViews;
 using SharedObjects.GameObjects;
 using SharedObjects.TextToSpeech;
 using Terminal.Gui;
+using VoiceResponseModule;
 using Attribute = Terminal.Gui.Attribute;
 
 namespace Server;
@@ -19,6 +20,8 @@ internal static class Program {
     public static Server Server = null!;
     public static GameState GameState = null!;
     public static SoundNotificationsService SoundManager = new();
+
+    public static ResponseEmitterService ResponseEmitterService = null!;
 
 
     private static int Main(string[] args) {
@@ -40,6 +43,8 @@ internal static class Program {
 
         Application.Init();
         GameState = new GameState(VoiceDatabase, new Preset(PresetPath));
+        ResponseEmitterService = new ResponseEmitterService(VoiceDatabase, GameState);
+        GameState.AddVoiceRequest = ResponseEmitterService.AddVoiceRequest;
         Server = new Server(GameState) { PlayersAmount = PlayersAmount };
         Server.PeersAmountChanged += PeersAmountChangedHandler;
         if (!DisableSoundNotifications)
@@ -60,16 +65,20 @@ internal static class Program {
         var networkThread = new Thread(NetworkLoop);
         var broadcastThread = new Thread(BroadcastLoop);
         var consoleThread = new Thread(ConsoleLoop);
+        var voiceEmitterThread = new Thread(VoiceEmitterLoop);
 
         gameLoopThread.Start();
         networkThread.Start();
         broadcastThread.Start();
         consoleThread.Start();
+        voiceEmitterThread.Start();
+
 
         gameLoopThread.Join();
         networkThread.Join();
         broadcastThread.Join();
         consoleThread.Join();
+        voiceEmitterThread.Join();
 
         return 0;
     }
@@ -111,6 +120,13 @@ internal static class Program {
         }
 
         return;
+    }
+
+    private static void VoiceEmitterLoop() {
+        while (true) {
+            ResponseEmitterService.ProcessNext();
+            Thread.Sleep(100);
+        }
     }
 
     private static void BroadcastLoop() {

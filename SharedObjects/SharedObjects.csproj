@@ -12,7 +12,25 @@
 
     <ItemGroup>
       <None Update="TextToSpeech\VoiceRequestTemplates\Confirmation.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\EnemyEngaged.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\EnemySpotted.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\RandomEvent.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\Report.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\TaskFinished.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TextToSpeech\VoiceRequestTemplates\Orders\Move.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 

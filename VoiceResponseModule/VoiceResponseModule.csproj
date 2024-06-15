@@ -6,10 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Game\Game.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="DeepMorphy" Version="2.0.3" />
       <PackageReference Include="Google.Protobuf" Version="3.27.1" />
       <PackageReference Include="Grpc.Core" Version="2.46.6" />
       <PackageReference Include="Grpc.Net.Client" Version="2.63.0" />
@@ -17,6 +14,11 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="TensorFlowSharp" Version="1.15.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SharedObjects\SharedObjects.csproj" />
     </ItemGroup>
 
 </Project>

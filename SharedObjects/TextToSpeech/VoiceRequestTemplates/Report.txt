@@ -1,1 +1,1 @@
-!FROM, !FROMSECTOR. (Без проишествий|!TASK).
+!REPORTER, !SECTORFROM. (Без проишествий|!TASK).

@@ -51,14 +51,5 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
-    <!-- Ensure this matches the output pathfhdjulhfukdshfksdjjfkldsajflkdsajfoasldkosdfla -->
-
-    <Target Name="CopyFilesFromProjectA" AfterTargets="Build">
-        <ItemGroup>
-            <FilesFromA Include="$(SolutionDir)\..\Game\bin\$(Configuration)\net8.0-windows\GameStatePresets\**\*" />
-        </ItemGroup>
-        <Copy SourceFiles="@(FilesFromA)" DestinationFolder="$(OutDir)\GameStatePresets\" />
-    </Target>
-
 
 </Project>

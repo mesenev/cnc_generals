@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using DeepMorphy;
 using SharedObjects.GameObjects;
 using SharedObjects.TextToSpeech;
 
@@ -15,12 +19,14 @@ public class ResponseEmitterService {
 
     private readonly Dictionary<int, object> transmitters = new();
 
-    public ResponseEmitterService(VoiceTransmitterData[] data, UnitVoiceDatabase database) {
+    public ResponseEmitterService(UnitVoiceDatabase database, GameState gameState) {
         this.database = database;
-        foreach (var transmitterData in data) {
-            object transmitter = new();
-            transmitters[transmitterData.Player.PlayerId] = transmitter;
-        }
+        VoiceRequestToTextService.gameState = gameState;
+    }
+
+    public void AddPeer(VoiceTransmitterData transmitterData) {
+        object transmitter = new();
+        transmitters[transmitterData.Player.PlayerId] = transmitter;
     }
 
     private byte[] PostProduction(byte[] audio, object args) {
@@ -32,8 +38,17 @@ public class ResponseEmitterService {
         // transmitters[request.PlayerId].Send(answer);
     }
 
-    private async Task processVoiceRequest(VoiceRequest request) {
+    public async void ProcessNext() {
+        if (voiceRequests.Count == 0)
+            return;
+        await ProcessVoiceRequest(voiceRequests.Dequeue());
+
+    }
+
+    private async Task ProcessVoiceRequest(VoiceRequest request) {
         string text = VoiceRequestToTextService.RenderVoiceRequest(request);
+        Debug.WriteLine(text);
+        return;
         byte[] voiceAnswer = await YandexTtSBackend.Synthesize(
             text, database.GetUnitVoiceByUnitId(request.UnitId)
         );

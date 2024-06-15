@@ -12,17 +12,21 @@ namespace SharedObjects.GameObjects;
 public class GameState : INetSerializable {
     private readonly UnitVoiceDatabase voiceDatabase;
     public HexGrid Grid;
-    public List<PlayerInfo> Players;
-    public List<InfantryUnit> InfantryUnits = [];
-    public List<ArtilleryUnit> ArtilleryUnits = [];
-    public List<AirUnit> AirUnits = [];
-    public List<PlayerBase> PlayerBases = [];
-    public List<MoveOrder> MoveOrders = [];
+    public List<PlayerInfo> Players; //TODO serialization!
+    public readonly List<InfantryUnit> InfantryUnits = [];
+    public readonly List<ArtilleryUnit> ArtilleryUnits = [];
+    public readonly List<AirUnit> AirUnits = [];
+    public readonly List<PlayerBase> PlayerBases = [];
+    public readonly List<MoveOrder> MoveOrders = [];
     private int unitIdCounter;
     public TimeSpan ElapsedGameTime { get; set; } = new(0);
     public bool GameInitiated { get; set; }
     public bool IsPaused { get; set; } = true;
 
+
+    public delegate void AddVoiceRequestDelegate(VoiceRequest request);
+
+    public AddVoiceRequestDelegate AddVoiceRequest;
 
     //Server only constructor!
     public GameState(UnitVoiceDatabase voiceDatabase, Preset preset) {
@@ -91,7 +95,14 @@ public class GameState : INetSerializable {
 
     public void RemoveOrder(IOrder orderToRemove) {
         if (orderToRemove.GetType() == typeof(MoveOrder)) {
-            MoveOrders.Remove(orderToRemove as MoveOrder);
+            var order = (MoveOrder)orderToRemove;
+            MoveOrders.Remove(order);
+            var unit = GetUnitById(order.UnitId);
+            AddVoiceRequest(
+                new VoiceRequest(
+                    unit.PlayerId, unit.UnitId, VoiceRequestType.TaskFinished, null, order
+                )
+            );
         }
     }
 
@@ -101,8 +112,9 @@ public class GameState : INetSerializable {
 
         var copy = Orders.ToList();
         foreach (IOrder order in copy) {
-            if (order.Update(this) == OrderStatus.Finished)
+            if (order.Update(this) == OrderStatus.Finished) {
                 RemoveOrder(order);
+            }
         }
 
         ElapsedGameTime += timeDelta;
@@ -116,7 +128,7 @@ public class GameState : INetSerializable {
         //         var sign = " ";
         //
         //         if (Grid.cells[y, x].CellUnitId != -1)
-        //             sign = GetUnitById(Grid.cells[y, x].CellUnitId).OwnerId == 0 ? "?" : "!";
+        //             sign = GetUnitById(Grid.cells[y, x].CellUnitId).PlayerId == 0 ? "?" : "!";
         //
         //         answer += ($"{sign}");
         //     }

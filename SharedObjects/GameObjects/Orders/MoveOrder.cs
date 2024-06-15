@@ -13,6 +13,7 @@ namespace SharedObjects.GameObjects.Orders;
         private DateTime t1;
         private DateTime t2;
         public OrderType OrderType => OrderType.Move;
+        public int UnitId = unitId;
 
         public OrderStatus Update(GameState state) {
             t1 = DateTime.Now;
@@ -21,7 +22,7 @@ namespace SharedObjects.GameObjects.Orders;
                 pathCells = GetPath(state);
             }
 
-            BaseUnit currentUnit = state.GetUnitById(unitId);
+            BaseUnit currentUnit = state.GetUnitById(UnitId);
             HexCell currentCell =
                 state.Grid.cells[currentUnit.Y, currentUnit.X];
 
@@ -45,7 +46,7 @@ namespace SharedObjects.GameObjects.Orders;
             List<HexCell> openPathCells = [];
             List<HexCell> closedPathCells = [];
 
-            BaseUnit currentUnit = state.GetUnitById(unitId);
+            BaseUnit currentUnit = state.GetUnitById(UnitId);
             HexCell destinationCell = state.Grid.cells[destinationCellY, destinationCellX];
             HexCell currentCell =
                 state.Grid.cells[currentUnit.Y, currentUnit.X];
@@ -145,7 +146,7 @@ namespace SharedObjects.GameObjects.Orders;
         }
 
         public void Serialize(NetDataWriter writer) {
-            writer.Put(unitId);
+            writer.Put(UnitId);
             writer.Put(destinationCellX);
             writer.Put(destinationCellY);
             writer.Put(isPathFound);
@@ -156,7 +157,7 @@ namespace SharedObjects.GameObjects.Orders;
         }
 
         public void Deserialize(NetDataReader reader) {
-            unitId = reader.GetInt();
+            UnitId = reader.GetInt();
             destinationCellX = reader.GetInt();
             destinationCellY = reader.GetInt();
             isPathFound = reader.GetBool();

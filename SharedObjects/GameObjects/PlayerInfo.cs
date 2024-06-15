@@ -1,6 +1,6 @@
 namespace SharedObjects.GameObjects;
 
-public class PlayerInfo {
+public struct PlayerInfo {
     public int PlayerId;
     public string PlayerNickname;
     public string PlayerBaseName;
