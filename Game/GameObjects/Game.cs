@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Game.GameObjects.Units;
 using Game.Map;
 using Game.Stuff;
 using Game.Widgets;
 using Lime;
+using NAudio.Wave;
 using SharedObjects.Commands;
 using SharedObjects.Network;
+using SharedObjects.TextToSpeech;
 using HexCell = Game.Map.HexCell;
 using HexGrid = Game.Map.HexGrid;
 
@@ -17,6 +20,11 @@ public class Game {
 
     private readonly List<Component> components =  [];
     private readonly List<IProcessor> processors =  [];
+    private readonly BufferedWaveProvider bufferedWaveProvider = new(new WaveFormat());
+    private readonly VoiceReceiverModule voiceReceiver;
+    private Thread voiceReceiverThread;
+    private WaveOutEvent waveOutEvent = new WaveOutEvent();
+
 
     private HexGrid hexGrid;
     private FowGrid fowGrid;
@@ -35,6 +43,13 @@ public class Game {
 
         The.NetworkClient.OnGameStateUpdateEvent += UpdateGameState;
 
+        
+        
+        waveOutEvent.Init(bufferedWaveProvider);
+        voiceReceiver = new VoiceReceiverModule(bufferedWaveProvider);
+        waveOutEvent.Play();
+        voiceReceiverThread = new Thread(voiceReceiver.ReadBytesFromServer);
+        voiceReceiverThread.Start();
         InitializeViewportAndCameraAndAddToWidget(scene);
         CanvasManager.Instance.InitLayers(viewport);
 
@@ -108,6 +123,7 @@ public class Game {
         }
 
         The.NetworkClient.Update();
+
     }
 
     public void UpdatePlayers(float delta) {

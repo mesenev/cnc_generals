@@ -5,11 +5,12 @@ using Google.Protobuf.Collections;
 using Grpc.Core;
 using Grpc.Net.Client;
 using SharedObjects.TextToSpeech;
+using VoiceResponseModule.Backends;
 using yandex.tts;
 
 namespace VoiceResponseModule;
 
-internal class YandexTtSBackend {
+internal class YandexTtSBackend:ITtSBackend<UnitVoiceData> {
     private static readonly string iamToken =
         Environment.GetEnvironmentVariable("TTS_YANDEX_IAMTOKEN")
         ?? throw new InvalidOperationException();
@@ -18,7 +19,7 @@ internal class YandexTtSBackend {
         Environment.GetEnvironmentVariable("TTS_YANDEX_FOLDER_ID")
         ?? throw new InvalidOperationException();
 
-    public static async Task<byte[]> Synthesize(string text, UnitVoiceData voiceParams) {
+    public async Task<byte[]> Synthesize(string text, UnitVoiceData voiceParams) {
         
         RepeatedField<Hints> voiceHints = [
             new Hints { Voice = voiceParams.YandexVoice },

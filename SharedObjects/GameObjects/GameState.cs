@@ -100,7 +100,8 @@ public class GameState : INetSerializable {
             var unit = GetUnitById(order.UnitId);
             AddVoiceRequest(
                 new VoiceRequest(
-                    unit.PlayerId, unit.UnitId, VoiceRequestType.TaskFinished, null, order
+                    unit.PlayerId, unit.UnitId, VoiceRequestType.TaskFinished, 
+                    [unit.Y, unit.X], order
                 )
             );
         }

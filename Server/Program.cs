@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.Text;
 using CommandLine;
 using Server.InterfaceViews;
@@ -11,6 +12,7 @@ using Attribute = Terminal.Gui.Attribute;
 namespace Server;
 
 internal static class Program {
+    public const int Port = 12345;
     public static readonly List<string> Logs = [];
 
     public static int PlayersAmount;
@@ -43,13 +45,14 @@ internal static class Program {
 
         Application.Init();
         GameState = new GameState(VoiceDatabase, new Preset(PresetPath));
-        ResponseEmitterService = new ResponseEmitterService(VoiceDatabase, GameState);
+        ResponseEmitterService =
+            new ResponseEmitterService(VoiceDatabase, GameState, PlayersAmount, Port);
         GameState.AddVoiceRequest = ResponseEmitterService.AddVoiceRequest;
         Server = new Server(GameState) { PlayersAmount = PlayersAmount };
         Server.PeersAmountChanged += PeersAmountChangedHandler;
         if (!DisableSoundNotifications)
             SoundEventsSetup();
-
+        
         var mainView = new MainView(new Rect(1, 1, 90, 28)) {
             Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = new() {
                 Normal = Attribute.Make(

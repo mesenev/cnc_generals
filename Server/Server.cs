@@ -50,9 +50,8 @@ public class Server : INetEventListener {
         );
 
         TimeAlive = new TimeSpan(0);
-        var port = 12345;
-        netManager.Start(port);
-        Debug.WriteLine($"Server is up! port: {port}");
+        netManager.Start(Program.Port);
+        Debug.WriteLine($"Server is up! port: {Program.Port}");
     }
 
     public void Stop() {
