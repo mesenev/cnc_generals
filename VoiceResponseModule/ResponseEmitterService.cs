@@ -61,21 +61,18 @@ public class ResponseEmitterService {
         byte[] voiceAnswer = await msBackend.Synthesize(
             text, database.GetUnitVoiceByUnitId(request.UnitId)
         );
-        // var provider = new BufferedWaveProvider(new WaveFormat(19000, 1));
-        // provider.AddSamples(voiceAnswer, 0, voiceAnswer.Length);
+        var provider = new BufferedWaveProvider(new WaveFormat(41000, 1));
+        provider.AddSamples(voiceAnswer, 0, voiceAnswer.Length);
         // var provider = new WaveFileReader("test.wav");
         // Debug.WriteLine(provider.WaveFormat);
         // WaveOutEvent waveOutEvent = new WaveOutEvent();
         // waveOutEvent.Init(provider);
         // waveOutEvent.Play();
 
-        var fileStream = new Mp3FileReader("tears_in_rain.mp3");
-        var buffer = new byte[fileStream.WaveFormat.AverageBytesPerSecond];
+        // var fileStream = new Mp3FileReader("tears_in_rain.mp3");
+        // var buffer = new byte[fileStream.WaveFormat.AverageBytesPerSecond];
 
-        for (long secWindow = 0; secWindow < 6; secWindow++) {
-            fileStream.Read(buffer, 0, buffer.Length);
-            TransmitResponse(request, buffer);
-        }
+        TransmitResponse(request, voiceAnswer);
     }
 }
 

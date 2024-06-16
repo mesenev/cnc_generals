@@ -20,7 +20,7 @@ public class Game {
 
     private readonly List<Component> components =  [];
     private readonly List<IProcessor> processors =  [];
-    private readonly BufferedWaveProvider bufferedWaveProvider = new(new WaveFormat());
+    private readonly BufferedWaveProvider bufferedWaveProvider = new(new WaveFormat(32000,1));
     private readonly VoiceReceiverModule voiceReceiver;
     private Thread voiceReceiverThread;
     private WaveOutEvent waveOutEvent = new WaveOutEvent();

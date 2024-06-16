@@ -19,7 +19,7 @@ public class MsEmbeddedTtSBackend : ITtSBackend<UnitVoiceData> {
         builder.StartStyle(style);
         builder.AppendText(text);
         builder.EndStyle();
-        var p = synth.SpeakAsync(builder);
+        synth.Speak(builder);
         builder.ClearContent();
         byte[] speechBytes = stream.GetBuffer();
         return speechBytes;
