@@ -1,6 +1,8 @@
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Speech.AudioFormat;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
@@ -23,6 +25,16 @@ public class MsEmbeddedTtSBackend : ITtSBackend<UnitVoiceData> {
         synth.Speak(builder);
         builder.ClearContent();
         byte[] speechBytes = stream.GetBuffer();
-        return speechBytes;
+        return _trimEnd(speechBytes);
+    }
+
+
+    private static byte[] _trimEnd(byte[] audio) {
+        return audio;
+        //2 bytes for frame means vals from the end should be leq 1
+        int length = audio.Length - 1;
+        while (audio[length] < 2 && audio[length - 1] < 2)
+            length -= 2;
+        return audio[new Range(0, length)];
     }
 }

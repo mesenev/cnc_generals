@@ -62,7 +62,7 @@ public class ResponseEmitterService {
         noiseGen.Type = SignalGeneratorType.Pink;
         noiseGen.ToWaveProvider16().Read(noise1, 0, noise1.Length);
         noiseGen.Gain = (0.01 + rnd.NextDouble() / 100);
-        noiseGen.Frequency = rnd.Next(500);
+        noiseGen.Frequency = rnd.Next(200);
         noiseGen.Type = (SignalGeneratorType)rnd.Next(3, 7);
         Debug.WriteLine(noiseGen.Type);
         noiseGen.ToWaveProvider16().Read(noise2, 0, noise1.Length);
@@ -72,7 +72,6 @@ public class ResponseEmitterService {
         mixer2.AddMixerInput(_to32(noise2));
         mixer2.ToWaveProvider16().Read(audio, 0, audio.Length);
         return audio;
-        // mixer.AddInputStream(new WaveChannel32(New RawSourceWaveStream()));
     }
 
     private static Wave16ToFloatProvider _to32(byte[] audio) {
