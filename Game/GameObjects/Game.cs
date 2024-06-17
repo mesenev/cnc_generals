@@ -20,10 +20,17 @@ public class Game {
 
     private readonly List<Component> components =  [];
     private readonly List<IProcessor> processors =  [];
-    private readonly BufferedWaveProvider bufferedWaveProvider = new(new WaveFormat(32000,1));
+    private static readonly WaveFormat custom = WaveFormat.CreateCustomFormat(
+            WaveFormatEncoding.Pcm, 22050,
+            1, 44100, 2,
+            16
+        );
+    private readonly BufferedWaveProvider bufferedWaveProvider = new(custom) {
+        BufferLength = custom.AverageBytesPerSecond*60, DiscardOnBufferOverflow = true
+    };
     private readonly VoiceReceiverModule voiceReceiver;
     private Thread voiceReceiverThread;
-    private WaveOutEvent waveOutEvent = new WaveOutEvent();
+    private WaveOutEvent waveOutEvent = new();
 
 
     private HexGrid hexGrid;

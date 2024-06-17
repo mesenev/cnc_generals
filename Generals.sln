@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceResponseModule", "Voic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedObjects", "SharedObjects\SharedObjects.csproj", "{4CB91A7D-F60E-41E5-8132-269896D37ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{77CC6308-083E-41E8-B86A-F2809A220048}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{4CB91A7D-F60E-41E5-8132-269896D37ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB91A7D-F60E-41E5-8132-269896D37ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB91A7D-F60E-41E5-8132-269896D37ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77CC6308-083E-41E8-B86A-F2809A220048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77CC6308-083E-41E8-B86A-F2809A220048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77CC6308-083E-41E8-B86A-F2809A220048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77CC6308-083E-41E8-B86A-F2809A220048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

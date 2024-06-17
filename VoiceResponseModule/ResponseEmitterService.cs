@@ -61,8 +61,8 @@ public class ResponseEmitterService {
         byte[] voiceAnswer = await msBackend.Synthesize(
             text, database.GetUnitVoiceByUnitId(request.UnitId)
         );
-        var provider = new BufferedWaveProvider(new WaveFormat(41000, 1));
-        provider.AddSamples(voiceAnswer, 0, voiceAnswer.Length);
+        // var provider = new BufferedWaveProvider(new WaveFormat(41000, 1));
+        // provider.AddSamples(voiceAnswer, 0, voiceAnswer.Length);
         // var provider = new WaveFileReader("test.wav");
         // Debug.WriteLine(provider.WaveFormat);
         // WaveOutEvent waveOutEvent = new WaveOutEvent();

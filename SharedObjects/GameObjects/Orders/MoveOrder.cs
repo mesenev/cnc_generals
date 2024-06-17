@@ -151,6 +151,7 @@ namespace SharedObjects.GameObjects.Orders;
             writer.Put(destinationCellY);
             writer.Put(isPathFound);
             writer.Put(pathCells.Count);
+            //TODO: collection was modified
             foreach (HexCell pathCell in pathCells) {
                 pathCell.Serialize(writer);
             }

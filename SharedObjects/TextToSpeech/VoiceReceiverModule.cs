@@ -39,8 +39,8 @@ public class VoiceReceiverModule : StreamAudioFile.StreamAudioFileClient {
                     await foreach (var response in call.ResponseStream.ReadAllAsync()) {
                         bufferedWaveProvider.AddSamples(
                             response.PartOfAudioFile.ToByteArray(),
-                            0,
-                            response.PartOfAudioFile.Length
+                            64,
+                            response.PartOfAudioFile.Length - 64
                         );
                         Thread.Sleep(1000);
                     }
