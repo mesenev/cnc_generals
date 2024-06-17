@@ -36,13 +36,17 @@ public class VoiceReceiverModule : StreamAudioFile.StreamAudioFileClient {
                 //
                 // return;
                 while (true) {
-                    await foreach (var response in call.ResponseStream.ReadAllAsync()) {
-                        bufferedWaveProvider.AddSamples(
-                            response.PartOfAudioFile.ToByteArray(),
-                            64,
-                            response.PartOfAudioFile.Length - 64
-                        );
-                        Thread.Sleep(1000);
+                    try {
+                        await foreach (var response in call.ResponseStream.ReadAllAsync()) {
+                            bufferedWaveProvider.AddSamples(
+                                response.PartOfAudioFile.ToByteArray(),
+                                64,
+                                response.PartOfAudioFile.Length - 64
+                            );
+                            Thread.Sleep(1000);
+                        }
+                    } catch {
+                        // ignored
                     }
                 }
     }

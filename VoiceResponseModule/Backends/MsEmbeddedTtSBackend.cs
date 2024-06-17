@@ -16,6 +16,7 @@ public class MsEmbeddedTtSBackend : ITtSBackend<UnitVoiceData> {
     public async Task<byte[]> Synthesize(string text, UnitVoiceData args) {
         MemoryStream stream = new MemoryStream();
         synth.SetOutputToWaveStream(stream);
+        synth.Rate = 2;
         builder.StartStyle(style);
         builder.AppendText(text);
         builder.EndStyle();

@@ -1,6 +1,7 @@
 ﻿using System.Speech.AudioFormat;
 using System.Speech.Synthesis;
 using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace Playground;
 
@@ -26,15 +27,32 @@ internal static class Program {
             speechBytes = stream.GetBuffer();
         }
 
+        var original = new RawSourceWaveStream(
+            (byte[])speechBytes.Clone(),
+            64,
+            speechBytes.Length - 64,
+            custom
+        );
         var buffered = new BufferedWaveProvider(custom);
         buffered.BufferLength = custom.AverageBytesPerSecond * 30;
-        
+        var sine20Seconds = new SignalGenerator(22050, 1) {
+            Gain = 0.01,
+            Frequency = 500,
+            Type = SignalGeneratorType.Triangle
+        };
+        var mixer = new MixingWaveProvider32();
+        sine20Seconds.ToWaveProvider16().Read(speechBytes, 64, speechBytes.Length - 64);
+        var noise = new WaveChannel32(
+            new RawSourceWaveStream(
+                speechBytes, 64, speechBytes.Length - 64, custom
+            )
+        );
+        mixer.AddInputStream(new WaveChannel32(original));
+        mixer.AddInputStream(noise);
         var player = new WaveOut();
-        player.Init(buffered);
+        player.Init(mixer.ToSampleProvider());
         player.Play();
         Thread.Sleep(500);
-        buffered.AddSamples(speechBytes, 0, speechBytes.Length);
-        buffered.AddSamples(speechBytes, 0, speechBytes.Length);
         Thread.Sleep(15000);
         return;
         // var file = new WaveFileReader("test.wav");
