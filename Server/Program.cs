@@ -1,11 +1,14 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using CommandLine;
 using Server.InterfaceViews;
 using SharedObjects.GameObjects;
+using SharedObjects.GameObjects.Orders;
 using SharedObjects.TextToSpeech;
 using Terminal.Gui;
+using VoiceRecognitionModule;
 using VoiceResponseModule;
 using Attribute = Terminal.Gui.Attribute;
 
@@ -24,6 +27,7 @@ internal static class Program {
     public static SoundNotificationsService SoundManager = new();
 
     public static ResponseEmitterService ResponseEmitterService = null!;
+    public static VoiceRecognitionService VoiceRecognitionService = null!;
 
 
     private static int Main(string[] args) {
@@ -45,14 +49,19 @@ internal static class Program {
 
         Application.Init();
         GameState = new GameState(VoiceDatabase, new Preset(PresetPath));
-        ResponseEmitterService =
-            new ResponseEmitterService(VoiceDatabase, GameState, PlayersAmount, Port);
+        ResponseEmitterService = new ResponseEmitterService(
+            VoiceDatabase, GameState, PlayersAmount, Port
+        );
+        VoiceRecognitionService = new VoiceRecognitionService(
+            VoiceDatabase, GameState, PlayersAmount, Port
+        ){CommandFormedHandler = YieldCommand};
+        
         GameState.AddVoiceRequest = ResponseEmitterService.AddVoiceRequest;
         Server = new Server(GameState) { PlayersAmount = PlayersAmount };
         Server.PeersAmountChanged += PeersAmountChangedHandler;
         if (!DisableSoundNotifications)
             SoundEventsSetup();
-        
+
         var mainView = new MainView(new Rect(1, 1, 90, 28)) {
             Border = new Border { BorderStyle = BorderStyle.Single }, ColorScheme = new() {
                 Normal = Attribute.Make(
@@ -69,12 +78,14 @@ internal static class Program {
         var broadcastThread = new Thread(BroadcastLoop);
         var consoleThread = new Thread(ConsoleLoop);
         var voiceEmitterThread = new Thread(VoiceEmitterLoop);
+        var voiceRecognitionTask = new Task(VoiceRecognitionLoop);
 
         gameLoopThread.Start();
         networkThread.Start();
         broadcastThread.Start();
         consoleThread.Start();
         voiceEmitterThread.Start();
+        voiceRecognitionTask.Start();
 
 
         gameLoopThread.Join();
@@ -82,6 +93,7 @@ internal static class Program {
         broadcastThread.Join();
         consoleThread.Join();
         voiceEmitterThread.Join();
+        voiceRecognitionTask.Wait();
 
         return 0;
     }
@@ -123,6 +135,16 @@ internal static class Program {
         }
 
         return;
+    }
+
+    private static void VoiceRecognitionLoop() {
+        while (true) {
+            // VoiceRecognitionService.Process();
+        }
+    }
+
+    private static void YieldCommand(IOrder command) {
+        GameState.AddOrder(command);
     }
 
     private static void VoiceEmitterLoop() {

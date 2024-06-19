@@ -5,10 +5,9 @@ using Google.Protobuf.Collections;
 using Grpc.Core;
 using Grpc.Net.Client;
 using SharedObjects.TextToSpeech;
-using VoiceResponseModule.Backends;
 using yandex.tts;
 
-namespace VoiceResponseModule;
+namespace VoiceResponseModule.Backends;
 
 internal class YandexTtSBackend:ITtSBackend<UnitVoiceData> {
     private static readonly string iamToken =

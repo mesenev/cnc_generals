@@ -4,7 +4,6 @@ public class ArtilleryUnit : BaseUnit {
     public ArtilleryUnit(int unitId = 0, int playerId = 0, int x = 0, int y = 0, string nickname = "") : base(
         unitId, playerId, x, y, nickname
     ) {
-        Type = UnitType.ArtilleryUnit;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;
@@ -15,6 +14,7 @@ public class ArtilleryUnit : BaseUnit {
         VisibleRadius = 1;
     }
 
+    public override UnitType Type => UnitType.ArtilleryUnit;
 
     public void AttackCell(GameState state, HexCell cell) {
         // cell.GetCellUnit().Health -= 100;

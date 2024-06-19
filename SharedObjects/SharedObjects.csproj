@@ -45,6 +45,10 @@
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="TextToSpeech\Proto\StreamAudio.proto" GrpcServices="Both" />
+        <Protobuf Include="TextToSpeech\Proto\stt.proto" GrpcServices="Both" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="SpeechToText\" />
     </ItemGroup>
 
 </Project>

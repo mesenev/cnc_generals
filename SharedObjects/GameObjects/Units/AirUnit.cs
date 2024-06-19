@@ -6,7 +6,6 @@ public class AirUnit : BaseUnit {
         int unitId = 0, int playerId = 0, int x = 0, int y = 0, string nickname = "") : base(
         unitId, playerId, x, y, nickname
     ) {
-        Type = UnitType.AirUnit;
         CanMove = false;
         CanAttack = false;
         HasAbility = true;
@@ -21,4 +20,6 @@ public class AirUnit : BaseUnit {
     public void AttackCell(GameState state, HexCell cell) {
         // cell.GetCellUnit().Health -= 100;
     }
+
+    public override UnitType Type => UnitType.AirUnit;
 }

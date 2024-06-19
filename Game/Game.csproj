@@ -49,14 +49,6 @@
     <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
   <!-- The directory you want to copyfdkjlghdsfkljghkudsfjlghkudlshkeusdlghsdkulhgesk -->
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.25.1" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.59.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.59.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
   
   <ItemGroup>
     <None Update="GameStatePresets\**\*">

@@ -9,7 +9,7 @@ public abstract class BaseUnit(int unitId, int playerId, int x, int y, string ni
     : INetSerializable {
     public int Health { get; set; }
     public string Nickname { get; } = nickname;
-    protected UnitType Type { get; set; }
+    public virtual UnitType Type { get; set; }
     public bool CanMove { get; set; }
     public bool CanAttack { get; set; }
     public bool HasAbility { get; set; }

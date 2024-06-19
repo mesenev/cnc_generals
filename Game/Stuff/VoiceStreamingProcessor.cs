@@ -1,55 +1,49 @@
-﻿using System;
-using CommandRecognitionModule;
+﻿using System.Threading;
 using Grpc.Core;
 using NAudio.Wave;
 using Grpc.Net.Client;
-namespace Game.Stuff {
-    
-    
-    public class VoiceStreamingProcessor : IProcessor {
+using Lime;
+using SharedObjects.Proto;
 
-        private WaveInEvent waveInEvent;
-        private GrpcChannel channel;
-        private SpeechToCommand.SpeechToCommandClient voiceStreamingClient;
-        private AsyncClientStreamingCall<VoiceAudio, Response> callForSendVoice;
-        
-        public VoiceStreamingProcessor() {
-            
-            channel = GrpcChannel.ForAddress("http://localhost:5175");
-            voiceStreamingClient = new SpeechToCommand.SpeechToCommandClient(channel);
-            callForSendVoice = voiceStreamingClient.AudioToText();
-            
-            WaveFormat format = new WaveFormat(44100, 2);
-            waveInEvent = new WaveInEvent();
-            waveInEvent.WaveFormat = format;
+namespace Game.Stuff;
 
-            waveInEvent.DataAvailable += (s, a) => {
-                callForSendVoice.RequestStream.WriteAsync(
-                    new VoiceAudio {RecordVoice = Google.Protobuf.ByteString.CopyFrom(a.Buffer)}
-                );
-            };
-            waveInEvent.StartRecording();
+public class VoiceStreamingProcessor : IProcessor {
+    private readonly WaveInEvent waveInEvent;
+    private GrpcChannel channel;
+    private SpeechToCommand.SpeechToCommandClient voiceStreamingClient;
+    private AsyncClientStreamingCall<VoiceAudio, Response> callForSendVoice;
+
+    public VoiceStreamingProcessor() {
+        WaveFormat format = new WaveFormat(22050, 1);
+        waveInEvent = new WaveInEvent();
+        waveInEvent.WaveFormat = format;
+
+        waveInEvent.DataAvailable += OnWaveInEventOnDataAvailable;
+        // waveInEvent.StartRecording();
+    }
+
+    private void OnWaveInEventOnDataAvailable(object s, WaveInEventArgs a) {
+        callForSendVoice.RequestStream.WriteAsync(
+            new VoiceAudio { RecordVoice = Google.Protobuf.ByteString.CopyFrom(a.Buffer) }
+        );
+    }
+
+    public void Update(float delta, GameObjects.Game game) {
+        if (Window.Current.Input.WasKeyReleased(Key.Space)) {
+            waveInEvent.StopRecording();
+            Thread.Sleep(100);
+            channel?.Dispose();
+            callForSendVoice?.Dispose();
+            channel = null;
+            voiceStreamingClient = null;
+            callForSendVoice = null;
         }
-        public void Update(float delta, Game game) {
-            // if (channel.State != ConnectivityState.Ready) {
-            //     Console.WriteLine("RECREATE CHANNEL");
-            //     channel.Dispose();
-            //     channel = GrpcChannel.ForAddress("http://localhost:5175");
-            //
-            //     voiceStreamingClient = new SpeechToCommand.SpeechToCommandClient(channel);
-            //
-            //     callForSendVoice.Dispose();
-            //     callForSendVoice = voiceStreamingClient.AudioToText();
-            //     
-            //     waveInEvent.StopRecording();
-            //     waveInEvent.DataAvailable += (s, a) => {
-            //         
-            //         callForSendVoice.RequestStream.WriteAsync(
-            //             new VoiceAudio {RecordVoice = Google.Protobuf.ByteString.CopyFrom(a.Buffer)}
-            //         );
-            //     };
-            //     waveInEvent.StartRecording();
-            // }
+
+        if (Window.Current.Input.WasKeyPressed(Key.Space)) {
+            channel ??= GrpcChannel.ForAddress("http://localhost:12344");
+            voiceStreamingClient ??= new SpeechToCommand.SpeechToCommandClient(channel);
+            callForSendVoice ??= voiceStreamingClient.AudioToText();
+            waveInEvent.StartRecording();
         }
     }
 }

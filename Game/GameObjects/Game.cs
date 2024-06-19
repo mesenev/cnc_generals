@@ -66,6 +66,8 @@ public class Game {
         // ToDO скорее всего процесс перемещения камеры должен создаваться в другом месте
         var moveCameraProcessor = new MoveCameraProcessor(viewport);
         processors.Add(moveCameraProcessor);
+        
+        processors.Add(new VoiceStreamingProcessor());
     }
 
     private void UpdateGameState(PlayerReceiveUpdatePacket packet) {
