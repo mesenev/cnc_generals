@@ -20,14 +20,17 @@ public class Game {
 
     private readonly List<Component> components =  [];
     private readonly List<IProcessor> processors =  [];
+
     private static readonly WaveFormat custom = WaveFormat.CreateCustomFormat(
-            WaveFormatEncoding.Pcm, 22050,
-            1, 44100, 2,
-            16
-        );
+        WaveFormatEncoding.Pcm, 22050,
+        1, 44100, 2,
+        16
+    );
+
     private readonly BufferedWaveProvider bufferedWaveProvider = new(custom) {
-        BufferLength = custom.AverageBytesPerSecond*60, DiscardOnBufferOverflow = true
+        BufferLength = custom.AverageBytesPerSecond * 60, DiscardOnBufferOverflow = true
     };
+
     private readonly VoiceReceiverModule voiceReceiver;
     private Thread voiceReceiverThread;
     private WaveOutEvent waveOutEvent = new();
@@ -35,6 +38,7 @@ public class Game {
 
     private HexGrid hexGrid;
     private FowGrid fowGrid;
+    private StatusGrid statusGrid;
     private OccupationGrid occupationGrid;
     private ClientGameState gameState;
 
@@ -50,8 +54,6 @@ public class Game {
 
         The.NetworkClient.OnGameStateUpdateEvent += UpdateGameState;
 
-        
-        
         waveOutEvent.Init(bufferedWaveProvider);
         voiceReceiver = new VoiceReceiverModule(bufferedWaveProvider);
         waveOutEvent.Play();
@@ -66,12 +68,12 @@ public class Game {
         // ToDO скорее всего процесс перемещения камеры должен создаваться в другом месте
         var moveCameraProcessor = new MoveCameraProcessor(viewport);
         processors.Add(moveCameraProcessor);
-        
+
         processors.Add(new VoiceStreamingProcessor());
     }
 
     private void UpdateGameState(PlayerReceiveUpdatePacket packet) {
-        this.gameState = new ClientGameState(packet.state);
+        gameState = new ClientGameState(packet.state);
     }
 
 
@@ -94,10 +96,10 @@ public class Game {
     }
 
     private void InitHexGrid(Widget canvas, int width, int height) {
-        hexGrid = new HexGrid(canvas, width, height);
-        fowGrid = new FowGrid(gameState.Units.ToList());
+        hexGrid = new HexGrid(canvas, width, height, "Sprites/TransparentCell");
+        fowGrid = new FowGrid(width, height, GetAllies());
+        statusGrid = new StatusGrid(width, height);
         occupationGrid = new OccupationGrid(width, height);
-        fowGrid.InitFow(width, height);
 
         foreach (var cell in hexGrid.cells) {
             processors.Add(new HexInteractionProcessor(cell, viewport));
@@ -114,7 +116,6 @@ public class Game {
     }
 
     public void Update(float delta) {
-        // Console.WriteLine("Update");
         foreach (var processor in processors) {
             processor.Update(delta, this);
         }
@@ -132,7 +133,6 @@ public class Game {
         }
 
         The.NetworkClient.Update();
-
     }
 
     public void UpdatePlayers(float delta) {
@@ -144,35 +144,64 @@ public class Game {
         }
 
         RemovePlayersFromCanvas();
-        GetPlayersFromServer();
+        UpdateGrids();
         UpdateHexCells();
     }
 
     private void RemovePlayersFromCanvas() {
-        Canvas.Nodes.RemoveAll(el => el.GetType() == typeof(Image));
+        // Canvas.Nodes.RemoveAll(el => el.GetType() == typeof(Image));
+        EraseUnitsFromCanvas();
         components.RemoveAll(_ => true);
         processors.RemoveAll(el => el.GetType() == typeof(PlayerInputProcessor));
     }
 
-    private void GetPlayersFromServer() {
+    private void UpdateGrids() {
+        GetUnitsFromGameState();
+
+        fowGrid.UpdateAllies(GetAllies());
+        fowGrid.RecalculateFow();
+        var visibleArea = fowGrid.GetVisibleCoords();
+        foreach (var cell in hexGrid.cells) {
+            if (visibleArea.Contains(cell.HexPosition)) cell.DrawUnit(Canvas);
+            else cell.EraseUnit(Canvas);
+        }
+
+        foreach (var cell in fowGrid.GetVisibleArea()) {
+            hexGrid.cells[cell.YCoord, cell.XCoord].DrawUnit(Canvas);
+        }
+
+        occupationGrid.Occupy(
+            gameState.Units.ToList(), fowGrid.GetVisibleCoords(),
+            The.NetworkClient.GetClientPlayer().playerId
+        );
+    }
+
+    private void EraseUnitsFromCanvas() {
+        foreach (var cell in hexGrid.cells) {
+            cell.EraseUnit(Canvas);
+        }
+    }
+
+    private void GetUnitsFromGameState() {
         foreach (var unit in gameState.Units) {
             var newUnit = new UnitComponent(
-                Canvas,
                 hexGrid.cells[unit.Y, unit.X].GetPosition(unit.X, unit.Y),
                 unit
             );
+            hexGrid.cells[unit.Y, unit.X].SetUnit(newUnit);
             components.Add(newUnit);
             processors.Add(new PlayerInputProcessor(newUnit));
         }
+    }
 
-        fowGrid.UpdateUnits(
-            gameState.Units
-                .Where(unit => unit.OwnerId == The.NetworkClient.GetClientPlayer().playerId).ToList()
-        );
-        occupationGrid.Occupy(
-            gameState.Units.ToList(), The.NetworkClient.GetClientPlayer().playerId
-        );
-        fowGrid.RecalculateFow();
+    private List<IDrawableUnit> GetAllies() {
+        return gameState.Units
+            .Where(unit => unit.OwnerId == The.NetworkClient.GetClientPlayer().playerId).ToList();
+    }
+
+    private List<IDrawableUnit> GetEnemies() {
+        return gameState.Units
+            .Where(unit => unit.OwnerId != The.NetworkClient.GetClientPlayer().playerId).ToList();
     }
 
     private void UpdateHexCells() {
