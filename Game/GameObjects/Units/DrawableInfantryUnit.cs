@@ -3,8 +3,8 @@ using SharedObjects.GameObjects.Units;
 
 namespace Game.GameObjects.Units;
 
-public class InfantryUnit : IDrawableUnit {
-    public InfantryUnit(SharedObjects.GameObjects.Units.BaseUnit unit) {
+public class DrawableInfantryUnit : IDrawableUnit {
+    public DrawableInfantryUnit(SharedObjects.GameObjects.Units.BaseUnit unit) {
         this.unit = unit;
     }
     public BaseUnit unit { get; set; }

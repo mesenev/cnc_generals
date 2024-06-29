@@ -3,9 +3,9 @@ using SharedObjects.GameObjects.Units;
 
 namespace Game.GameObjects.Units;
 
-public class AirUnit : IDrawableUnit {
+public class DrawableAirUnit : IDrawableUnit {
     
-    public AirUnit(SharedObjects.GameObjects.Units.AirUnit unit) {
+    public DrawableAirUnit(SharedObjects.GameObjects.Units.AirUnit unit) {
         this.unit = unit;
     }
 

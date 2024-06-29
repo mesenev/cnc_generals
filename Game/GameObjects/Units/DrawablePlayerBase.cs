@@ -3,9 +3,9 @@ using SharedObjects.GameObjects.Units;
 
 namespace Game.GameObjects.Units;
 
-public class PlayerBase : IDrawableUnit {
+public class DrawablePlayerBase : IDrawableUnit {
 
-public PlayerBase(SharedObjects.GameObjects.Units.PlayerBase unit) {
+public DrawablePlayerBase(SharedObjects.GameObjects.Units.PlayerBase unit) {
     this.unit = unit;
 }
 

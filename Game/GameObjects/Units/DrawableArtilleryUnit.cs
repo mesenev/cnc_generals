@@ -3,9 +3,9 @@ using SharedObjects.GameObjects.Units;
 
 namespace Game.GameObjects.Units;
 
-public class ArtilleryUnit: IDrawableUnit {
+public class DrawableArtilleryUnit: IDrawableUnit {
 
-    public ArtilleryUnit(SharedObjects.GameObjects.Units.ArtilleryUnit unit) {
+    public DrawableArtilleryUnit(SharedObjects.GameObjects.Units.ArtilleryUnit unit) {
         this.unit = unit;
     }
 
