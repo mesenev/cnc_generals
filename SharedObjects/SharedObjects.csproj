@@ -42,6 +42,9 @@
       <None Update="TextToSpeech\VoiceRequestTemplates\Orders\Move.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+        <None Update="TextToSpeech\VoiceRequestTemplates\Orders\Attack.txt">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="TextToSpeech\Proto\StreamAudio.proto" GrpcServices="Both" />
