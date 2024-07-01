@@ -34,7 +34,7 @@ public class FowGrid {
     private void SetFog() {
         foreach (var cell in gridMask.cells) {
             cell.image.Color = Color4.Gray;
-            cell.image.Opacity = 0.9f;
+            cell.image.Opacity = 0.75f;
         }
     }
 

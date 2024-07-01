@@ -19,7 +19,7 @@ public class StatusGrid {
 
     public void AddStatus(HexCell cell) {
         var text = new SimpleText {
-            Text = $"{cell.TerrainStatus}",
+            // Text = $"{cell.TerrainStatus}",
             TextColor = Color4.Black,
             FontHeight = 16,
             Position = cell.image.Position - new Vector2(-15, 15)
