@@ -24,14 +24,23 @@ public class WaitingGameScreen : Dialog<Scenes.Data.GameScreen> {
     void NetworkJoinAcceptedPacketHandler(JoinAcceptPacket packet) {
         var InGameScreen = new Frame();
         var gameState = new ClientGameState(packet.state);
-        this.Root.Nodes.Clear();
-        The.Game = new GameObjects.Game(gameState, this.Root);
-        
+        Root.Nodes.Clear();
+        The.Game = new GameObjects.Game(gameState, Root);
+
         The.Game.Canvas.Updated += The.Game.UpdatePlayers;
         The.Game.Canvas.Updated += The.Game.Update;
         gameStateReceived = true;
     }
 
+    protected override void Shown() {
+        Scene.RunAnimationInit();
+    }
+
+    protected override void Update(float delta) {
+        if (Input.WasKeyPressed(Key.Escape)) {
+            Lime.Application.Exit();
+        }
+    }
 
     private void UpdateNetworkManagerState() {
         The.NetworkClient.Connect(The.Username);

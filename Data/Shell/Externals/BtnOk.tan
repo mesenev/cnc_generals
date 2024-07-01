@@ -336,6 +336,7 @@
 	"Nodes":[
 		{
 			"class":"Lime.Image, Lime",
+			"Anchors":63,
 			"Animators":[
 				{
 					"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
@@ -372,216 +373,16 @@
 			"Color":[4294967295],
 			"Id":"Ico",
 			"Pivot":[0.5,0.5],
-			"Position":[64.34996,63.516624],
+			"Position":[20.043125,16.901257],
 			"Rotation":2.3849792,
 			"Scale":[0.9626047,0.9626047],
 			"Shader":3,
-			"Size":[65,54],
+			"Size":[40.285862,33.468254],
 			"Sprite":{
 				"class":"Lime.SerializableSprite, Lime",
 				"SerializationPath":"/Shell/Ui/IcoCheck"
 			}
-		},
-		{
-			"class":"Lime.Image, Lime",
-			"Anchors":48,
-			"Animators":[
-				{
-					"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
-					"ReadonlyCurve":{
-						"class":"Lime.Color4SimpleAnimationCurve, Lime",
-						"Keys":[
-							[28,0,[36863]],
-							[30,0,[4278226943]],
-							[31,0,[4278226943]],
-							[35,0,[36863]]
-						]
-					},
-					"TargetProperty":"Color"
-				}
-			],
-			"Blending":3,
-			"Color":[36863],
-			"Id":"CircleBlured",
-			"Pivot":[0.5,0.5],
-			"Position":[64,63],
-			"Rotation":6.3155975,
-			"Scale":[0.9281813,0.7550999],
-			"Size":[128,128],
-			"Sprite":{
-				"class":"Lime.SerializableSprite, Lime",
-				"SerializationPath":"/Stuff/CircleBlured"
-			}
-		},
-		{
-			"class":"Lime.DistortionMesh, Lime",
-			"Animators":[
-				{
-					"class":"Lime.Animator`1[[Lime.ISprite, Lime]], Lime",
-					"ReadonlyCurve":{
-						"class":"Lime.SimpleAnimationCurve`1[[Lime.ISprite, Lime]], Lime",
-						"Keys":[
-							[
-								42,
-								0,
-								{
-									"class":"Lime.SerializableSprite, Lime",
-									"SerializationPath":"/Shell/Ui/BtnOrange"
-								}
-							],
-							[
-								43,
-								0,
-								{
-									"class":"Lime.SerializableSprite, Lime",
-									"SerializationPath":"/Shell/Ui/BtnDis"
-								}
-							]
-						]
-					},
-					"TargetProperty":"Sprite"
-				},
-				{
-					"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
-					"ReadonlyCurve":{
-						"class":"Lime.Vector2SimpleAnimationCurve, Lime",
-						"Keys":[
-							[28,2,[1,1]],
-							[30,2,[1.13623,1.0537333]],
-							[31,2,[1.13623,1.0537333]],
-							[33,2,[1.0422289,1.1095501]],
-							[35,2,[1,1]]
-						]
-					},
-					"TargetProperty":"Scale"
-				}
-			],
-			"Color":[4294967295],
-			"Id":"Btn",
-			"Nodes":[
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"0;0",
-					"Position":[0.0031747,0.031745985]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"0;1",
-					"Position":[0.31031755,0.031745985],
-					"UV":[0.33333334,0]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"0;2",
-					"Position":[0.738889,0.053174555],
-					"UV":[0.6666667,0]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"0;3",
-					"Position":[1.0198413,0.1007936],
-					"UV":[1,0]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"1;0",
-					"Position":[0.0031747,0.3384126],
-					"UV":[0,0.33333334]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"1;1",
-					"Position":[0.31031755,0.3384126],
-					"UV":[0.33333334,0.33333334]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"1;2",
-					"Position":[0.738889,0.3865079],
-					"UV":[0.6666667,0.33333334]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"1;3",
-					"Position":[1.0007937,0.40793645],
-					"UV":[1,0.33333334]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"2;0",
-					"Position":[0.010657683,0.5536508],
-					"UV":[0,0.5595238]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"2;1",
-					"Position":[0.33412707,0.6650793],
-					"UV":[0.33333334,0.6666667]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"2;2",
-					"Position":[0.6185714,0.7261903],
-					"UV":[0.6666667,0.6666667]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"2;3",
-					"Position":[0.9209524,0.7261903],
-					"UV":[1,0.6666667]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"3;0",
-					"Position":[0.038684882,0.8936054],
-					"UV":[0,1]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"3;1",
-					"Position":[0.2978687,0.9324261],
-					"UV":[0.37142858,1]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"3;2",
-					"Position":[0.6196296,0.9595237],
-					"UV":[0.6666667,1]
-				},
-				{
-					"class":"Lime.DistortionMeshPoint, Lime",
-					"Id":"3;3",
-					"Position":[0.85349196,0.97195756],
-					"UV":[1,1]
-				}
-			],
-			"NumCols":3,
-			"NumRows":3,
-			"Pivot":[0.5,0.5],
-			"Position":[64,64],
-			"Size":[105,105],
-			"Sprite":{
-				"class":"Lime.SerializableSprite, Lime",
-				"SerializationPath":"/Shell/Ui/BtnOrange"
-			}
-		},
-		{
-			"class":"Lime.NineGrid, Lime",
-			"Color":[3523215360],
-			"Id":"Sh",
-			"LeftOffset":0.5,
-			"Pivot":[0.5,0.5],
-			"Position":[64.89968,74.5628],
-			"RightOffset":0.5,
-			"Rotation":5.1795807,
-			"Scale":[0.58936316,0.58936316],
-			"Size":[211.09941,207.42564],
-			"Sprite":{
-				"class":"Lime.SerializableSprite, Lime",
-				"SerializationPath":"/Stuff/CircleBlured"
-			},
-			"TopOffset":0.5
 		}
 	],
-	"Size":[128,128]
+	"Size":[40.086246,33.802505]
 }

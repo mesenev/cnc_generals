@@ -25,15 +25,23 @@ public class MainMenu<T> : ParsedNode where T : Node
 	public T It => (T)Node;
 
 
-	public readonly BtnPlay<Lime.Button> @_BtnPlay;
-	public readonly BtnOptions<Lime.Button> @_BtnOptions;
+	public readonly TargetPoint<Lime.Frame> @_TargetPoint;
+	public readonly DarkScreen<Lime.Frame> @_DarkScreen;
+	public readonly PlayButton<Lime.Button> @_PlayButton;
+	public readonly ExitButton<Lime.Button> @_ExitButton;
+	public readonly CreditsButton<Lime.Button> @_CreditsButton;
+	public readonly SettingsButton<Lime.Button> @_SettingsButton;
 
 	public MainMenu() : this(MainMenu.FrameCache.Clone<Node>()) { }
 	public MainMenu(Node node)
 	{
 		Node = node;
-		@_BtnPlay = new BtnPlay<Lime.Button>(Node.Find<Node>("@BtnPlay"));
-		@_BtnOptions = new BtnOptions<Lime.Button>(Node.Find<Node>("@BtnOptions"));
+		@_TargetPoint = new TargetPoint<Lime.Frame>(Node.Find<Node>("@TargetPoint"));
+		@_DarkScreen = new DarkScreen<Lime.Frame>(Node.Find<Node>("@DarkScreen"));
+		@_PlayButton = new PlayButton<Lime.Button>(Node.Find<Node>("@PlayButton"));
+		@_ExitButton = new ExitButton<Lime.Button>(Node.Find<Node>("@ExitButton"));
+		@_CreditsButton = new CreditsButton<Lime.Button>(Node.Find<Node>("@CreditsButton"));
+		@_SettingsButton = new SettingsButton<Lime.Button>(Node.Find<Node>("@SettingsButton"));
 	}
 
 	public MainMenu<T> Clone()

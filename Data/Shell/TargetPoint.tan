@@ -1,0 +1,77 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Animations":[
+		{
+			"IsLegacy":true,
+			"Markers":[
+				{
+					"BezierEasing":[0,0.0111112,1,1],
+					"Id":"Init"
+				},
+				{
+					"Action":2,
+					"Frame":39,
+					"Id":"Replay",
+					"JumpTo":"Init"
+				}
+			]
+		}
+	],
+	"Color":[4294967295],
+	"Id":"@",
+	"Nodes":[
+		{
+			"class":"Lime.Image, Lime",
+			"Anchors":15,
+			"Animators":[
+				{
+					"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.Color4SimpleAnimationCurve, Lime",
+						"Keys":[
+							[0,0,[4294967295]],
+							[19,0,[4283948531]],
+							[39,0,[4294967295]]
+						]
+					},
+					"TargetProperty":"Color"
+				},
+				{
+					"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.Vector2SimpleAnimationCurve, Lime",
+						"Keys":[
+							[0,0,[24.959991,23.04]],
+							[19,0,[21,19]],
+							[39,0,[24.959991,23.04]]
+						]
+					},
+					"TargetProperty":"Size"
+				}
+			],
+			"Color":[4294967295],
+			"Id":"Image",
+			"Pivot":[0.5,0.5],
+			"Position":[12.479996,11.52],
+			"Size":[24.959991,23.04],
+			"Sprite":{
+				"class":"Lime.SerializableSprite, Lime",
+				"SerializationPath":"Ui/yellowDot"
+			},
+			"TangerineFlags":4
+		}
+	],
+	"Size":[24.959991,23.04]
+}

@@ -109,7 +109,7 @@ public class Game {
     private static void SetSpriteToBackground(Widget canvas) {
         canvas.AddNode(
             new Image {
-                Sprite = new SerializableSprite("Sprites/Grass"),
+                Sprite = new SerializableSprite("Sprites/bgmain"),
                 Size = new Vector2(The.World.Width, The.World.Height)
             }
         );

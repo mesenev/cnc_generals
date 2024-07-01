@@ -1,0 +1,35 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Color":[4294967295],
+	"Id":"@",
+	"Nodes":[
+		{
+			"class":"Lime.SimpleText, Lime",
+			"Anchors":63,
+			"Color":[4294967295],
+			"Font":{
+			},
+			"FontHeight":60,
+			"HAlignment":1,
+			"Id":"SimpleText",
+			"Pivot":[0.5,0.5],
+			"Position":[107.9541,36.17685],
+			"Size":[215.9082,72.3537],
+			"Text":"Settings",
+			"VAlignment":1
+		}
+	],
+	"Size":[215.9082,72.3537]
+}

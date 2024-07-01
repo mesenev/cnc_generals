@@ -190,8 +190,8 @@
 					"ContentsPath":"Externals/BtnOk",
 					"Id":"@BtnOk",
 					"Pivot":[0.5,0.5],
-					"Position":[622,583],
-					"Size":[128,128]
+					"Position":[606.31836,501.69135],
+					"Size":[50.236553,50.017853]
 				},
 				{
 					"class":"Lime.Frame, Lime",
@@ -431,8 +431,7 @@
 						}
 					],
 					"Pivot":[0.5,0.5],
-					"Position":[287.29953,293.28687],
-					"Rotation":-4.2667847,
+					"Position":[190,293.28687],
 					"Size":[58.43292,58.43292]
 				},
 				{
@@ -673,250 +672,7 @@
 						}
 					],
 					"Pivot":[0.5,0.5],
-					"Position":[292.43317,362.0956],
-					"Rotation":-4.2667847,
-					"Size":[58.43292,58.43292]
-				},
-				{
-					"class":"Lime.Frame, Lime",
-					"Anchors":48,
-					"Color":[4294967295],
-					"Id":">[CheckGroup]VoiceGroup",
-					"Nodes":[
-						{
-							"class":"Lime.Frame, Lime",
-							"Animations":[
-								{
-									"IsLegacy":true,
-									"Markers":[
-										{
-											"Id":"Check"
-										},
-										{
-											"Action":1,
-											"Frame":10,
-											"Id":"Checked"
-										},
-										{
-											"Frame":40,
-											"Id":"Uncheck"
-										},
-										{
-											"Action":1,
-											"Frame":50,
-											"Id":"Unchecked"
-										}
-									]
-								}
-							],
-							"Color":[4294967295],
-							"Id":"@Check",
-							"Nodes":[
-								{
-									"class":"Lime.Image, Lime",
-									"Animators":[
-										{
-											"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
-											"ReadonlyCurve":{
-												"class":"Lime.Color4SimpleAnimationCurve, Lime",
-												"Keys":[
-													[0,0,[0]],
-													[6,0,[4278190080]],
-													[10,0,[4278190080]],
-													[40,0,[4278190080]],
-													[46,0,[4278190080]],
-													[50,0,[0]]
-												]
-											},
-											"TargetProperty":"Color"
-										},
-										{
-											"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
-											"ReadonlyCurve":{
-												"class":"Lime.Vector2SimpleAnimationCurve, Lime",
-												"Keys":[
-													[0,0,[0.32236573,0.32236573]],
-													[6,0,[0.8714011,0.8714011]],
-													[10,0,[0.6722266,0.6722266]],
-													[40,0,[0.6722266,0.6722266]],
-													[46,0,[0.8714011,0.8714011]],
-													[50,0,[0.32236573,0.32236573]]
-												]
-											},
-											"TargetProperty":"Scale"
-										}
-									],
-									"Color":[0],
-									"Id":"BulletCheck",
-									"Pivot":[0.40171,0.66091],
-									"Position":[21.162865,25.447626],
-									"Scale":[0.32236573,0.32236573],
-									"Size":[65,54],
-									"Sprite":{
-										"class":"Lime.SerializableSprite, Lime",
-										"SerializationPath":"Ui/IcoCheck"
-									}
-								},
-								{
-									"class":"Lime.Image, Lime",
-									"Animators":[
-										{
-											"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
-											"ReadonlyCurve":{
-												"class":"Lime.Vector2SimpleAnimationCurve, Lime",
-												"Keys":[
-													[0,0,[0,0]],
-													[1,0,[0.5908704,0.5908704]],
-													[40,0,[0.5908704,0.5908704]],
-													[41,0,[0,0]]
-												]
-											},
-											"TargetProperty":"Scale"
-										}
-									],
-									"Color":[4294967295],
-									"Id":"BtnOrange",
-									"Pivot":[0.5,0.5],
-									"Position":[24.831238,20.144005],
-									"Scale":[0,0],
-									"Size":[105,105],
-									"Sprite":{
-										"class":"Lime.SerializableSprite, Lime",
-										"SerializationPath":"Ui/BtnOrange"
-									}
-								}
-							],
-							"Pivot":[0.5,0.5],
-							"Position":[29.21643,32.21643],
-							"Scale":[0.8806,0.8806],
-							"Size":[47.3913,47.10146]
-						},
-						{
-							"class":"Lime.SimpleText, Lime",
-							"Color":[4294967295],
-							"Components":[
-								{
-									"class":"Lime.SignedDistanceFieldComponent, Lime",
-									"BaseColor":[4287880191],
-									"Gradient":[
-										{
-											"Color":[4294967295]
-										},
-										{
-											"Color":[4278190080],
-											"Position":1
-										}
-									]
-								}
-							],
-							"Font":{
-								"Name":"RobotoMed"
-							},
-							"FontHeight":41,
-							"Id":"Text",
-							"Pivot":[0,0.5],
-							"Position":[76,29],
-							"Size":[197.33325,55],
-							"Spacing":-14,
-							"Text":"Voice",
-							"VAlignment":1
-						},
-						{
-							"class":"Lime.Button, Lime",
-							"Anchors":15,
-							"Animations":[
-								{
-									"IsLegacy":true,
-									"Markers":[
-										{
-											"Action":1,
-											"Id":"Init"
-										},
-										{
-											"Frame":10,
-											"Id":"Normal"
-										},
-										{
-											"Action":1,
-											"Frame":20
-										},
-										{
-											"Frame":24,
-											"Id":"Focus"
-										},
-										{
-											"Action":1,
-											"Frame":34
-										},
-										{
-											"Frame":38,
-											"Id":"Press"
-										},
-										{
-											"Action":1,
-											"Frame":40
-										},
-										{
-											"Frame":42,
-											"Id":"Release"
-										},
-										{
-											"Action":1,
-											"Frame":46
-										},
-										{
-											"Action":1,
-											"Frame":54,
-											"Id":"Disable"
-										}
-									]
-								}
-							],
-							"Color":[4294967295],
-							"Id":"@BtnCheck",
-							"Nodes":[
-								{
-									"class":"Lime.NineGrid, Lime",
-									"Animators":[
-										{
-											"class":"Lime.Animator`1[[Lime.Vector2, Lime]], Lime",
-											"ReadonlyCurve":{
-												"class":"Lime.Vector2SimpleAnimationCurve, Lime",
-												"Keys":[
-													[38,0,[1.12371,1.12371]],
-													[40,0,[0.98909,0.82834]],
-													[42,0,[0.98909,0.82834]],
-													[46,0,[1.12371,1.12371]]
-												]
-											},
-											"TargetProperty":"Scale"
-										}
-									],
-									"BottomOffset":0.4,
-									"Color":[4288256409],
-									"Id":"NineGrid2",
-									"LeftOffset":0.4,
-									"Pivot":[0.5,0.5],
-									"Position":[29.21646,29.21646],
-									"RightOffset":0.4,
-									"Rotation":-180,
-									"Scale":[1.12371,1.12371],
-									"Size":[52,52],
-									"Sprite":{
-										"class":"Lime.SerializableSprite, Lime",
-										"SerializationPath":"Ui/WinGrey"
-									},
-									"TopOffset":0.4
-								}
-							],
-							"Pivot":[0.5,0.5],
-							"Position":[136.49506,29],
-							"Size":[270.9901,58]
-						}
-					],
-					"Pivot":[0.5,0.5],
-					"Position":[297.56683,430.9044],
-					"Rotation":-4.2667847,
+					"Position":[190,362.09564],
 					"Size":[58.43292,58.43292]
 				},
 				{
@@ -1157,8 +913,7 @@
 						}
 					],
 					"Pivot":[0.5,0.5],
-					"Position":[302.70047,499.71313],
-					"Rotation":-4.2667847,
+					"Position":[190,433.5799],
 					"Size":[58.43292,58.43292]
 				},
 				{
@@ -1188,8 +943,7 @@
 					"Id":"Title",
 					"OverflowMode":1,
 					"Pivot":[0.5,1],
-					"Position":[419.66647,196.79285],
-					"Rotation":-3.0702667,
+					"Position":[384,196.79285],
 					"Size":[337,64],
 					"Text":"Options",
 					"VAlignment":1
@@ -1198,24 +952,10 @@
 					"class":"Lime.Frame, Lime",
 					"Anchors":48,
 					"Color":[4294967295],
-					"ContentsPath":"Externals/TitleBar",
-					"Id":"TitleBar",
-					"Pivot":[0.5,0.5],
-					"Position":[411.01935,166.27159],
-					"Rotation":-3.0702667,
-					"Scale":[0.85744077,0.85744077],
-					"Size":[484,128],
-					"TangerineFlags":1024
-				},
-				{
-					"class":"Lime.Frame, Lime",
-					"Anchors":48,
-					"Color":[4294967295],
 					"ContentsPath":"Externals/Win",
 					"Id":"Win",
 					"Pivot":[0.5,0.5],
-					"Position":[449,414],
-					"Rotation":-3.5308838,
+					"Position":[384,323.2],
 					"Scale":[1.0807222,1.0577639],
 					"Size":[512,512],
 					"TangerineFlags":1792

@@ -25,17 +25,43 @@ public class GameScreen<T> : ParsedNode where T : Node
 	public T It => (T)Node;
 
 
-	public readonly BtnX<Lime.Button> @_BtnExit;
+	public class WaitingText : ParsedNode
+	{
+		public Lime.SimpleText It => (Lime.SimpleText)Node;
+
+		public WaitingText(Node node)
+		{
+			Node = node;
+		}
+
+		public WaitingText Clone()
+		{
+			return new WaitingText(It.Clone<Node>());
+		}
+	}
+
+	public readonly WaitingText @_WaitingText;
 
 	public GameScreen() : this(GameScreen.FrameCache.Clone<Node>()) { }
 	public GameScreen(Node node)
 	{
 		Node = node;
-		@_BtnExit = new BtnX<Lime.Button>(Node.Find<Node>("@BtnExit"));
+		@_WaitingText = new WaitingText(Node.Find<Node>("@WaitingText"));
 	}
 
 	public GameScreen<T> Clone()
 	{
 		return new GameScreen<T>(It.Clone<Node>());
+	}
+
+	public T RunAnimationInit()
+	{
+		Node.RunAnimation("Init");
+		return (T)Node;
+	}
+	public T RunAnimationJumpToInit()
+	{
+		Node.RunAnimation("JumpToInit");
+		return (T)Node;
 	}
 }

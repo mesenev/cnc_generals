@@ -7,7 +7,6 @@ public class InGameScreen : Dialog<Scenes.Data.GameScreen> {
     
     public InGameScreen() {
         // SoundManager.PlayMusic("Ingame");
-        Scene._BtnExit.It.Clicked = ReturnToMenu;
     }
 
 

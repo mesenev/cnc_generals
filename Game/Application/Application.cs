@@ -11,7 +11,7 @@ public class Application {
     public static Application Instance;
 
     public const string ApplicationName = "Application.Win";
-    public static readonly Vector2 DefaultWorldSize = new(1024, 768);
+    public static readonly Vector2 DefaultWorldSize = new(1920, 1080);
 
     public static void Initialize() {
         Lime.Application.RegisterDataLayers(
@@ -29,8 +29,11 @@ public class Application {
         Profile.Instance = new Profile();
 
         LoadDictionary();
+        DisplayInfo.SetResolution(new Vector2(1920, 1080));
+
         SetWindowSize();
         Extensions.RemoteScriptingClientExtension.Initialize();
+        World.Window.Fullscreen = true;
 
         if (AppData.Instance.EnableSplashScreen)
             The.DialogManager.Open<SplashScreen>();
@@ -94,7 +97,8 @@ public class Application {
     }
 
     private static void SetWindowSize() {
-        The.Window.ClientSize = DisplayInfo.GetResolution();
+        // The.Window.ClientSize = DisplayInfo.GetResolution();
+        The.Window.ClientSize = new Vector2(1920, 1080);
         DisplayInfo.HandleOrientationOrResolutionChange();
     }
 

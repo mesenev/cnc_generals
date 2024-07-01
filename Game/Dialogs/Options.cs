@@ -11,7 +11,6 @@ public class Options : Dialog<Scenes.Data.Options>
 	{
 		CreateCheckBox(Scene._MusicGroup.CheckGroup, nameof(MusicEnabled));
 		CreateCheckBox(Scene._SoundGroup.CheckGroup, nameof(SoundEnabled));
-		CreateCheckBox(Scene._VoiceGroup.CheckGroup, nameof(VoiceEnabled));
 		CreateCheckBox(Scene._FullScreenGroup.CheckGroup, nameof(Fullscreen));
 		Scene._BtnOk.It.Clicked = Close;
 	}
@@ -65,12 +64,6 @@ public class Options : Dialog<Scenes.Data.Options>
 	{
 		get { return SoundManager.SfxVolume > 0; }
 		set { SoundManager.SfxVolume = value ? 1.0f : 0; }
-	}
-
-	private bool VoiceEnabled
-	{
-		get { return SoundManager.VoiceVolume > 0; }
-		set { SoundManager.VoiceVolume = value ? 1.0f : 0; }
 	}
 
 	private bool Fullscreen

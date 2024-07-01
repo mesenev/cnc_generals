@@ -1,0 +1,60 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Animations":[
+		{
+			"IsLegacy":true,
+			"Markers":[
+				{
+					"Id":"Blackout"
+				},
+				{
+					"Frame":20,
+					"Id":"Lightout"
+				}
+			]
+		}
+	],
+	"Color":[4294967295],
+	"Id":"@",
+	"Nodes":[
+		{
+			"class":"Lime.Image, Lime",
+			"Anchors":15,
+			"Animators":[
+				{
+					"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.Color4SimpleAnimationCurve, Lime",
+						"Keys":[
+							[0,0,[1]],
+							[19,0,[4278190081]],
+							[29,0,[1]]
+						]
+					},
+					"TargetProperty":"Color"
+				}
+			],
+			"Color":[1],
+			"Id":"Image",
+			"Pivot":[0.5,0.5],
+			"Position":[0.5,0.5],
+			"Size":[1,1],
+			"Sprite":{
+				"class":"Lime.SerializableSprite, Lime"
+			}
+		}
+	],
+	"Size":[1,1]
+}

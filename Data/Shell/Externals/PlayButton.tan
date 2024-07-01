@@ -1,0 +1,64 @@
+{
+	"class":"Lime.DocumentHeader, Lime",
+	"Metadata":[
+		{
+			"class":"Lime.LayerMetadata, Lime",
+			"Layers":[
+				["game",1],
+				["lime",8]
+			]
+		}
+	]
+}
+{
+	"class":"Lime.Frame, Lime",
+	"Animations":[
+		{
+			"IsLegacy":true,
+			"Markers":[
+				{
+					"Id":"Pressed"
+				},
+				{
+					"Frame":10,
+					"Id":"Released"
+				}
+			]
+		}
+	],
+	"Color":[4294967295],
+	"Id":"@",
+	"Nodes":[
+		{
+			"class":"Lime.SimpleText, Lime",
+			"Anchors":63,
+			"Animators":[
+				{
+					"class":"Lime.Animator`1[[Lime.Color4, Lime]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.Color4SimpleAnimationCurve, Lime",
+						"Keys":[
+							[0,0,[4294967295]],
+							[5,0,[4283716692]],
+							[14,0,[4294769919]]
+						]
+					},
+					"TargetProperty":"Color"
+				}
+			],
+			"Color":[4294967295],
+			"Font":{
+				"Name":"Default"
+			},
+			"FontHeight":60,
+			"HAlignment":1,
+			"Id":"SimpleText",
+			"Pivot":[0.5,0.5],
+			"Position":[163.30191,44.110283],
+			"Size":[326.60382,88.220566],
+			"Text":"New commition",
+			"VAlignment":1
+		}
+	],
+	"Size":[326.60382,88.220566]
+}

@@ -89,6 +89,22 @@
 {
 	"class":"Lime.Frame, Lime",
 	"Anchors":15,
+	"Animations":[
+		{
+			"IsLegacy":true,
+			"Markers":[
+				{
+					"Id":"Init"
+				},
+				{
+					"Action":2,
+					"Frame":60,
+					"Id":"JumpToInit",
+					"JumpTo":"Init"
+				}
+			]
+		}
+	],
 	"Color":[4294967295],
 	"Nodes":[
 		{
@@ -103,6 +119,20 @@
 		{
 			"class":"Lime.SimpleText, Lime",
 			"Anchors":48,
+			"Animators":[
+				{
+					"class":"Lime.Animator`1[[System.String]], Lime",
+					"ReadonlyCurve":{
+						"class":"Lime.SimpleAnimationCurve`1[[System.String]], Lime",
+						"Keys":[
+							[0,1,"Waiting for players."],
+							[19,1,"Waiting for players.."],
+							[39,1,"Waiting for players..."]
+						]
+					},
+					"TargetProperty":"Text"
+				}
+			],
 			"Color":[4294967295],
 			"Components":[
 				{
@@ -125,57 +155,13 @@
 			},
 			"FontHeight":38.8,
 			"HAlignment":1,
-			"Id":"Text",
+			"Id":"@WaitingText",
 			"OverflowMode":1,
 			"Pivot":[0.5,0.5],
 			"Position":[683,384],
-			"Rotation":-11.948151,
 			"Size":[389.60117,180],
-			"Text":"All the interesting things will happen here =)",
+			"Text":"Waiting for players.",
 			"VAlignment":1
-		},
-		{
-			"class":"Lime.SimpleText, Lime",
-			"Anchors":20,
-			"Color":[4294967295],
-			"Components":[
-				{
-					"class":"Lime.SignedDistanceFieldComponent, Lime",
-					"Dilate":2,
-					"Gradient":[
-						{
-							"Color":[4294967295]
-						},
-						{
-							"Color":[4278190080],
-							"Position":1
-						}
-					]
-				}
-			],
-			"Font":{
-				"Name":"RussoOne"
-			},
-			"FontHeight":44,
-			"HAlignment":1,
-			"Id":"Title",
-			"OverflowMode":1,
-			"Pivot":[0.5,0.5],
-			"Position":[683,61.792847],
-			"Size":[337,64],
-			"Text":"Game Screen",
-			"VAlignment":1
-		},
-		{
-			"class":"Lime.Button, Lime",
-			"Anchors":6,
-			"Color":[4294967295],
-			"ContentsPath":"Externals/BtnX",
-			"Id":"@BtnExit",
-			"Pivot":[0.5,0.5],
-			"Position":[1283,77],
-			"Scale":[0.8,0.8],
-			"Size":[128,128]
 		},
 		{
 			"class":"Lime.Image, Lime",
@@ -195,16 +181,15 @@
 		{
 			"class":"Lime.TiledImage, Lime",
 			"Anchors":15,
-			"Color":[4294967295],
+			"Color":[4288716961],
 			"Id":"Bg",
 			"Pivot":[0.5,0.5],
 			"Position":[683,384],
 			"Size":[1366,768],
 			"Sprite":{
 				"class":"Lime.SerializableSprite, Lime",
-				"SerializationPath":"Ui/Bg"
-			},
-			"TileSize":[256,512]
+				"SerializationPath":"Ui/background"
+			}
 		}
 	],
 	"Size":[1366,768]

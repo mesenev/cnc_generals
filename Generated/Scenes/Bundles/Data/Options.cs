@@ -235,111 +235,6 @@ public class Options<T> : ParsedNode where T : Node
 		}
 	}
 
-	public class VoiceGroup : ParsedNode
-	{
-		public Lime.Frame It => (Lime.Frame)Node;
-
-		public Common.CheckGroup CheckGroup;
-
-		public class Check : ParsedNode
-		{
-			public Lime.Frame It => (Lime.Frame)Node;
-
-			public Check(Node node)
-			{
-				Node = node;
-			}
-
-			public Check Clone()
-			{
-				return new Check(It.Clone<Node>());
-			}
-
-			public Lime.Frame RunAnimationCheck()
-			{
-				Node.RunAnimation("Check");
-				return (Lime.Frame)Node;
-			}
-			public Lime.Frame RunAnimationChecked()
-			{
-				Node.RunAnimation("Checked");
-				return (Lime.Frame)Node;
-			}
-			public Lime.Frame RunAnimationUncheck()
-			{
-				Node.RunAnimation("Uncheck");
-				return (Lime.Frame)Node;
-			}
-			public Lime.Frame RunAnimationUnchecked()
-			{
-				Node.RunAnimation("Unchecked");
-				return (Lime.Frame)Node;
-			}
-		}
-
-		public class BtnCheck : ParsedNode
-		{
-			public Lime.Button It => (Lime.Button)Node;
-
-			public BtnCheck(Node node)
-			{
-				Node = node;
-			}
-
-			public BtnCheck Clone()
-			{
-				return new BtnCheck(It.Clone<Node>());
-			}
-
-			public Lime.Button RunAnimationInit()
-			{
-				Node.RunAnimation("Init");
-				return (Lime.Button)Node;
-			}
-			public Lime.Button RunAnimationNormal()
-			{
-				Node.RunAnimation("Normal");
-				return (Lime.Button)Node;
-			}
-			public Lime.Button RunAnimationFocus()
-			{
-				Node.RunAnimation("Focus");
-				return (Lime.Button)Node;
-			}
-			public Lime.Button RunAnimationPress()
-			{
-				Node.RunAnimation("Press");
-				return (Lime.Button)Node;
-			}
-			public Lime.Button RunAnimationRelease()
-			{
-				Node.RunAnimation("Release");
-				return (Lime.Button)Node;
-			}
-			public Lime.Button RunAnimationDisable()
-			{
-				Node.RunAnimation("Disable");
-				return (Lime.Button)Node;
-			}
-		}
-
-		public readonly Check @_Check;
-		public readonly BtnCheck @_BtnCheck;
-
-		public VoiceGroup(Node node)
-		{
-			Node = node;
-			CheckGroup = new Common.CheckGroup(Node);
-			@_Check = new Check(Node.Find<Node>("@Check"));
-			@_BtnCheck = new BtnCheck(Node.Find<Node>("@BtnCheck"));
-		}
-
-		public VoiceGroup Clone()
-		{
-			return new VoiceGroup(It.Clone<Node>());
-		}
-	}
-
 	public class FullScreenGroup : ParsedNode
 	{
 		public Lime.Frame It => (Lime.Frame)Node;
@@ -448,7 +343,6 @@ public class Options<T> : ParsedNode where T : Node
 	public readonly BtnOk<Lime.Button> @_BtnOk;
 	public readonly MusicGroup @_MusicGroup;
 	public readonly SoundGroup @_SoundGroup;
-	public readonly VoiceGroup @_VoiceGroup;
 	public readonly FullScreenGroup @_FullScreenGroup;
 
 	public Options() : this(Options.FrameCache.Clone<Node>()) { }
@@ -458,7 +352,6 @@ public class Options<T> : ParsedNode where T : Node
 		@_BtnOk = new BtnOk<Lime.Button>(Node.Find<Node>("@BtnOk"));
 		@_MusicGroup = new MusicGroup(Node.Find<Node>(">[CheckGroup]MusicGroup"));
 		@_SoundGroup = new SoundGroup(Node.Find<Node>(">[CheckGroup]SoundGroup"));
-		@_VoiceGroup = new VoiceGroup(Node.Find<Node>(">[CheckGroup]VoiceGroup"));
 		@_FullScreenGroup = new FullScreenGroup(Node.Find<Node>(">[CheckGroup]FullScreenGroup"));
 	}
 
